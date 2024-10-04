@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Custmeet</title>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <!--<link rel="stylesheet" href="css/loading.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/RpmStyle.css"><!-- Required for RPM Web Creator -->
+    <style>
+        body {
+            background-color: #ffffff;
+            background-image: url('img/onboardingBackground.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        
+    </style>
+
+
+
+    <script>
+
+        function SetPermissionEvents() {
+            navigator.permissions.query({ name: 'microphone' }).then((result) => {
+                result.onchange = () => {
+                    PermissionCheck();
+                }
+            });
+            navigator.permissions.query({ name: 'camera' }).then((result) => {
+                result.onchange = () => {
+                    PermissionCheck();
+                }
+            });
+        }
+        function PermissionCheck() {
+            console.log("Permission Check");
+
+
+            var joinButton = document.getElementById("pass");
+
+            navigator.permissions.query({ name: 'microphone' }).then((result) => {
+                if (result.state === 'granted') {
+                    joinButton.disabled = false;
+                    joinButton.className = "centeredButton eighteenregular";
+                }
+                else {
+                    joinButton.disabled = true;
+                    joinButton.className = "centeredButton2 eighteenregular";
+                }
+            });
+
+        }
+    </script>
+</head>
+
+
+
+<body onload="PermissionCheck()" style="margin: 0px;">
+    <script src="Build/testWebgl.loader.js"></script>
+    <!-- <script src="index.js"></script> -->
+
+    <script src="scripts/select.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/mic.js"></script>
+    <script src="scripts/video.js"></script>
+    <script src="scripts/toggles.js"></script>
+    <script src="scripts/volume.js"></script>
+    <script src="scripts/nameinput.js"></script>
+    <script src="scripts/browserinteraction.js"></script>
+    <script src="scripts/platform.js"></script>
+    <script src="scripts/webGLcommunicator.js"></script>
+    <script src="scripts/eventhandler.js"></script>
+
+
+
+    <div id="ChoixScene" style="display: none;">
+        <img src="img/accueilLogo.png" alt="Logo CustMeet" class="centeredImg">
+        <p class="centeredText twentyfourextralight">Bienvenue sur CustMeet</p>
+        <p class="centeredText fifteenextralight">L'application visio-conférence multi-utilisateurs en 3D sur
+            web</p>
+        <button id='AppartementButton' onclick="SaveSceneChoice(1)"
+            class="centeredButton eighteenregular">Appartement</button>
+        <button id='UsineButton' onclick="SaveSceneChoice(2)" class="centeredButton eighteenregular">Usine</button>
+        <button id='ExpositionButton' onclick="SaveSceneChoice(3)"
+            class="centeredButton eighteenregular">Exposition</button>
+        <img src="img/accueilOmbre.png" alt="Ombre sous le bouton" class="centeredShadow">
+    </div>
+
+
+    <div id="ChoixDuNom" style="display: block;">
+        <img src="img/accueilLogo.png" alt="Logo CustMeet" class="centeredImg">
+        <input id='name' type="text" value="" name="v_name" placeholder="Entrez votre nom"
+            class="centeredInputField twelveextralight" style="width: 22.5%; margin-top: 20vh"/>
+        <button id='nameButton' name="lauchvisite" onclick="ValidateName(document.getElementById('name').value)"
+            class="centeredButton2 eighteenregular">Démarrer une conférence 3D</button>
+        <img src="img/accueilOmbre.png" alt="Ombre sous le bouton" class="centeredShadow">
+    </div>
+
+    <div id="TestAudioVideo" style="display: none;">
+        <img src="img/accueilLogo.png" alt="Logo CustMeet" class="centeredImg">
+        <p class="centeredText2 fifteenextralight">Validez vos paramètres audio et vidéo</p>
+
+
+
+        <div class="row" style="display: inline-flex;">
+            <div class="column" style="width: 20vw;"> </div>
+            <div class="CenterColumn" style="width: 50vw;">
+
+                <div class="row" style="display: inline-flex; align-items: center; justify-content: center;">
+
+
+
+                    <div style="display: flex;">
+                        <img id="toggleMicroIcon" src="img/toggleMicroOn.png" class="centeredImgMicrophone">
+                        <label class="switch">
+                            <input type="checkbox" onchange="SwitchMicro()" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <select id="selectMicro" onchange="SaveAudioInSessionStorage(this.value)"
+                        class="centeredSelect nineextralight" style="margin-top: 0%;">
+                        <option value="" disabled selected>Sélectionnez un micro</option>
+                    </select>
+
+                </div>
+
+                <div class="row" style="justify-content: center; display: flex; ">
+                    <div style="display:block; width: 50%;">
+                        <div style="display: flex;">
+                            <img id="toggleVolumeIcon" src="img/toggleVolumeOff.png" class="centeredImgVolume">
+                            <div class="bar" id="volume-visualizer"></div>
+                        </div>
+                        <div style="display: block;">
+                            <p id="micFeedbackParagraph" class="micFeedbackText nineextralight">Votre micro est coupé
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="row" style="display: inline-flex;">
+                    <div class="CenterColumn">
+                        <div class="CameraBox" id="CameraBox">
+                            <img src="img/onboardingWebcam.png" class="centeredImg3" id="autorisationImg">
+                            <p id="autorisation" class="centeredText nineextralight">Votre webcam est désactivée</p>
+                            <video id="vid"></video>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"
+                    style="display: inline-flex; align-items: center; justify-content: center; margin-top: 2%;">
+                    <div style="display: flex;">
+                        <img id="toggleWebcamIcon" src="img/toggleWebcamOn.png" class="centeredImgWebcam">
+                        <label class="switch">
+                            <input type="checkbox" onchange="SwitchWebcam()" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <select id="selectCamera" onchange="SaveVideoInSessionStorage(this.value)"
+                        class="centeredSelect nineextralight" style="margin-top: 0%;">
+                        <option value="" disabled selected>Sélectionnez une caméra</option>
+                    </select>
+                </div>
+
+                <button id="pass" onclick="ShowAvatarSelection()" class="centeredButton2 eighteenregular"
+                    style="width: auto;">Rejoindre
+                    la
+                    conférence</button>
+                <img src="img/accueilOmbre.png" alt="Ombre sous le bouton" class="centeredShadow">
+            </div>
+
+            <div class="column" style="width: 20vw;"> </div>
+        </div>
+    </div>
+
+    <p id="AvatarSelection" class="centeredText twentyfourextralight" style="margin-top: 30vh;">Choisissez votre avatar</p>
+        <div id="SceneImages" class="row" style="align-items:center;">
+		
+            <div class="threeColumn" style="width:33%; display: flex;"> 
+                <div class="SceneImageChoice" onclick="SelectAvatar(0)">
+                    <img src="img/Avatar001.png" width="100%" style="display: block;"/>
+                    <p class="fifteencentered" style="background-color: orangered; color: #ffffff; margin: 0;"></p>
+                </div>
+            
+            </div>
+            <div class="threeColumn" style="width:33%; display: flex;"> 
+                <div class="SceneImageChoice" onclick="SelectAvatar(1)">
+                    <img src="img/Avatar002.png" width="100%" style="display: block;"/>
+                    <p class="fifteencentered" style="background-color: orangered; color: #ffffff; margin: 0;"></p>
+                </div>
+             </div>
+            <div class="threeColumn" style="width:33%; display: flex;"> 
+                <div class="SceneImageChoice" onclick="SelectAvatar(2)">
+                    <img src="img/Avatar003.png" width="100%" style="display: block;"/>
+                    <p class="fifteencentered" style="background-color: orangered; color: #ffffff; margin: 0;"></p>
+                </div>
+             </div>
+             <div class="fourthColumn" style="width:33%; display: flex;"> 
+                <div class="SceneImageChoice" onclick="SelectRPM(3)">
+                    <img src="img/Ready.png" width="100%" style="display: block;"/>
+                    <p class="fifteencentered" style="background-color: orangered; color: #ffffff; margin: 0;"></p>
+                </div>
+             </div>
+		</div>
+
+    <div id="info" style="display: none;"></div>
+
+    <!-- Unity Container -->
+    <div class="webgl-content">
+        <div id="dimension-info" style="display: none;">
+            <width>960</width>
+            <height>600</height>
+        </div>
+    </div>
+    <div id="loadingandunitycontainer" style="display: none; overflow: hidden;
+    background-image: url('img/onboardingBackground.png');
+            background-size: 100% 100%;">
+
+        <div id="unity-container" style="width:100%; height: 100%;;">
+            <div id="rpm-container">
+                <iframe id="rpm-frame" class="rpm-frame" style="width: 100vw; height: 100vh; "></iframe>
+              </div>
+            <canvas id="unity-canvas" width=960 height=600
+                style="width: 100vw; height: 100vh; "></canvas>
+        </div>
+
+        <!--Barre de chargement-->
+        <div id="customloader" class="customloader" style="grid: flex; justify-content: center; text-align: center;">
+            <img src="img/loadingLogo.png" class="customLoadingImg">
+            <p class="customLoadingText fifteenextralight">L'application va démarrer dans un instant</p>
+            <div class="customprogressbar">
+                <div id="customfill" class="customfill" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required, please do not delete -->
+    <canvas id="inMem_Canvas" height="450" width="450" style="display: none;"></canvas>
+    <canvas id="myCanvas" height="450" width="450"
+        style="position: absolute; left: 1px; top: 500px;display: none; border: 2px solid red"></canvas>
+    <div style="display: none;">
+        <div id="client-stats" class="stats"></div>
+        <div class="row video-group">
+            <div class="col">
+                <p id="local-player-name" class="player-name"></p>
+                <div class="player-with-stats">
+                    <div id="local-player" class="player"></div>
+                    <div id="local-stats" class="stream-stats stats"></div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <div id="remote-playerlist"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function customProgress(unityInstance, progress) {
+            const fill = document.getElementById("customfill");
+            fill.style.width = progress * 100 + "%";
+            if (progress == 1) {
+                fill.style.width = "100%";
+            }
+        }
+    </script>
+
+    <script>
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            // Mobile device style: fill the whole browser client area with the game canvas:
+            var meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+            document.getElementsByTagName('head')[0].appendChild(meta);
+        }
+        var myGameInstance = null;
+        var SceneIndex = 0;
+        createUnityInstance(document.querySelector("#unity-canvas"), {
+            dataUrl: "Build/testWebgl.data",
+            frameworkUrl: "Build/testWebgl.framework.js",
+      codeUrl: "Build/testWebgl.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+            companyName: "Kaïnoo",
+            productName: "Custmeet",
+            productVersion: "1.0",
+            // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+            // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+        }, (progress) => {
+            customProgress(null, progress)
+        }).then((unityInstance) => {
+            myGameInstance = unityInstance;
+            const container = document.getElementById("unity-container");
+            container.style.display = "block";
+            const loader = document.getElementById("customloader");
+            loader.style.display = "none";
+        });
+
+    </script>
+    <script src="scripts/RpmGlobal.js"></script> <!-- Required for RPM Web Creator -->
+    <script src="scripts/ReadyPlayerMeFrame.js"></script>  <!-- Required for RPM Web Creator -->
+</body>
+
+</html>
