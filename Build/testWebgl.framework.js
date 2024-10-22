@@ -1,8 +1,156 @@
-function unityFramework(Module) {
-var Module = typeof Module !== "undefined" ? Module : {};
 
-"use strict";(this.webpackChunk_livekit_livekit_unity=this.webpackChunk_livekit_livekit_unity||[]).push([[613],{187:e=>{var t,n="object"==typeof Reflect?Reflect:null,r=n&&"function"==typeof n.apply?n.apply:function ReflectApply(e,t,n){return Function.prototype.apply.call(e,t,n)};t=n&&"function"==typeof n.ownKeys?n.ownKeys:Object.getOwnPropertySymbols?function ReflectOwnKeys(e){return Object.getOwnPropertyNames(e).concat(Object.getOwnPropertySymbols(e))}:function ReflectOwnKeys(e){return Object.getOwnPropertyNames(e)};var i=Number.isNaN||function NumberIsNaN(e){return e!=e};function EventEmitter(){EventEmitter.init.call(this)}e.exports=EventEmitter,e.exports.once=function once(e,t){return new Promise((function(n,r){function errorListener(n){e.removeListener(t,resolver),r(n)}function resolver(){"function"==typeof e.removeListener&&e.removeListener("error",errorListener),n([].slice.call(arguments))}eventTargetAgnosticAddListener(e,t,resolver,{once:!0}),"error"!==t&&function addErrorHandlerIfEventEmitter(e,t,n){"function"==typeof e.on&&eventTargetAgnosticAddListener(e,"error",t,n)}(e,errorListener,{once:!0})}))},EventEmitter.EventEmitter=EventEmitter,EventEmitter.prototype._events=void 0,EventEmitter.prototype._eventsCount=0,EventEmitter.prototype._maxListeners=void 0;var s=10;function checkListener(e){if("function"!=typeof e)throw new TypeError('The "listener" argument must be of type Function. Received type '+typeof e)}function _getMaxListeners(e){return void 0===e._maxListeners?EventEmitter.defaultMaxListeners:e._maxListeners}function _addListener(e,t,n,r){var i,s,o;if(checkListener(n),void 0===(s=e._events)?(s=e._events=Object.create(null),e._eventsCount=0):(void 0!==s.newListener&&(e.emit("newListener",t,n.listener?n.listener:n),s=e._events),o=s[t]),void 0===o)o=s[t]=n,++e._eventsCount;else if("function"==typeof o?o=s[t]=r?[n,o]:[o,n]:r?o.unshift(n):o.push(n),(i=_getMaxListeners(e))>0&&o.length>i&&!o.warned){o.warned=!0;var u=new Error("Possible EventEmitter memory leak detected. "+o.length+" "+String(t)+" listeners added. Use emitter.setMaxListeners() to increase limit");u.name="MaxListenersExceededWarning",u.emitter=e,u.type=t,u.count=o.length,function ProcessEmitWarning(e){console&&console.warn&&console.warn(e)}(u)}return e}function onceWrapper(){if(!this.fired)return this.target.removeListener(this.type,this.wrapFn),this.fired=!0,0===arguments.length?this.listener.call(this.target):this.listener.apply(this.target,arguments)}function _onceWrap(e,t,n){var r={fired:!1,wrapFn:void 0,target:e,type:t,listener:n},i=onceWrapper.bind(r);return i.listener=n,r.wrapFn=i,i}function _listeners(e,t,n){var r=e._events;if(void 0===r)return[];var i=r[t];return void 0===i?[]:"function"==typeof i?n?[i.listener||i]:[i]:n?function unwrapListeners(e){for(var t=new Array(e.length),n=0;n<t.length;++n)t[n]=e[n].listener||e[n];return t}(i):arrayClone(i,i.length)}function listenerCount(e){var t=this._events;if(void 0!==t){var n=t[e];if("function"==typeof n)return 1;if(void 0!==n)return n.length}return 0}function arrayClone(e,t){for(var n=new Array(t),r=0;r<t;++r)n[r]=e[r];return n}function eventTargetAgnosticAddListener(e,t,n,r){if("function"==typeof e.on)r.once?e.once(t,n):e.on(t,n);else{if("function"!=typeof e.addEventListener)throw new TypeError('The "emitter" argument must be of type EventEmitter. Received type '+typeof e);e.addEventListener(t,(function wrapListener(i){r.once&&e.removeEventListener(t,wrapListener),n(i)}))}}Object.defineProperty(EventEmitter,"defaultMaxListeners",{enumerable:!0,get:function(){return s},set:function(e){if("number"!=typeof e||e<0||i(e))throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received '+e+".");s=e}}),EventEmitter.init=function(){void 0!==this._events&&this._events!==Object.getPrototypeOf(this)._events||(this._events=Object.create(null),this._eventsCount=0),this._maxListeners=this._maxListeners||void 0},EventEmitter.prototype.setMaxListeners=function setMaxListeners(e){if("number"!=typeof e||e<0||i(e))throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received '+e+".");return this._maxListeners=e,this},EventEmitter.prototype.getMaxListeners=function getMaxListeners(){return _getMaxListeners(this)},EventEmitter.prototype.emit=function emit(e){for(var t=[],n=1;n<arguments.length;n++)t.push(arguments[n]);var i="error"===e,s=this._events;if(void 0!==s)i=i&&void 0===s.error;else if(!i)return!1;if(i){var o;if(t.length>0&&(o=t[0]),o instanceof Error)throw o;var u=new Error("Unhandled error."+(o?" ("+o.message+")":""));throw u.context=o,u}var v=s[e];if(void 0===v)return!1;if("function"==typeof v)r(v,this,t);else{var a=v.length,c=arrayClone(v,a);for(n=0;n<a;++n)r(c[n],this,t)}return!0},EventEmitter.prototype.addListener=function addListener(e,t){return _addListener(this,e,t,!1)},EventEmitter.prototype.on=EventEmitter.prototype.addListener,EventEmitter.prototype.prependListener=function prependListener(e,t){return _addListener(this,e,t,!0)},EventEmitter.prototype.once=function once(e,t){return checkListener(t),this.on(e,_onceWrap(this,e,t)),this},EventEmitter.prototype.prependOnceListener=function prependOnceListener(e,t){return checkListener(t),this.prependListener(e,_onceWrap(this,e,t)),this},EventEmitter.prototype.removeListener=function removeListener(e,t){var n,r,i,s,o;if(checkListener(t),void 0===(r=this._events))return this;if(void 0===(n=r[e]))return this;if(n===t||n.listener===t)0==--this._eventsCount?this._events=Object.create(null):(delete r[e],r.removeListener&&this.emit("removeListener",e,n.listener||t));else if("function"!=typeof n){for(i=-1,s=n.length-1;s>=0;s--)if(n[s]===t||n[s].listener===t){o=n[s].listener,i=s;break}if(i<0)return this;0===i?n.shift():function spliceOne(e,t){for(;t+1<e.length;t++)e[t]=e[t+1];e.pop()}(n,i),1===n.length&&(r[e]=n[0]),void 0!==r.removeListener&&this.emit("removeListener",e,o||t)}return this},EventEmitter.prototype.off=EventEmitter.prototype.removeListener,EventEmitter.prototype.removeAllListeners=function removeAllListeners(e){var t,n,r;if(void 0===(n=this._events))return this;if(void 0===n.removeListener)return 0===arguments.length?(this._events=Object.create(null),this._eventsCount=0):void 0!==n[e]&&(0==--this._eventsCount?this._events=Object.create(null):delete n[e]),this;if(0===arguments.length){var i,s=Object.keys(n);for(r=0;r<s.length;++r)"removeListener"!==(i=s[r])&&this.removeAllListeners(i);return this.removeAllListeners("removeListener"),this._events=Object.create(null),this._eventsCount=0,this}if("function"==typeof(t=n[e]))this.removeListener(e,t);else if(void 0!==t)for(r=t.length-1;r>=0;r--)this.removeListener(e,t[r]);return this},EventEmitter.prototype.listeners=function listeners(e){return _listeners(this,e,!0)},EventEmitter.prototype.rawListeners=function rawListeners(e){return _listeners(this,e,!1)},EventEmitter.listenerCount=function(e,t){return"function"==typeof e.listenerCount?e.listenerCount(t):listenerCount.call(e,t)},EventEmitter.prototype.listenerCount=listenerCount,EventEmitter.prototype.eventNames=function eventNames(){return this._eventsCount>0?t(this._events):[]}},933:(e,t,n)=>{n.r(t),n.d(t,{UnityBridge:()=>UnityBridge,UnityEvent:()=>r});var r,i=n(187);class UnityBridge extends i.EventEmitter{_ready=!1;constructor(){super(),this.once(r.BridgeReady,(()=>{this._ready=!0}))}get ready(){return this._ready}static get instance(){var e=window;return e.lkbridgeinst||(e.lkbridgeinst=new this)}emit(e,...t){return super.emit(e,...t)}}!function(e){e.BridgeReady="bridgeReady",e.RoomCreated="roomCreated"}(r||(r={}))}},e=>{var t,n=(t=933,e(e.s=t));window.lkbridge=n}]);
-(()=>{"use strict";var e,t={},i={};function __webpack_require__(e){var n=i[e];if(void 0!==n)return n.exports;var s=i[e]={exports:{}};return t[e](s,s.exports,__webpack_require__),s.exports}__webpack_require__.m=t,e=[],__webpack_require__.O=(t,i,n,s)=>{if(!i){var a=1/0;for(l=0;l<e.length;l++){for(var[i,n,s]=e[l],o=!0,c=0;c<i.length;c++)(!1&s||a>=s)&&Object.keys(__webpack_require__.O).every((e=>__webpack_require__.O[e](i[c])))?i.splice(c--,1):(o=!1,s<a&&(a=s));if(o){e.splice(l--,1);var u=n();void 0!==u&&(t=u)}}return t}s=s||0;for(var l=e.length;l>0&&e[l-1][2]>s;l--)e[l]=e[l-1];e[l]=[i,n,s]},__webpack_require__.d=(e,t)=>{for(var i in t)__webpack_require__.o(t,i)&&!__webpack_require__.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},__webpack_require__.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),__webpack_require__.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},(()=>{var e={588:0};__webpack_require__.O.j=t=>0===e[t];var webpackJsonpCallback=(t,i)=>{var n,s,[a,o,c]=i,u=0;if(a.some((t=>0!==e[t]))){for(n in o)__webpack_require__.o(o,n)&&(__webpack_require__.m[n]=o[n]);if(c)var l=c(__webpack_require__)}for(t&&t(i);u<a.length;u++)s=a[u],__webpack_require__.o(e,s)&&e[s]&&e[s][0](),e[s]=0;return __webpack_require__.O(l)},t=this.webpackChunk_livekit_livekit_unity=this.webpackChunk_livekit_livekit_unity||[];t.forEach(webpackJsonpCallback.bind(null,0)),t.push=webpackJsonpCallback.bind(null,t.push.bind(t))})();var n={};function _mergeNamespaces(e,t){return t.forEach((function(t){t&&"string"!=typeof t&&!Array.isArray(t)&&Object.keys(t).forEach((function(i){if("default"!==i&&!(i in e)){var n=Object.getOwnPropertyDescriptor(t,i);Object.defineProperty(e,i,n.get?n:{enumerable:!0,get:function(){return t[i]}})}}))})),Object.freeze(e)}__webpack_require__.r(n),__webpack_require__.d(n,{AudioPresets:()=>Ee,BaseKeyProvider:()=>BaseKeyProvider,ConnectionCheck:()=>ConnectionCheck,ConnectionError:()=>ConnectionError,ConnectionQuality:()=>Pt,ConnectionState:()=>Rt,CriticalTimers:()=>CriticalTimers,CryptorEvent:()=>Qe,DataPacket_Kind:()=>K,DefaultReconnectPolicy:()=>DefaultReconnectPolicy,DeviceUnsupportedError:()=>DeviceUnsupportedError,DisconnectReason:()=>B,EncryptionEvent:()=>He,EngineEvent:()=>Le,ExternalE2EEKeyProvider:()=>ExternalE2EEKeyProvider,KeyHandlerEvent:()=>Ge,KeyProviderEvent:()=>Ke,LivekitError:()=>LivekitError,LocalAudioTrack:()=>LocalAudioTrack,LocalParticipant:()=>LocalParticipant,LocalTrack:()=>LocalTrack,LocalTrackPublication:()=>LocalTrackPublication,LocalVideoTrack:()=>LocalVideoTrack,LogLevel:()=>l,MediaDeviceFailure:()=>ge,NegotiationError:()=>NegotiationError,Participant:()=>Participant,ParticipantEvent:()=>De,PublishDataError:()=>PublishDataError,RemoteAudioTrack:()=>RemoteAudioTrack,RemoteParticipant:()=>RemoteParticipant,RemoteTrack:()=>RemoteTrack,RemoteTrackPublication:()=>RemoteTrackPublication,RemoteVideoTrack:()=>RemoteVideoTrack,Room:()=>Room,RoomEvent:()=>Ie,RoomState:()=>_t,ScreenSharePresets:()=>_e,Track:()=>Track,TrackEvent:()=>Me,TrackInvalidError:()=>TrackInvalidError,TrackPublication:()=>TrackPublication,UnexpectedConnectionState:()=>UnexpectedConnectionState,UnsupportedServer:()=>UnsupportedServer,VideoPreset:()=>VideoPreset,VideoPresets:()=>Pe,VideoPresets43:()=>Re,VideoQuality:()=>N,attachToElement:()=>attachToElement,createAudioAnalyser:()=>createAudioAnalyser,createE2EEKey:()=>createE2EEKey,createKeyMaterialFromBuffer:()=>createKeyMaterialFromBuffer,createKeyMaterialFromString:()=>createKeyMaterialFromString,createLocalAudioTrack:()=>createLocalAudioTrack,createLocalScreenTracks:()=>createLocalScreenTracks,createLocalTracks:()=>createLocalTracks,createLocalVideoTrack:()=>createLocalVideoTrack,deriveKeys:()=>deriveKeys,detachTrack:()=>detachTrack,facingModeFromDeviceLabel:()=>facingModeFromDeviceLabel,facingModeFromLocalTrack:()=>facingModeFromLocalTrack,getEmptyAudioStreamTrack:()=>getEmptyAudioStreamTrack,getEmptyVideoStreamTrack:()=>getEmptyVideoStreamTrack,importKey:()=>importKey,isBackupCodec:()=>isBackupCodec,isBrowserSupported:()=>isBrowserSupported,isCodecEqual:()=>isCodecEqual,isE2EESupported:()=>isE2EESupported,isInsertableStreamSupported:()=>isInsertableStreamSupported,isScriptTransformSupported:()=>isScriptTransformSupported,isVideoFrame:()=>isVideoFrame,mimeTypeToVideoCodecString:()=>mimeTypeToVideoCodecString,protocolVersion:()=>be,ratchet:()=>ratchet,setLogExtension:()=>setLogExtension,setLogLevel:()=>setLogLevel,supportsAV1:()=>supportsAV1,supportsAdaptiveStream:()=>supportsAdaptiveStream,supportsDynacast:()=>supportsDynacast,supportsVP9:()=>supportsVP9,version:()=>Te,videoCodecs:()=>we});var s="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function getDefaultExportFromCjs(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}var a,o,c,u={exports:{}};o=s,c=function(){var noop=function(){},e="undefined",t=typeof window!==e&&typeof window.navigator!==e&&/Trident\/|MSIE /.test(window.navigator.userAgent),i=["trace","debug","info","warn","error"];function bindMethod(e,t){var i=e[t];if("function"==typeof i.bind)return i.bind(e);try{return Function.prototype.bind.call(i,e)}catch(t){return function(){return Function.prototype.apply.apply(i,[e,arguments])}}}function traceForIE(){console.log&&(console.log.apply?console.log.apply(console,arguments):Function.prototype.apply.apply(console.log,[console,arguments])),console.trace&&console.trace()}function realMethod(i){return"debug"===i&&(i="log"),typeof console!==e&&("trace"===i&&t?traceForIE:void 0!==console[i]?bindMethod(console,i):void 0!==console.log?bindMethod(console,"log"):noop)}function replaceLoggingMethods(e,t){for(var n=0;n<i.length;n++){var s=i[n];this[s]=n<e?noop:this.methodFactory(s,e,t)}this.log=this.debug}function enableLoggingWhenConsoleArrives(t,i,n){return function(){typeof console!==e&&(replaceLoggingMethods.call(this,i,n),this[t].apply(this,arguments))}}function defaultMethodFactory(e,t,i){return realMethod(e)||enableLoggingWhenConsoleArrives.apply(this,arguments)}function Logger(t,n,s){var a,o=this;n=null==n?"WARN":n;var c="loglevel";function getPersistedLevel(){var t;if(typeof window!==e&&c){try{t=window.localStorage[c]}catch(e){}if(typeof t===e)try{var i=window.document.cookie,n=i.indexOf(encodeURIComponent(c)+"=");-1!==n&&(t=/^([^;]+)/.exec(i.slice(n))[1])}catch(e){}return void 0===o.levels[t]&&(t=void 0),t}}"string"==typeof t?c+=":"+t:"symbol"==typeof t&&(c=void 0),o.name=t,o.levels={TRACE:0,DEBUG:1,INFO:2,WARN:3,ERROR:4,SILENT:5},o.methodFactory=s||defaultMethodFactory,o.getLevel=function(){return a},o.setLevel=function(n,s){if("string"==typeof n&&void 0!==o.levels[n.toUpperCase()]&&(n=o.levels[n.toUpperCase()]),!("number"==typeof n&&n>=0&&n<=o.levels.SILENT))throw"log.setLevel() called with invalid level: "+n;if(a=n,!1!==s&&function persistLevelIfPossible(t){var n=(i[t]||"silent").toUpperCase();if(typeof window!==e&&c){try{return void(window.localStorage[c]=n)}catch(e){}try{window.document.cookie=encodeURIComponent(c)+"="+n+";"}catch(e){}}}(n),replaceLoggingMethods.call(o,n,t),typeof console===e&&n<o.levels.SILENT)return"No console available for logging"},o.setDefaultLevel=function(e){n=e,getPersistedLevel()||o.setLevel(e,!1)},o.resetLevel=function(){o.setLevel(n,!1),function clearPersistedLevel(){if(typeof window!==e&&c){try{return void window.localStorage.removeItem(c)}catch(e){}try{window.document.cookie=encodeURIComponent(c)+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC"}catch(e){}}}()},o.enableAll=function(e){o.setLevel(o.levels.TRACE,e)},o.disableAll=function(e){o.setLevel(o.levels.SILENT,e)};var u=getPersistedLevel();null==u&&(u=n),o.setLevel(u,!1)}var n=new Logger,s={};n.getLogger=function getLogger(e){if("symbol"!=typeof e&&"string"!=typeof e||""===e)throw new TypeError("You must supply a name when creating a logger.");var t=s[e];return t||(t=s[e]=new Logger(e,n.getLevel(),n.methodFactory)),t};var a=typeof window!==e?window.log:void 0;return n.noConflict=function(){return typeof window!==e&&window.log===n&&(window.log=a),n},n.getLoggers=function getLoggers(){return s},n.default=n,n},(a=u).exports?a.exports=c():o.log=c();var l,h=u.exports;!function(e){e[e.trace=0]="trace",e[e.debug=1]="debug",e[e.info=2]="info",e[e.warn=3]="warn",e[e.error=4]="error",e[e.silent=5]="silent"}(l||(l={}));const p=h.getLogger("livekit");function setLogLevel(e,t){t&&h.getLogger(t).setLevel(e);for(const t of Object.values(h.getLoggers()))t.setLevel(e)}function setLogExtension(e){const t=p.methodFactory;p.methodFactory=(i,n,s)=>{const a=t(i,n,s),o=l[i],c=o>=n&&o<l.silent;return(t,i)=>{i?a(t,i):a(t),c&&e(o,t,i)}},p.setLevel(p.getLevel())}function assert(e,t){if(!e)throw new Error(t)}p.setDefaultLevel(l.info),h.getLogger("lk-e2ee");function assertInt32(e){if("number"!=typeof e)throw new Error("invalid int 32: "+typeof e);if(!Number.isInteger(e)||e>2147483647||e<-2147483648)throw new Error("invalid int 32: "+e)}function assertUInt32(e){if("number"!=typeof e)throw new Error("invalid uint 32: "+typeof e);if(!Number.isInteger(e)||e>4294967295||e<0)throw new Error("invalid uint 32: "+e)}function assertFloat32(e){if("number"!=typeof e)throw new Error("invalid float 32: "+typeof e);if(Number.isFinite(e)&&(e>34028234663852886e22||e<-34028234663852886e22))throw new Error("invalid float 32: "+e)}const m=Symbol("@bufbuild/protobuf/enum-type");function getEnumType(e){const t=e[m];return assert(t,"missing enum type on enum object"),t}function setEnumType(e,t,i,n){e[m]=makeEnumType(t,i.map((t=>({no:t.no,name:t.name,localName:e[t.no]}))))}function makeEnumType(e,t,i){const n=Object.create(null),s=Object.create(null),a=[];for(const e of t){const t=normalizeEnumValue(e);a.push(t),n[e.name]=t,s[e.no]=t}return{typeName:e,values:a,findName:e=>n[e],findNumber:e=>s[e]}}function makeEnum(e,t,i){const n={};for(const e of t){const t=normalizeEnumValue(e);n[t.localName]=t.no,n[t.no]=t.localName}return setEnumType(n,e,t),n}function normalizeEnumValue(e){return"localName"in e?e:Object.assign(Object.assign({},e),{localName:e.name})}class Message{equals(e){return this.getType().runtime.util.equals(this.getType(),this,e)}clone(){return this.getType().runtime.util.clone(this)}fromBinary(e,t){const i=this.getType().runtime.bin,n=i.makeReadOptions(t);return i.readMessage(this,n.readerFactory(e),e.byteLength,n),this}fromJson(e,t){const i=this.getType(),n=i.runtime.json,s=n.makeReadOptions(t);return n.readMessage(i,e,s,this),this}fromJsonString(e,t){let i;try{i=JSON.parse(e)}catch(e){throw new Error("cannot decode ".concat(this.getType().typeName," from JSON: ").concat(e instanceof Error?e.message:String(e)))}return this.fromJson(i,t)}toBinary(e){const t=this.getType().runtime.bin,i=t.makeWriteOptions(e),n=i.writerFactory();return t.writeMessage(this,n,i),n.finish()}toJson(e){const t=this.getType().runtime.json,i=t.makeWriteOptions(e);return t.writeMessage(this,i)}toJsonString(e){var t;const i=this.toJson(e);return JSON.stringify(i,null,null!==(t=null==e?void 0:e.prettySpaces)&&void 0!==t?t:0)}toJSON(){return this.toJson({emitDefaultValues:!0})}getType(){return Object.getPrototypeOf(this).constructor}}var g;function varint64read(){let e=0,t=0;for(let i=0;i<28;i+=7){let n=this.buf[this.pos++];if(e|=(127&n)<<i,0==(128&n))return this.assertBounds(),[e,t]}let i=this.buf[this.pos++];if(e|=(15&i)<<28,t=(112&i)>>4,0==(128&i))return this.assertBounds(),[e,t];for(let i=3;i<=31;i+=7){let n=this.buf[this.pos++];if(t|=(127&n)<<i,0==(128&n))return this.assertBounds(),[e,t]}throw new Error("invalid varint")}function varint64write(e,t,i){for(let n=0;n<28;n+=7){const s=e>>>n,a=!(s>>>7==0&&0==t),o=255&(a?128|s:s);if(i.push(o),!a)return}const n=e>>>28&15|(7&t)<<4,s=!(t>>3==0);if(i.push(255&(s?128|n:n)),s){for(let e=3;e<31;e+=7){const n=t>>>e,s=!(n>>>7==0),a=255&(s?128|n:n);if(i.push(a),!s)return}i.push(t>>>31&1)}}!function(e){e[e.DOUBLE=1]="DOUBLE",e[e.FLOAT=2]="FLOAT",e[e.INT64=3]="INT64",e[e.UINT64=4]="UINT64",e[e.INT32=5]="INT32",e[e.FIXED64=6]="FIXED64",e[e.FIXED32=7]="FIXED32",e[e.BOOL=8]="BOOL",e[e.STRING=9]="STRING",e[e.BYTES=12]="BYTES",e[e.UINT32=13]="UINT32",e[e.SFIXED32=15]="SFIXED32",e[e.SFIXED64=16]="SFIXED64",e[e.SINT32=17]="SINT32",e[e.SINT64=18]="SINT64"}(g||(g={}));const v=4294967296;function int64FromString(e){const t="-"===e[0];t&&(e=e.slice(1));const i=1e6;let n=0,s=0;function add1e6digit(t,a){const o=Number(e.slice(t,a));s*=i,n=n*i+o,n>=v&&(s+=n/v|0,n%=v)}return add1e6digit(-24,-18),add1e6digit(-18,-12),add1e6digit(-12,-6),add1e6digit(-6),t?negate(n,s):newBits(n,s)}function uInt64ToString(e,t){if(({lo:e,hi:t}=function toUnsigned(e,t){return{lo:e>>>0,hi:t>>>0}}(e,t)),t<=2097151)return String(v*t+e);const i=16777215&(e>>>24|t<<8),n=t>>16&65535;let s=(16777215&e)+6777216*i+6710656*n,a=i+8147497*n,o=2*n;const c=1e7;return s>=c&&(a+=Math.floor(s/c),s%=c),a>=c&&(o+=Math.floor(a/c),a%=c),o.toString()+decimalFrom1e7WithLeadingZeros(a)+decimalFrom1e7WithLeadingZeros(s)}function newBits(e,t){return{lo:0|e,hi:0|t}}function negate(e,t){return t=~t,e?e=1+~e:t+=1,newBits(e,t)}const decimalFrom1e7WithLeadingZeros=e=>{const t=String(e);return"0000000".slice(t.length)+t};function varint32write(e,t){if(e>=0){for(;e>127;)t.push(127&e|128),e>>>=7;t.push(e)}else{for(let i=0;i<9;i++)t.push(127&e|128),e>>=7;t.push(1)}}function varint32read(){let e=this.buf[this.pos++],t=127&e;if(0==(128&e))return this.assertBounds(),t;if(e=this.buf[this.pos++],t|=(127&e)<<7,0==(128&e))return this.assertBounds(),t;if(e=this.buf[this.pos++],t|=(127&e)<<14,0==(128&e))return this.assertBounds(),t;if(e=this.buf[this.pos++],t|=(127&e)<<21,0==(128&e))return this.assertBounds(),t;e=this.buf[this.pos++],t|=(15&e)<<28;for(let t=5;0!=(128&e)&&t<10;t++)e=this.buf[this.pos++];if(0!=(128&e))throw new Error("invalid varint");return this.assertBounds(),t>>>0}const k=function makeInt64Support(){const e=new DataView(new ArrayBuffer(8));if("function"==typeof BigInt&&"function"==typeof e.getBigInt64&&"function"==typeof e.getBigUint64&&"function"==typeof e.setBigInt64&&"function"==typeof e.setBigUint64&&("object"!=typeof process||"object"!=typeof process.env||"1"!==process.env.BUF_BIGINT_DISABLE)){const t=BigInt("-9223372036854775808"),i=BigInt("9223372036854775807"),n=BigInt("0"),s=BigInt("18446744073709551615");return{zero:BigInt(0),supported:!0,parse(e){const n="bigint"==typeof e?e:BigInt(e);if(n>i||n<t)throw new Error("int64 invalid: ".concat(e));return n},uParse(e){const t="bigint"==typeof e?e:BigInt(e);if(t>s||t<n)throw new Error("uint64 invalid: ".concat(e));return t},enc(t){return e.setBigInt64(0,this.parse(t),!0),{lo:e.getInt32(0,!0),hi:e.getInt32(4,!0)}},uEnc(t){return e.setBigInt64(0,this.uParse(t),!0),{lo:e.getInt32(0,!0),hi:e.getInt32(4,!0)}},dec:(t,i)=>(e.setInt32(0,t,!0),e.setInt32(4,i,!0),e.getBigInt64(0,!0)),uDec:(t,i)=>(e.setInt32(0,t,!0),e.setInt32(4,i,!0),e.getBigUint64(0,!0))}}const assertInt64String=e=>assert(/^-?[0-9]+$/.test(e),"int64 invalid: ".concat(e)),assertUInt64String=e=>assert(/^[0-9]+$/.test(e),"uint64 invalid: ".concat(e));return{zero:"0",supported:!1,parse:e=>("string"!=typeof e&&(e=e.toString()),assertInt64String(e),e),uParse:e=>("string"!=typeof e&&(e=e.toString()),assertUInt64String(e),e),enc:e=>("string"!=typeof e&&(e=e.toString()),assertInt64String(e),int64FromString(e)),uEnc:e=>("string"!=typeof e&&(e=e.toString()),assertUInt64String(e),int64FromString(e)),dec:(e,t)=>function int64ToString(e,t){let i=newBits(e,t);const n=2147483648&i.hi;n&&(i=negate(i.lo,i.hi));const s=uInt64ToString(i.lo,i.hi);return n?"-"+s:s}(e,t),uDec:(e,t)=>uInt64ToString(e,t)}}();var y;!function(e){e[e.Varint=0]="Varint",e[e.Bit64=1]="Bit64",e[e.LengthDelimited=2]="LengthDelimited",e[e.StartGroup=3]="StartGroup",e[e.EndGroup=4]="EndGroup",e[e.Bit32=5]="Bit32"}(y||(y={}));class BinaryWriter{constructor(e){this.stack=[],this.textEncoder=null!=e?e:new TextEncoder,this.chunks=[],this.buf=[]}finish(){this.chunks.push(new Uint8Array(this.buf));let e=0;for(let t=0;t<this.chunks.length;t++)e+=this.chunks[t].length;let t=new Uint8Array(e),i=0;for(let e=0;e<this.chunks.length;e++)t.set(this.chunks[e],i),i+=this.chunks[e].length;return this.chunks=[],t}fork(){return this.stack.push({chunks:this.chunks,buf:this.buf}),this.chunks=[],this.buf=[],this}join(){let e=this.finish(),t=this.stack.pop();if(!t)throw new Error("invalid state, fork stack empty");return this.chunks=t.chunks,this.buf=t.buf,this.uint32(e.byteLength),this.raw(e)}tag(e,t){return this.uint32((e<<3|t)>>>0)}raw(e){return this.buf.length&&(this.chunks.push(new Uint8Array(this.buf)),this.buf=[]),this.chunks.push(e),this}uint32(e){for(assertUInt32(e);e>127;)this.buf.push(127&e|128),e>>>=7;return this.buf.push(e),this}int32(e){return assertInt32(e),varint32write(e,this.buf),this}bool(e){return this.buf.push(e?1:0),this}bytes(e){return this.uint32(e.byteLength),this.raw(e)}string(e){let t=this.textEncoder.encode(e);return this.uint32(t.byteLength),this.raw(t)}float(e){assertFloat32(e);let t=new Uint8Array(4);return new DataView(t.buffer).setFloat32(0,e,!0),this.raw(t)}double(e){let t=new Uint8Array(8);return new DataView(t.buffer).setFloat64(0,e,!0),this.raw(t)}fixed32(e){assertUInt32(e);let t=new Uint8Array(4);return new DataView(t.buffer).setUint32(0,e,!0),this.raw(t)}sfixed32(e){assertInt32(e);let t=new Uint8Array(4);return new DataView(t.buffer).setInt32(0,e,!0),this.raw(t)}sint32(e){return assertInt32(e),varint32write(e=(e<<1^e>>31)>>>0,this.buf),this}sfixed64(e){let t=new Uint8Array(8),i=new DataView(t.buffer),n=k.enc(e);return i.setInt32(0,n.lo,!0),i.setInt32(4,n.hi,!0),this.raw(t)}fixed64(e){let t=new Uint8Array(8),i=new DataView(t.buffer),n=k.uEnc(e);return i.setInt32(0,n.lo,!0),i.setInt32(4,n.hi,!0),this.raw(t)}int64(e){let t=k.enc(e);return varint64write(t.lo,t.hi,this.buf),this}sint64(e){let t=k.enc(e),i=t.hi>>31;return varint64write(t.lo<<1^i,(t.hi<<1|t.lo>>>31)^i,this.buf),this}uint64(e){let t=k.uEnc(e);return varint64write(t.lo,t.hi,this.buf),this}}class BinaryReader{constructor(e,t){this.varint64=varint64read,this.uint32=varint32read,this.buf=e,this.len=e.length,this.pos=0,this.view=new DataView(e.buffer,e.byteOffset,e.byteLength),this.textDecoder=null!=t?t:new TextDecoder}tag(){let e=this.uint32(),t=e>>>3,i=7&e;if(t<=0||i<0||i>5)throw new Error("illegal tag: field no "+t+" wire type "+i);return[t,i]}skip(e){let t=this.pos;switch(e){case y.Varint:for(;128&this.buf[this.pos++];);break;case y.Bit64:this.pos+=4;case y.Bit32:this.pos+=4;break;case y.LengthDelimited:let t=this.uint32();this.pos+=t;break;case y.StartGroup:let i;for(;(i=this.tag()[1])!==y.EndGroup;)this.skip(i);break;default:throw new Error("cant skip wire type "+e)}return this.assertBounds(),this.buf.subarray(t,this.pos)}assertBounds(){if(this.pos>this.len)throw new RangeError("premature EOF")}int32(){return 0|this.uint32()}sint32(){let e=this.uint32();return e>>>1^-(1&e)}int64(){return k.dec(...this.varint64())}uint64(){return k.uDec(...this.varint64())}sint64(){let[e,t]=this.varint64(),i=-(1&e);return e=(e>>>1|(1&t)<<31)^i,t=t>>>1^i,k.dec(e,t)}bool(){let[e,t]=this.varint64();return 0!==e||0!==t}fixed32(){return this.view.getUint32((this.pos+=4)-4,!0)}sfixed32(){return this.view.getInt32((this.pos+=4)-4,!0)}fixed64(){return k.uDec(this.sfixed32(),this.sfixed32())}sfixed64(){return k.dec(this.sfixed32(),this.sfixed32())}float(){return this.view.getFloat32((this.pos+=4)-4,!0)}double(){return this.view.getFloat64((this.pos+=8)-8,!0)}bytes(){let e=this.uint32(),t=this.pos;return this.pos+=e,this.assertBounds(),this.buf.subarray(t,t+e)}string(){return this.textDecoder.decode(this.bytes())}}function wrapField(e,t){return t instanceof Message||!e.fieldWrapper?t:e.fieldWrapper.wrapField(t)}function scalarEquals(e,t,i){if(t===i)return!0;if(e==g.BYTES){if(!(t instanceof Uint8Array&&i instanceof Uint8Array))return!1;if(t.length!==i.length)return!1;for(let e=0;e<t.length;e++)if(t[e]!==i[e])return!1;return!0}switch(e){case g.UINT64:case g.FIXED64:case g.INT64:case g.SFIXED64:case g.SINT64:return t==i}return!1}function scalarDefaultValue(e){switch(e){case g.BOOL:return!1;case g.UINT64:case g.FIXED64:case g.INT64:case g.SFIXED64:case g.SINT64:return k.zero;case g.DOUBLE:case g.FLOAT:return 0;case g.BYTES:return new Uint8Array(0);case g.STRING:return"";default:return 0}}function scalarTypeInfo(e,t){const i=void 0===t;let n=y.Varint,s=0===t;switch(e){case g.STRING:s=i||!t.length,n=y.LengthDelimited;break;case g.BOOL:s=!1===t;break;case g.DOUBLE:n=y.Bit64;break;case g.FLOAT:n=y.Bit32;break;case g.INT64:case g.UINT64:s=i||0==t;break;case g.FIXED64:s=i||0==t,n=y.Bit64;break;case g.BYTES:s=i||!t.byteLength,n=y.LengthDelimited;break;case g.FIXED32:case g.SFIXED32:n=y.Bit32;break;case g.SFIXED64:s=i||0==t,n=y.Bit64;break;case g.SINT64:s=i||0==t}return[n,g[e].toLowerCase(),i||s]}g.DOUBLE,g.FLOAT,g.INT64,g.UINT64,g.INT32,g.UINT32,g.BOOL,g.STRING,g.BYTES;const S=Symbol("@bufbuild/protobuf/unknown-fields"),T={readUnknownFields:!0,readerFactory:e=>new BinaryReader(e)},b={writeUnknownFields:!0,writerFactory:()=>new BinaryWriter};function makeReadOptions$1(e){return e?Object.assign(Object.assign({},T),e):T}function makeWriteOptions$1(e){return e?Object.assign(Object.assign({},b),e):b}function readMessageField(e,t,i){return t.getType().runtime.bin.readMessage(t,e,e.uint32(),i),t}function readMapEntry(e,t,i){const n=t.uint32(),s=t.pos+n;let a,o;for(;t.pos<s;){let[n]=t.tag();switch(n){case 1:a=readScalar$1(t,e.K);break;case 2:switch(e.V.kind){case"scalar":o=readScalar$1(t,e.V.T);break;case"enum":o=t.int32();break;case"message":o=readMessageField(t,new e.V.T,i)}}}if(void 0===a){let t=scalarDefaultValue(e.K);a=e.K==g.BOOL?t.toString():t}if("string"!=typeof a&&"number"!=typeof a&&(a=a.toString()),void 0===o)switch(e.V.kind){case"scalar":o=scalarDefaultValue(e.V.T);break;case"enum":o=0;break;case"message":o=new e.V.T}return[a,o]}function readScalar$1(e,t){switch(t){case g.STRING:return e.string();case g.BOOL:return e.bool();case g.DOUBLE:return e.double();case g.FLOAT:return e.float();case g.INT32:return e.int32();case g.INT64:return e.int64();case g.UINT64:return e.uint64();case g.FIXED64:return e.fixed64();case g.BYTES:return e.bytes();case g.FIXED32:return e.fixed32();case g.SFIXED32:return e.sfixed32();case g.SFIXED64:return e.sfixed64();case g.SINT64:return e.sint64();case g.UINT32:return e.uint32();case g.SINT32:return e.sint32()}}function writeMapEntry(e,t,i,n,s){e.tag(i.no,y.LengthDelimited),e.fork();let a=n;switch(i.K){case g.INT32:case g.FIXED32:case g.UINT32:case g.SFIXED32:case g.SINT32:a=Number.parseInt(n);break;case g.BOOL:assert("true"==n||"false"==n),a="true"==n}switch(writeScalar$1(e,i.K,1,a,!0),i.V.kind){case"scalar":writeScalar$1(e,i.V.T,2,s,!0);break;case"enum":writeScalar$1(e,g.INT32,2,s,!0);break;case"message":writeMessageField(e,t,i.V.T,2,s)}e.join()}function writeMessageField(e,t,i,n,s){if(void 0!==s){const a=wrapField(i,s);e.tag(n,y.LengthDelimited).bytes(a.toBinary(t))}}function writeScalar$1(e,t,i,n,s){let[a,o,c]=scalarTypeInfo(t,n);c&&!s||e.tag(i,a)[o](n)}function writePacked(e,t,i,n){if(!n.length)return;e.tag(i,y.LengthDelimited).fork();let[,s]=scalarTypeInfo(t);for(let t=0;t<n.length;t++)e[s](n[t]);e.join()}let C="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(""),w=[];for(let e=0;e<C.length;e++)w[C[e].charCodeAt(0)]=e;w["-".charCodeAt(0)]=C.indexOf("+"),w["_".charCodeAt(0)]=C.indexOf("/");const E={dec(e){let t=3*e.length/4;"="==e[e.length-2]?t-=2:"="==e[e.length-1]&&(t-=1);let i,n=new Uint8Array(t),s=0,a=0,o=0;for(let t=0;t<e.length;t++){if(i=w[e.charCodeAt(t)],void 0===i)switch(e[t]){case"=":a=0;case"\n":case"\r":case"\t":case" ":continue;default:throw Error("invalid base64 string.")}switch(a){case 0:o=i,a=1;break;case 1:n[s++]=o<<2|(48&i)>>4,o=i,a=2;break;case 2:n[s++]=(15&o)<<4|(60&i)>>2,o=i,a=3;break;case 3:n[s++]=(3&o)<<6|i,a=0}}if(1==a)throw Error("invalid base64 string.");return n.subarray(0,s)},enc(e){let t,i="",n=0,s=0;for(let a=0;a<e.length;a++)switch(t=e[a],n){case 0:i+=C[t>>2],s=(3&t)<<4,n=1;break;case 1:i+=C[s|t>>4],s=(15&t)<<2,n=2;break;case 2:i+=C[s|t>>6],i+=C[63&t],n=0}return n&&(i+=C[s],i+="=",1==n&&(i+="=")),i}},P={ignoreUnknownFields:!1},R={emitDefaultValues:!1,enumAsInteger:!1,useProtoFieldName:!1,prettySpaces:0};function makeReadOptions(e){return e?Object.assign(Object.assign({},P),e):P}function makeWriteOptions(e){return e?Object.assign(Object.assign({},R),e):R}function debugJsonValue(e){if(null===e)return"null";switch(typeof e){case"object":return Array.isArray(e)?"array":"object";case"string":return e.length>100?"string":'"'.concat(e.split('"').join('\\"'),'"');default:return e.toString()}}function readScalar(e,t){switch(e){case g.DOUBLE:case g.FLOAT:if(null===t)return 0;if("NaN"===t)return Number.NaN;if("Infinity"===t)return Number.POSITIVE_INFINITY;if("-Infinity"===t)return Number.NEGATIVE_INFINITY;if(""===t)break;if("string"==typeof t&&t.trim().length!==t.length)break;if("string"!=typeof t&&"number"!=typeof t)break;const i=Number(t);if(Number.isNaN(i))break;if(!Number.isFinite(i))break;return e==g.FLOAT&&assertFloat32(i),i;case g.INT32:case g.FIXED32:case g.SFIXED32:case g.SINT32:case g.UINT32:if(null===t)return 0;let n;if("number"==typeof t?n=t:"string"==typeof t&&t.length>0&&t.trim().length===t.length&&(n=Number(t)),void 0===n)break;return e==g.UINT32?assertUInt32(n):assertInt32(n),n;case g.INT64:case g.SFIXED64:case g.SINT64:if(null===t)return k.zero;if("number"!=typeof t&&"string"!=typeof t)break;return k.parse(t);case g.FIXED64:case g.UINT64:if(null===t)return k.zero;if("number"!=typeof t&&"string"!=typeof t)break;return k.uParse(t);case g.BOOL:if(null===t)return!1;if("boolean"!=typeof t)break;return t;case g.STRING:if(null===t)return"";if("string"!=typeof t)break;try{encodeURIComponent(t)}catch(e){throw new Error("invalid UTF8")}return t;case g.BYTES:if(null===t||""===t)return new Uint8Array(0);if("string"!=typeof t)break;return E.dec(t)}throw new Error}function readEnum(e,t,i){if(null===t)return 0;switch(typeof t){case"number":if(Number.isInteger(t))return t;break;case"string":const n=e.findName(t);if(n||i)return null==n?void 0:n.no}throw new Error("cannot decode enum ".concat(e.typeName," from JSON: ").concat(debugJsonValue(t)))}function writeEnum(e,t,i,n){var s;if(void 0===t)return t;if(0===t&&!i)return;if(n)return t;if("google.protobuf.NullValue"==e.typeName)return null;const a=e.findNumber(t);return null!==(s=null==a?void 0:a.name)&&void 0!==s?s:t}function writeScalar(e,t,i){if(void 0!==t)switch(e){case g.INT32:case g.SFIXED32:case g.SINT32:case g.FIXED32:case g.UINT32:return assert("number"==typeof t),0!=t||i?t:void 0;case g.FLOAT:case g.DOUBLE:return assert("number"==typeof t),Number.isNaN(t)?"NaN":t===Number.POSITIVE_INFINITY?"Infinity":t===Number.NEGATIVE_INFINITY?"-Infinity":0!==t||i?t:void 0;case g.STRING:return assert("string"==typeof t),t.length>0||i?t:void 0;case g.BOOL:return assert("boolean"==typeof t),t||i?t:void 0;case g.UINT64:case g.FIXED64:case g.INT64:case g.SFIXED64:case g.SINT64:return assert("bigint"==typeof t||"string"==typeof t||"number"==typeof t),i||0!=t?t.toString(10):void 0;case g.BYTES:return assert(t instanceof Uint8Array),i||t.byteLength>0?E.enc(t):void 0}}function cloneSingularField(e,t){if(void 0===t)return t;if(t instanceof Message)return t.clone();if(t instanceof Uint8Array){const e=new Uint8Array(t.byteLength);return e.set(t),e}return t}class InternalFieldList{constructor(e,t){this._fields=e,this._normalizer=t}findJsonName(e){if(!this.jsonNames){const e={};for(const t of this.list())e[t.jsonName]=e[t.name]=t;this.jsonNames=e}return this.jsonNames[e]}find(e){if(!this.numbers){const e={};for(const t of this.list())e[t.no]=t;this.numbers=e}return this.numbers[e]}list(){return this.all||(this.all=this._normalizer(this._fields)),this.all}byNumber(){return this.numbersAsc||(this.numbersAsc=this.list().concat().sort(((e,t)=>e.no-t.no))),this.numbersAsc}byMember(){if(!this.members){this.members=[];const e=this.members;let t;for(const i of this.list())i.oneof?i.oneof!==t&&(t=i.oneof,e.push(t)):e.push(i)}return this.members}}function localFieldName(e,t){const i=protoCamelCase(e);return t?i:safeObjectProperty(safeMessageProperty(i))}const _=protoCamelCase;function protoCamelCase(e){let t=!1;const i=[];for(let n=0;n<e.length;n++){let s=e.charAt(n);switch(s){case"_":t=!0;break;case"0":case"1":case"2":case"3":case"4":case"5":case"6":case"7":case"8":case"9":i.push(s),t=!1;break;default:t&&(t=!1,s=s.toUpperCase()),i.push(s)}}return i.join("")}const I=new Set(["constructor","toString","toJSON","valueOf"]),D=new Set(["getType","clone","equals","fromBinary","fromJson","fromJsonString","toBinary","toJson","toJsonString","toObject"]),fallback=e=>"".concat(e,"$"),safeMessageProperty=e=>D.has(e)?fallback(e):e,safeObjectProperty=e=>I.has(e)?fallback(e):e;class InternalOneofInfo{constructor(e){this.kind="oneof",this.repeated=!1,this.packed=!1,this.opt=!1,this.default=void 0,this.fields=[],this.name=e,this.localName=function localOneofName(e){return localFieldName(e,!1)}(e)}addField(e){assert(e.oneof===this,"field ".concat(e.name," not one of ").concat(this.name)),this.fields.push(e)}findField(e){if(!this._lookup){this._lookup=Object.create(null);for(let e=0;e<this.fields.length;e++)this._lookup[this.fields[e].localName]=this.fields[e]}return this._lookup[e]}}const L=function makeProtoRuntime(e,t,i,n){return{syntax:e,json:t,bin:i,util:n,makeMessageType(e,t,i){return function makeMessageType(e,t,i,n){var s;const a=null!==(s=null==n?void 0:n.localName)&&void 0!==s?s:t.substring(t.lastIndexOf(".")+1),o={[a]:function(t){e.util.initFields(this),e.util.initPartial(t,this)}}[a];return Object.setPrototypeOf(o.prototype,new Message),Object.assign(o,{runtime:e,typeName:t,fields:e.util.newFieldList(i),fromBinary:(e,t)=>(new o).fromBinary(e,t),fromJson:(e,t)=>(new o).fromJson(e,t),fromJsonString:(e,t)=>(new o).fromJsonString(e,t),equals:(t,i)=>e.util.equals(o,t,i)}),o}(this,e,t,i)},makeEnum,makeEnumType,getEnumType}}("proto3",function makeJsonFormatProto3(){return function makeJsonFormatCommon(e){const t=e(writeEnum,writeScalar);return{makeReadOptions,makeWriteOptions,readMessage(e,t,i,n){if(null==t||Array.isArray(t)||"object"!=typeof t)throw new Error("cannot decode message ".concat(e.typeName," from JSON: ").concat(this.debug(t)));n=null!=n?n:new e;const s={};for(const[a,o]of Object.entries(t)){const t=e.fields.findJsonName(a);if(!t){if(!i.ignoreUnknownFields)throw new Error("cannot decode message ".concat(e.typeName,' from JSON: key "').concat(a,'" is unknown'));continue}let c=t.localName,u=n;if(t.oneof){if(null===o&&"scalar"==t.kind)continue;const i=s[t.oneof.localName];if(i)throw new Error("cannot decode message ".concat(e.typeName,' from JSON: multiple keys for oneof "').concat(t.oneof.name,'" present: "').concat(i,'", "').concat(a,'"'));s[t.oneof.localName]=a,u=u[t.oneof.localName]={case:c},c="value"}if(t.repeated){if(null===o)continue;if(!Array.isArray(o))throw new Error("cannot decode field ".concat(e.typeName,".").concat(t.name," from JSON: ").concat(this.debug(o)));const n=u[c];for(const s of o){if(null===s)throw new Error("cannot decode field ".concat(e.typeName,".").concat(t.name," from JSON: ").concat(this.debug(s)));let a;switch(t.kind){case"message":a=t.T.fromJson(s,i);break;case"enum":if(a=readEnum(t.T,s,i.ignoreUnknownFields),void 0===a)continue;break;case"scalar":try{a=readScalar(t.T,s)}catch(i){let n="cannot decode field ".concat(e.typeName,".").concat(t.name," from JSON: ").concat(this.debug(s));throw i instanceof Error&&i.message.length>0&&(n+=": ".concat(i.message)),new Error(n)}}n.push(a)}}else if("map"==t.kind){if(null===o)continue;if(Array.isArray(o)||"object"!=typeof o)throw new Error("cannot decode field ".concat(e.typeName,".").concat(t.name," from JSON: ").concat(this.debug(o)));const n=u[c];for(const[s,a]of Object.entries(o)){if(null===a)throw new Error("cannot decode field ".concat(e.typeName,".").concat(t.name," from JSON: map value null"));let c;switch(t.V.kind){case"message":c=t.V.T.fromJson(a,i);break;case"enum":if(c=readEnum(t.V.T,a,i.ignoreUnknownFields),void 0===c)continue;break;case"scalar":try{c=readScalar(t.V.T,a)}catch(i){let n="cannot decode map value for field ".concat(e.typeName,".").concat(t.name," from JSON: ").concat(this.debug(o));throw i instanceof Error&&i.message.length>0&&(n+=": ".concat(i.message)),new Error(n)}}try{n[readScalar(t.K,t.K==g.BOOL?"true"==s||"false"!=s&&s:s).toString()]=c}catch(i){let n="cannot decode map key for field ".concat(e.typeName,".").concat(t.name," from JSON: ").concat(this.debug(o));throw i instanceof Error&&i.message.length>0&&(n+=": ".concat(i.message)),new Error(n)}}}else switch(t.kind){case"message":const n=t.T;if(null===o&&"google.protobuf.Value"!=n.typeName){if(t.oneof)throw new Error("cannot decode field ".concat(e.typeName,".").concat(t.name,' from JSON: null is invalid for oneof field "').concat(a,'"'));continue}u[c]instanceof Message?u[c].fromJson(o,i):(u[c]=n.fromJson(o,i),n.fieldWrapper&&!t.oneof&&(u[c]=n.fieldWrapper.unwrapField(u[c])));break;case"enum":const s=readEnum(t.T,o,i.ignoreUnknownFields);void 0!==s&&(u[c]=s);break;case"scalar":try{u[c]=readScalar(t.T,o)}catch(i){let n="cannot decode field ".concat(e.typeName,".").concat(t.name," from JSON: ").concat(this.debug(o));throw i instanceof Error&&i.message.length>0&&(n+=": ".concat(i.message)),new Error(n)}}}return n},writeMessage(e,i){const n=e.getType(),s={};let a;try{for(const o of n.fields.byMember()){let n;if("oneof"==o.kind){const s=e[o.localName];if(void 0===s.value)continue;if(a=o.findField(s.case),!a)throw"oneof case not found: "+s.case;n=t(a,s.value,i)}else a=o,n=t(a,e[a.localName],i);void 0!==n&&(s[i.useProtoFieldName?a.name:a.jsonName]=n)}}catch(e){const t=a?"cannot encode field ".concat(n.typeName,".").concat(a.name," to JSON"):"cannot encode message ".concat(n.typeName," to JSON"),i=e instanceof Error?e.message:String(e);throw new Error(t+(i.length>0?": ".concat(i):""))}return s},readScalar,writeScalar,debug:debugJsonValue}}(((e,t)=>function writeField(i,n,s){if("map"==i.kind){const a={};switch(i.V.kind){case"scalar":for(const[e,s]of Object.entries(n)){const n=t(i.V.T,s,!0);assert(void 0!==n),a[e.toString()]=n}break;case"message":for(const[e,t]of Object.entries(n))a[e.toString()]=t.toJson(s);break;case"enum":const o=i.V.T;for(const[t,i]of Object.entries(n)){assert(void 0===i||"number"==typeof i);const n=e(o,i,!0,s.enumAsInteger);assert(void 0!==n),a[t.toString()]=n}}return s.emitDefaultValues||Object.keys(a).length>0?a:void 0}if(i.repeated){const a=[];switch(i.kind){case"scalar":for(let e=0;e<n.length;e++)a.push(t(i.T,n[e],!0));break;case"enum":for(let t=0;t<n.length;t++)a.push(e(i.T,n[t],!0,s.enumAsInteger));break;case"message":for(let e=0;e<n.length;e++)a.push(wrapField(i.T,n[e]).toJson(s))}return s.emitDefaultValues||a.length>0?a:void 0}switch(i.kind){case"scalar":return t(i.T,n,!!i.oneof||i.opt||s.emitDefaultValues);case"enum":return e(i.T,n,!!i.oneof||i.opt||s.emitDefaultValues,s.enumAsInteger);case"message":return void 0!==n?wrapField(i.T,n).toJson(s):void 0}}))}(),function makeBinaryFormatProto3(){return Object.assign(Object.assign({},function makeBinaryFormatCommon(){return{makeReadOptions:makeReadOptions$1,makeWriteOptions:makeWriteOptions$1,listUnknownFields(e){var t;return null!==(t=e[S])&&void 0!==t?t:[]},discardUnknownFields(e){delete e[S]},writeUnknownFields(e,t){const i=e[S];if(i)for(const e of i)t.tag(e.no,e.wireType).raw(e.data)},onUnknownField(e,t,i,n){const s=e;Array.isArray(s[S])||(s[S]=[]),s[S].push({no:t,wireType:i,data:n})},readMessage(e,t,i,n){const s=e.getType(),a=void 0===i?t.len:t.pos+i;for(;t.pos<a;){const[i,a]=t.tag(),o=s.fields.find(i);if(!o){const s=t.skip(a);n.readUnknownFields&&this.onUnknownField(e,i,a,s);continue}let c=e,u=o.repeated,l=o.localName;switch(o.oneof&&(c=c[o.oneof.localName],c.case!=l&&delete c.value,c.case=l,l="value"),o.kind){case"scalar":case"enum":const e="enum"==o.kind?g.INT32:o.T;if(u){let i=c[l];if(a==y.LengthDelimited&&e!=g.STRING&&e!=g.BYTES){let n=t.uint32()+t.pos;for(;t.pos<n;)i.push(readScalar$1(t,e))}else i.push(readScalar$1(t,e))}else c[l]=readScalar$1(t,e);break;case"message":const i=o.T;u?c[l].push(readMessageField(t,new i,n)):c[l]instanceof Message?readMessageField(t,c[l],n):(c[l]=readMessageField(t,new i,n),!i.fieldWrapper||o.oneof||o.repeated||(c[l]=i.fieldWrapper.unwrapField(c[l])));break;case"map":let[s,h]=readMapEntry(o,t,n);c[l][s]=h}}}}}()),{writeMessage(e,t,i){const n=e.getType();for(const s of n.fields.byNumber()){let n,a=s.repeated,o=s.localName;if(s.oneof){const t=e[s.oneof.localName];if(t.case!==o)continue;n=t.value}else n=e[o];switch(s.kind){case"scalar":case"enum":let e="enum"==s.kind?g.INT32:s.T;if(a)if(s.packed)writePacked(t,e,s.no,n);else for(const i of n)writeScalar$1(t,e,s.no,i,!0);else void 0!==n&&writeScalar$1(t,e,s.no,n,!!s.oneof||s.opt);break;case"message":if(a)for(const e of n)writeMessageField(t,i,s.T,s.no,e);else writeMessageField(t,i,s.T,s.no,n);break;case"map":for(const[e,a]of Object.entries(n))writeMapEntry(t,i,s,e,a)}}return i.writeUnknownFields&&this.writeUnknownFields(e,t),t}})}(),Object.assign(Object.assign({},function makeUtilCommon(){return{setEnumType,initPartial(e,t){if(void 0===e)return;const i=t.getType();for(const n of i.fields.byMember()){const i=n.localName,s=t,a=e;if(void 0!==a[i])switch(n.kind){case"oneof":const e=a[i].case;if(void 0===e)continue;const t=n.findField(e);let o=a[i].value;!t||"message"!=t.kind||o instanceof t.T||(o=new t.T(o)),s[i]={case:e,value:o};break;case"scalar":case"enum":s[i]=a[i];break;case"map":switch(n.V.kind){case"scalar":case"enum":Object.assign(s[i],a[i]);break;case"message":const e=n.V.T;for(const t of Object.keys(a[i])){let n=a[i][t];e.fieldWrapper||(n=new e(n)),s[i][t]=n}}break;case"message":const c=n.T;if(n.repeated)s[i]=a[i].map((e=>e instanceof c?e:new c(e)));else if(void 0!==a[i]){const e=a[i];c.fieldWrapper?s[i]=e:s[i]=e instanceof c?e:new c(e)}}}},equals:(e,t,i)=>t===i||!(!t||!i)&&e.fields.byMember().every((e=>{const n=t[e.localName],s=i[e.localName];if(e.repeated){if(n.length!==s.length)return!1;switch(e.kind){case"message":return n.every(((t,i)=>e.T.equals(t,s[i])));case"scalar":return n.every(((t,i)=>scalarEquals(e.T,t,s[i])));case"enum":return n.every(((e,t)=>scalarEquals(g.INT32,e,s[t])))}throw new Error("repeated cannot contain ".concat(e.kind))}switch(e.kind){case"message":return e.T.equals(n,s);case"enum":return scalarEquals(g.INT32,n,s);case"scalar":return scalarEquals(e.T,n,s);case"oneof":if(n.case!==s.case)return!1;const t=e.findField(n.case);if(void 0===t)return!0;switch(t.kind){case"message":return t.T.equals(n.value,s.value);case"enum":return scalarEquals(g.INT32,n.value,s.value);case"scalar":return scalarEquals(t.T,n.value,s.value)}throw new Error("oneof cannot contain ".concat(t.kind));case"map":const i=Object.keys(n).concat(Object.keys(s));switch(e.V.kind){case"message":const t=e.V.T;return i.every((e=>t.equals(n[e],s[e])));case"enum":return i.every((e=>scalarEquals(g.INT32,n[e],s[e])));case"scalar":const a=e.V.T;return i.every((e=>scalarEquals(a,n[e],s[e])))}}})),clone(e){const t=e.getType(),i=new t,n=i;for(const i of t.fields.byMember()){const t=e[i.localName];let s;if(i.repeated)s=t.map((e=>cloneSingularField(i,e)));else if("map"==i.kind){s=n[i.localName];for(const[e,n]of Object.entries(t))s[e]=cloneSingularField(i.V,n)}else if("oneof"==i.kind){const e=i.findField(t.case);s=e?{case:t.case,value:cloneSingularField(e,t.value)}:{case:void 0}}else s=cloneSingularField(i,t);n[i.localName]=s}return i}}}()),{newFieldList:e=>new InternalFieldList(e,normalizeFieldInfosProto3),initFields(e){for(const t of e.getType().fields.byMember()){if(t.opt)continue;const i=t.localName,n=e;if(t.repeated)n[i]=[];else switch(t.kind){case"oneof":n[i]={case:void 0};break;case"enum":n[i]=0;break;case"map":n[i]={};break;case"scalar":n[i]=scalarDefaultValue(t.T)}}}}));function normalizeFieldInfosProto3(e){var t,i,n;const s=[];let a;for(const o of"function"==typeof e?e():e){const e=o;if(e.localName=localFieldName(o.name,void 0!==o.oneof),e.jsonName=null!==(t=o.jsonName)&&void 0!==t?t:_(o.name),e.repeated=null!==(i=o.repeated)&&void 0!==i&&i,e.packed=null!==(n=o.packed)&&void 0!==n?n:"enum"==o.kind||"scalar"==o.kind&&o.T!=g.BYTES&&o.T!=g.STRING,void 0!==o.oneof){const t="string"==typeof o.oneof?o.oneof:o.oneof.name;a&&a.name==t||(a=new InternalOneofInfo(t)),e.oneof=a,a.addField(e)}s.push(e)}return s}class Timestamp extends Message{constructor(e){super(),this.seconds=k.zero,this.nanos=0,L.util.initPartial(e,this)}fromJson(e,t){if("string"!=typeof e)throw new Error("cannot decode google.protobuf.Timestamp from JSON: ".concat(L.json.debug(e)));const i=e.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(?:Z|\.([0-9]{3,9})Z|([+-][0-9][0-9]:[0-9][0-9]))$/);if(!i)throw new Error("cannot decode google.protobuf.Timestamp from JSON: invalid RFC 3339 string");const n=Date.parse(i[1]+"-"+i[2]+"-"+i[3]+"T"+i[4]+":"+i[5]+":"+i[6]+(i[8]?i[8]:"Z"));if(Number.isNaN(n))throw new Error("cannot decode google.protobuf.Timestamp from JSON: invalid RFC 3339 string");if(n<Date.parse("0001-01-01T00:00:00Z")||n>Date.parse("9999-12-31T23:59:59Z"))throw new Error("cannot decode message google.protobuf.Timestamp from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive");return this.seconds=k.parse(n/1e3),this.nanos=0,i[7]&&(this.nanos=parseInt("1"+i[7]+"0".repeat(9-i[7].length))-1e9),this}toJson(e){const t=1e3*Number(this.seconds);if(t<Date.parse("0001-01-01T00:00:00Z")||t>Date.parse("9999-12-31T23:59:59Z"))throw new Error("cannot encode google.protobuf.Timestamp to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive");if(this.nanos<0)throw new Error("cannot encode google.protobuf.Timestamp to JSON: nanos must not be negative");let i="Z";if(this.nanos>0){const e=(this.nanos+1e9).toString().substring(1);i="000000"===e.substring(3)?"."+e.substring(0,3)+"Z":"000"===e.substring(6)?"."+e.substring(0,6)+"Z":"."+e+"Z"}return new Date(t).toISOString().replace(".000Z",i)}toDate(){return new Date(1e3*Number(this.seconds)+Math.ceil(this.nanos/1e6))}static now(){return Timestamp.fromDate(new Date)}static fromDate(e){const t=e.getTime();return new Timestamp({seconds:k.parse(Math.floor(t/1e3)),nanos:t%1e3*1e6})}static fromBinary(e,t){return(new Timestamp).fromBinary(e,t)}static fromJson(e,t){return(new Timestamp).fromJson(e,t)}static fromJsonString(e,t){return(new Timestamp).fromJsonString(e,t)}static equals(e,t){return L.util.equals(Timestamp,e,t)}}var M,A,U,O,N,x,F,B,V,J;Timestamp.runtime=L,Timestamp.typeName="google.protobuf.Timestamp",Timestamp.fields=L.util.newFieldList((()=>[{no:1,name:"seconds",kind:"scalar",T:3},{no:2,name:"nanos",kind:"scalar",T:5}])),function(e){e[e.DEFAULT_AC=0]="DEFAULT_AC",e[e.OPUS=1]="OPUS",e[e.AAC=2]="AAC"}(M||(M={})),L.util.setEnumType(M,"livekit.AudioCodec",[{no:0,name:"DEFAULT_AC"},{no:1,name:"OPUS"},{no:2,name:"AAC"}]),function(e){e[e.DEFAULT_VC=0]="DEFAULT_VC",e[e.H264_BASELINE=1]="H264_BASELINE",e[e.H264_MAIN=2]="H264_MAIN",e[e.H264_HIGH=3]="H264_HIGH",e[e.VP8=4]="VP8"}(A||(A={})),L.util.setEnumType(A,"livekit.VideoCodec",[{no:0,name:"DEFAULT_VC"},{no:1,name:"H264_BASELINE"},{no:2,name:"H264_MAIN"},{no:3,name:"H264_HIGH"},{no:4,name:"VP8"}]),function(e){e[e.AUDIO=0]="AUDIO",e[e.VIDEO=1]="VIDEO",e[e.DATA=2]="DATA"}(U||(U={})),L.util.setEnumType(U,"livekit.TrackType",[{no:0,name:"AUDIO"},{no:1,name:"VIDEO"},{no:2,name:"DATA"}]),function(e){e[e.UNKNOWN=0]="UNKNOWN",e[e.CAMERA=1]="CAMERA",e[e.MICROPHONE=2]="MICROPHONE",e[e.SCREEN_SHARE=3]="SCREEN_SHARE",e[e.SCREEN_SHARE_AUDIO=4]="SCREEN_SHARE_AUDIO"}(O||(O={})),L.util.setEnumType(O,"livekit.TrackSource",[{no:0,name:"UNKNOWN"},{no:1,name:"CAMERA"},{no:2,name:"MICROPHONE"},{no:3,name:"SCREEN_SHARE"},{no:4,name:"SCREEN_SHARE_AUDIO"}]),function(e){e[e.LOW=0]="LOW",e[e.MEDIUM=1]="MEDIUM",e[e.HIGH=2]="HIGH",e[e.OFF=3]="OFF"}(N||(N={})),L.util.setEnumType(N,"livekit.VideoQuality",[{no:0,name:"LOW"},{no:1,name:"MEDIUM"},{no:2,name:"HIGH"},{no:3,name:"OFF"}]),function(e){e[e.POOR=0]="POOR",e[e.GOOD=1]="GOOD",e[e.EXCELLENT=2]="EXCELLENT"}(x||(x={})),L.util.setEnumType(x,"livekit.ConnectionQuality",[{no:0,name:"POOR"},{no:1,name:"GOOD"},{no:2,name:"EXCELLENT"}]),function(e){e[e.UNSET=0]="UNSET",e[e.DISABLED=1]="DISABLED",e[e.ENABLED=2]="ENABLED"}(F||(F={})),L.util.setEnumType(F,"livekit.ClientConfigSetting",[{no:0,name:"UNSET"},{no:1,name:"DISABLED"},{no:2,name:"ENABLED"}]),function(e){e[e.UNKNOWN_REASON=0]="UNKNOWN_REASON",e[e.CLIENT_INITIATED=1]="CLIENT_INITIATED",e[e.DUPLICATE_IDENTITY=2]="DUPLICATE_IDENTITY",e[e.SERVER_SHUTDOWN=3]="SERVER_SHUTDOWN",e[e.PARTICIPANT_REMOVED=4]="PARTICIPANT_REMOVED",e[e.ROOM_DELETED=5]="ROOM_DELETED",e[e.STATE_MISMATCH=6]="STATE_MISMATCH",e[e.JOIN_FAILURE=7]="JOIN_FAILURE"}(B||(B={})),L.util.setEnumType(B,"livekit.DisconnectReason",[{no:0,name:"UNKNOWN_REASON"},{no:1,name:"CLIENT_INITIATED"},{no:2,name:"DUPLICATE_IDENTITY"},{no:3,name:"SERVER_SHUTDOWN"},{no:4,name:"PARTICIPANT_REMOVED"},{no:5,name:"ROOM_DELETED"},{no:6,name:"STATE_MISMATCH"},{no:7,name:"JOIN_FAILURE"}]),function(e){e[e.RR_UNKNOWN=0]="RR_UNKNOWN",e[e.RR_SIGNAL_DISCONNECTED=1]="RR_SIGNAL_DISCONNECTED",e[e.RR_PUBLISHER_FAILED=2]="RR_PUBLISHER_FAILED",e[e.RR_SUBSCRIBER_FAILED=3]="RR_SUBSCRIBER_FAILED",e[e.RR_SWITCH_CANDIDATE=4]="RR_SWITCH_CANDIDATE"}(V||(V={})),L.util.setEnumType(V,"livekit.ReconnectReason",[{no:0,name:"RR_UNKNOWN"},{no:1,name:"RR_SIGNAL_DISCONNECTED"},{no:2,name:"RR_PUBLISHER_FAILED"},{no:3,name:"RR_SUBSCRIBER_FAILED"},{no:4,name:"RR_SWITCH_CANDIDATE"}]),function(e){e[e.SE_UNKNOWN=0]="SE_UNKNOWN",e[e.SE_CODEC_UNSUPPORTED=1]="SE_CODEC_UNSUPPORTED",e[e.SE_TRACK_NOTFOUND=2]="SE_TRACK_NOTFOUND"}(J||(J={})),L.util.setEnumType(J,"livekit.SubscriptionError",[{no:0,name:"SE_UNKNOWN"},{no:1,name:"SE_CODEC_UNSUPPORTED"},{no:2,name:"SE_TRACK_NOTFOUND"}]);let q=class Room extends Message{constructor(e){super(),this.sid="",this.name="",this.emptyTimeout=0,this.maxParticipants=0,this.creationTime=k.zero,this.turnPassword="",this.enabledCodecs=[],this.metadata="",this.numParticipants=0,this.numPublishers=0,this.activeRecording=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new Room).fromBinary(e,t)}static fromJson(e,t){return(new Room).fromJson(e,t)}static fromJsonString(e,t){return(new Room).fromJsonString(e,t)}static equals(e,t){return L.util.equals(Room,e,t)}};q.runtime=L,q.typeName="livekit.Room",q.fields=L.util.newFieldList((()=>[{no:1,name:"sid",kind:"scalar",T:9},{no:2,name:"name",kind:"scalar",T:9},{no:3,name:"empty_timeout",kind:"scalar",T:13},{no:4,name:"max_participants",kind:"scalar",T:13},{no:5,name:"creation_time",kind:"scalar",T:3},{no:6,name:"turn_password",kind:"scalar",T:9},{no:7,name:"enabled_codecs",kind:"message",T:Codec,repeated:!0},{no:8,name:"metadata",kind:"scalar",T:9},{no:9,name:"num_participants",kind:"scalar",T:13},{no:11,name:"num_publishers",kind:"scalar",T:13},{no:10,name:"active_recording",kind:"scalar",T:8},{no:12,name:"playout_delay",kind:"message",T:PlayoutDelay}]));class Codec extends Message{constructor(e){super(),this.mime="",this.fmtpLine="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new Codec).fromBinary(e,t)}static fromJson(e,t){return(new Codec).fromJson(e,t)}static fromJsonString(e,t){return(new Codec).fromJsonString(e,t)}static equals(e,t){return L.util.equals(Codec,e,t)}}Codec.runtime=L,Codec.typeName="livekit.Codec",Codec.fields=L.util.newFieldList((()=>[{no:1,name:"mime",kind:"scalar",T:9},{no:2,name:"fmtp_line",kind:"scalar",T:9}]));class PlayoutDelay extends Message{constructor(e){super(),this.enabled=!1,this.min=0,this.max=0,L.util.initPartial(e,this)}static fromBinary(e,t){return(new PlayoutDelay).fromBinary(e,t)}static fromJson(e,t){return(new PlayoutDelay).fromJson(e,t)}static fromJsonString(e,t){return(new PlayoutDelay).fromJsonString(e,t)}static equals(e,t){return L.util.equals(PlayoutDelay,e,t)}}PlayoutDelay.runtime=L,PlayoutDelay.typeName="livekit.PlayoutDelay",PlayoutDelay.fields=L.util.newFieldList((()=>[{no:1,name:"enabled",kind:"scalar",T:8},{no:2,name:"min",kind:"scalar",T:13},{no:3,name:"max",kind:"scalar",T:13}]));class ParticipantPermission extends Message{constructor(e){super(),this.canSubscribe=!1,this.canPublish=!1,this.canPublishData=!1,this.canPublishSources=[],this.hidden=!1,this.recorder=!1,this.canUpdateMetadata=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new ParticipantPermission).fromBinary(e,t)}static fromJson(e,t){return(new ParticipantPermission).fromJson(e,t)}static fromJsonString(e,t){return(new ParticipantPermission).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ParticipantPermission,e,t)}}ParticipantPermission.runtime=L,ParticipantPermission.typeName="livekit.ParticipantPermission",ParticipantPermission.fields=L.util.newFieldList((()=>[{no:1,name:"can_subscribe",kind:"scalar",T:8},{no:2,name:"can_publish",kind:"scalar",T:8},{no:3,name:"can_publish_data",kind:"scalar",T:8},{no:9,name:"can_publish_sources",kind:"enum",T:L.getEnumType(O),repeated:!0},{no:7,name:"hidden",kind:"scalar",T:8},{no:8,name:"recorder",kind:"scalar",T:8},{no:10,name:"can_update_metadata",kind:"scalar",T:8}]));class ParticipantInfo extends Message{constructor(e){super(),this.sid="",this.identity="",this.state=j.JOINING,this.tracks=[],this.metadata="",this.joinedAt=k.zero,this.name="",this.version=0,this.region="",this.isPublisher=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new ParticipantInfo).fromBinary(e,t)}static fromJson(e,t){return(new ParticipantInfo).fromJson(e,t)}static fromJsonString(e,t){return(new ParticipantInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ParticipantInfo,e,t)}}var j,W,K,G,H;ParticipantInfo.runtime=L,ParticipantInfo.typeName="livekit.ParticipantInfo",ParticipantInfo.fields=L.util.newFieldList((()=>[{no:1,name:"sid",kind:"scalar",T:9},{no:2,name:"identity",kind:"scalar",T:9},{no:3,name:"state",kind:"enum",T:L.getEnumType(j)},{no:4,name:"tracks",kind:"message",T:TrackInfo,repeated:!0},{no:5,name:"metadata",kind:"scalar",T:9},{no:6,name:"joined_at",kind:"scalar",T:3},{no:9,name:"name",kind:"scalar",T:9},{no:10,name:"version",kind:"scalar",T:13},{no:11,name:"permission",kind:"message",T:ParticipantPermission},{no:12,name:"region",kind:"scalar",T:9},{no:13,name:"is_publisher",kind:"scalar",T:8}])),function(e){e[e.JOINING=0]="JOINING",e[e.JOINED=1]="JOINED",e[e.ACTIVE=2]="ACTIVE",e[e.DISCONNECTED=3]="DISCONNECTED"}(j||(j={})),L.util.setEnumType(j,"livekit.ParticipantInfo.State",[{no:0,name:"JOINING"},{no:1,name:"JOINED"},{no:2,name:"ACTIVE"},{no:3,name:"DISCONNECTED"}]);class Encryption extends Message{constructor(e){super(),L.util.initPartial(e,this)}static fromBinary(e,t){return(new Encryption).fromBinary(e,t)}static fromJson(e,t){return(new Encryption).fromJson(e,t)}static fromJsonString(e,t){return(new Encryption).fromJsonString(e,t)}static equals(e,t){return L.util.equals(Encryption,e,t)}}Encryption.runtime=L,Encryption.typeName="livekit.Encryption",Encryption.fields=L.util.newFieldList((()=>[])),function(e){e[e.NONE=0]="NONE",e[e.GCM=1]="GCM",e[e.CUSTOM=2]="CUSTOM"}(W||(W={})),L.util.setEnumType(W,"livekit.Encryption.Type",[{no:0,name:"NONE"},{no:1,name:"GCM"},{no:2,name:"CUSTOM"}]);class SimulcastCodecInfo extends Message{constructor(e){super(),this.mimeType="",this.mid="",this.cid="",this.layers=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new SimulcastCodecInfo).fromBinary(e,t)}static fromJson(e,t){return(new SimulcastCodecInfo).fromJson(e,t)}static fromJsonString(e,t){return(new SimulcastCodecInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SimulcastCodecInfo,e,t)}}SimulcastCodecInfo.runtime=L,SimulcastCodecInfo.typeName="livekit.SimulcastCodecInfo",SimulcastCodecInfo.fields=L.util.newFieldList((()=>[{no:1,name:"mime_type",kind:"scalar",T:9},{no:2,name:"mid",kind:"scalar",T:9},{no:3,name:"cid",kind:"scalar",T:9},{no:4,name:"layers",kind:"message",T:VideoLayer,repeated:!0}]));class TrackInfo extends Message{constructor(e){super(),this.sid="",this.type=U.AUDIO,this.name="",this.muted=!1,this.width=0,this.height=0,this.simulcast=!1,this.disableDtx=!1,this.source=O.UNKNOWN,this.layers=[],this.mimeType="",this.mid="",this.codecs=[],this.stereo=!1,this.disableRed=!1,this.encryption=W.NONE,this.stream="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new TrackInfo).fromBinary(e,t)}static fromJson(e,t){return(new TrackInfo).fromJson(e,t)}static fromJsonString(e,t){return(new TrackInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(TrackInfo,e,t)}}TrackInfo.runtime=L,TrackInfo.typeName="livekit.TrackInfo",TrackInfo.fields=L.util.newFieldList((()=>[{no:1,name:"sid",kind:"scalar",T:9},{no:2,name:"type",kind:"enum",T:L.getEnumType(U)},{no:3,name:"name",kind:"scalar",T:9},{no:4,name:"muted",kind:"scalar",T:8},{no:5,name:"width",kind:"scalar",T:13},{no:6,name:"height",kind:"scalar",T:13},{no:7,name:"simulcast",kind:"scalar",T:8},{no:8,name:"disable_dtx",kind:"scalar",T:8},{no:9,name:"source",kind:"enum",T:L.getEnumType(O)},{no:10,name:"layers",kind:"message",T:VideoLayer,repeated:!0},{no:11,name:"mime_type",kind:"scalar",T:9},{no:12,name:"mid",kind:"scalar",T:9},{no:13,name:"codecs",kind:"message",T:SimulcastCodecInfo,repeated:!0},{no:14,name:"stereo",kind:"scalar",T:8},{no:15,name:"disable_red",kind:"scalar",T:8},{no:16,name:"encryption",kind:"enum",T:L.getEnumType(W)},{no:17,name:"stream",kind:"scalar",T:9}]));class VideoLayer extends Message{constructor(e){super(),this.quality=N.LOW,this.width=0,this.height=0,this.bitrate=0,this.ssrc=0,L.util.initPartial(e,this)}static fromBinary(e,t){return(new VideoLayer).fromBinary(e,t)}static fromJson(e,t){return(new VideoLayer).fromJson(e,t)}static fromJsonString(e,t){return(new VideoLayer).fromJsonString(e,t)}static equals(e,t){return L.util.equals(VideoLayer,e,t)}}VideoLayer.runtime=L,VideoLayer.typeName="livekit.VideoLayer",VideoLayer.fields=L.util.newFieldList((()=>[{no:1,name:"quality",kind:"enum",T:L.getEnumType(N)},{no:2,name:"width",kind:"scalar",T:13},{no:3,name:"height",kind:"scalar",T:13},{no:4,name:"bitrate",kind:"scalar",T:13},{no:5,name:"ssrc",kind:"scalar",T:13}]));class DataPacket extends Message{constructor(e){super(),this.kind=K.RELIABLE,this.value={case:void 0},L.util.initPartial(e,this)}static fromBinary(e,t){return(new DataPacket).fromBinary(e,t)}static fromJson(e,t){return(new DataPacket).fromJson(e,t)}static fromJsonString(e,t){return(new DataPacket).fromJsonString(e,t)}static equals(e,t){return L.util.equals(DataPacket,e,t)}}DataPacket.runtime=L,DataPacket.typeName="livekit.DataPacket",DataPacket.fields=L.util.newFieldList((()=>[{no:1,name:"kind",kind:"enum",T:L.getEnumType(K)},{no:2,name:"user",kind:"message",T:UserPacket,oneof:"value"},{no:3,name:"speaker",kind:"message",T:ActiveSpeakerUpdate,oneof:"value"}])),function(e){e[e.RELIABLE=0]="RELIABLE",e[e.LOSSY=1]="LOSSY"}(K||(K={})),L.util.setEnumType(K,"livekit.DataPacket.Kind",[{no:0,name:"RELIABLE"},{no:1,name:"LOSSY"}]);class ActiveSpeakerUpdate extends Message{constructor(e){super(),this.speakers=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new ActiveSpeakerUpdate).fromBinary(e,t)}static fromJson(e,t){return(new ActiveSpeakerUpdate).fromJson(e,t)}static fromJsonString(e,t){return(new ActiveSpeakerUpdate).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ActiveSpeakerUpdate,e,t)}}ActiveSpeakerUpdate.runtime=L,ActiveSpeakerUpdate.typeName="livekit.ActiveSpeakerUpdate",ActiveSpeakerUpdate.fields=L.util.newFieldList((()=>[{no:1,name:"speakers",kind:"message",T:SpeakerInfo,repeated:!0}]));class SpeakerInfo extends Message{constructor(e){super(),this.sid="",this.level=0,this.active=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new SpeakerInfo).fromBinary(e,t)}static fromJson(e,t){return(new SpeakerInfo).fromJson(e,t)}static fromJsonString(e,t){return(new SpeakerInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SpeakerInfo,e,t)}}SpeakerInfo.runtime=L,SpeakerInfo.typeName="livekit.SpeakerInfo",SpeakerInfo.fields=L.util.newFieldList((()=>[{no:1,name:"sid",kind:"scalar",T:9},{no:2,name:"level",kind:"scalar",T:2},{no:3,name:"active",kind:"scalar",T:8}]));class UserPacket extends Message{constructor(e){super(),this.participantSid="",this.payload=new Uint8Array(0),this.destinationSids=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new UserPacket).fromBinary(e,t)}static fromJson(e,t){return(new UserPacket).fromJson(e,t)}static fromJsonString(e,t){return(new UserPacket).fromJsonString(e,t)}static equals(e,t){return L.util.equals(UserPacket,e,t)}}UserPacket.runtime=L,UserPacket.typeName="livekit.UserPacket",UserPacket.fields=L.util.newFieldList((()=>[{no:1,name:"participant_sid",kind:"scalar",T:9},{no:2,name:"payload",kind:"scalar",T:12},{no:3,name:"destination_sids",kind:"scalar",T:9,repeated:!0},{no:4,name:"topic",kind:"scalar",T:9,opt:!0}]));class ParticipantTracks extends Message{constructor(e){super(),this.participantSid="",this.trackSids=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new ParticipantTracks).fromBinary(e,t)}static fromJson(e,t){return(new ParticipantTracks).fromJson(e,t)}static fromJsonString(e,t){return(new ParticipantTracks).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ParticipantTracks,e,t)}}ParticipantTracks.runtime=L,ParticipantTracks.typeName="livekit.ParticipantTracks",ParticipantTracks.fields=L.util.newFieldList((()=>[{no:1,name:"participant_sid",kind:"scalar",T:9},{no:2,name:"track_sids",kind:"scalar",T:9,repeated:!0}]));class ServerInfo extends Message{constructor(e){super(),this.edition=G.Standard,this.version="",this.protocol=0,this.region="",this.nodeId="",this.debugInfo="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new ServerInfo).fromBinary(e,t)}static fromJson(e,t){return(new ServerInfo).fromJson(e,t)}static fromJsonString(e,t){return(new ServerInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ServerInfo,e,t)}}ServerInfo.runtime=L,ServerInfo.typeName="livekit.ServerInfo",ServerInfo.fields=L.util.newFieldList((()=>[{no:1,name:"edition",kind:"enum",T:L.getEnumType(G)},{no:2,name:"version",kind:"scalar",T:9},{no:3,name:"protocol",kind:"scalar",T:5},{no:4,name:"region",kind:"scalar",T:9},{no:5,name:"node_id",kind:"scalar",T:9},{no:6,name:"debug_info",kind:"scalar",T:9}])),function(e){e[e.Standard=0]="Standard",e[e.Cloud=1]="Cloud"}(G||(G={})),L.util.setEnumType(G,"livekit.ServerInfo.Edition",[{no:0,name:"Standard"},{no:1,name:"Cloud"}]);class ClientInfo extends Message{constructor(e){super(),this.sdk=H.UNKNOWN,this.version="",this.protocol=0,this.os="",this.osVersion="",this.deviceModel="",this.browser="",this.browserVersion="",this.address="",this.network="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new ClientInfo).fromBinary(e,t)}static fromJson(e,t){return(new ClientInfo).fromJson(e,t)}static fromJsonString(e,t){return(new ClientInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ClientInfo,e,t)}}ClientInfo.runtime=L,ClientInfo.typeName="livekit.ClientInfo",ClientInfo.fields=L.util.newFieldList((()=>[{no:1,name:"sdk",kind:"enum",T:L.getEnumType(H)},{no:2,name:"version",kind:"scalar",T:9},{no:3,name:"protocol",kind:"scalar",T:5},{no:4,name:"os",kind:"scalar",T:9},{no:5,name:"os_version",kind:"scalar",T:9},{no:6,name:"device_model",kind:"scalar",T:9},{no:7,name:"browser",kind:"scalar",T:9},{no:8,name:"browser_version",kind:"scalar",T:9},{no:9,name:"address",kind:"scalar",T:9},{no:10,name:"network",kind:"scalar",T:9}])),function(e){e[e.UNKNOWN=0]="UNKNOWN",e[e.JS=1]="JS",e[e.SWIFT=2]="SWIFT",e[e.ANDROID=3]="ANDROID",e[e.FLUTTER=4]="FLUTTER",e[e.GO=5]="GO",e[e.UNITY=6]="UNITY",e[e.REACT_NATIVE=7]="REACT_NATIVE",e[e.RUST=8]="RUST"}(H||(H={})),L.util.setEnumType(H,"livekit.ClientInfo.SDK",[{no:0,name:"UNKNOWN"},{no:1,name:"JS"},{no:2,name:"SWIFT"},{no:3,name:"ANDROID"},{no:4,name:"FLUTTER"},{no:5,name:"GO"},{no:6,name:"UNITY"},{no:7,name:"REACT_NATIVE"},{no:8,name:"RUST"}]);class ClientConfiguration extends Message{constructor(e){super(),this.resumeConnection=F.UNSET,this.forceRelay=F.UNSET,L.util.initPartial(e,this)}static fromBinary(e,t){return(new ClientConfiguration).fromBinary(e,t)}static fromJson(e,t){return(new ClientConfiguration).fromJson(e,t)}static fromJsonString(e,t){return(new ClientConfiguration).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ClientConfiguration,e,t)}}ClientConfiguration.runtime=L,ClientConfiguration.typeName="livekit.ClientConfiguration",ClientConfiguration.fields=L.util.newFieldList((()=>[{no:1,name:"video",kind:"message",T:VideoConfiguration},{no:2,name:"screen",kind:"message",T:VideoConfiguration},{no:3,name:"resume_connection",kind:"enum",T:L.getEnumType(F)},{no:4,name:"disabled_codecs",kind:"message",T:DisabledCodecs},{no:5,name:"force_relay",kind:"enum",T:L.getEnumType(F)}]));class VideoConfiguration extends Message{constructor(e){super(),this.hardwareEncoder=F.UNSET,L.util.initPartial(e,this)}static fromBinary(e,t){return(new VideoConfiguration).fromBinary(e,t)}static fromJson(e,t){return(new VideoConfiguration).fromJson(e,t)}static fromJsonString(e,t){return(new VideoConfiguration).fromJsonString(e,t)}static equals(e,t){return L.util.equals(VideoConfiguration,e,t)}}VideoConfiguration.runtime=L,VideoConfiguration.typeName="livekit.VideoConfiguration",VideoConfiguration.fields=L.util.newFieldList((()=>[{no:1,name:"hardware_encoder",kind:"enum",T:L.getEnumType(F)}]));class DisabledCodecs extends Message{constructor(e){super(),this.codecs=[],this.publish=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new DisabledCodecs).fromBinary(e,t)}static fromJson(e,t){return(new DisabledCodecs).fromJson(e,t)}static fromJsonString(e,t){return(new DisabledCodecs).fromJsonString(e,t)}static equals(e,t){return L.util.equals(DisabledCodecs,e,t)}}DisabledCodecs.runtime=L,DisabledCodecs.typeName="livekit.DisabledCodecs",DisabledCodecs.fields=L.util.newFieldList((()=>[{no:1,name:"codecs",kind:"message",T:Codec,repeated:!0},{no:2,name:"publish",kind:"message",T:Codec,repeated:!0}]));class RTPStats extends Message{constructor(e){super(),this.duration=0,this.packets=0,this.packetRate=0,this.bytes=k.zero,this.headerBytes=k.zero,this.bitrate=0,this.packetsLost=0,this.packetLossRate=0,this.packetLossPercentage=0,this.packetsDuplicate=0,this.packetDuplicateRate=0,this.bytesDuplicate=k.zero,this.headerBytesDuplicate=k.zero,this.bitrateDuplicate=0,this.packetsPadding=0,this.packetPaddingRate=0,this.bytesPadding=k.zero,this.headerBytesPadding=k.zero,this.bitratePadding=0,this.packetsOutOfOrder=0,this.frames=0,this.frameRate=0,this.jitterCurrent=0,this.jitterMax=0,this.gapHistogram={},this.nacks=0,this.nackAcks=0,this.nackMisses=0,this.nackRepeated=0,this.plis=0,this.firs=0,this.rttCurrent=0,this.rttMax=0,this.keyFrames=0,this.layerLockPlis=0,this.sampleRate=0,this.driftMs=0,L.util.initPartial(e,this)}static fromBinary(e,t){return(new RTPStats).fromBinary(e,t)}static fromJson(e,t){return(new RTPStats).fromJson(e,t)}static fromJsonString(e,t){return(new RTPStats).fromJsonString(e,t)}static equals(e,t){return L.util.equals(RTPStats,e,t)}}RTPStats.runtime=L,RTPStats.typeName="livekit.RTPStats",RTPStats.fields=L.util.newFieldList((()=>[{no:1,name:"start_time",kind:"message",T:Timestamp},{no:2,name:"end_time",kind:"message",T:Timestamp},{no:3,name:"duration",kind:"scalar",T:1},{no:4,name:"packets",kind:"scalar",T:13},{no:5,name:"packet_rate",kind:"scalar",T:1},{no:6,name:"bytes",kind:"scalar",T:4},{no:39,name:"header_bytes",kind:"scalar",T:4},{no:7,name:"bitrate",kind:"scalar",T:1},{no:8,name:"packets_lost",kind:"scalar",T:13},{no:9,name:"packet_loss_rate",kind:"scalar",T:1},{no:10,name:"packet_loss_percentage",kind:"scalar",T:2},{no:11,name:"packets_duplicate",kind:"scalar",T:13},{no:12,name:"packet_duplicate_rate",kind:"scalar",T:1},{no:13,name:"bytes_duplicate",kind:"scalar",T:4},{no:40,name:"header_bytes_duplicate",kind:"scalar",T:4},{no:14,name:"bitrate_duplicate",kind:"scalar",T:1},{no:15,name:"packets_padding",kind:"scalar",T:13},{no:16,name:"packet_padding_rate",kind:"scalar",T:1},{no:17,name:"bytes_padding",kind:"scalar",T:4},{no:41,name:"header_bytes_padding",kind:"scalar",T:4},{no:18,name:"bitrate_padding",kind:"scalar",T:1},{no:19,name:"packets_out_of_order",kind:"scalar",T:13},{no:20,name:"frames",kind:"scalar",T:13},{no:21,name:"frame_rate",kind:"scalar",T:1},{no:22,name:"jitter_current",kind:"scalar",T:1},{no:23,name:"jitter_max",kind:"scalar",T:1},{no:24,name:"gap_histogram",kind:"map",K:5,V:{kind:"scalar",T:13}},{no:25,name:"nacks",kind:"scalar",T:13},{no:37,name:"nack_acks",kind:"scalar",T:13},{no:26,name:"nack_misses",kind:"scalar",T:13},{no:38,name:"nack_repeated",kind:"scalar",T:13},{no:27,name:"plis",kind:"scalar",T:13},{no:28,name:"last_pli",kind:"message",T:Timestamp},{no:29,name:"firs",kind:"scalar",T:13},{no:30,name:"last_fir",kind:"message",T:Timestamp},{no:31,name:"rtt_current",kind:"scalar",T:13},{no:32,name:"rtt_max",kind:"scalar",T:13},{no:33,name:"key_frames",kind:"scalar",T:13},{no:34,name:"last_key_frame",kind:"message",T:Timestamp},{no:35,name:"layer_lock_plis",kind:"scalar",T:13},{no:36,name:"last_layer_lock_pli",kind:"message",T:Timestamp},{no:42,name:"sample_rate",kind:"scalar",T:1},{no:43,name:"drift_ms",kind:"scalar",T:1}]));class TimedVersion extends Message{constructor(e){super(),this.unixMicro=k.zero,this.ticks=0,L.util.initPartial(e,this)}static fromBinary(e,t){return(new TimedVersion).fromBinary(e,t)}static fromJson(e,t){return(new TimedVersion).fromJson(e,t)}static fromJsonString(e,t){return(new TimedVersion).fromJsonString(e,t)}static equals(e,t){return L.util.equals(TimedVersion,e,t)}}TimedVersion.runtime=L,TimedVersion.typeName="livekit.TimedVersion",TimedVersion.fields=L.util.newFieldList((()=>[{no:1,name:"unix_micro",kind:"scalar",T:3},{no:2,name:"ticks",kind:"scalar",T:5}]));const Q=7e3,z=[0,300,1200,2700,4800,Q,Q,Q,Q,Q];class DefaultReconnectPolicy{constructor(e){this._retryDelays=void 0!==e?[...e]:z}nextRetryDelayInMs(e){if(e.retryCount>=this._retryDelays.length)return null;const t=this._retryDelays[e.retryCount];return e.retryCount<=1?t:t+1e3*Math.random()}}function __awaiter(e,t,i,n){return new(i||(i=Promise))((function(s,a){function fulfilled(e){try{step(n.next(e))}catch(e){a(e)}}function rejected(e){try{step(n.throw(e))}catch(e){a(e)}}function step(e){e.done?s(e.value):function adopt(e){return e instanceof i?e:new i((function(t){t(e)}))}(e.value).then(fulfilled,rejected)}step((n=n.apply(e,t||[])).next())}))}function __values(e){var t="function"==typeof Symbol&&Symbol.iterator,i=t&&e[t],n=0;if(i)return i.call(e);if(e&&"number"==typeof e.length)return{next:function(){return e&&n>=e.length&&(e=void 0),{value:e&&e[n++],done:!e}}};throw new TypeError(t?"Object is not iterable.":"Symbol.iterator is not defined.")}function __asyncValues(e){if(!Symbol.asyncIterator)throw new TypeError("Symbol.asyncIterator is not defined.");var t,i=e[Symbol.asyncIterator];return i?i.call(e):(e=__values(e),t={},verb("next"),verb("throw"),verb("return"),t[Symbol.asyncIterator]=function(){return this},t);function verb(i){t[i]=e[i]&&function(t){return new Promise((function(n,s){(function settle(e,t,i,n){Promise.resolve(n).then((function(t){e({value:t,done:i})}),t)})(n,s,(t=e[i](t)).done,t.value)}))}}}var $,Y={exports:{}},X="object"==typeof Reflect?Reflect:null,Z=X&&"function"==typeof X.apply?X.apply:function ReflectApply(e,t,i){return Function.prototype.apply.call(e,t,i)};$=X&&"function"==typeof X.ownKeys?X.ownKeys:Object.getOwnPropertySymbols?function ReflectOwnKeys(e){return Object.getOwnPropertyNames(e).concat(Object.getOwnPropertySymbols(e))}:function ReflectOwnKeys(e){return Object.getOwnPropertyNames(e)};var ee=Number.isNaN||function NumberIsNaN(e){return e!=e};function EventEmitter(){EventEmitter.init.call(this)}Y.exports=EventEmitter,Y.exports.once=function once(e,t){return new Promise((function(i,n){function errorListener(i){e.removeListener(t,resolver),n(i)}function resolver(){"function"==typeof e.removeListener&&e.removeListener("error",errorListener),i([].slice.call(arguments))}eventTargetAgnosticAddListener(e,t,resolver,{once:!0}),"error"!==t&&function addErrorHandlerIfEventEmitter(e,t,i){"function"==typeof e.on&&eventTargetAgnosticAddListener(e,"error",t,i)}(e,errorListener,{once:!0})}))},EventEmitter.EventEmitter=EventEmitter,EventEmitter.prototype._events=void 0,EventEmitter.prototype._eventsCount=0,EventEmitter.prototype._maxListeners=void 0;var te=10;function checkListener(e){if("function"!=typeof e)throw new TypeError('The "listener" argument must be of type Function. Received type '+typeof e)}function _getMaxListeners(e){return void 0===e._maxListeners?EventEmitter.defaultMaxListeners:e._maxListeners}function _addListener(e,t,i,n){var s,a,o;if(checkListener(i),void 0===(a=e._events)?(a=e._events=Object.create(null),e._eventsCount=0):(void 0!==a.newListener&&(e.emit("newListener",t,i.listener?i.listener:i),a=e._events),o=a[t]),void 0===o)o=a[t]=i,++e._eventsCount;else if("function"==typeof o?o=a[t]=n?[i,o]:[o,i]:n?o.unshift(i):o.push(i),(s=_getMaxListeners(e))>0&&o.length>s&&!o.warned){o.warned=!0;var c=new Error("Possible EventEmitter memory leak detected. "+o.length+" "+String(t)+" listeners added. Use emitter.setMaxListeners() to increase limit");c.name="MaxListenersExceededWarning",c.emitter=e,c.type=t,c.count=o.length,function ProcessEmitWarning(e){console&&console.warn&&console.warn(e)}(c)}return e}function onceWrapper(){if(!this.fired)return this.target.removeListener(this.type,this.wrapFn),this.fired=!0,0===arguments.length?this.listener.call(this.target):this.listener.apply(this.target,arguments)}function _onceWrap(e,t,i){var n={fired:!1,wrapFn:void 0,target:e,type:t,listener:i},s=onceWrapper.bind(n);return s.listener=i,n.wrapFn=s,s}function _listeners(e,t,i){var n=e._events;if(void 0===n)return[];var s=n[t];return void 0===s?[]:"function"==typeof s?i?[s.listener||s]:[s]:i?function unwrapListeners(e){for(var t=new Array(e.length),i=0;i<t.length;++i)t[i]=e[i].listener||e[i];return t}(s):arrayClone(s,s.length)}function listenerCount(e){var t=this._events;if(void 0!==t){var i=t[e];if("function"==typeof i)return 1;if(void 0!==i)return i.length}return 0}function arrayClone(e,t){for(var i=new Array(t),n=0;n<t;++n)i[n]=e[n];return i}function eventTargetAgnosticAddListener(e,t,i,n){if("function"==typeof e.on)n.once?e.once(t,i):e.on(t,i);else{if("function"!=typeof e.addEventListener)throw new TypeError('The "emitter" argument must be of type EventEmitter. Received type '+typeof e);e.addEventListener(t,(function wrapListener(s){n.once&&e.removeEventListener(t,wrapListener),i(s)}))}}Object.defineProperty(EventEmitter,"defaultMaxListeners",{enumerable:!0,get:function(){return te},set:function(e){if("number"!=typeof e||e<0||ee(e))throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received '+e+".");te=e}}),EventEmitter.init=function(){void 0!==this._events&&this._events!==Object.getPrototypeOf(this)._events||(this._events=Object.create(null),this._eventsCount=0),this._maxListeners=this._maxListeners||void 0},EventEmitter.prototype.setMaxListeners=function setMaxListeners(e){if("number"!=typeof e||e<0||ee(e))throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received '+e+".");return this._maxListeners=e,this},EventEmitter.prototype.getMaxListeners=function getMaxListeners(){return _getMaxListeners(this)},EventEmitter.prototype.emit=function emit(e){for(var t=[],i=1;i<arguments.length;i++)t.push(arguments[i]);var n="error"===e,s=this._events;if(void 0!==s)n=n&&void 0===s.error;else if(!n)return!1;if(n){var a;if(t.length>0&&(a=t[0]),a instanceof Error)throw a;var o=new Error("Unhandled error."+(a?" ("+a.message+")":""));throw o.context=a,o}var c=s[e];if(void 0===c)return!1;if("function"==typeof c)Z(c,this,t);else{var u=c.length,l=arrayClone(c,u);for(i=0;i<u;++i)Z(l[i],this,t)}return!0},EventEmitter.prototype.addListener=function addListener(e,t){return _addListener(this,e,t,!1)},EventEmitter.prototype.on=EventEmitter.prototype.addListener,EventEmitter.prototype.prependListener=function prependListener(e,t){return _addListener(this,e,t,!0)},EventEmitter.prototype.once=function once(e,t){return checkListener(t),this.on(e,_onceWrap(this,e,t)),this},EventEmitter.prototype.prependOnceListener=function prependOnceListener(e,t){return checkListener(t),this.prependListener(e,_onceWrap(this,e,t)),this},EventEmitter.prototype.removeListener=function removeListener(e,t){var i,n,s,a,o;if(checkListener(t),void 0===(n=this._events))return this;if(void 0===(i=n[e]))return this;if(i===t||i.listener===t)0==--this._eventsCount?this._events=Object.create(null):(delete n[e],n.removeListener&&this.emit("removeListener",e,i.listener||t));else if("function"!=typeof i){for(s=-1,a=i.length-1;a>=0;a--)if(i[a]===t||i[a].listener===t){o=i[a].listener,s=a;break}if(s<0)return this;0===s?i.shift():function spliceOne(e,t){for(;t+1<e.length;t++)e[t]=e[t+1];e.pop()}(i,s),1===i.length&&(n[e]=i[0]),void 0!==n.removeListener&&this.emit("removeListener",e,o||t)}return this},EventEmitter.prototype.off=EventEmitter.prototype.removeListener,EventEmitter.prototype.removeAllListeners=function removeAllListeners(e){var t,i,n;if(void 0===(i=this._events))return this;if(void 0===i.removeListener)return 0===arguments.length?(this._events=Object.create(null),this._eventsCount=0):void 0!==i[e]&&(0==--this._eventsCount?this._events=Object.create(null):delete i[e]),this;if(0===arguments.length){var s,a=Object.keys(i);for(n=0;n<a.length;++n)"removeListener"!==(s=a[n])&&this.removeAllListeners(s);return this.removeAllListeners("removeListener"),this._events=Object.create(null),this._eventsCount=0,this}if("function"==typeof(t=i[e]))this.removeListener(e,t);else if(void 0!==t)for(n=t.length-1;n>=0;n--)this.removeListener(e,t[n]);return this},EventEmitter.prototype.listeners=function listeners(e){return _listeners(this,e,!0)},EventEmitter.prototype.rawListeners=function rawListeners(e){return _listeners(this,e,!1)},EventEmitter.listenerCount=function(e,t){return"function"==typeof e.listenerCount?e.listenerCount(t):listenerCount.call(e,t)},EventEmitter.prototype.listenerCount=listenerCount,EventEmitter.prototype.eventNames=function eventNames(){return this._eventsCount>0?$(this._events):[]};var ie=Y.exports;let ne=!0,re=!0;function extractVersion(e,t,i){const n=e.match(t);return n&&n.length>=i&&parseInt(n[i],10)}function wrapPeerConnectionEvent(e,t,i){if(!e.RTCPeerConnection)return;const n=e.RTCPeerConnection.prototype,s=n.addEventListener;n.addEventListener=function(e,n){if(e!==t)return s.apply(this,arguments);const wrappedCallback=e=>{const t=i(e);t&&(n.handleEvent?n.handleEvent(t):n(t))};return this._eventMap=this._eventMap||{},this._eventMap[t]||(this._eventMap[t]=new Map),this._eventMap[t].set(n,wrappedCallback),s.apply(this,[e,wrappedCallback])};const a=n.removeEventListener;n.removeEventListener=function(e,i){if(e!==t||!this._eventMap||!this._eventMap[t])return a.apply(this,arguments);if(!this._eventMap[t].has(i))return a.apply(this,arguments);const n=this._eventMap[t].get(i);return this._eventMap[t].delete(i),0===this._eventMap[t].size&&delete this._eventMap[t],0===Object.keys(this._eventMap).length&&delete this._eventMap,a.apply(this,[e,n])},Object.defineProperty(n,"on"+t,{get(){return this["_on"+t]},set(e){this["_on"+t]&&(this.removeEventListener(t,this["_on"+t]),delete this["_on"+t]),e&&this.addEventListener(t,this["_on"+t]=e)},enumerable:!0,configurable:!0})}function disableLog(e){return"boolean"!=typeof e?new Error("Argument type: "+typeof e+". Please use a boolean."):(ne=e,e?"adapter.js logging disabled":"adapter.js logging enabled")}function disableWarnings(e){return"boolean"!=typeof e?new Error("Argument type: "+typeof e+". Please use a boolean."):(re=!e,"adapter.js deprecation warnings "+(e?"disabled":"enabled"))}function log(){if("object"==typeof window){if(ne)return;"undefined"!=typeof console&&"function"==typeof console.log&&console.log.apply(console,arguments)}}function deprecated(e,t){re&&console.warn(e+" is deprecated, please use "+t+" instead.")}function detectBrowser(e){const t={browser:null,version:null};if(void 0===e||!e.navigator||!e.navigator.userAgent)return t.browser="Not a browser.",t;const{navigator:i}=e;if(i.mozGetUserMedia)t.browser="firefox",t.version=extractVersion(i.userAgent,/Firefox\/(\d+)\./,1);else if(i.webkitGetUserMedia||!1===e.isSecureContext&&e.webkitRTCPeerConnection)t.browser="chrome",t.version=extractVersion(i.userAgent,/Chrom(e|ium)\/(\d+)\./,2);else{if(!e.RTCPeerConnection||!i.userAgent.match(/AppleWebKit\/(\d+)\./))return t.browser="Not a supported browser.",t;t.browser="safari",t.version=extractVersion(i.userAgent,/AppleWebKit\/(\d+)\./,1),t.supportsUnifiedPlan=e.RTCRtpTransceiver&&"currentDirection"in e.RTCRtpTransceiver.prototype}return t}function isObject(e){return"[object Object]"===Object.prototype.toString.call(e)}function compactObject(e){return isObject(e)?Object.keys(e).reduce((function(t,i){const n=isObject(e[i]),s=n?compactObject(e[i]):e[i],a=n&&!Object.keys(s).length;return void 0===s||a?t:Object.assign(t,{[i]:s})}),{}):e}function walkStats(e,t,i){t&&!i.has(t.id)&&(i.set(t.id,t),Object.keys(t).forEach((n=>{n.endsWith("Id")?walkStats(e,e.get(t[n]),i):n.endsWith("Ids")&&t[n].forEach((t=>{walkStats(e,e.get(t),i)}))})))}function filterStats(e,t,i){const n=i?"outbound-rtp":"inbound-rtp",s=new Map;if(null===t)return s;const a=[];return e.forEach((e=>{"track"===e.type&&e.trackIdentifier===t.id&&a.push(e)})),a.forEach((t=>{e.forEach((i=>{i.type===n&&i.trackId===t.id&&walkStats(e,i,s)}))})),s}const se=log;function shimGetUserMedia$2(e,t){const i=e&&e.navigator;if(!i.mediaDevices)return;const constraintsToChrome_=function(e){if("object"!=typeof e||e.mandatory||e.optional)return e;const t={};return Object.keys(e).forEach((i=>{if("require"===i||"advanced"===i||"mediaSource"===i)return;const n="object"==typeof e[i]?e[i]:{ideal:e[i]};void 0!==n.exact&&"number"==typeof n.exact&&(n.min=n.max=n.exact);const oldname_=function(e,t){return e?e+t.charAt(0).toUpperCase()+t.slice(1):"deviceId"===t?"sourceId":t};if(void 0!==n.ideal){t.optional=t.optional||[];let e={};"number"==typeof n.ideal?(e[oldname_("min",i)]=n.ideal,t.optional.push(e),e={},e[oldname_("max",i)]=n.ideal,t.optional.push(e)):(e[oldname_("",i)]=n.ideal,t.optional.push(e))}void 0!==n.exact&&"number"!=typeof n.exact?(t.mandatory=t.mandatory||{},t.mandatory[oldname_("",i)]=n.exact):["min","max"].forEach((e=>{void 0!==n[e]&&(t.mandatory=t.mandatory||{},t.mandatory[oldname_(e,i)]=n[e])}))})),e.advanced&&(t.optional=(t.optional||[]).concat(e.advanced)),t},shimConstraints_=function(e,n){if(t.version>=61)return n(e);if((e=JSON.parse(JSON.stringify(e)))&&"object"==typeof e.audio){const remap=function(e,t,i){t in e&&!(i in e)&&(e[i]=e[t],delete e[t])};remap((e=JSON.parse(JSON.stringify(e))).audio,"autoGainControl","googAutoGainControl"),remap(e.audio,"noiseSuppression","googNoiseSuppression"),e.audio=constraintsToChrome_(e.audio)}if(e&&"object"==typeof e.video){let s=e.video.facingMode;s=s&&("object"==typeof s?s:{ideal:s});const a=t.version<66;if(s&&("user"===s.exact||"environment"===s.exact||"user"===s.ideal||"environment"===s.ideal)&&(!i.mediaDevices.getSupportedConstraints||!i.mediaDevices.getSupportedConstraints().facingMode||a)){let t;if(delete e.video.facingMode,"environment"===s.exact||"environment"===s.ideal?t=["back","rear"]:"user"!==s.exact&&"user"!==s.ideal||(t=["front"]),t)return i.mediaDevices.enumerateDevices().then((i=>{let a=(i=i.filter((e=>"videoinput"===e.kind))).find((e=>t.some((t=>e.label.toLowerCase().includes(t)))));return!a&&i.length&&t.includes("back")&&(a=i[i.length-1]),a&&(e.video.deviceId=s.exact?{exact:a.deviceId}:{ideal:a.deviceId}),e.video=constraintsToChrome_(e.video),se("chrome: "+JSON.stringify(e)),n(e)}))}e.video=constraintsToChrome_(e.video)}return se("chrome: "+JSON.stringify(e)),n(e)},shimError_=function(e){return t.version>=64?e:{name:{PermissionDeniedError:"NotAllowedError",PermissionDismissedError:"NotAllowedError",InvalidStateError:"NotAllowedError",DevicesNotFoundError:"NotFoundError",ConstraintNotSatisfiedError:"OverconstrainedError",TrackStartError:"NotReadableError",MediaDeviceFailedDueToShutdown:"NotAllowedError",MediaDeviceKillSwitchOn:"NotAllowedError",TabCaptureError:"AbortError",ScreenCaptureError:"AbortError",DeviceCaptureError:"AbortError"}[e.name]||e.name,message:e.message,constraint:e.constraint||e.constraintName,toString(){return this.name+(this.message&&": ")+this.message}}};if(i.getUserMedia=function(e,t,n){shimConstraints_(e,(e=>{i.webkitGetUserMedia(e,t,(e=>{n&&n(shimError_(e))}))}))}.bind(i),i.mediaDevices.getUserMedia){const e=i.mediaDevices.getUserMedia.bind(i.mediaDevices);i.mediaDevices.getUserMedia=function(t){return shimConstraints_(t,(t=>e(t).then((e=>{if(t.audio&&!e.getAudioTracks().length||t.video&&!e.getVideoTracks().length)throw e.getTracks().forEach((e=>{e.stop()})),new DOMException("","NotFoundError");return e}),(e=>Promise.reject(shimError_(e))))))}}}function shimMediaStream(e){e.MediaStream=e.MediaStream||e.webkitMediaStream}function shimOnTrack$1(e){if("object"==typeof e&&e.RTCPeerConnection&&!("ontrack"in e.RTCPeerConnection.prototype)){Object.defineProperty(e.RTCPeerConnection.prototype,"ontrack",{get(){return this._ontrack},set(e){this._ontrack&&this.removeEventListener("track",this._ontrack),this.addEventListener("track",this._ontrack=e)},enumerable:!0,configurable:!0});const t=e.RTCPeerConnection.prototype.setRemoteDescription;e.RTCPeerConnection.prototype.setRemoteDescription=function setRemoteDescription(){return this._ontrackpoly||(this._ontrackpoly=t=>{t.stream.addEventListener("addtrack",(i=>{let n;n=e.RTCPeerConnection.prototype.getReceivers?this.getReceivers().find((e=>e.track&&e.track.id===i.track.id)):{track:i.track};const s=new Event("track");s.track=i.track,s.receiver=n,s.transceiver={receiver:n},s.streams=[t.stream],this.dispatchEvent(s)})),t.stream.getTracks().forEach((i=>{let n;n=e.RTCPeerConnection.prototype.getReceivers?this.getReceivers().find((e=>e.track&&e.track.id===i.id)):{track:i};const s=new Event("track");s.track=i,s.receiver=n,s.transceiver={receiver:n},s.streams=[t.stream],this.dispatchEvent(s)}))},this.addEventListener("addstream",this._ontrackpoly)),t.apply(this,arguments)}}else wrapPeerConnectionEvent(e,"track",(e=>(e.transceiver||Object.defineProperty(e,"transceiver",{value:{receiver:e.receiver}}),e)))}function shimGetSendersWithDtmf(e){if("object"==typeof e&&e.RTCPeerConnection&&!("getSenders"in e.RTCPeerConnection.prototype)&&"createDTMFSender"in e.RTCPeerConnection.prototype){const shimSenderWithDtmf=function(e,t){return{track:t,get dtmf(){return void 0===this._dtmf&&("audio"===t.kind?this._dtmf=e.createDTMFSender(t):this._dtmf=null),this._dtmf},_pc:e}};if(!e.RTCPeerConnection.prototype.getSenders){e.RTCPeerConnection.prototype.getSenders=function getSenders(){return this._senders=this._senders||[],this._senders.slice()};const t=e.RTCPeerConnection.prototype.addTrack;e.RTCPeerConnection.prototype.addTrack=function addTrack(e,i){let n=t.apply(this,arguments);return n||(n=shimSenderWithDtmf(this,e),this._senders.push(n)),n};const i=e.RTCPeerConnection.prototype.removeTrack;e.RTCPeerConnection.prototype.removeTrack=function removeTrack(e){i.apply(this,arguments);const t=this._senders.indexOf(e);-1!==t&&this._senders.splice(t,1)}}const t=e.RTCPeerConnection.prototype.addStream;e.RTCPeerConnection.prototype.addStream=function addStream(e){this._senders=this._senders||[],t.apply(this,[e]),e.getTracks().forEach((e=>{this._senders.push(shimSenderWithDtmf(this,e))}))};const i=e.RTCPeerConnection.prototype.removeStream;e.RTCPeerConnection.prototype.removeStream=function removeStream(e){this._senders=this._senders||[],i.apply(this,[e]),e.getTracks().forEach((e=>{const t=this._senders.find((t=>t.track===e));t&&this._senders.splice(this._senders.indexOf(t),1)}))}}else if("object"==typeof e&&e.RTCPeerConnection&&"getSenders"in e.RTCPeerConnection.prototype&&"createDTMFSender"in e.RTCPeerConnection.prototype&&e.RTCRtpSender&&!("dtmf"in e.RTCRtpSender.prototype)){const t=e.RTCPeerConnection.prototype.getSenders;e.RTCPeerConnection.prototype.getSenders=function getSenders(){const e=t.apply(this,[]);return e.forEach((e=>e._pc=this)),e},Object.defineProperty(e.RTCRtpSender.prototype,"dtmf",{get(){return void 0===this._dtmf&&("audio"===this.track.kind?this._dtmf=this._pc.createDTMFSender(this.track):this._dtmf=null),this._dtmf}})}}function shimGetStats(e){if(!e.RTCPeerConnection)return;const t=e.RTCPeerConnection.prototype.getStats;e.RTCPeerConnection.prototype.getStats=function getStats(){const[e,i,n]=arguments;if(arguments.length>0&&"function"==typeof e)return t.apply(this,arguments);if(0===t.length&&(0===arguments.length||"function"!=typeof e))return t.apply(this,[]);const fixChromeStats_=function(e){const t={};return e.result().forEach((e=>{const i={id:e.id,timestamp:e.timestamp,type:{localcandidate:"local-candidate",remotecandidate:"remote-candidate"}[e.type]||e.type};e.names().forEach((t=>{i[t]=e.stat(t)})),t[i.id]=i})),t},makeMapStats=function(e){return new Map(Object.keys(e).map((t=>[t,e[t]])))};if(arguments.length>=2){const successCallbackWrapper_=function(e){i(makeMapStats(fixChromeStats_(e)))};return t.apply(this,[successCallbackWrapper_,e])}return new Promise(((e,i)=>{t.apply(this,[function(t){e(makeMapStats(fixChromeStats_(t)))},i])})).then(i,n)}}function shimSenderReceiverGetStats(e){if(!("object"==typeof e&&e.RTCPeerConnection&&e.RTCRtpSender&&e.RTCRtpReceiver))return;if(!("getStats"in e.RTCRtpSender.prototype)){const t=e.RTCPeerConnection.prototype.getSenders;t&&(e.RTCPeerConnection.prototype.getSenders=function getSenders(){const e=t.apply(this,[]);return e.forEach((e=>e._pc=this)),e});const i=e.RTCPeerConnection.prototype.addTrack;i&&(e.RTCPeerConnection.prototype.addTrack=function addTrack(){const e=i.apply(this,arguments);return e._pc=this,e}),e.RTCRtpSender.prototype.getStats=function getStats(){const e=this;return this._pc.getStats().then((t=>filterStats(t,e.track,!0)))}}if(!("getStats"in e.RTCRtpReceiver.prototype)){const t=e.RTCPeerConnection.prototype.getReceivers;t&&(e.RTCPeerConnection.prototype.getReceivers=function getReceivers(){const e=t.apply(this,[]);return e.forEach((e=>e._pc=this)),e}),wrapPeerConnectionEvent(e,"track",(e=>(e.receiver._pc=e.srcElement,e))),e.RTCRtpReceiver.prototype.getStats=function getStats(){const e=this;return this._pc.getStats().then((t=>filterStats(t,e.track,!1)))}}if(!("getStats"in e.RTCRtpSender.prototype)||!("getStats"in e.RTCRtpReceiver.prototype))return;const t=e.RTCPeerConnection.prototype.getStats;e.RTCPeerConnection.prototype.getStats=function getStats(){if(arguments.length>0&&arguments[0]instanceof e.MediaStreamTrack){const e=arguments[0];let t,i,n;return this.getSenders().forEach((i=>{i.track===e&&(t?n=!0:t=i)})),this.getReceivers().forEach((t=>(t.track===e&&(i?n=!0:i=t),t.track===e))),n||t&&i?Promise.reject(new DOMException("There are more than one sender or receiver for the track.","InvalidAccessError")):t?t.getStats():i?i.getStats():Promise.reject(new DOMException("There is no sender or receiver for the track.","InvalidAccessError"))}return t.apply(this,arguments)}}function shimAddTrackRemoveTrackWithNative(e){e.RTCPeerConnection.prototype.getLocalStreams=function getLocalStreams(){return this._shimmedLocalStreams=this._shimmedLocalStreams||{},Object.keys(this._shimmedLocalStreams).map((e=>this._shimmedLocalStreams[e][0]))};const t=e.RTCPeerConnection.prototype.addTrack;e.RTCPeerConnection.prototype.addTrack=function addTrack(e,i){if(!i)return t.apply(this,arguments);this._shimmedLocalStreams=this._shimmedLocalStreams||{};const n=t.apply(this,arguments);return this._shimmedLocalStreams[i.id]?-1===this._shimmedLocalStreams[i.id].indexOf(n)&&this._shimmedLocalStreams[i.id].push(n):this._shimmedLocalStreams[i.id]=[i,n],n};const i=e.RTCPeerConnection.prototype.addStream;e.RTCPeerConnection.prototype.addStream=function addStream(e){this._shimmedLocalStreams=this._shimmedLocalStreams||{},e.getTracks().forEach((e=>{if(this.getSenders().find((t=>t.track===e)))throw new DOMException("Track already exists.","InvalidAccessError")}));const t=this.getSenders();i.apply(this,arguments);const n=this.getSenders().filter((e=>-1===t.indexOf(e)));this._shimmedLocalStreams[e.id]=[e].concat(n)};const n=e.RTCPeerConnection.prototype.removeStream;e.RTCPeerConnection.prototype.removeStream=function removeStream(e){return this._shimmedLocalStreams=this._shimmedLocalStreams||{},delete this._shimmedLocalStreams[e.id],n.apply(this,arguments)};const s=e.RTCPeerConnection.prototype.removeTrack;e.RTCPeerConnection.prototype.removeTrack=function removeTrack(e){return this._shimmedLocalStreams=this._shimmedLocalStreams||{},e&&Object.keys(this._shimmedLocalStreams).forEach((t=>{const i=this._shimmedLocalStreams[t].indexOf(e);-1!==i&&this._shimmedLocalStreams[t].splice(i,1),1===this._shimmedLocalStreams[t].length&&delete this._shimmedLocalStreams[t]})),s.apply(this,arguments)}}function shimAddTrackRemoveTrack(e,t){if(!e.RTCPeerConnection)return;if(e.RTCPeerConnection.prototype.addTrack&&t.version>=65)return shimAddTrackRemoveTrackWithNative(e);const i=e.RTCPeerConnection.prototype.getLocalStreams;e.RTCPeerConnection.prototype.getLocalStreams=function getLocalStreams(){const e=i.apply(this);return this._reverseStreams=this._reverseStreams||{},e.map((e=>this._reverseStreams[e.id]))};const n=e.RTCPeerConnection.prototype.addStream;e.RTCPeerConnection.prototype.addStream=function addStream(t){if(this._streams=this._streams||{},this._reverseStreams=this._reverseStreams||{},t.getTracks().forEach((e=>{if(this.getSenders().find((t=>t.track===e)))throw new DOMException("Track already exists.","InvalidAccessError")})),!this._reverseStreams[t.id]){const i=new e.MediaStream(t.getTracks());this._streams[t.id]=i,this._reverseStreams[i.id]=t,t=i}n.apply(this,[t])};const s=e.RTCPeerConnection.prototype.removeStream;function replaceInternalStreamId(e,t){let i=t.sdp;return Object.keys(e._reverseStreams||[]).forEach((t=>{const n=e._reverseStreams[t],s=e._streams[n.id];i=i.replace(new RegExp(s.id,"g"),n.id)})),new RTCSessionDescription({type:t.type,sdp:i})}function replaceExternalStreamId(e,t){let i=t.sdp;return Object.keys(e._reverseStreams||[]).forEach((t=>{const n=e._reverseStreams[t],s=e._streams[n.id];i=i.replace(new RegExp(n.id,"g"),s.id)})),new RTCSessionDescription({type:t.type,sdp:i})}e.RTCPeerConnection.prototype.removeStream=function removeStream(e){this._streams=this._streams||{},this._reverseStreams=this._reverseStreams||{},s.apply(this,[this._streams[e.id]||e]),delete this._reverseStreams[this._streams[e.id]?this._streams[e.id].id:e.id],delete this._streams[e.id]},e.RTCPeerConnection.prototype.addTrack=function addTrack(t,i){if("closed"===this.signalingState)throw new DOMException("The RTCPeerConnection's signalingState is 'closed'.","InvalidStateError");const n=[].slice.call(arguments,1);if(1!==n.length||!n[0].getTracks().find((e=>e===t)))throw new DOMException("The adapter.js addTrack polyfill only supports a single  stream which is associated with the specified track.","NotSupportedError");const s=this.getSenders().find((e=>e.track===t));if(s)throw new DOMException("Track already exists.","InvalidAccessError");this._streams=this._streams||{},this._reverseStreams=this._reverseStreams||{};const a=this._streams[i.id];if(a)a.addTrack(t),Promise.resolve().then((()=>{this.dispatchEvent(new Event("negotiationneeded"))}));else{const n=new e.MediaStream([t]);this._streams[i.id]=n,this._reverseStreams[n.id]=i,this.addStream(n)}return this.getSenders().find((e=>e.track===t))},["createOffer","createAnswer"].forEach((function(t){const i=e.RTCPeerConnection.prototype[t],n={[t](){const e=arguments;return arguments.length&&"function"==typeof arguments[0]?i.apply(this,[t=>{const i=replaceInternalStreamId(this,t);e[0].apply(null,[i])},t=>{e[1]&&e[1].apply(null,t)},arguments[2]]):i.apply(this,arguments).then((e=>replaceInternalStreamId(this,e)))}};e.RTCPeerConnection.prototype[t]=n[t]}));const a=e.RTCPeerConnection.prototype.setLocalDescription;e.RTCPeerConnection.prototype.setLocalDescription=function setLocalDescription(){return arguments.length&&arguments[0].type?(arguments[0]=replaceExternalStreamId(this,arguments[0]),a.apply(this,arguments)):a.apply(this,arguments)};const o=Object.getOwnPropertyDescriptor(e.RTCPeerConnection.prototype,"localDescription");Object.defineProperty(e.RTCPeerConnection.prototype,"localDescription",{get(){const e=o.get.apply(this);return""===e.type?e:replaceInternalStreamId(this,e)}}),e.RTCPeerConnection.prototype.removeTrack=function removeTrack(e){if("closed"===this.signalingState)throw new DOMException("The RTCPeerConnection's signalingState is 'closed'.","InvalidStateError");if(!e._pc)throw new DOMException("Argument 1 of RTCPeerConnection.removeTrack does not implement interface RTCRtpSender.","TypeError");if(!(e._pc===this))throw new DOMException("Sender was not created by this connection.","InvalidAccessError");let t;this._streams=this._streams||{},Object.keys(this._streams).forEach((i=>{this._streams[i].getTracks().find((t=>e.track===t))&&(t=this._streams[i])})),t&&(1===t.getTracks().length?this.removeStream(this._reverseStreams[t.id]):t.removeTrack(e.track),this.dispatchEvent(new Event("negotiationneeded")))}}function shimPeerConnection$1(e,t){!e.RTCPeerConnection&&e.webkitRTCPeerConnection&&(e.RTCPeerConnection=e.webkitRTCPeerConnection),e.RTCPeerConnection&&t.version<53&&["setLocalDescription","setRemoteDescription","addIceCandidate"].forEach((function(t){const i=e.RTCPeerConnection.prototype[t],n={[t](){return arguments[0]=new("addIceCandidate"===t?e.RTCIceCandidate:e.RTCSessionDescription)(arguments[0]),i.apply(this,arguments)}};e.RTCPeerConnection.prototype[t]=n[t]}))}function fixNegotiationNeeded(e,t){wrapPeerConnectionEvent(e,"negotiationneeded",(e=>{const i=e.target;if(!(t.version<72||i.getConfiguration&&"plan-b"===i.getConfiguration().sdpSemantics)||"stable"===i.signalingState)return e}))}var ae=Object.freeze({__proto__:null,fixNegotiationNeeded,shimAddTrackRemoveTrack,shimAddTrackRemoveTrackWithNative,shimGetDisplayMedia:function shimGetDisplayMedia$1(e,t){e.navigator.mediaDevices&&"getDisplayMedia"in e.navigator.mediaDevices||e.navigator.mediaDevices&&("function"==typeof t?e.navigator.mediaDevices.getDisplayMedia=function getDisplayMedia(i){return t(i).then((t=>{const n=i.video&&i.video.width,s=i.video&&i.video.height,a=i.video&&i.video.frameRate;return i.video={mandatory:{chromeMediaSource:"desktop",chromeMediaSourceId:t,maxFrameRate:a||3}},n&&(i.video.mandatory.maxWidth=n),s&&(i.video.mandatory.maxHeight=s),e.navigator.mediaDevices.getUserMedia(i)}))}:console.error("shimGetDisplayMedia: getSourceId argument is not a function"))},shimGetSendersWithDtmf,shimGetStats,shimGetUserMedia:shimGetUserMedia$2,shimMediaStream,shimOnTrack:shimOnTrack$1,shimPeerConnection:shimPeerConnection$1,shimSenderReceiverGetStats});function shimGetUserMedia$1(e,t){const i=e&&e.navigator,n=e&&e.MediaStreamTrack;if(i.getUserMedia=function(e,t,n){deprecated("navigator.getUserMedia","navigator.mediaDevices.getUserMedia"),i.mediaDevices.getUserMedia(e).then(t,n)},!(t.version>55&&"autoGainControl"in i.mediaDevices.getSupportedConstraints())){const remap=function(e,t,i){t in e&&!(i in e)&&(e[i]=e[t],delete e[t])},e=i.mediaDevices.getUserMedia.bind(i.mediaDevices);if(i.mediaDevices.getUserMedia=function(t){return"object"==typeof t&&"object"==typeof t.audio&&(t=JSON.parse(JSON.stringify(t)),remap(t.audio,"autoGainControl","mozAutoGainControl"),remap(t.audio,"noiseSuppression","mozNoiseSuppression")),e(t)},n&&n.prototype.getSettings){const e=n.prototype.getSettings;n.prototype.getSettings=function(){const t=e.apply(this,arguments);return remap(t,"mozAutoGainControl","autoGainControl"),remap(t,"mozNoiseSuppression","noiseSuppression"),t}}if(n&&n.prototype.applyConstraints){const e=n.prototype.applyConstraints;n.prototype.applyConstraints=function(t){return"audio"===this.kind&&"object"==typeof t&&(t=JSON.parse(JSON.stringify(t)),remap(t,"autoGainControl","mozAutoGainControl"),remap(t,"noiseSuppression","mozNoiseSuppression")),e.apply(this,[t])}}}}function shimOnTrack(e){"object"==typeof e&&e.RTCTrackEvent&&"receiver"in e.RTCTrackEvent.prototype&&!("transceiver"in e.RTCTrackEvent.prototype)&&Object.defineProperty(e.RTCTrackEvent.prototype,"transceiver",{get(){return{receiver:this.receiver}}})}function shimPeerConnection(e,t){if("object"!=typeof e||!e.RTCPeerConnection&&!e.mozRTCPeerConnection)return;!e.RTCPeerConnection&&e.mozRTCPeerConnection&&(e.RTCPeerConnection=e.mozRTCPeerConnection),t.version<53&&["setLocalDescription","setRemoteDescription","addIceCandidate"].forEach((function(t){const i=e.RTCPeerConnection.prototype[t],n={[t](){return arguments[0]=new("addIceCandidate"===t?e.RTCIceCandidate:e.RTCSessionDescription)(arguments[0]),i.apply(this,arguments)}};e.RTCPeerConnection.prototype[t]=n[t]}));const i={inboundrtp:"inbound-rtp",outboundrtp:"outbound-rtp",candidatepair:"candidate-pair",localcandidate:"local-candidate",remotecandidate:"remote-candidate"},n=e.RTCPeerConnection.prototype.getStats;e.RTCPeerConnection.prototype.getStats=function getStats(){const[e,s,a]=arguments;return n.apply(this,[e||null]).then((e=>{if(t.version<53&&!s)try{e.forEach((e=>{e.type=i[e.type]||e.type}))}catch(t){if("TypeError"!==t.name)throw t;e.forEach(((t,n)=>{e.set(n,Object.assign({},t,{type:i[t.type]||t.type}))}))}return e})).then(s,a)}}function shimSenderGetStats(e){if("object"!=typeof e||!e.RTCPeerConnection||!e.RTCRtpSender)return;if(e.RTCRtpSender&&"getStats"in e.RTCRtpSender.prototype)return;const t=e.RTCPeerConnection.prototype.getSenders;t&&(e.RTCPeerConnection.prototype.getSenders=function getSenders(){const e=t.apply(this,[]);return e.forEach((e=>e._pc=this)),e});const i=e.RTCPeerConnection.prototype.addTrack;i&&(e.RTCPeerConnection.prototype.addTrack=function addTrack(){const e=i.apply(this,arguments);return e._pc=this,e}),e.RTCRtpSender.prototype.getStats=function getStats(){return this.track?this._pc.getStats(this.track):Promise.resolve(new Map)}}function shimReceiverGetStats(e){if("object"!=typeof e||!e.RTCPeerConnection||!e.RTCRtpSender)return;if(e.RTCRtpSender&&"getStats"in e.RTCRtpReceiver.prototype)return;const t=e.RTCPeerConnection.prototype.getReceivers;t&&(e.RTCPeerConnection.prototype.getReceivers=function getReceivers(){const e=t.apply(this,[]);return e.forEach((e=>e._pc=this)),e}),wrapPeerConnectionEvent(e,"track",(e=>(e.receiver._pc=e.srcElement,e))),e.RTCRtpReceiver.prototype.getStats=function getStats(){return this._pc.getStats(this.track)}}function shimRemoveStream(e){e.RTCPeerConnection&&!("removeStream"in e.RTCPeerConnection.prototype)&&(e.RTCPeerConnection.prototype.removeStream=function removeStream(e){deprecated("removeStream","removeTrack"),this.getSenders().forEach((t=>{t.track&&e.getTracks().includes(t.track)&&this.removeTrack(t)}))})}function shimRTCDataChannel(e){e.DataChannel&&!e.RTCDataChannel&&(e.RTCDataChannel=e.DataChannel)}function shimAddTransceiver(e){if("object"!=typeof e||!e.RTCPeerConnection)return;const t=e.RTCPeerConnection.prototype.addTransceiver;t&&(e.RTCPeerConnection.prototype.addTransceiver=function addTransceiver(){this.setParametersPromises=[];let e=arguments[1]&&arguments[1].sendEncodings;void 0===e&&(e=[]),e=[...e];const i=e.length>0;i&&e.forEach((e=>{if("rid"in e){if(!/^[a-z0-9]{0,16}$/i.test(e.rid))throw new TypeError("Invalid RID value provided.")}if("scaleResolutionDownBy"in e&&!(parseFloat(e.scaleResolutionDownBy)>=1))throw new RangeError("scale_resolution_down_by must be >= 1.0");if("maxFramerate"in e&&!(parseFloat(e.maxFramerate)>=0))throw new RangeError("max_framerate must be >= 0.0")}));const n=t.apply(this,arguments);if(i){const{sender:t}=n,i=t.getParameters();(!("encodings"in i)||1===i.encodings.length&&0===Object.keys(i.encodings[0]).length)&&(i.encodings=e,t.sendEncodings=e,this.setParametersPromises.push(t.setParameters(i).then((()=>{delete t.sendEncodings})).catch((()=>{delete t.sendEncodings}))))}return n})}function shimGetParameters(e){if("object"!=typeof e||!e.RTCRtpSender)return;const t=e.RTCRtpSender.prototype.getParameters;t&&(e.RTCRtpSender.prototype.getParameters=function getParameters(){const e=t.apply(this,arguments);return"encodings"in e||(e.encodings=[].concat(this.sendEncodings||[{}])),e})}function shimCreateOffer(e){if("object"!=typeof e||!e.RTCPeerConnection)return;const t=e.RTCPeerConnection.prototype.createOffer;e.RTCPeerConnection.prototype.createOffer=function createOffer(){return this.setParametersPromises&&this.setParametersPromises.length?Promise.all(this.setParametersPromises).then((()=>t.apply(this,arguments))).finally((()=>{this.setParametersPromises=[]})):t.apply(this,arguments)}}function shimCreateAnswer(e){if("object"!=typeof e||!e.RTCPeerConnection)return;const t=e.RTCPeerConnection.prototype.createAnswer;e.RTCPeerConnection.prototype.createAnswer=function createAnswer(){return this.setParametersPromises&&this.setParametersPromises.length?Promise.all(this.setParametersPromises).then((()=>t.apply(this,arguments))).finally((()=>{this.setParametersPromises=[]})):t.apply(this,arguments)}}var oe=Object.freeze({__proto__:null,shimAddTransceiver,shimCreateAnswer,shimCreateOffer,shimGetDisplayMedia:function shimGetDisplayMedia(e,t){e.navigator.mediaDevices&&"getDisplayMedia"in e.navigator.mediaDevices||e.navigator.mediaDevices&&(e.navigator.mediaDevices.getDisplayMedia=function getDisplayMedia(i){if(!i||!i.video){const e=new DOMException("getDisplayMedia without video constraints is undefined");return e.name="NotFoundError",e.code=8,Promise.reject(e)}return!0===i.video?i.video={mediaSource:t}:i.video.mediaSource=t,e.navigator.mediaDevices.getUserMedia(i)})},shimGetParameters,shimGetUserMedia:shimGetUserMedia$1,shimOnTrack,shimPeerConnection,shimRTCDataChannel,shimReceiverGetStats,shimRemoveStream,shimSenderGetStats});function shimLocalStreamsAPI(e){if("object"==typeof e&&e.RTCPeerConnection){if("getLocalStreams"in e.RTCPeerConnection.prototype||(e.RTCPeerConnection.prototype.getLocalStreams=function getLocalStreams(){return this._localStreams||(this._localStreams=[]),this._localStreams}),!("addStream"in e.RTCPeerConnection.prototype)){const t=e.RTCPeerConnection.prototype.addTrack;e.RTCPeerConnection.prototype.addStream=function addStream(e){this._localStreams||(this._localStreams=[]),this._localStreams.includes(e)||this._localStreams.push(e),e.getAudioTracks().forEach((i=>t.call(this,i,e))),e.getVideoTracks().forEach((i=>t.call(this,i,e)))},e.RTCPeerConnection.prototype.addTrack=function addTrack(e){for(var i=arguments.length,n=new Array(i>1?i-1:0),s=1;s<i;s++)n[s-1]=arguments[s];return n&&n.forEach((e=>{this._localStreams?this._localStreams.includes(e)||this._localStreams.push(e):this._localStreams=[e]})),t.apply(this,arguments)}}"removeStream"in e.RTCPeerConnection.prototype||(e.RTCPeerConnection.prototype.removeStream=function removeStream(e){this._localStreams||(this._localStreams=[]);const t=this._localStreams.indexOf(e);if(-1===t)return;this._localStreams.splice(t,1);const i=e.getTracks();this.getSenders().forEach((e=>{i.includes(e.track)&&this.removeTrack(e)}))})}}function shimRemoteStreamsAPI(e){if("object"==typeof e&&e.RTCPeerConnection&&("getRemoteStreams"in e.RTCPeerConnection.prototype||(e.RTCPeerConnection.prototype.getRemoteStreams=function getRemoteStreams(){return this._remoteStreams?this._remoteStreams:[]}),!("onaddstream"in e.RTCPeerConnection.prototype))){Object.defineProperty(e.RTCPeerConnection.prototype,"onaddstream",{get(){return this._onaddstream},set(e){this._onaddstream&&(this.removeEventListener("addstream",this._onaddstream),this.removeEventListener("track",this._onaddstreampoly)),this.addEventListener("addstream",this._onaddstream=e),this.addEventListener("track",this._onaddstreampoly=e=>{e.streams.forEach((e=>{if(this._remoteStreams||(this._remoteStreams=[]),this._remoteStreams.includes(e))return;this._remoteStreams.push(e);const t=new Event("addstream");t.stream=e,this.dispatchEvent(t)}))})}});const t=e.RTCPeerConnection.prototype.setRemoteDescription;e.RTCPeerConnection.prototype.setRemoteDescription=function setRemoteDescription(){const e=this;return this._onaddstreampoly||this.addEventListener("track",this._onaddstreampoly=function(t){t.streams.forEach((t=>{if(e._remoteStreams||(e._remoteStreams=[]),e._remoteStreams.indexOf(t)>=0)return;e._remoteStreams.push(t);const i=new Event("addstream");i.stream=t,e.dispatchEvent(i)}))}),t.apply(e,arguments)}}}function shimCallbacksAPI(e){if("object"!=typeof e||!e.RTCPeerConnection)return;const t=e.RTCPeerConnection.prototype,i=t.createOffer,n=t.createAnswer,s=t.setLocalDescription,a=t.setRemoteDescription,o=t.addIceCandidate;t.createOffer=function createOffer(e,t){const n=arguments.length>=2?arguments[2]:arguments[0],s=i.apply(this,[n]);return t?(s.then(e,t),Promise.resolve()):s},t.createAnswer=function createAnswer(e,t){const i=arguments.length>=2?arguments[2]:arguments[0],s=n.apply(this,[i]);return t?(s.then(e,t),Promise.resolve()):s};let withCallback=function(e,t,i){const n=s.apply(this,[e]);return i?(n.then(t,i),Promise.resolve()):n};t.setLocalDescription=withCallback,withCallback=function(e,t,i){const n=a.apply(this,[e]);return i?(n.then(t,i),Promise.resolve()):n},t.setRemoteDescription=withCallback,withCallback=function(e,t,i){const n=o.apply(this,[e]);return i?(n.then(t,i),Promise.resolve()):n},t.addIceCandidate=withCallback}function shimGetUserMedia(e){const t=e&&e.navigator;if(t.mediaDevices&&t.mediaDevices.getUserMedia){const e=t.mediaDevices,i=e.getUserMedia.bind(e);t.mediaDevices.getUserMedia=e=>i(shimConstraints(e))}!t.getUserMedia&&t.mediaDevices&&t.mediaDevices.getUserMedia&&(t.getUserMedia=function getUserMedia(e,i,n){t.mediaDevices.getUserMedia(e).then(i,n)}.bind(t))}function shimConstraints(e){return e&&void 0!==e.video?Object.assign({},e,{video:compactObject(e.video)}):e}function shimRTCIceServerUrls(e){if(!e.RTCPeerConnection)return;const t=e.RTCPeerConnection;e.RTCPeerConnection=function RTCPeerConnection(e,i){if(e&&e.iceServers){const t=[];for(let i=0;i<e.iceServers.length;i++){let n=e.iceServers[i];void 0===n.urls&&n.url?(deprecated("RTCIceServer.url","RTCIceServer.urls"),n=JSON.parse(JSON.stringify(n)),n.urls=n.url,delete n.url,t.push(n)):t.push(e.iceServers[i])}e.iceServers=t}return new t(e,i)},e.RTCPeerConnection.prototype=t.prototype,"generateCertificate"in t&&Object.defineProperty(e.RTCPeerConnection,"generateCertificate",{get:()=>t.generateCertificate})}function shimTrackEventTransceiver(e){"object"==typeof e&&e.RTCTrackEvent&&"receiver"in e.RTCTrackEvent.prototype&&!("transceiver"in e.RTCTrackEvent.prototype)&&Object.defineProperty(e.RTCTrackEvent.prototype,"transceiver",{get(){return{receiver:this.receiver}}})}function shimCreateOfferLegacy(e){const t=e.RTCPeerConnection.prototype.createOffer;e.RTCPeerConnection.prototype.createOffer=function createOffer(e){if(e){void 0!==e.offerToReceiveAudio&&(e.offerToReceiveAudio=!!e.offerToReceiveAudio);const t=this.getTransceivers().find((e=>"audio"===e.receiver.track.kind));!1===e.offerToReceiveAudio&&t?"sendrecv"===t.direction?t.setDirection?t.setDirection("sendonly"):t.direction="sendonly":"recvonly"===t.direction&&(t.setDirection?t.setDirection("inactive"):t.direction="inactive"):!0!==e.offerToReceiveAudio||t||this.addTransceiver("audio",{direction:"recvonly"}),void 0!==e.offerToReceiveVideo&&(e.offerToReceiveVideo=!!e.offerToReceiveVideo);const i=this.getTransceivers().find((e=>"video"===e.receiver.track.kind));!1===e.offerToReceiveVideo&&i?"sendrecv"===i.direction?i.setDirection?i.setDirection("sendonly"):i.direction="sendonly":"recvonly"===i.direction&&(i.setDirection?i.setDirection("inactive"):i.direction="inactive"):!0!==e.offerToReceiveVideo||i||this.addTransceiver("video",{direction:"recvonly"})}return t.apply(this,arguments)}}function shimAudioContext(e){"object"!=typeof e||e.AudioContext||(e.AudioContext=e.webkitAudioContext)}var ce=Object.freeze({__proto__:null,shimAudioContext,shimCallbacksAPI,shimConstraints,shimCreateOfferLegacy,shimGetUserMedia,shimLocalStreamsAPI,shimRTCIceServerUrls,shimRemoteStreamsAPI,shimTrackEventTransceiver}),de={exports:{}};!function(e){const t={generateIdentifier:function(){return Math.random().toString(36).substring(2,12)}};t.localCName=t.generateIdentifier(),t.splitLines=function(e){return e.trim().split("\n").map((e=>e.trim()))},t.splitSections=function(e){return e.split("\nm=").map(((e,t)=>(t>0?"m="+e:e).trim()+"\r\n"))},t.getDescription=function(e){const i=t.splitSections(e);return i&&i[0]},t.getMediaSections=function(e){const i=t.splitSections(e);return i.shift(),i},t.matchPrefix=function(e,i){return t.splitLines(e).filter((e=>0===e.indexOf(i)))},t.parseCandidate=function(e){let t;t=0===e.indexOf("a=candidate:")?e.substring(12).split(" "):e.substring(10).split(" ");const i={foundation:t[0],component:{1:"rtp",2:"rtcp"}[t[1]]||t[1],protocol:t[2].toLowerCase(),priority:parseInt(t[3],10),ip:t[4],address:t[4],port:parseInt(t[5],10),type:t[7]};for(let e=8;e<t.length;e+=2)switch(t[e]){case"raddr":i.relatedAddress=t[e+1];break;case"rport":i.relatedPort=parseInt(t[e+1],10);break;case"tcptype":i.tcpType=t[e+1];break;case"ufrag":i.ufrag=t[e+1],i.usernameFragment=t[e+1];break;default:void 0===i[t[e]]&&(i[t[e]]=t[e+1])}return i},t.writeCandidate=function(e){const t=[];t.push(e.foundation);const i=e.component;"rtp"===i?t.push(1):"rtcp"===i?t.push(2):t.push(i),t.push(e.protocol.toUpperCase()),t.push(e.priority),t.push(e.address||e.ip),t.push(e.port);const n=e.type;return t.push("typ"),t.push(n),"host"!==n&&e.relatedAddress&&e.relatedPort&&(t.push("raddr"),t.push(e.relatedAddress),t.push("rport"),t.push(e.relatedPort)),e.tcpType&&"tcp"===e.protocol.toLowerCase()&&(t.push("tcptype"),t.push(e.tcpType)),(e.usernameFragment||e.ufrag)&&(t.push("ufrag"),t.push(e.usernameFragment||e.ufrag)),"candidate:"+t.join(" ")},t.parseIceOptions=function(e){return e.substring(14).split(" ")},t.parseRtpMap=function(e){let t=e.substring(9).split(" ");const i={payloadType:parseInt(t.shift(),10)};return t=t[0].split("/"),i.name=t[0],i.clockRate=parseInt(t[1],10),i.channels=3===t.length?parseInt(t[2],10):1,i.numChannels=i.channels,i},t.writeRtpMap=function(e){let t=e.payloadType;void 0!==e.preferredPayloadType&&(t=e.preferredPayloadType);const i=e.channels||e.numChannels||1;return"a=rtpmap:"+t+" "+e.name+"/"+e.clockRate+(1!==i?"/"+i:"")+"\r\n"},t.parseExtmap=function(e){const t=e.substring(9).split(" ");return{id:parseInt(t[0],10),direction:t[0].indexOf("/")>0?t[0].split("/")[1]:"sendrecv",uri:t[1],attributes:t.slice(2).join(" ")}},t.writeExtmap=function(e){return"a=extmap:"+(e.id||e.preferredId)+(e.direction&&"sendrecv"!==e.direction?"/"+e.direction:"")+" "+e.uri+(e.attributes?" "+e.attributes:"")+"\r\n"},t.parseFmtp=function(e){const t={};let i;const n=e.substring(e.indexOf(" ")+1).split(";");for(let e=0;e<n.length;e++)i=n[e].trim().split("="),t[i[0].trim()]=i[1];return t},t.writeFmtp=function(e){let t="",i=e.payloadType;if(void 0!==e.preferredPayloadType&&(i=e.preferredPayloadType),e.parameters&&Object.keys(e.parameters).length){const n=[];Object.keys(e.parameters).forEach((t=>{void 0!==e.parameters[t]?n.push(t+"="+e.parameters[t]):n.push(t)})),t+="a=fmtp:"+i+" "+n.join(";")+"\r\n"}return t},t.parseRtcpFb=function(e){const t=e.substring(e.indexOf(" ")+1).split(" ");return{type:t.shift(),parameter:t.join(" ")}},t.writeRtcpFb=function(e){let t="",i=e.payloadType;return void 0!==e.preferredPayloadType&&(i=e.preferredPayloadType),e.rtcpFeedback&&e.rtcpFeedback.length&&e.rtcpFeedback.forEach((e=>{t+="a=rtcp-fb:"+i+" "+e.type+(e.parameter&&e.parameter.length?" "+e.parameter:"")+"\r\n"})),t},t.parseSsrcMedia=function(e){const t=e.indexOf(" "),i={ssrc:parseInt(e.substring(7,t),10)},n=e.indexOf(":",t);return n>-1?(i.attribute=e.substring(t+1,n),i.value=e.substring(n+1)):i.attribute=e.substring(t+1),i},t.parseSsrcGroup=function(e){const t=e.substring(13).split(" ");return{semantics:t.shift(),ssrcs:t.map((e=>parseInt(e,10)))}},t.getMid=function(e){const i=t.matchPrefix(e,"a=mid:")[0];if(i)return i.substring(6)},t.parseFingerprint=function(e){const t=e.substring(14).split(" ");return{algorithm:t[0].toLowerCase(),value:t[1].toUpperCase()}},t.getDtlsParameters=function(e,i){return{role:"auto",fingerprints:t.matchPrefix(e+i,"a=fingerprint:").map(t.parseFingerprint)}},t.writeDtlsParameters=function(e,t){let i="a=setup:"+t+"\r\n";return e.fingerprints.forEach((e=>{i+="a=fingerprint:"+e.algorithm+" "+e.value+"\r\n"})),i},t.parseCryptoLine=function(e){const t=e.substring(9).split(" ");return{tag:parseInt(t[0],10),cryptoSuite:t[1],keyParams:t[2],sessionParams:t.slice(3)}},t.writeCryptoLine=function(e){return"a=crypto:"+e.tag+" "+e.cryptoSuite+" "+("object"==typeof e.keyParams?t.writeCryptoKeyParams(e.keyParams):e.keyParams)+(e.sessionParams?" "+e.sessionParams.join(" "):"")+"\r\n"},t.parseCryptoKeyParams=function(e){if(0!==e.indexOf("inline:"))return null;const t=e.substring(7).split("|");return{keyMethod:"inline",keySalt:t[0],lifeTime:t[1],mkiValue:t[2]?t[2].split(":")[0]:void 0,mkiLength:t[2]?t[2].split(":")[1]:void 0}},t.writeCryptoKeyParams=function(e){return e.keyMethod+":"+e.keySalt+(e.lifeTime?"|"+e.lifeTime:"")+(e.mkiValue&&e.mkiLength?"|"+e.mkiValue+":"+e.mkiLength:"")},t.getCryptoParameters=function(e,i){return t.matchPrefix(e+i,"a=crypto:").map(t.parseCryptoLine)},t.getIceParameters=function(e,i){const n=t.matchPrefix(e+i,"a=ice-ufrag:")[0],s=t.matchPrefix(e+i,"a=ice-pwd:")[0];return n&&s?{usernameFragment:n.substring(12),password:s.substring(10)}:null},t.writeIceParameters=function(e){let t="a=ice-ufrag:"+e.usernameFragment+"\r\na=ice-pwd:"+e.password+"\r\n";return e.iceLite&&(t+="a=ice-lite\r\n"),t},t.parseRtpParameters=function(e){const i={codecs:[],headerExtensions:[],fecMechanisms:[],rtcp:[]},n=t.splitLines(e)[0].split(" ");i.profile=n[2];for(let s=3;s<n.length;s++){const a=n[s],o=t.matchPrefix(e,"a=rtpmap:"+a+" ")[0];if(o){const n=t.parseRtpMap(o),s=t.matchPrefix(e,"a=fmtp:"+a+" ");switch(n.parameters=s.length?t.parseFmtp(s[0]):{},n.rtcpFeedback=t.matchPrefix(e,"a=rtcp-fb:"+a+" ").map(t.parseRtcpFb),i.codecs.push(n),n.name.toUpperCase()){case"RED":case"ULPFEC":i.fecMechanisms.push(n.name.toUpperCase())}}}t.matchPrefix(e,"a=extmap:").forEach((e=>{i.headerExtensions.push(t.parseExtmap(e))}));const s=t.matchPrefix(e,"a=rtcp-fb:* ").map(t.parseRtcpFb);return i.codecs.forEach((e=>{s.forEach((t=>{e.rtcpFeedback.find((e=>e.type===t.type&&e.parameter===t.parameter))||e.rtcpFeedback.push(t)}))})),i},t.writeRtpDescription=function(e,i){let n="";n+="m="+e+" ",n+=i.codecs.length>0?"9":"0",n+=" "+(i.profile||"UDP/TLS/RTP/SAVPF")+" ",n+=i.codecs.map((e=>void 0!==e.preferredPayloadType?e.preferredPayloadType:e.payloadType)).join(" ")+"\r\n",n+="c=IN IP4 0.0.0.0\r\n",n+="a=rtcp:9 IN IP4 0.0.0.0\r\n",i.codecs.forEach((e=>{n+=t.writeRtpMap(e),n+=t.writeFmtp(e),n+=t.writeRtcpFb(e)}));let s=0;return i.codecs.forEach((e=>{e.maxptime>s&&(s=e.maxptime)})),s>0&&(n+="a=maxptime:"+s+"\r\n"),i.headerExtensions&&i.headerExtensions.forEach((e=>{n+=t.writeExtmap(e)})),n},t.parseRtpEncodingParameters=function(e){const i=[],n=t.parseRtpParameters(e),s=-1!==n.fecMechanisms.indexOf("RED"),a=-1!==n.fecMechanisms.indexOf("ULPFEC"),o=t.matchPrefix(e,"a=ssrc:").map((e=>t.parseSsrcMedia(e))).filter((e=>"cname"===e.attribute)),c=o.length>0&&o[0].ssrc;let u;const l=t.matchPrefix(e,"a=ssrc-group:FID").map((e=>e.substring(17).split(" ").map((e=>parseInt(e,10)))));l.length>0&&l[0].length>1&&l[0][0]===c&&(u=l[0][1]),n.codecs.forEach((e=>{if("RTX"===e.name.toUpperCase()&&e.parameters.apt){let t={ssrc:c,codecPayloadType:parseInt(e.parameters.apt,10)};c&&u&&(t.rtx={ssrc:u}),i.push(t),s&&(t=JSON.parse(JSON.stringify(t)),t.fec={ssrc:c,mechanism:a?"red+ulpfec":"red"},i.push(t))}})),0===i.length&&c&&i.push({ssrc:c});let h=t.matchPrefix(e,"b=");return h.length&&(h=0===h[0].indexOf("b=TIAS:")?parseInt(h[0].substring(7),10):0===h[0].indexOf("b=AS:")?1e3*parseInt(h[0].substring(5),10)*.95-16e3:void 0,i.forEach((e=>{e.maxBitrate=h}))),i},t.parseRtcpParameters=function(e){const i={},n=t.matchPrefix(e,"a=ssrc:").map((e=>t.parseSsrcMedia(e))).filter((e=>"cname"===e.attribute))[0];n&&(i.cname=n.value,i.ssrc=n.ssrc);const s=t.matchPrefix(e,"a=rtcp-rsize");i.reducedSize=s.length>0,i.compound=0===s.length;const a=t.matchPrefix(e,"a=rtcp-mux");return i.mux=a.length>0,i},t.writeRtcpParameters=function(e){let t="";return e.reducedSize&&(t+="a=rtcp-rsize\r\n"),e.mux&&(t+="a=rtcp-mux\r\n"),void 0!==e.ssrc&&e.cname&&(t+="a=ssrc:"+e.ssrc+" cname:"+e.cname+"\r\n"),t},t.parseMsid=function(e){let i;const n=t.matchPrefix(e,"a=msid:");if(1===n.length)return i=n[0].substring(7).split(" "),{stream:i[0],track:i[1]};const s=t.matchPrefix(e,"a=ssrc:").map((e=>t.parseSsrcMedia(e))).filter((e=>"msid"===e.attribute));return s.length>0?(i=s[0].value.split(" "),{stream:i[0],track:i[1]}):void 0},t.parseSctpDescription=function(e){const i=t.parseMLine(e),n=t.matchPrefix(e,"a=max-message-size:");let s;n.length>0&&(s=parseInt(n[0].substring(19),10)),isNaN(s)&&(s=65536);const a=t.matchPrefix(e,"a=sctp-port:");if(a.length>0)return{port:parseInt(a[0].substring(12),10),protocol:i.fmt,maxMessageSize:s};const o=t.matchPrefix(e,"a=sctpmap:");if(o.length>0){const e=o[0].substring(10).split(" ");return{port:parseInt(e[0],10),protocol:e[1],maxMessageSize:s}}},t.writeSctpDescription=function(e,t){let i=[];return i="DTLS/SCTP"!==e.protocol?["m="+e.kind+" 9 "+e.protocol+" "+t.protocol+"\r\n","c=IN IP4 0.0.0.0\r\n","a=sctp-port:"+t.port+"\r\n"]:["m="+e.kind+" 9 "+e.protocol+" "+t.port+"\r\n","c=IN IP4 0.0.0.0\r\n","a=sctpmap:"+t.port+" "+t.protocol+" 65535\r\n"],void 0!==t.maxMessageSize&&i.push("a=max-message-size:"+t.maxMessageSize+"\r\n"),i.join("")},t.generateSessionId=function(){return Math.random().toString().substr(2,22)},t.writeSessionBoilerplate=function(e,i,n){let s;const a=void 0!==i?i:2;s=e||t.generateSessionId();return"v=0\r\no="+(n||"thisisadapterortc")+" "+s+" "+a+" IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\n"},t.getDirection=function(e,i){const n=t.splitLines(e);for(let e=0;e<n.length;e++)switch(n[e]){case"a=sendrecv":case"a=sendonly":case"a=recvonly":case"a=inactive":return n[e].substring(2)}return i?t.getDirection(i):"sendrecv"},t.getKind=function(e){return t.splitLines(e)[0].split(" ")[0].substring(2)},t.isRejected=function(e){return"0"===e.split(" ",2)[1]},t.parseMLine=function(e){const i=t.splitLines(e)[0].substring(2).split(" ");return{kind:i[0],port:parseInt(i[1],10),protocol:i[2],fmt:i.slice(3).join(" ")}},t.parseOLine=function(e){const i=t.matchPrefix(e,"o=")[0].substring(2).split(" ");return{username:i[0],sessionId:i[1],sessionVersion:parseInt(i[2],10),netType:i[3],addressType:i[4],address:i[5]}},t.isValidSDP=function(e){if("string"!=typeof e||0===e.length)return!1;const i=t.splitLines(e);for(let e=0;e<i.length;e++)if(i[e].length<2||"="!==i[e].charAt(1))return!1;return!0},e.exports=t}(de);var ue=de.exports,le=getDefaultExportFromCjs(ue),he=_mergeNamespaces({__proto__:null,default:le},[ue]);function shimRTCIceCandidate(e){if(!e.RTCIceCandidate||e.RTCIceCandidate&&"foundation"in e.RTCIceCandidate.prototype)return;const t=e.RTCIceCandidate;e.RTCIceCandidate=function RTCIceCandidate(e){if("object"==typeof e&&e.candidate&&0===e.candidate.indexOf("a=")&&((e=JSON.parse(JSON.stringify(e))).candidate=e.candidate.substring(2)),e.candidate&&e.candidate.length){const i=new t(e),n=le.parseCandidate(e.candidate);for(const e in n)e in i||Object.defineProperty(i,e,{value:n[e]});return i.toJSON=function toJSON(){return{candidate:i.candidate,sdpMid:i.sdpMid,sdpMLineIndex:i.sdpMLineIndex,usernameFragment:i.usernameFragment}},i}return new t(e)},e.RTCIceCandidate.prototype=t.prototype,wrapPeerConnectionEvent(e,"icecandidate",(t=>(t.candidate&&Object.defineProperty(t,"candidate",{value:new e.RTCIceCandidate(t.candidate),writable:"false"}),t)))}function shimRTCIceCandidateRelayProtocol(e){!e.RTCIceCandidate||e.RTCIceCandidate&&"relayProtocol"in e.RTCIceCandidate.prototype||wrapPeerConnectionEvent(e,"icecandidate",(e=>{if(e.candidate){const t=le.parseCandidate(e.candidate.candidate);"relay"===t.type&&(e.candidate.relayProtocol={0:"tls",1:"tcp",2:"udp"}[t.priority>>24])}return e}))}function shimMaxMessageSize(e,t){if(!e.RTCPeerConnection)return;"sctp"in e.RTCPeerConnection.prototype||Object.defineProperty(e.RTCPeerConnection.prototype,"sctp",{get(){return void 0===this._sctp?null:this._sctp}});const sctpInDescription=function(e){if(!e||!e.sdp)return!1;const t=le.splitSections(e.sdp);return t.shift(),t.some((e=>{const t=le.parseMLine(e);return t&&"application"===t.kind&&-1!==t.protocol.indexOf("SCTP")}))},getRemoteFirefoxVersion=function(e){const t=e.sdp.match(/mozilla...THIS_IS_SDPARTA-(\d+)/);if(null===t||t.length<2)return-1;const i=parseInt(t[1],10);return i!=i?-1:i},getCanSendMaxMessageSize=function(e){let i=65536;return"firefox"===t.browser&&(i=t.version<57?-1===e?16384:2147483637:t.version<60?57===t.version?65535:65536:2147483637),i},getMaxMessageSize=function(e,i){let n=65536;"firefox"===t.browser&&57===t.version&&(n=65535);const s=le.matchPrefix(e.sdp,"a=max-message-size:");return s.length>0?n=parseInt(s[0].substring(19),10):"firefox"===t.browser&&-1!==i&&(n=2147483637),n},i=e.RTCPeerConnection.prototype.setRemoteDescription;e.RTCPeerConnection.prototype.setRemoteDescription=function setRemoteDescription(){if(this._sctp=null,"chrome"===t.browser&&t.version>=76){const{sdpSemantics:e}=this.getConfiguration();"plan-b"===e&&Object.defineProperty(this,"sctp",{get(){return void 0===this._sctp?null:this._sctp},enumerable:!0,configurable:!0})}if(sctpInDescription(arguments[0])){const e=getRemoteFirefoxVersion(arguments[0]),t=getCanSendMaxMessageSize(e),i=getMaxMessageSize(arguments[0],e);let n;n=0===t&&0===i?Number.POSITIVE_INFINITY:0===t||0===i?Math.max(t,i):Math.min(t,i);const s={};Object.defineProperty(s,"maxMessageSize",{get:()=>n}),this._sctp=s}return i.apply(this,arguments)}}function shimSendThrowTypeError(e){if(!e.RTCPeerConnection||!("createDataChannel"in e.RTCPeerConnection.prototype))return;function wrapDcSend(e,t){const i=e.send;e.send=function send(){const n=arguments[0],s=n.length||n.size||n.byteLength;if("open"===e.readyState&&t.sctp&&s>t.sctp.maxMessageSize)throw new TypeError("Message too large (can send a maximum of "+t.sctp.maxMessageSize+" bytes)");return i.apply(e,arguments)}}const t=e.RTCPeerConnection.prototype.createDataChannel;e.RTCPeerConnection.prototype.createDataChannel=function createDataChannel(){const e=t.apply(this,arguments);return wrapDcSend(e,this),e},wrapPeerConnectionEvent(e,"datachannel",(e=>(wrapDcSend(e.channel,e.target),e)))}function shimConnectionState(e){if(!e.RTCPeerConnection||"connectionState"in e.RTCPeerConnection.prototype)return;const t=e.RTCPeerConnection.prototype;Object.defineProperty(t,"connectionState",{get(){return{completed:"connected",checking:"connecting"}[this.iceConnectionState]||this.iceConnectionState},enumerable:!0,configurable:!0}),Object.defineProperty(t,"onconnectionstatechange",{get(){return this._onconnectionstatechange||null},set(e){this._onconnectionstatechange&&(this.removeEventListener("connectionstatechange",this._onconnectionstatechange),delete this._onconnectionstatechange),e&&this.addEventListener("connectionstatechange",this._onconnectionstatechange=e)},enumerable:!0,configurable:!0}),["setLocalDescription","setRemoteDescription"].forEach((e=>{const i=t[e];t[e]=function(){return this._connectionstatechangepoly||(this._connectionstatechangepoly=e=>{const t=e.target;if(t._lastConnectionState!==t.connectionState){t._lastConnectionState=t.connectionState;const i=new Event("connectionstatechange",e);t.dispatchEvent(i)}return e},this.addEventListener("iceconnectionstatechange",this._connectionstatechangepoly)),i.apply(this,arguments)}}))}function removeExtmapAllowMixed(e,t){if(!e.RTCPeerConnection)return;if("chrome"===t.browser&&t.version>=71)return;if("safari"===t.browser&&t.version>=605)return;const i=e.RTCPeerConnection.prototype.setRemoteDescription;e.RTCPeerConnection.prototype.setRemoteDescription=function setRemoteDescription(t){if(t&&t.sdp&&-1!==t.sdp.indexOf("\na=extmap-allow-mixed")){const i=t.sdp.split("\n").filter((e=>"a=extmap-allow-mixed"!==e.trim())).join("\n");e.RTCSessionDescription&&t instanceof e.RTCSessionDescription?arguments[0]=new e.RTCSessionDescription({type:t.type,sdp:i}):t.sdp=i}return i.apply(this,arguments)}}function shimAddIceCandidateNullOrEmpty(e,t){if(!e.RTCPeerConnection||!e.RTCPeerConnection.prototype)return;const i=e.RTCPeerConnection.prototype.addIceCandidate;i&&0!==i.length&&(e.RTCPeerConnection.prototype.addIceCandidate=function addIceCandidate(){return arguments[0]?("chrome"===t.browser&&t.version<78||"firefox"===t.browser&&t.version<68||"safari"===t.browser)&&arguments[0]&&""===arguments[0].candidate?Promise.resolve():i.apply(this,arguments):(arguments[1]&&arguments[1].apply(null),Promise.resolve())})}function shimParameterlessSetLocalDescription(e,t){if(!e.RTCPeerConnection||!e.RTCPeerConnection.prototype)return;const i=e.RTCPeerConnection.prototype.setLocalDescription;i&&0!==i.length&&(e.RTCPeerConnection.prototype.setLocalDescription=function setLocalDescription(){let e=arguments[0]||{};if("object"!=typeof e||e.type&&e.sdp)return i.apply(this,arguments);if(e={type:e.type,sdp:e.sdp},!e.type)switch(this.signalingState){case"stable":case"have-local-offer":case"have-remote-pranswer":e.type="offer";break;default:e.type="answer"}if(e.sdp||"offer"!==e.type&&"answer"!==e.type)return i.apply(this,[e]);const t="offer"===e.type?this.createOffer:this.createAnswer;return t.apply(this).then((e=>i.apply(this,[e])))})}var pe,me,fe,ge,ve=Object.freeze({__proto__:null,removeExtmapAllowMixed,shimAddIceCandidateNullOrEmpty,shimConnectionState,shimMaxMessageSize,shimParameterlessSetLocalDescription,shimRTCIceCandidate,shimRTCIceCandidateRelayProtocol,shimSendThrowTypeError});!function adapterFactory(){let{window:e}=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{shimChrome:!0,shimFirefox:!0,shimSafari:!0};const i=log,n=detectBrowser(e),s={browserDetails:n,commonShim:ve,extractVersion,disableLog,disableWarnings,sdp:he};switch(n.browser){case"chrome":if(!ae||!shimPeerConnection$1||!t.shimChrome)return i("Chrome shim is not included in this adapter release."),s;if(null===n.version)return i("Chrome shim can not determine version, not shimming."),s;i("adapter.js shimming chrome."),s.browserShim=ae,shimAddIceCandidateNullOrEmpty(e,n),shimParameterlessSetLocalDescription(e),shimGetUserMedia$2(e,n),shimMediaStream(e),shimPeerConnection$1(e,n),shimOnTrack$1(e),shimAddTrackRemoveTrack(e,n),shimGetSendersWithDtmf(e),shimGetStats(e),shimSenderReceiverGetStats(e),fixNegotiationNeeded(e,n),shimRTCIceCandidate(e),shimRTCIceCandidateRelayProtocol(e),shimConnectionState(e),shimMaxMessageSize(e,n),shimSendThrowTypeError(e),removeExtmapAllowMixed(e,n);break;case"firefox":if(!oe||!shimPeerConnection||!t.shimFirefox)return i("Firefox shim is not included in this adapter release."),s;i("adapter.js shimming firefox."),s.browserShim=oe,shimAddIceCandidateNullOrEmpty(e,n),shimParameterlessSetLocalDescription(e),shimGetUserMedia$1(e,n),shimPeerConnection(e,n),shimOnTrack(e),shimRemoveStream(e),shimSenderGetStats(e),shimReceiverGetStats(e),shimRTCDataChannel(e),shimAddTransceiver(e),shimGetParameters(e),shimCreateOffer(e),shimCreateAnswer(e),shimRTCIceCandidate(e),shimConnectionState(e),shimMaxMessageSize(e,n),shimSendThrowTypeError(e);break;case"safari":if(!ce||!t.shimSafari)return i("Safari shim is not included in this adapter release."),s;i("adapter.js shimming safari."),s.browserShim=ce,shimAddIceCandidateNullOrEmpty(e,n),shimParameterlessSetLocalDescription(e),shimRTCIceServerUrls(e),shimCreateOfferLegacy(e),shimCallbacksAPI(e),shimLocalStreamsAPI(e),shimRemoteStreamsAPI(e),shimTrackEventTransceiver(e),shimGetUserMedia(e),shimAudioContext(e),shimRTCIceCandidate(e),shimRTCIceCandidateRelayProtocol(e),shimMaxMessageSize(e,n),shimSendThrowTypeError(e),removeExtmapAllowMixed(e,n);break;default:i("Unsupported browser!")}return s}({window:"undefined"==typeof window?void 0:window}),function(e){e[e.PUBLISHER=0]="PUBLISHER",e[e.SUBSCRIBER=1]="SUBSCRIBER"}(pe||(pe={})),L.util.setEnumType(pe,"livekit.SignalTarget",[{no:0,name:"PUBLISHER"},{no:1,name:"SUBSCRIBER"}]),function(e){e[e.ACTIVE=0]="ACTIVE",e[e.PAUSED=1]="PAUSED"}(me||(me={})),L.util.setEnumType(me,"livekit.StreamState",[{no:0,name:"ACTIVE"},{no:1,name:"PAUSED"}]),function(e){e[e.UDP=0]="UDP",e[e.TCP=1]="TCP",e[e.TLS=2]="TLS"}(fe||(fe={})),L.util.setEnumType(fe,"livekit.CandidateProtocol",[{no:0,name:"UDP"},{no:1,name:"TCP"},{no:2,name:"TLS"}]);class SignalRequest extends Message{constructor(e){super(),this.message={case:void 0},L.util.initPartial(e,this)}static fromBinary(e,t){return(new SignalRequest).fromBinary(e,t)}static fromJson(e,t){return(new SignalRequest).fromJson(e,t)}static fromJsonString(e,t){return(new SignalRequest).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SignalRequest,e,t)}}SignalRequest.runtime=L,SignalRequest.typeName="livekit.SignalRequest",SignalRequest.fields=L.util.newFieldList((()=>[{no:1,name:"offer",kind:"message",T:SessionDescription,oneof:"message"},{no:2,name:"answer",kind:"message",T:SessionDescription,oneof:"message"},{no:3,name:"trickle",kind:"message",T:TrickleRequest,oneof:"message"},{no:4,name:"add_track",kind:"message",T:AddTrackRequest,oneof:"message"},{no:5,name:"mute",kind:"message",T:MuteTrackRequest,oneof:"message"},{no:6,name:"subscription",kind:"message",T:UpdateSubscription,oneof:"message"},{no:7,name:"track_setting",kind:"message",T:UpdateTrackSettings,oneof:"message"},{no:8,name:"leave",kind:"message",T:LeaveRequest,oneof:"message"},{no:10,name:"update_layers",kind:"message",T:UpdateVideoLayers,oneof:"message"},{no:11,name:"subscription_permission",kind:"message",T:SubscriptionPermission,oneof:"message"},{no:12,name:"sync_state",kind:"message",T:SyncState,oneof:"message"},{no:13,name:"simulate",kind:"message",T:SimulateScenario,oneof:"message"},{no:14,name:"ping",kind:"scalar",T:3,oneof:"message"},{no:15,name:"update_metadata",kind:"message",T:UpdateParticipantMetadata,oneof:"message"},{no:16,name:"ping_req",kind:"message",T:Ping,oneof:"message"}]));class SignalResponse extends Message{constructor(e){super(),this.message={case:void 0},L.util.initPartial(e,this)}static fromBinary(e,t){return(new SignalResponse).fromBinary(e,t)}static fromJson(e,t){return(new SignalResponse).fromJson(e,t)}static fromJsonString(e,t){return(new SignalResponse).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SignalResponse,e,t)}}SignalResponse.runtime=L,SignalResponse.typeName="livekit.SignalResponse",SignalResponse.fields=L.util.newFieldList((()=>[{no:1,name:"join",kind:"message",T:JoinResponse,oneof:"message"},{no:2,name:"answer",kind:"message",T:SessionDescription,oneof:"message"},{no:3,name:"offer",kind:"message",T:SessionDescription,oneof:"message"},{no:4,name:"trickle",kind:"message",T:TrickleRequest,oneof:"message"},{no:5,name:"update",kind:"message",T:ParticipantUpdate,oneof:"message"},{no:6,name:"track_published",kind:"message",T:TrackPublishedResponse,oneof:"message"},{no:8,name:"leave",kind:"message",T:LeaveRequest,oneof:"message"},{no:9,name:"mute",kind:"message",T:MuteTrackRequest,oneof:"message"},{no:10,name:"speakers_changed",kind:"message",T:SpeakersChanged,oneof:"message"},{no:11,name:"room_update",kind:"message",T:RoomUpdate,oneof:"message"},{no:12,name:"connection_quality",kind:"message",T:ConnectionQualityUpdate,oneof:"message"},{no:13,name:"stream_state_update",kind:"message",T:StreamStateUpdate,oneof:"message"},{no:14,name:"subscribed_quality_update",kind:"message",T:SubscribedQualityUpdate,oneof:"message"},{no:15,name:"subscription_permission_update",kind:"message",T:SubscriptionPermissionUpdate,oneof:"message"},{no:16,name:"refresh_token",kind:"scalar",T:9,oneof:"message"},{no:17,name:"track_unpublished",kind:"message",T:TrackUnpublishedResponse,oneof:"message"},{no:18,name:"pong",kind:"scalar",T:3,oneof:"message"},{no:19,name:"reconnect",kind:"message",T:ReconnectResponse,oneof:"message"},{no:20,name:"pong_resp",kind:"message",T:Pong,oneof:"message"},{no:21,name:"subscription_response",kind:"message",T:SubscriptionResponse,oneof:"message"}]));class SimulcastCodec extends Message{constructor(e){super(),this.codec="",this.cid="",this.enableSimulcastLayers=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new SimulcastCodec).fromBinary(e,t)}static fromJson(e,t){return(new SimulcastCodec).fromJson(e,t)}static fromJsonString(e,t){return(new SimulcastCodec).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SimulcastCodec,e,t)}}SimulcastCodec.runtime=L,SimulcastCodec.typeName="livekit.SimulcastCodec",SimulcastCodec.fields=L.util.newFieldList((()=>[{no:1,name:"codec",kind:"scalar",T:9},{no:2,name:"cid",kind:"scalar",T:9},{no:3,name:"enable_simulcast_layers",kind:"scalar",T:8}]));class AddTrackRequest extends Message{constructor(e){super(),this.cid="",this.name="",this.type=U.AUDIO,this.width=0,this.height=0,this.muted=!1,this.disableDtx=!1,this.source=O.UNKNOWN,this.layers=[],this.simulcastCodecs=[],this.sid="",this.stereo=!1,this.disableRed=!1,this.encryption=W.NONE,this.stream="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new AddTrackRequest).fromBinary(e,t)}static fromJson(e,t){return(new AddTrackRequest).fromJson(e,t)}static fromJsonString(e,t){return(new AddTrackRequest).fromJsonString(e,t)}static equals(e,t){return L.util.equals(AddTrackRequest,e,t)}}AddTrackRequest.runtime=L,AddTrackRequest.typeName="livekit.AddTrackRequest",AddTrackRequest.fields=L.util.newFieldList((()=>[{no:1,name:"cid",kind:"scalar",T:9},{no:2,name:"name",kind:"scalar",T:9},{no:3,name:"type",kind:"enum",T:L.getEnumType(U)},{no:4,name:"width",kind:"scalar",T:13},{no:5,name:"height",kind:"scalar",T:13},{no:6,name:"muted",kind:"scalar",T:8},{no:7,name:"disable_dtx",kind:"scalar",T:8},{no:8,name:"source",kind:"enum",T:L.getEnumType(O)},{no:9,name:"layers",kind:"message",T:VideoLayer,repeated:!0},{no:10,name:"simulcast_codecs",kind:"message",T:SimulcastCodec,repeated:!0},{no:11,name:"sid",kind:"scalar",T:9},{no:12,name:"stereo",kind:"scalar",T:8},{no:13,name:"disable_red",kind:"scalar",T:8},{no:14,name:"encryption",kind:"enum",T:L.getEnumType(W)},{no:15,name:"stream",kind:"scalar",T:9}]));class TrickleRequest extends Message{constructor(e){super(),this.candidateInit="",this.target=pe.PUBLISHER,L.util.initPartial(e,this)}static fromBinary(e,t){return(new TrickleRequest).fromBinary(e,t)}static fromJson(e,t){return(new TrickleRequest).fromJson(e,t)}static fromJsonString(e,t){return(new TrickleRequest).fromJsonString(e,t)}static equals(e,t){return L.util.equals(TrickleRequest,e,t)}}TrickleRequest.runtime=L,TrickleRequest.typeName="livekit.TrickleRequest",TrickleRequest.fields=L.util.newFieldList((()=>[{no:1,name:"candidateInit",kind:"scalar",T:9},{no:2,name:"target",kind:"enum",T:L.getEnumType(pe)}]));class MuteTrackRequest extends Message{constructor(e){super(),this.sid="",this.muted=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new MuteTrackRequest).fromBinary(e,t)}static fromJson(e,t){return(new MuteTrackRequest).fromJson(e,t)}static fromJsonString(e,t){return(new MuteTrackRequest).fromJsonString(e,t)}static equals(e,t){return L.util.equals(MuteTrackRequest,e,t)}}MuteTrackRequest.runtime=L,MuteTrackRequest.typeName="livekit.MuteTrackRequest",MuteTrackRequest.fields=L.util.newFieldList((()=>[{no:1,name:"sid",kind:"scalar",T:9},{no:2,name:"muted",kind:"scalar",T:8}]));class JoinResponse extends Message{constructor(e){super(),this.otherParticipants=[],this.serverVersion="",this.iceServers=[],this.subscriberPrimary=!1,this.alternativeUrl="",this.serverRegion="",this.pingTimeout=0,this.pingInterval=0,this.sifTrailer=new Uint8Array(0),L.util.initPartial(e,this)}static fromBinary(e,t){return(new JoinResponse).fromBinary(e,t)}static fromJson(e,t){return(new JoinResponse).fromJson(e,t)}static fromJsonString(e,t){return(new JoinResponse).fromJsonString(e,t)}static equals(e,t){return L.util.equals(JoinResponse,e,t)}}JoinResponse.runtime=L,JoinResponse.typeName="livekit.JoinResponse",JoinResponse.fields=L.util.newFieldList((()=>[{no:1,name:"room",kind:"message",T:q},{no:2,name:"participant",kind:"message",T:ParticipantInfo},{no:3,name:"other_participants",kind:"message",T:ParticipantInfo,repeated:!0},{no:4,name:"server_version",kind:"scalar",T:9},{no:5,name:"ice_servers",kind:"message",T:ICEServer,repeated:!0},{no:6,name:"subscriber_primary",kind:"scalar",T:8},{no:7,name:"alternative_url",kind:"scalar",T:9},{no:8,name:"client_configuration",kind:"message",T:ClientConfiguration},{no:9,name:"server_region",kind:"scalar",T:9},{no:10,name:"ping_timeout",kind:"scalar",T:5},{no:11,name:"ping_interval",kind:"scalar",T:5},{no:12,name:"server_info",kind:"message",T:ServerInfo},{no:13,name:"sif_trailer",kind:"scalar",T:12}]));class ReconnectResponse extends Message{constructor(e){super(),this.iceServers=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new ReconnectResponse).fromBinary(e,t)}static fromJson(e,t){return(new ReconnectResponse).fromJson(e,t)}static fromJsonString(e,t){return(new ReconnectResponse).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ReconnectResponse,e,t)}}ReconnectResponse.runtime=L,ReconnectResponse.typeName="livekit.ReconnectResponse",ReconnectResponse.fields=L.util.newFieldList((()=>[{no:1,name:"ice_servers",kind:"message",T:ICEServer,repeated:!0},{no:2,name:"client_configuration",kind:"message",T:ClientConfiguration}]));class TrackPublishedResponse extends Message{constructor(e){super(),this.cid="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new TrackPublishedResponse).fromBinary(e,t)}static fromJson(e,t){return(new TrackPublishedResponse).fromJson(e,t)}static fromJsonString(e,t){return(new TrackPublishedResponse).fromJsonString(e,t)}static equals(e,t){return L.util.equals(TrackPublishedResponse,e,t)}}TrackPublishedResponse.runtime=L,TrackPublishedResponse.typeName="livekit.TrackPublishedResponse",TrackPublishedResponse.fields=L.util.newFieldList((()=>[{no:1,name:"cid",kind:"scalar",T:9},{no:2,name:"track",kind:"message",T:TrackInfo}]));class TrackUnpublishedResponse extends Message{constructor(e){super(),this.trackSid="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new TrackUnpublishedResponse).fromBinary(e,t)}static fromJson(e,t){return(new TrackUnpublishedResponse).fromJson(e,t)}static fromJsonString(e,t){return(new TrackUnpublishedResponse).fromJsonString(e,t)}static equals(e,t){return L.util.equals(TrackUnpublishedResponse,e,t)}}TrackUnpublishedResponse.runtime=L,TrackUnpublishedResponse.typeName="livekit.TrackUnpublishedResponse",TrackUnpublishedResponse.fields=L.util.newFieldList((()=>[{no:1,name:"track_sid",kind:"scalar",T:9}]));class SessionDescription extends Message{constructor(e){super(),this.type="",this.sdp="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new SessionDescription).fromBinary(e,t)}static fromJson(e,t){return(new SessionDescription).fromJson(e,t)}static fromJsonString(e,t){return(new SessionDescription).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SessionDescription,e,t)}}SessionDescription.runtime=L,SessionDescription.typeName="livekit.SessionDescription",SessionDescription.fields=L.util.newFieldList((()=>[{no:1,name:"type",kind:"scalar",T:9},{no:2,name:"sdp",kind:"scalar",T:9}]));class ParticipantUpdate extends Message{constructor(e){super(),this.participants=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new ParticipantUpdate).fromBinary(e,t)}static fromJson(e,t){return(new ParticipantUpdate).fromJson(e,t)}static fromJsonString(e,t){return(new ParticipantUpdate).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ParticipantUpdate,e,t)}}ParticipantUpdate.runtime=L,ParticipantUpdate.typeName="livekit.ParticipantUpdate",ParticipantUpdate.fields=L.util.newFieldList((()=>[{no:1,name:"participants",kind:"message",T:ParticipantInfo,repeated:!0}]));class UpdateSubscription extends Message{constructor(e){super(),this.trackSids=[],this.subscribe=!1,this.participantTracks=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new UpdateSubscription).fromBinary(e,t)}static fromJson(e,t){return(new UpdateSubscription).fromJson(e,t)}static fromJsonString(e,t){return(new UpdateSubscription).fromJsonString(e,t)}static equals(e,t){return L.util.equals(UpdateSubscription,e,t)}}UpdateSubscription.runtime=L,UpdateSubscription.typeName="livekit.UpdateSubscription",UpdateSubscription.fields=L.util.newFieldList((()=>[{no:1,name:"track_sids",kind:"scalar",T:9,repeated:!0},{no:2,name:"subscribe",kind:"scalar",T:8},{no:3,name:"participant_tracks",kind:"message",T:ParticipantTracks,repeated:!0}]));class UpdateTrackSettings extends Message{constructor(e){super(),this.trackSids=[],this.disabled=!1,this.quality=N.LOW,this.width=0,this.height=0,this.fps=0,this.priority=0,L.util.initPartial(e,this)}static fromBinary(e,t){return(new UpdateTrackSettings).fromBinary(e,t)}static fromJson(e,t){return(new UpdateTrackSettings).fromJson(e,t)}static fromJsonString(e,t){return(new UpdateTrackSettings).fromJsonString(e,t)}static equals(e,t){return L.util.equals(UpdateTrackSettings,e,t)}}UpdateTrackSettings.runtime=L,UpdateTrackSettings.typeName="livekit.UpdateTrackSettings",UpdateTrackSettings.fields=L.util.newFieldList((()=>[{no:1,name:"track_sids",kind:"scalar",T:9,repeated:!0},{no:3,name:"disabled",kind:"scalar",T:8},{no:4,name:"quality",kind:"enum",T:L.getEnumType(N)},{no:5,name:"width",kind:"scalar",T:13},{no:6,name:"height",kind:"scalar",T:13},{no:7,name:"fps",kind:"scalar",T:13},{no:8,name:"priority",kind:"scalar",T:13}]));class LeaveRequest extends Message{constructor(e){super(),this.canReconnect=!1,this.reason=B.UNKNOWN_REASON,L.util.initPartial(e,this)}static fromBinary(e,t){return(new LeaveRequest).fromBinary(e,t)}static fromJson(e,t){return(new LeaveRequest).fromJson(e,t)}static fromJsonString(e,t){return(new LeaveRequest).fromJsonString(e,t)}static equals(e,t){return L.util.equals(LeaveRequest,e,t)}}LeaveRequest.runtime=L,LeaveRequest.typeName="livekit.LeaveRequest",LeaveRequest.fields=L.util.newFieldList((()=>[{no:1,name:"can_reconnect",kind:"scalar",T:8},{no:2,name:"reason",kind:"enum",T:L.getEnumType(B)}]));class UpdateVideoLayers extends Message{constructor(e){super(),this.trackSid="",this.layers=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new UpdateVideoLayers).fromBinary(e,t)}static fromJson(e,t){return(new UpdateVideoLayers).fromJson(e,t)}static fromJsonString(e,t){return(new UpdateVideoLayers).fromJsonString(e,t)}static equals(e,t){return L.util.equals(UpdateVideoLayers,e,t)}}UpdateVideoLayers.runtime=L,UpdateVideoLayers.typeName="livekit.UpdateVideoLayers",UpdateVideoLayers.fields=L.util.newFieldList((()=>[{no:1,name:"track_sid",kind:"scalar",T:9},{no:2,name:"layers",kind:"message",T:VideoLayer,repeated:!0}]));class UpdateParticipantMetadata extends Message{constructor(e){super(),this.metadata="",this.name="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new UpdateParticipantMetadata).fromBinary(e,t)}static fromJson(e,t){return(new UpdateParticipantMetadata).fromJson(e,t)}static fromJsonString(e,t){return(new UpdateParticipantMetadata).fromJsonString(e,t)}static equals(e,t){return L.util.equals(UpdateParticipantMetadata,e,t)}}UpdateParticipantMetadata.runtime=L,UpdateParticipantMetadata.typeName="livekit.UpdateParticipantMetadata",UpdateParticipantMetadata.fields=L.util.newFieldList((()=>[{no:1,name:"metadata",kind:"scalar",T:9},{no:2,name:"name",kind:"scalar",T:9}]));class ICEServer extends Message{constructor(e){super(),this.urls=[],this.username="",this.credential="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new ICEServer).fromBinary(e,t)}static fromJson(e,t){return(new ICEServer).fromJson(e,t)}static fromJsonString(e,t){return(new ICEServer).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ICEServer,e,t)}}ICEServer.runtime=L,ICEServer.typeName="livekit.ICEServer",ICEServer.fields=L.util.newFieldList((()=>[{no:1,name:"urls",kind:"scalar",T:9,repeated:!0},{no:2,name:"username",kind:"scalar",T:9},{no:3,name:"credential",kind:"scalar",T:9}]));class SpeakersChanged extends Message{constructor(e){super(),this.speakers=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new SpeakersChanged).fromBinary(e,t)}static fromJson(e,t){return(new SpeakersChanged).fromJson(e,t)}static fromJsonString(e,t){return(new SpeakersChanged).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SpeakersChanged,e,t)}}SpeakersChanged.runtime=L,SpeakersChanged.typeName="livekit.SpeakersChanged",SpeakersChanged.fields=L.util.newFieldList((()=>[{no:1,name:"speakers",kind:"message",T:SpeakerInfo,repeated:!0}]));class RoomUpdate extends Message{constructor(e){super(),L.util.initPartial(e,this)}static fromBinary(e,t){return(new RoomUpdate).fromBinary(e,t)}static fromJson(e,t){return(new RoomUpdate).fromJson(e,t)}static fromJsonString(e,t){return(new RoomUpdate).fromJsonString(e,t)}static equals(e,t){return L.util.equals(RoomUpdate,e,t)}}RoomUpdate.runtime=L,RoomUpdate.typeName="livekit.RoomUpdate",RoomUpdate.fields=L.util.newFieldList((()=>[{no:1,name:"room",kind:"message",T:q}]));class ConnectionQualityInfo extends Message{constructor(e){super(),this.participantSid="",this.quality=x.POOR,this.score=0,L.util.initPartial(e,this)}static fromBinary(e,t){return(new ConnectionQualityInfo).fromBinary(e,t)}static fromJson(e,t){return(new ConnectionQualityInfo).fromJson(e,t)}static fromJsonString(e,t){return(new ConnectionQualityInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ConnectionQualityInfo,e,t)}}ConnectionQualityInfo.runtime=L,ConnectionQualityInfo.typeName="livekit.ConnectionQualityInfo",ConnectionQualityInfo.fields=L.util.newFieldList((()=>[{no:1,name:"participant_sid",kind:"scalar",T:9},{no:2,name:"quality",kind:"enum",T:L.getEnumType(x)},{no:3,name:"score",kind:"scalar",T:2}]));class ConnectionQualityUpdate extends Message{constructor(e){super(),this.updates=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new ConnectionQualityUpdate).fromBinary(e,t)}static fromJson(e,t){return(new ConnectionQualityUpdate).fromJson(e,t)}static fromJsonString(e,t){return(new ConnectionQualityUpdate).fromJsonString(e,t)}static equals(e,t){return L.util.equals(ConnectionQualityUpdate,e,t)}}ConnectionQualityUpdate.runtime=L,ConnectionQualityUpdate.typeName="livekit.ConnectionQualityUpdate",ConnectionQualityUpdate.fields=L.util.newFieldList((()=>[{no:1,name:"updates",kind:"message",T:ConnectionQualityInfo,repeated:!0}]));class StreamStateInfo extends Message{constructor(e){super(),this.participantSid="",this.trackSid="",this.state=me.ACTIVE,L.util.initPartial(e,this)}static fromBinary(e,t){return(new StreamStateInfo).fromBinary(e,t)}static fromJson(e,t){return(new StreamStateInfo).fromJson(e,t)}static fromJsonString(e,t){return(new StreamStateInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(StreamStateInfo,e,t)}}StreamStateInfo.runtime=L,StreamStateInfo.typeName="livekit.StreamStateInfo",StreamStateInfo.fields=L.util.newFieldList((()=>[{no:1,name:"participant_sid",kind:"scalar",T:9},{no:2,name:"track_sid",kind:"scalar",T:9},{no:3,name:"state",kind:"enum",T:L.getEnumType(me)}]));class StreamStateUpdate extends Message{constructor(e){super(),this.streamStates=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new StreamStateUpdate).fromBinary(e,t)}static fromJson(e,t){return(new StreamStateUpdate).fromJson(e,t)}static fromJsonString(e,t){return(new StreamStateUpdate).fromJsonString(e,t)}static equals(e,t){return L.util.equals(StreamStateUpdate,e,t)}}StreamStateUpdate.runtime=L,StreamStateUpdate.typeName="livekit.StreamStateUpdate",StreamStateUpdate.fields=L.util.newFieldList((()=>[{no:1,name:"stream_states",kind:"message",T:StreamStateInfo,repeated:!0}]));class SubscribedQuality extends Message{constructor(e){super(),this.quality=N.LOW,this.enabled=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new SubscribedQuality).fromBinary(e,t)}static fromJson(e,t){return(new SubscribedQuality).fromJson(e,t)}static fromJsonString(e,t){return(new SubscribedQuality).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SubscribedQuality,e,t)}}SubscribedQuality.runtime=L,SubscribedQuality.typeName="livekit.SubscribedQuality",SubscribedQuality.fields=L.util.newFieldList((()=>[{no:1,name:"quality",kind:"enum",T:L.getEnumType(N)},{no:2,name:"enabled",kind:"scalar",T:8}]));class SubscribedCodec extends Message{constructor(e){super(),this.codec="",this.qualities=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new SubscribedCodec).fromBinary(e,t)}static fromJson(e,t){return(new SubscribedCodec).fromJson(e,t)}static fromJsonString(e,t){return(new SubscribedCodec).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SubscribedCodec,e,t)}}SubscribedCodec.runtime=L,SubscribedCodec.typeName="livekit.SubscribedCodec",SubscribedCodec.fields=L.util.newFieldList((()=>[{no:1,name:"codec",kind:"scalar",T:9},{no:2,name:"qualities",kind:"message",T:SubscribedQuality,repeated:!0}]));class SubscribedQualityUpdate extends Message{constructor(e){super(),this.trackSid="",this.subscribedQualities=[],this.subscribedCodecs=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new SubscribedQualityUpdate).fromBinary(e,t)}static fromJson(e,t){return(new SubscribedQualityUpdate).fromJson(e,t)}static fromJsonString(e,t){return(new SubscribedQualityUpdate).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SubscribedQualityUpdate,e,t)}}SubscribedQualityUpdate.runtime=L,SubscribedQualityUpdate.typeName="livekit.SubscribedQualityUpdate",SubscribedQualityUpdate.fields=L.util.newFieldList((()=>[{no:1,name:"track_sid",kind:"scalar",T:9},{no:2,name:"subscribed_qualities",kind:"message",T:SubscribedQuality,repeated:!0},{no:3,name:"subscribed_codecs",kind:"message",T:SubscribedCodec,repeated:!0}]));class TrackPermission extends Message{constructor(e){super(),this.participantSid="",this.allTracks=!1,this.trackSids=[],this.participantIdentity="",L.util.initPartial(e,this)}static fromBinary(e,t){return(new TrackPermission).fromBinary(e,t)}static fromJson(e,t){return(new TrackPermission).fromJson(e,t)}static fromJsonString(e,t){return(new TrackPermission).fromJsonString(e,t)}static equals(e,t){return L.util.equals(TrackPermission,e,t)}}TrackPermission.runtime=L,TrackPermission.typeName="livekit.TrackPermission",TrackPermission.fields=L.util.newFieldList((()=>[{no:1,name:"participant_sid",kind:"scalar",T:9},{no:2,name:"all_tracks",kind:"scalar",T:8},{no:3,name:"track_sids",kind:"scalar",T:9,repeated:!0},{no:4,name:"participant_identity",kind:"scalar",T:9}]));class SubscriptionPermission extends Message{constructor(e){super(),this.allParticipants=!1,this.trackPermissions=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new SubscriptionPermission).fromBinary(e,t)}static fromJson(e,t){return(new SubscriptionPermission).fromJson(e,t)}static fromJsonString(e,t){return(new SubscriptionPermission).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SubscriptionPermission,e,t)}}SubscriptionPermission.runtime=L,SubscriptionPermission.typeName="livekit.SubscriptionPermission",SubscriptionPermission.fields=L.util.newFieldList((()=>[{no:1,name:"all_participants",kind:"scalar",T:8},{no:2,name:"track_permissions",kind:"message",T:TrackPermission,repeated:!0}]));class SubscriptionPermissionUpdate extends Message{constructor(e){super(),this.participantSid="",this.trackSid="",this.allowed=!1,L.util.initPartial(e,this)}static fromBinary(e,t){return(new SubscriptionPermissionUpdate).fromBinary(e,t)}static fromJson(e,t){return(new SubscriptionPermissionUpdate).fromJson(e,t)}static fromJsonString(e,t){return(new SubscriptionPermissionUpdate).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SubscriptionPermissionUpdate,e,t)}}SubscriptionPermissionUpdate.runtime=L,SubscriptionPermissionUpdate.typeName="livekit.SubscriptionPermissionUpdate",SubscriptionPermissionUpdate.fields=L.util.newFieldList((()=>[{no:1,name:"participant_sid",kind:"scalar",T:9},{no:2,name:"track_sid",kind:"scalar",T:9},{no:3,name:"allowed",kind:"scalar",T:8}]));class SyncState extends Message{constructor(e){super(),this.publishTracks=[],this.dataChannels=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new SyncState).fromBinary(e,t)}static fromJson(e,t){return(new SyncState).fromJson(e,t)}static fromJsonString(e,t){return(new SyncState).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SyncState,e,t)}}SyncState.runtime=L,SyncState.typeName="livekit.SyncState",SyncState.fields=L.util.newFieldList((()=>[{no:1,name:"answer",kind:"message",T:SessionDescription},{no:2,name:"subscription",kind:"message",T:UpdateSubscription},{no:3,name:"publish_tracks",kind:"message",T:TrackPublishedResponse,repeated:!0},{no:4,name:"data_channels",kind:"message",T:DataChannelInfo,repeated:!0},{no:5,name:"offer",kind:"message",T:SessionDescription}]));class DataChannelInfo extends Message{constructor(e){super(),this.label="",this.id=0,this.target=pe.PUBLISHER,L.util.initPartial(e,this)}static fromBinary(e,t){return(new DataChannelInfo).fromBinary(e,t)}static fromJson(e,t){return(new DataChannelInfo).fromJson(e,t)}static fromJsonString(e,t){return(new DataChannelInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(DataChannelInfo,e,t)}}DataChannelInfo.runtime=L,DataChannelInfo.typeName="livekit.DataChannelInfo",DataChannelInfo.fields=L.util.newFieldList((()=>[{no:1,name:"label",kind:"scalar",T:9},{no:2,name:"id",kind:"scalar",T:13},{no:3,name:"target",kind:"enum",T:L.getEnumType(pe)}]));class SimulateScenario extends Message{constructor(e){super(),this.scenario={case:void 0},L.util.initPartial(e,this)}static fromBinary(e,t){return(new SimulateScenario).fromBinary(e,t)}static fromJson(e,t){return(new SimulateScenario).fromJson(e,t)}static fromJsonString(e,t){return(new SimulateScenario).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SimulateScenario,e,t)}}SimulateScenario.runtime=L,SimulateScenario.typeName="livekit.SimulateScenario",SimulateScenario.fields=L.util.newFieldList((()=>[{no:1,name:"speaker_update",kind:"scalar",T:5,oneof:"scenario"},{no:2,name:"node_failure",kind:"scalar",T:8,oneof:"scenario"},{no:3,name:"migration",kind:"scalar",T:8,oneof:"scenario"},{no:4,name:"server_leave",kind:"scalar",T:8,oneof:"scenario"},{no:5,name:"switch_candidate_protocol",kind:"enum",T:L.getEnumType(fe),oneof:"scenario"},{no:6,name:"subscriber_bandwidth",kind:"scalar",T:3,oneof:"scenario"}]));class Ping extends Message{constructor(e){super(),this.timestamp=k.zero,this.rtt=k.zero,L.util.initPartial(e,this)}static fromBinary(e,t){return(new Ping).fromBinary(e,t)}static fromJson(e,t){return(new Ping).fromJson(e,t)}static fromJsonString(e,t){return(new Ping).fromJsonString(e,t)}static equals(e,t){return L.util.equals(Ping,e,t)}}Ping.runtime=L,Ping.typeName="livekit.Ping",Ping.fields=L.util.newFieldList((()=>[{no:1,name:"timestamp",kind:"scalar",T:3},{no:2,name:"rtt",kind:"scalar",T:3}]));class Pong extends Message{constructor(e){super(),this.lastPingTimestamp=k.zero,this.timestamp=k.zero,L.util.initPartial(e,this)}static fromBinary(e,t){return(new Pong).fromBinary(e,t)}static fromJson(e,t){return(new Pong).fromJson(e,t)}static fromJsonString(e,t){return(new Pong).fromJsonString(e,t)}static equals(e,t){return L.util.equals(Pong,e,t)}}Pong.runtime=L,Pong.typeName="livekit.Pong",Pong.fields=L.util.newFieldList((()=>[{no:1,name:"last_ping_timestamp",kind:"scalar",T:3},{no:2,name:"timestamp",kind:"scalar",T:3}]));class RegionSettings extends Message{constructor(e){super(),this.regions=[],L.util.initPartial(e,this)}static fromBinary(e,t){return(new RegionSettings).fromBinary(e,t)}static fromJson(e,t){return(new RegionSettings).fromJson(e,t)}static fromJsonString(e,t){return(new RegionSettings).fromJsonString(e,t)}static equals(e,t){return L.util.equals(RegionSettings,e,t)}}RegionSettings.runtime=L,RegionSettings.typeName="livekit.RegionSettings",RegionSettings.fields=L.util.newFieldList((()=>[{no:1,name:"regions",kind:"message",T:RegionInfo,repeated:!0}]));class RegionInfo extends Message{constructor(e){super(),this.region="",this.url="",this.distance=k.zero,L.util.initPartial(e,this)}static fromBinary(e,t){return(new RegionInfo).fromBinary(e,t)}static fromJson(e,t){return(new RegionInfo).fromJson(e,t)}static fromJsonString(e,t){return(new RegionInfo).fromJsonString(e,t)}static equals(e,t){return L.util.equals(RegionInfo,e,t)}}RegionInfo.runtime=L,RegionInfo.typeName="livekit.RegionInfo",RegionInfo.fields=L.util.newFieldList((()=>[{no:1,name:"region",kind:"scalar",T:9},{no:2,name:"url",kind:"scalar",T:9},{no:3,name:"distance",kind:"scalar",T:3}]));class SubscriptionResponse extends Message{constructor(e){super(),this.trackSid="",this.err=J.SE_UNKNOWN,L.util.initPartial(e,this)}static fromBinary(e,t){return(new SubscriptionResponse).fromBinary(e,t)}static fromJson(e,t){return(new SubscriptionResponse).fromJson(e,t)}static fromJsonString(e,t){return(new SubscriptionResponse).fromJsonString(e,t)}static equals(e,t){return L.util.equals(SubscriptionResponse,e,t)}}SubscriptionResponse.runtime=L,SubscriptionResponse.typeName="livekit.SubscriptionResponse",SubscriptionResponse.fields=L.util.newFieldList((()=>[{no:1,name:"track_sid",kind:"scalar",T:9},{no:2,name:"err",kind:"enum",T:L.getEnumType(J)}]));class LivekitError extends Error{constructor(e,t){super(t||"an error has occured"),this.code=e}}class ConnectionError extends LivekitError{constructor(e,t,i){super(1,e),this.status=i,this.reason=t}}class DeviceUnsupportedError extends LivekitError{constructor(e){super(21,null!=e?e:"device is unsupported")}}class TrackInvalidError extends LivekitError{constructor(e){super(20,null!=e?e:"track is invalid")}}class UnsupportedServer extends LivekitError{constructor(e){super(10,null!=e?e:"unsupported server")}}class UnexpectedConnectionState extends LivekitError{constructor(e){super(12,null!=e?e:"unexpected connection state")}}class NegotiationError extends LivekitError{constructor(e){super(13,null!=e?e:"unable to negotiate")}}class PublishDataError extends LivekitError{constructor(e){super(13,null!=e?e:"unable to publish data")}}!function(e){e.PermissionDenied="PermissionDenied",e.NotFound="NotFound",e.DeviceInUse="DeviceInUse",e.Other="Other"}(ge||(ge={})),function(e){e.getFailure=function getFailure(t){if(t&&"name"in t)return"NotFoundError"===t.name||"DevicesNotFoundError"===t.name?e.NotFound:"NotAllowedError"===t.name||"PermissionDeniedError"===t.name?e.PermissionDenied:"NotReadableError"===t.name||"TrackStartError"===t.name?e.DeviceInUse:e.Other}}(ge||(ge={}));class CriticalTimers{}CriticalTimers.setTimeout=function(){return setTimeout(...arguments)},CriticalTimers.setInterval=function(){return setInterval(...arguments)},CriticalTimers.clearTimeout=function(){return clearTimeout(...arguments)},CriticalTimers.clearInterval=function(){return clearInterval(...arguments)};const ke=/version\/(\d+(\.?_?\d+)+)/i;let ye;function getBrowser(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];if(void 0===e&&"undefined"==typeof navigator)return;const i=(null!=e?e:navigator.userAgent).toLowerCase();if(void 0===ye||t){const e=Se.find((e=>{let{test:t}=e;return t.test(i)}));ye=null==e?void 0:e.describe(i)}return ye}const Se=[{test:/firefox|iceweasel|fxios/i,describe:e=>({name:"Firefox",version:getMatch(/(?:firefox|iceweasel|fxios)[\s/](\d+(\.?_?\d+)+)/i,e),os:e.toLowerCase().includes("fxios")?"iOS":void 0})},{test:/chrom|crios|crmo/i,describe:e=>({name:"Chrome",version:getMatch(/(?:chrome|chromium|crios|crmo)\/(\d+(\.?_?\d+)+)/i,e),os:e.toLowerCase().includes("crios")?"iOS":void 0})},{test:/safari|applewebkit/i,describe:e=>({name:"Safari",version:getMatch(ke,e),os:e.includes("mobile/")?"iOS":"macOS"})}];function getMatch(e,t){let i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1;const n=t.match(e);return n&&n.length>=i&&n[i]||""}const Te="1.13.2",be=9;class VideoPreset{constructor(e,t,i,n,s){this.width=e,this.height=t,this.encoding={maxBitrate:i,maxFramerate:n,priority:s}}get resolution(){return{width:this.width,height:this.height,frameRate:this.encoding.maxFramerate,aspectRatio:this.width/this.height}}}const Ce=["vp8","h264"],we=["vp8","h264","vp9","av1"];function isBackupCodec(e){return!!Ce.find((t=>t===e))}function isCodecEqual(e,t){return(null==e?void 0:e.toLowerCase().replace(/audio\/|video\//y,""))===(null==t?void 0:t.toLowerCase().replace(/audio\/|video\//y,""))}var Ee;!function(e){e.telephone={maxBitrate:12e3},e.speech={maxBitrate:2e4},e.music={maxBitrate:32e3},e.musicStereo={maxBitrate:48e3},e.musicHighQuality={maxBitrate:64e3},e.musicHighQualityStereo={maxBitrate:96e3}}(Ee||(Ee={}));const Pe={h90:new VideoPreset(160,90,9e4,20),h180:new VideoPreset(320,180,16e4,20),h216:new VideoPreset(384,216,18e4,20),h360:new VideoPreset(640,360,45e4,20),h540:new VideoPreset(960,540,8e5,25),h720:new VideoPreset(1280,720,17e5,30),h1080:new VideoPreset(1920,1080,3e6,30),h1440:new VideoPreset(2560,1440,5e6,30),h2160:new VideoPreset(3840,2160,8e6,30)},Re={h120:new VideoPreset(160,120,7e4,20),h180:new VideoPreset(240,180,125e3,20),h240:new VideoPreset(320,240,14e4,20),h360:new VideoPreset(480,360,225e3,20),h480:new VideoPreset(640,480,5e5,20),h540:new VideoPreset(720,540,6e5,25),h720:new VideoPreset(960,720,13e5,30),h1080:new VideoPreset(1440,1080,23e5,30),h1440:new VideoPreset(1920,1440,38e5,30)},_e={h360fps3:new VideoPreset(640,360,2e5,3,"medium"),h720fps5:new VideoPreset(1280,720,4e5,5,"medium"),h720fps15:new VideoPreset(1280,720,15e5,15,"medium"),h720fps30:new VideoPreset(1280,720,2e6,30,"medium"),h1080fps15:new VideoPreset(1920,1080,25e5,15,"medium"),h1080fps30:new VideoPreset(1920,1080,4e6,30,"medium")};var Ie,De,Le,Me;!function(e){e.Connected="connected",e.Reconnecting="reconnecting",e.Reconnected="reconnected",e.Disconnected="disconnected",e.ConnectionStateChanged="connectionStateChanged",e.StateChanged="connectionStateChanged",e.MediaDevicesChanged="mediaDevicesChanged",e.ParticipantConnected="participantConnected",e.ParticipantDisconnected="participantDisconnected",e.TrackPublished="trackPublished",e.TrackSubscribed="trackSubscribed",e.TrackSubscriptionFailed="trackSubscriptionFailed",e.TrackUnpublished="trackUnpublished",e.TrackUnsubscribed="trackUnsubscribed",e.TrackMuted="trackMuted",e.TrackUnmuted="trackUnmuted",e.LocalTrackPublished="localTrackPublished",e.LocalTrackUnpublished="localTrackUnpublished",e.LocalAudioSilenceDetected="localAudioSilenceDetected",e.ActiveSpeakersChanged="activeSpeakersChanged",e.ParticipantMetadataChanged="participantMetadataChanged",e.ParticipantNameChanged="participantNameChanged",e.RoomMetadataChanged="roomMetadataChanged",e.DataReceived="dataReceived",e.ConnectionQualityChanged="connectionQualityChanged",e.TrackStreamStateChanged="trackStreamStateChanged",e.TrackSubscriptionPermissionChanged="trackSubscriptionPermissionChanged",e.TrackSubscriptionStatusChanged="trackSubscriptionStatusChanged",e.AudioPlaybackStatusChanged="audioPlaybackChanged",e.MediaDevicesError="mediaDevicesError",e.ParticipantPermissionsChanged="participantPermissionsChanged",e.SignalConnected="signalConnected",e.RecordingStatusChanged="recordingStatusChanged",e.ParticipantEncryptionStatusChanged="participantEncryptionStatusChanged",e.EncryptionError="encryptionError",e.DCBufferStatusChanged="dcBufferStatusChanged",e.ActiveDeviceChanged="activeDeviceChanged"}(Ie||(Ie={})),function(e){e.TrackPublished="trackPublished",e.TrackSubscribed="trackSubscribed",e.TrackSubscriptionFailed="trackSubscriptionFailed",e.TrackUnpublished="trackUnpublished",e.TrackUnsubscribed="trackUnsubscribed",e.TrackMuted="trackMuted",e.TrackUnmuted="trackUnmuted",e.LocalTrackPublished="localTrackPublished",e.LocalTrackUnpublished="localTrackUnpublished",e.ParticipantMetadataChanged="participantMetadataChanged",e.ParticipantNameChanged="participantNameChanged",e.DataReceived="dataReceived",e.IsSpeakingChanged="isSpeakingChanged",e.ConnectionQualityChanged="connectionQualityChanged",e.TrackStreamStateChanged="trackStreamStateChanged",e.TrackSubscriptionPermissionChanged="trackSubscriptionPermissionChanged",e.TrackSubscriptionStatusChanged="trackSubscriptionStatusChanged",e.MediaDevicesError="mediaDevicesError",e.ParticipantPermissionsChanged="participantPermissionsChanged",e.PCTrackAdded="pcTrackAdded"}(De||(De={})),function(e){e.TransportsCreated="transportsCreated",e.Connected="connected",e.Disconnected="disconnected",e.Resuming="resuming",e.Resumed="resumed",e.Restarting="restarting",e.Restarted="restarted",e.SignalResumed="signalResumed",e.SignalRestarted="signalRestarted",e.Closing="closing",e.MediaTrackAdded="mediaTrackAdded",e.ActiveSpeakersUpdate="activeSpeakersUpdate",e.DataPacketReceived="dataPacketReceived",e.RTPVideoMapUpdate="rtpVideoMapUpdate",e.DCBufferStatusChanged="dcBufferStatusChanged",e.ParticipantUpdate="participantUpdate",e.RoomUpdate="roomUpdate",e.SpeakersChanged="speakersChanged",e.StreamStateChanged="streamStateChanged",e.ConnectionQualityUpdate="connectionQualityUpdate",e.SubscriptionError="subscriptionError",e.SubscriptionPermissionUpdate="subscriptionPermissionUpdate"}(Le||(Le={})),function(e){e.Message="message",e.Muted="muted",e.Unmuted="unmuted",e.Restarted="restarted",e.Ended="ended",e.Subscribed="subscribed",e.Unsubscribed="unsubscribed",e.UpdateSettings="updateSettings",e.UpdateSubscription="updateSubscription",e.AudioPlaybackStarted="audioPlaybackStarted",e.AudioPlaybackFailed="audioPlaybackFailed",e.AudioSilenceDetected="audioSilenceDetected",e.VisibilityChanged="visibilityChanged",e.VideoDimensionsChanged="videoDimensionsChanged",e.ElementAttached="elementAttached",e.ElementDetached="elementDetached",e.UpstreamPaused="upstreamPaused",e.UpstreamResumed="upstreamResumed",e.SubscriptionPermissionChanged="subscriptionPermissionChanged",e.SubscriptionStatusChanged="subscriptionStatusChanged",e.SubscriptionFailed="subscriptionFailed"}(Me||(Me={}));const Ae=[];class Track extends ie.EventEmitter{constructor(e,t){super(),this.attachedElements=[],this.isMuted=!1,this.streamState=Track.StreamState.Active,this.isInBackground=!1,this._currentBitrate=0,this.appVisibilityChangedListener=()=>{this.backgroundTimeout&&clearTimeout(this.backgroundTimeout),"hidden"===document.visibilityState?this.backgroundTimeout=setTimeout((()=>this.handleAppVisibilityChanged()),5e3):this.handleAppVisibilityChanged()},this.setMaxListeners(100),this.kind=t,this._mediaStreamTrack=e,this._mediaStreamID=e.id,this.source=Track.Source.Unknown}get currentBitrate(){return this._currentBitrate}get mediaStreamTrack(){return this._mediaStreamTrack}get mediaStreamID(){return this._mediaStreamID}attach(e){let t="audio";this.kind===Track.Kind.Video&&(t="video"),0===this.attachedElements.length&&Track.Kind.Video&&this.addAppVisibilityListener(),e||("audio"===t&&(Ae.forEach((t=>{null!==t.parentElement||e||(e=t)})),e&&Ae.splice(Ae.indexOf(e),1)),e||(e=document.createElement(t))),this.attachedElements.includes(e)||this.attachedElements.push(e),attachToElement(this.mediaStreamTrack,e);const i=e.srcObject.getTracks();return i.some((e=>"audio"===e.kind))&&e.play().then((()=>{this.emit(Me.AudioPlaybackStarted)})).catch((t=>{"NotAllowedError"===t.name?this.emit(Me.AudioPlaybackFailed,t):p.warn("could not playback audio",t),e&&i.some((e=>"video"===e.kind))&&"NotAllowedError"===t.name&&(e.muted=!0,e.play().catch((()=>{})))})),this.emit(Me.ElementAttached,e),e}detach(e){try{if(e){detachTrack(this.mediaStreamTrack,e);const t=this.attachedElements.indexOf(e);return t>=0&&(this.attachedElements.splice(t,1),this.recycleElement(e),this.emit(Me.ElementDetached,e)),e}const t=[];return this.attachedElements.forEach((e=>{detachTrack(this.mediaStreamTrack,e),t.push(e),this.recycleElement(e),this.emit(Me.ElementDetached,e)})),this.attachedElements=[],t}finally{0===this.attachedElements.length&&this.removeAppVisibilityListener()}}stop(){this.stopMonitor(),this._mediaStreamTrack.stop()}enable(){this._mediaStreamTrack.enabled=!0}disable(){this._mediaStreamTrack.enabled=!1}stopMonitor(){this.monitorInterval&&clearInterval(this.monitorInterval)}recycleElement(e){if(e instanceof HTMLAudioElement){let t=!0;e.pause(),Ae.forEach((e=>{e.parentElement||(t=!1)})),t&&Ae.push(e)}}handleAppVisibilityChanged(){return __awaiter(this,void 0,void 0,(function*(){this.isInBackground="hidden"===document.visibilityState}))}addAppVisibilityListener(){isWeb()?(this.isInBackground="hidden"===document.visibilityState,document.addEventListener("visibilitychange",this.appVisibilityChangedListener)):this.isInBackground=!1}removeAppVisibilityListener(){isWeb()&&document.removeEventListener("visibilitychange",this.appVisibilityChangedListener)}}function attachToElement(e,t){let i,n;i=t.srcObject instanceof MediaStream?t.srcObject:new MediaStream,n="audio"===e.kind?i.getAudioTracks():i.getVideoTracks(),n.includes(e)||(n.forEach((e=>{i.removeTrack(e)})),i.addTrack(e)),t.autoplay=!0,t.muted=0===i.getAudioTracks().length,t instanceof HTMLVideoElement&&(t.playsInline=!0),t.srcObject!==i&&(t.srcObject=i,(isSafari()||isFireFox())&&t instanceof HTMLVideoElement&&setTimeout((()=>{t.srcObject=i,t.play().catch((()=>{}))}),0))}function detachTrack(e,t){if(t.srcObject instanceof MediaStream){const i=t.srcObject;i.removeTrack(e),i.getTracks().length>0?t.srcObject=i:t.srcObject=null}}function mergeDefaultOptions(e,t,i){const n=Object.assign({},e);return!0===n.audio&&(n.audio={}),!0===n.video&&(n.video={}),n.audio&&mergeObjectWithoutOverwriting(n.audio,t),n.video&&mergeObjectWithoutOverwriting(n.video,i),n}function mergeObjectWithoutOverwriting(e,t){return Object.keys(t).forEach((i=>{void 0===e[i]&&(e[i]=t[i])})),e}function constraintsForOptions(e){const t={};if(e.video)if("object"==typeof e.video){const i={},n=i,s=e.video;Object.keys(s).forEach((e=>{if("resolution"===e)mergeObjectWithoutOverwriting(n,s.resolution);else n[e]=s[e]})),t.video=i}else t.video=e.video;else t.video=!1;return e.audio?"object"==typeof e.audio?t.audio=e.audio:t.audio=!0:t.audio=!1,t}function getNewAudioContext(){const e="undefined"!=typeof window&&(window.AudioContext||window.webkitAudioContext);if(e)return new e({latencyHint:"interactive"})}function screenCaptureToDisplayMediaStreamOptions(e){var t,i;let n=null===(t=e.video)||void 0===t||t;return e.resolution&&(n="boolean"==typeof n?{}:n,n=isSafari()?Object.assign(Object.assign({},n),{width:{max:e.resolution.width},height:{max:e.resolution.height},frameRate:e.resolution.frameRate}):Object.assign(Object.assign({},n),{width:{ideal:e.resolution.width},height:{ideal:e.resolution.height},frameRate:e.resolution.frameRate})),{audio:null!==(i=e.audio)&&void 0!==i&&i,video:n,controller:e.controller,selfBrowserSurface:e.selfBrowserSurface,surfaceSwitching:e.surfaceSwitching,systemAudio:e.systemAudio}}!function(e){let t,i,n;!function(e){e.Audio="audio",e.Video="video",e.Unknown="unknown"}(t=e.Kind||(e.Kind={})),function(e){e.Camera="camera",e.Microphone="microphone",e.ScreenShare="screen_share",e.ScreenShareAudio="screen_share_audio",e.Unknown="unknown"}(i=e.Source||(e.Source={})),function(e){e.Active="active",e.Paused="paused",e.Unknown="unknown"}(n=e.StreamState||(e.StreamState={})),e.kindToProto=function kindToProto(e){switch(e){case t.Audio:return U.AUDIO;case t.Video:return U.VIDEO;default:return U.DATA}},e.kindFromProto=function kindFromProto(e){switch(e){case U.AUDIO:return t.Audio;case U.VIDEO:return t.Video;default:return t.Unknown}},e.sourceToProto=function sourceToProto(e){switch(e){case i.Camera:return O.CAMERA;case i.Microphone:return O.MICROPHONE;case i.ScreenShare:return O.SCREEN_SHARE;case i.ScreenShareAudio:return O.SCREEN_SHARE_AUDIO;default:return O.UNKNOWN}},e.sourceFromProto=function sourceFromProto(e){switch(e){case O.CAMERA:return i.Camera;case O.MICROPHONE:return i.Microphone;case O.SCREEN_SHARE:return i.ScreenShare;case O.SCREEN_SHARE_AUDIO:return i.ScreenShareAudio;default:return i.Unknown}},e.streamStateFromProto=function streamStateFromProto(e){switch(e){case me.ACTIVE:return n.Active;case me.PAUSED:return n.Paused;default:return n.Unknown}}}(Track||(Track={}));const Ue="https://aomediacodec.github.io/av1-rtp-spec/#dependency-descriptor-rtp-header-extension";function sleep(e){return __awaiter(this,void 0,void 0,(function*(){return new Promise((t=>setTimeout(t,e)))}))}function supportsTransceiver(){return"addTransceiver"in RTCPeerConnection.prototype}function supportsAddTrack(){return"addTrack"in RTCPeerConnection.prototype}function supportsAdaptiveStream(){return void 0!==typeof ResizeObserver&&void 0!==typeof IntersectionObserver}function supportsDynacast(){return supportsTransceiver()}function supportsAV1(){if(!("getCapabilities"in RTCRtpSender))return!1;const e=RTCRtpSender.getCapabilities("video");let t=!1;if(e)for(const i of e.codecs)if("video/AV1"===i.mimeType){t=!0;break}return t}function supportsVP9(){if(!("getCapabilities"in RTCRtpSender))return!1;const e=RTCRtpSender.getCapabilities("video");let t=!1;if(e)for(const i of e.codecs)if("video/VP9"===i.mimeType){t=!0;break}return t}function isSVCCodec(e){return"av1"===e||"vp9"===e}function supportsSetSinkId(e){return!!document&&(e||(e=document.createElement("audio")),"setSinkId"in e)}const Oe={Chrome:"100",Safari:"15",Firefox:"100"};function isBrowserSupported(){return supportsTransceiver()||supportsAddTrack()}function isFireFox(){var e;return"Firefox"===(null===(e=getBrowser())||void 0===e?void 0:e.name)}function isSafari(){var e;return"Safari"===(null===(e=getBrowser())||void 0===e?void 0:e.name)}function isMobile(){return!!isWeb()&&/Tablet|iPad|Mobile|Android|BlackBerry/.test(navigator.userAgent)}function isWeb(){return"undefined"!=typeof document}function isReactNative(){return"ReactNative"==navigator.product}function isCloud(e){return e.hostname.endsWith(".livekit.cloud")||e.hostname.endsWith(".livekit.run")}function getLKReactNativeInfo(){if(global&&global.LiveKitReactNativeGlobal)return global.LiveKitReactNativeGlobal}function getReactNativeOs(){if(!isReactNative())return;let e=getLKReactNativeInfo();return e?e.platform:void 0}function getDevicePixelRatio(){if(isWeb())return window.devicePixelRatio;if(isReactNative()){let e=getLKReactNativeInfo();if(e)return e.devicePixelRatio}return 1}function compareVersions(e,t){const i=e.split("."),n=t.split("."),s=Math.min(i.length,n.length);for(let e=0;e<s;++e){const t=parseInt(i[e],10),a=parseInt(n[e],10);if(t>a)return 1;if(t<a)return-1;if(e===s-1&&t===a)return 0}return""===e&&""!==t?-1:""===t?1:i.length==n.length?0:i.length<n.length?-1:1}function roDispatchCallback(e){for(const t of e)t.target.handleResize(t)}function ioDispatchCallback(e){for(const t of e)t.target.handleVisibilityChanged(t)}let Ne=null;const getResizeObserver=()=>(Ne||(Ne=new ResizeObserver(roDispatchCallback)),Ne);let xe=null;const getIntersectionObserver=()=>(xe||(xe=new IntersectionObserver(ioDispatchCallback,{root:null,rootMargin:"0px"})),xe);let Fe,Be;function getEmptyVideoStreamTrack(){return Fe||(Fe=createDummyVideoStreamTrack()),Fe.clone()}function createDummyVideoStreamTrack(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:16,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:16,i=arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=arguments.length>3&&void 0!==arguments[3]&&arguments[3];const s=document.createElement("canvas");s.width=e,s.height=t;const a=s.getContext("2d");null==a||a.fillRect(0,0,s.width,s.height),n&&a&&(a.beginPath(),a.arc(e/2,t/2,50,0,2*Math.PI,!0),a.closePath(),a.fillStyle="grey",a.fill());const o=s.captureStream(),[c]=o.getTracks();if(!c)throw Error("Could not get empty media stream video track");return c.enabled=i,c}function getEmptyAudioStreamTrack(){if(!Be){const e=new AudioContext,t=e.createOscillator(),i=e.createGain();i.gain.setValueAtTime(0,0);const n=e.createMediaStreamDestination();if(t.connect(i),i.connect(n),t.start(),[Be]=n.stream.getAudioTracks(),!Be)throw Error("Could not get empty media stream audio track");Be.enabled=!1}return Be.clone()}class Future{constructor(e,t){this.onFinally=t,this.promise=new Promise(((t,i)=>__awaiter(this,void 0,void 0,(function*(){this.resolve=t,this.reject=i,e&&(yield e(t,i))})))).finally((()=>{var e;return null===(e=this.onFinally)||void 0===e?void 0:e.call(this)}))}}function createAudioAnalyser(e,t){const i=Object.assign({cloneTrack:!1,fftSize:2048,smoothingTimeConstant:.8,minDecibels:-100,maxDecibels:-80},t),n=getNewAudioContext();if(!n)throw new Error("Audio Context not supported on this browser");const s=i.cloneTrack?e.mediaStreamTrack.clone():e.mediaStreamTrack,a=n.createMediaStreamSource(new MediaStream([s])),o=n.createAnalyser();o.minDecibels=i.minDecibels,o.maxDecibels=i.maxDecibels,o.fftSize=i.fftSize,o.smoothingTimeConstant=i.smoothingTimeConstant,a.connect(o);const c=new Uint8Array(o.frequencyBinCount);return{calculateVolume:()=>{o.getByteFrequencyData(c);let e=0;for(const t of c)e+=Math.pow(t/255,2);return Math.sqrt(e/c.length)},analyser:o,cleanup:()=>{n.close(),i.cloneTrack&&s.stop()}}}class Mutex{constructor(){this._locking=Promise.resolve(),this._locks=0}isLocked(){return this._locks>0}lock(){let e;this._locks+=1;const t=new Promise((t=>e=()=>{this._locks-=1,t()})),i=this._locking.then((()=>e));return this._locking=this._locking.then((()=>t)),i}}function unwrapConstraint(e){if("string"==typeof e)return e;if(Array.isArray(e))return e[0];if(e.exact)return Array.isArray(e.exact)?e.exact[0]:e.exact;if(e.ideal)return Array.isArray(e.ideal)?e.ideal[0]:e.ideal;throw Error("could not unwrap constraint")}function toHttpUrl(e){return e.startsWith("ws")?e.replace(/^(ws)/,"http"):e}var Ve;!function(e){e[e.WAITING=0]="WAITING",e[e.RUNNING=1]="RUNNING",e[e.COMPLETED=2]="COMPLETED"}(Ve||(Ve={}));class AsyncQueue{constructor(){this.pendingTasks=new Map,this.taskMutex=new Mutex,this.nextTaskIndex=0}run(e){return __awaiter(this,void 0,void 0,(function*(){const t={id:this.nextTaskIndex++,enqueuedAt:Date.now(),status:Ve.WAITING};this.pendingTasks.set(t.id,t);const i=yield this.taskMutex.lock();try{return t.executedAt=Date.now(),t.status=Ve.RUNNING,yield e()}finally{t.status=Ve.COMPLETED,this.pendingTasks.delete(t.id),i()}}))}flush(){return __awaiter(this,void 0,void 0,(function*(){return this.run((()=>__awaiter(this,void 0,void 0,(function*(){}))))}))}snapshot(){return Array.from(this.pendingTasks.values())}}const Je=["syncState","trickle","offer","answer","simulate","leave"];class SignalClient{constructor(){let e=arguments.length>0&&void 0!==arguments[0]&&arguments[0];this.rtt=0,this.resetCallbacks=()=>{this.onAnswer=void 0,this.onLeave=void 0,this.onLocalTrackPublished=void 0,this.onLocalTrackUnpublished=void 0,this.onNegotiateRequested=void 0,this.onOffer=void 0,this.onRemoteMuteChanged=void 0,this.onSubscribedQualityUpdate=void 0,this.onTokenRefresh=void 0,this.onTrickle=void 0,this.onClose=void 0},this.isConnected=!1,this.isReconnecting=!1,this.useJSON=e,this.requestQueue=new AsyncQueue,this.queuedRequests=[],this.closingLock=new Mutex}join(e,t,i,n){return __awaiter(this,void 0,void 0,(function*(){this.isConnected=!1,this.options=i;return yield this.connect(e,t,i,n)}))}reconnect(e,t,i,n){return __awaiter(this,void 0,void 0,(function*(){if(!this.options)return void p.warn("attempted to reconnect without signal options being set, ignoring");this.isReconnecting=!0,this.clearPingInterval();return yield this.connect(e,t,Object.assign(Object.assign({},this.options),{reconnect:!0,sid:i,reconnectReason:n}))}))}connect(e,t,i,n){this.connectOptions=i,e=(e=function toWebsocketUrl(e){return e.startsWith("http")?e.replace(/^(http)/,"ws"):e}(e)).replace(/\/$/,""),e+="/rtc";const s=function createConnectionParams(e,t,i){var n;const s=new URLSearchParams;s.set("access_token",e),i.reconnect&&(s.set("reconnect","1"),i.sid&&s.set("sid",i.sid));s.set("auto_subscribe",i.autoSubscribe?"1":"0"),s.set("sdk",isReactNative()?"reactnative":"js"),s.set("version",t.version),s.set("protocol",t.protocol.toString()),t.deviceModel&&s.set("device_model",t.deviceModel);t.os&&s.set("os",t.os);t.osVersion&&s.set("os_version",t.osVersion);t.browser&&s.set("browser",t.browser);t.browserVersion&&s.set("browser_version",t.browserVersion);void 0!==i.publishOnly&&s.set("publish",i.publishOnly);i.adaptiveStream&&s.set("adaptive_stream","1");i.reconnectReason&&s.set("reconnect_reason",i.reconnectReason.toString());(null===(n=navigator.connection)||void 0===n?void 0:n.type)&&s.set("network",navigator.connection.type);return"?".concat(s.toString())}(t,function getClientInfo(){var e;const t=new ClientInfo({sdk:H.JS,protocol:be,version:Te});return isReactNative()&&(t.os=null!==(e=getReactNativeOs())&&void 0!==e?e:""),t}(),i);return new Promise(((t,a)=>__awaiter(this,void 0,void 0,(function*(){const abortHandler=()=>__awaiter(this,void 0,void 0,(function*(){this.close(),clearTimeout(o),a(new ConnectionError("room connection has been cancelled (signal)"))})),o=setTimeout((()=>{this.close(),a(new ConnectionError("room connection has timed out (signal)"))}),i.websocketTimeout);(null==n?void 0:n.aborted)&&abortHandler(),null==n||n.addEventListener("abort",abortHandler),p.debug("connecting to ".concat(e+s)),this.ws&&(yield this.close()),this.ws=new WebSocket(e+s),this.ws.binaryType="arraybuffer",this.ws.onopen=()=>{clearTimeout(o)},this.ws.onerror=t=>__awaiter(this,void 0,void 0,(function*(){if(this.isConnected)this.handleWSError(t);else{clearTimeout(o);try{const t=yield fetch("http".concat(e.substring(2),"/validate").concat(s));if(t.status.toFixed(0).startsWith("4")){const e=yield t.text();a(new ConnectionError(e,0,t.status))}else a(new ConnectionError("Internal error",2,t.status))}catch(e){a(new ConnectionError("server was not reachable",1))}}})),this.ws.onmessage=e=>__awaiter(this,void 0,void 0,(function*(){var s,o,c,u;let l;if("string"==typeof e.data){const t=JSON.parse(e.data);l=SignalResponse.fromJson(t)}else{if(!(e.data instanceof ArrayBuffer))return void p.error("could not decode websocket message: ".concat(typeof e.data));l=SignalResponse.fromBinary(new Uint8Array(e.data))}if(!this.isConnected){let e=!1;if("join"===(null===(s=l.message)||void 0===s?void 0:s.case)?(this.isConnected=!0,null==n||n.removeEventListener("abort",abortHandler),this.pingTimeoutDuration=l.message.value.pingTimeout,this.pingIntervalDuration=l.message.value.pingInterval,this.pingTimeoutDuration&&this.pingTimeoutDuration>0&&(p.debug("ping config",{timeout:this.pingTimeoutDuration,interval:this.pingIntervalDuration}),this.startPingInterval()),t(l.message.value)):i.reconnect?(this.isConnected=!0,null==n||n.removeEventListener("abort",abortHandler),this.startPingInterval(),"reconnect"===(null===(o=l.message)||void 0===o?void 0:o.case)?t(null===(c=l.message)||void 0===c?void 0:c.value):(t(),e=!0)):i.reconnect||a(new ConnectionError("did not receive join response, got ".concat(null===(u=l.message)||void 0===u?void 0:u.case," instead"))),!e)return}this.signalLatency&&(yield sleep(this.signalLatency)),this.handleSignalResponse(l)})),this.ws.onclose=e=>{p.warn("websocket closed",{ev:e}),this.handleOnClose(e.reason)}}))))}close(){return __awaiter(this,void 0,void 0,(function*(){const e=yield this.closingLock.lock();try{if(this.isConnected=!1,this.ws){this.ws.onmessage=null,this.ws.onopen=null,this.ws.onclose=null;const e=new Promise((e=>{this.ws?this.ws.onclose=()=>{e()}:e()}));this.ws.readyState<this.ws.CLOSING&&(this.ws.close(),yield Promise.race([e,sleep(250)])),this.ws=void 0}}finally{this.clearPingInterval(),e()}}))}sendOffer(e){p.debug("sending offer",e),this.sendRequest({case:"offer",value:toProtoSessionDescription(e)})}sendAnswer(e){return p.debug("sending answer"),this.sendRequest({case:"answer",value:toProtoSessionDescription(e)})}sendIceCandidate(e,t){return p.trace("sending ice candidate",e),this.sendRequest({case:"trickle",value:new TrickleRequest({candidateInit:JSON.stringify(e),target:t})})}sendMuteTrack(e,t){return this.sendRequest({case:"mute",value:new MuteTrackRequest({sid:e,muted:t})})}sendAddTrack(e){return this.sendRequest({case:"addTrack",value:e})}sendUpdateLocalMetadata(e,t){return this.sendRequest({case:"updateMetadata",value:new UpdateParticipantMetadata({metadata:e,name:t})})}sendUpdateTrackSettings(e){this.sendRequest({case:"trackSetting",value:e})}sendUpdateSubscription(e){return this.sendRequest({case:"subscription",value:e})}sendSyncState(e){return this.sendRequest({case:"syncState",value:e})}sendUpdateVideoLayers(e,t){return this.sendRequest({case:"updateLayers",value:new UpdateVideoLayers({trackSid:e,layers:t})})}sendUpdateSubscriptionPermissions(e,t){return this.sendRequest({case:"subscriptionPermission",value:new SubscriptionPermission({allParticipants:e,trackPermissions:t})})}sendSimulateScenario(e){return this.sendRequest({case:"simulate",value:e})}sendPing(){return Promise.all([this.sendRequest({case:"ping",value:k.parse(Date.now())}),this.sendRequest({case:"pingReq",value:new Ping({timestamp:k.parse(Date.now()),rtt:k.parse(this.rtt)})})])}sendLeave(){return this.sendRequest({case:"leave",value:new LeaveRequest({canReconnect:!1,reason:B.CLIENT_INITIATED})})}sendRequest(e){let t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];return __awaiter(this,void 0,void 0,(function*(){const i=!t&&!function canPassThroughQueue(e){const t=Je.indexOf(e.case)>=0;return p.trace("request allowed to bypass queue:",{canPass:t,req:e}),t}(e);if(i&&this.isReconnecting)return void this.queuedRequests.push((()=>__awaiter(this,void 0,void 0,(function*(){yield this.sendRequest(e,!0)}))));if(t||(yield this.requestQueue.flush()),this.signalLatency&&(yield sleep(this.signalLatency)),!this.ws||this.ws.readyState!==this.ws.OPEN)return void p.error("cannot send signal request before connected, type: ".concat(null==e?void 0:e.case));const n=new SignalRequest({message:e});try{this.useJSON?this.ws.send(n.toJsonString()):this.ws.send(n.toBinary())}catch(e){p.error("error sending signal message",{error:e})}}))}handleSignalResponse(e){var t,i;const n=e.message;if(null!=n)if("answer"===n.case){const e=fromProtoSessionDescription(n.value);this.onAnswer&&this.onAnswer(e)}else if("offer"===n.case){const e=fromProtoSessionDescription(n.value);this.onOffer&&this.onOffer(e)}else if("trickle"===n.case){const e=JSON.parse(n.value.candidateInit);this.onTrickle&&this.onTrickle(e,n.value.target)}else"update"===n.case?this.onParticipantUpdate&&this.onParticipantUpdate(null!==(t=n.value.participants)&&void 0!==t?t:[]):"trackPublished"===n.case?this.onLocalTrackPublished&&this.onLocalTrackPublished(n.value):"speakersChanged"===n.case?this.onSpeakersChanged&&this.onSpeakersChanged(null!==(i=n.value.speakers)&&void 0!==i?i:[]):"leave"===n.case?this.onLeave&&this.onLeave(n.value):"mute"===n.case?this.onRemoteMuteChanged&&this.onRemoteMuteChanged(n.value.sid,n.value.muted):"roomUpdate"===n.case?this.onRoomUpdate&&n.value.room&&this.onRoomUpdate(n.value.room):"connectionQuality"===n.case?this.onConnectionQuality&&this.onConnectionQuality(n.value):"streamStateUpdate"===n.case?this.onStreamStateUpdate&&this.onStreamStateUpdate(n.value):"subscribedQualityUpdate"===n.case?this.onSubscribedQualityUpdate&&this.onSubscribedQualityUpdate(n.value):"subscriptionPermissionUpdate"===n.case?this.onSubscriptionPermissionUpdate&&this.onSubscriptionPermissionUpdate(n.value):"refreshToken"===n.case?this.onTokenRefresh&&this.onTokenRefresh(n.value):"trackUnpublished"===n.case?this.onLocalTrackUnpublished&&this.onLocalTrackUnpublished(n.value):"subscriptionResponse"===n.case?this.onSubscriptionError&&this.onSubscriptionError(n.value):"pong"===n.case?this.resetPingTimeout():"pongResp"===n.case?(this.rtt=Date.now()-Number.parseInt(n.value.lastPingTimestamp.toString()),this.resetPingTimeout()):p.debug("unsupported message",n);else p.debug("received unsupported message")}setReconnected(){for(;this.queuedRequests.length>0;){const e=this.queuedRequests.shift();e&&this.requestQueue.run(e)}this.isReconnecting=!1}handleOnClose(e){return __awaiter(this,void 0,void 0,(function*(){if(!this.isConnected)return;const t=this.onClose;yield this.close(),p.debug("websocket connection closed: ".concat(e)),t&&t(e)}))}handleWSError(e){p.error("websocket error",e)}resetPingTimeout(){this.clearPingTimeout(),this.pingTimeoutDuration?this.pingTimeout=CriticalTimers.setTimeout((()=>{p.warn("ping timeout triggered. last pong received at: ".concat(new Date(Date.now()-1e3*this.pingTimeoutDuration).toUTCString())),this.handleOnClose("ping timeout")}),1e3*this.pingTimeoutDuration):p.warn("ping timeout duration not set")}clearPingTimeout(){this.pingTimeout&&CriticalTimers.clearTimeout(this.pingTimeout)}startPingInterval(){this.clearPingInterval(),this.resetPingTimeout(),this.pingIntervalDuration?(p.debug("start ping interval"),this.pingInterval=CriticalTimers.setInterval((()=>{this.sendPing()}),1e3*this.pingIntervalDuration)):p.warn("ping interval duration not set")}clearPingInterval(){p.debug("clearing ping interval"),this.clearPingTimeout(),this.pingInterval&&CriticalTimers.clearInterval(this.pingInterval)}}function fromProtoSessionDescription(e){const t={type:"offer",sdp:e.sdp};switch(e.type){case"answer":case"offer":case"pranswer":case"rollback":t.type=e.type}return t}function toProtoSessionDescription(e){return new SessionDescription({sdp:e.sdp,type:e.type})}const qe="AES-GCM",je="lk_e2ee",We={sharedKey:!1,ratchetSalt:"LKFrameEncryptionKey",ratchetWindowSize:8,failureTolerance:10};var Ke,Ge,He,Qe;function isE2EESupported(){return isInsertableStreamSupported()||isScriptTransformSupported()}function isScriptTransformSupported(){return void 0!==window.RTCRtpScriptTransform}function isInsertableStreamSupported(){return void 0!==window.RTCRtpSender&&void 0!==window.RTCRtpSender.prototype.createEncodedStreams}function isVideoFrame(e){return"type"in e}function importKey(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{name:qe},i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"encrypt";return __awaiter(this,void 0,void 0,(function*(){return crypto.subtle.importKey("raw",e,t,!1,"derive"===i?["deriveBits","deriveKey"]:["encrypt","decrypt"])}))}function createKeyMaterialFromString(e){return __awaiter(this,void 0,void 0,(function*(){let t=new TextEncoder;return yield crypto.subtle.importKey("raw",t.encode(e),{name:"PBKDF2"},!1,["deriveBits","deriveKey"])}))}function createKeyMaterialFromBuffer(e){return __awaiter(this,void 0,void 0,(function*(){return yield crypto.subtle.importKey("raw",e,"HKDF",!1,["deriveBits","deriveKey"])}))}function getAlgoOptions(e,t){const i=(new TextEncoder).encode(t);switch(e){case"HKDF":return{name:"HKDF",salt:i,hash:"SHA-256",info:new ArrayBuffer(128)};case"PBKDF2":return{name:"PBKDF2",salt:i,hash:"SHA-256",iterations:1e5};default:throw new Error("algorithm ".concat(e," is currently unsupported"))}}function deriveKeys(e,t){return __awaiter(this,void 0,void 0,(function*(){const i=getAlgoOptions(e.algorithm.name,t),n=yield crypto.subtle.deriveKey(i,e,{name:qe,length:128},!1,["encrypt","decrypt"]);return{material:e,encryptionKey:n}}))}function createE2EEKey(){return window.crypto.getRandomValues(new Uint8Array(32))}function mimeTypeToVideoCodecString(e){const t=e.split("/")[1].toLowerCase();if(!we.includes(t))throw Error("Video codec not supported: ".concat(t));return t}function ratchet(e,t){return __awaiter(this,void 0,void 0,(function*(){const i=getAlgoOptions(e.algorithm.name,t);return crypto.subtle.deriveBits(i,e,256)}))}!function(e){e.SetKey="setKey",e.RatchetRequest="ratchetRequest",e.KeyRatcheted="keyRatcheted"}(Ke||(Ke={})),function(e){e.KeyRatcheted="keyRatcheted"}(Ge||(Ge={})),function(e){e.ParticipantEncryptionStatusChanged="participantEncryptionStatusChanged",e.EncryptionError="encryptionError"}(He||(He={})),function(e){e.Error="cryptorError"}(Qe||(Qe={}));class BaseKeyProvider extends ie.EventEmitter{constructor(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};super(),this.onKeyRatcheted=(e,t)=>{p.debug("key ratcheted event received",{material:e,keyIndex:t})},this.keyInfoMap=new Map,this.options=Object.assign(Object.assign({},We),e),this.on(Ke.KeyRatcheted,this.onKeyRatcheted)}onSetEncryptionKey(e,t,i){const n={key:e,participantIdentity:t,keyIndex:i};this.keyInfoMap.set("".concat(null!=t?t:"shared","-").concat(null!=i?i:0),n),this.emit(Ke.SetKey,n)}getKeys(){return Array.from(this.keyInfoMap.values())}getOptions(){return this.options}ratchetKey(e,t){this.emit(Ke.RatchetRequest,e,t)}}class ExternalE2EEKeyProvider extends BaseKeyProvider{constructor(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};super(Object.assign(Object.assign({},e),{sharedKey:!0,ratchetWindowSize:0,failureTolerance:-1}))}setKey(e){return __awaiter(this,void 0,void 0,(function*(){const t="string"==typeof e?yield createKeyMaterialFromString(e):yield createKeyMaterialFromBuffer(e);this.onSetEncryptionKey(t)}))}}function r(e,t,i){var n,s,a;void 0===t&&(t=50),void 0===i&&(i={});var o=null!=(n=i.isImmediate)&&n,c=null!=(s=i.callback)&&s,u=i.maxWait,l=Date.now(),h=[];function f(){if(void 0!==u){var e=Date.now()-l;if(e+t>=u)return u-e}return t}var d=function(){var t=[].slice.call(arguments),i=this;return new Promise((function(n,s){var u=o&&void 0===a;if(void 0!==a&&clearTimeout(a),a=setTimeout((function(){if(a=void 0,l=Date.now(),!o){var n=e.apply(i,t);c&&c(n),h.forEach((function(e){return(0,e.resolve)(n)})),h=[]}}),f()),u){var p=e.apply(i,t);return c&&c(p),n(p)}h.push({resolve:n,reject:s})}))};return d.cancel=function(e){void 0!==a&&clearTimeout(a),h.forEach((function(t){return(0,t.reject)(e)})),h=[]},d}const ze="default";class DeviceManager{static getInstance(){return void 0===this.instance&&(this.instance=new DeviceManager),this.instance}getDevices(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];var i;return __awaiter(this,void 0,void 0,(function*(){if((null===(i=DeviceManager.userMediaPromiseMap)||void 0===i?void 0:i.size)>0){p.debug("awaiting getUserMedia promise");try{e?yield DeviceManager.userMediaPromiseMap.get(e):yield Promise.all(DeviceManager.userMediaPromiseMap.values())}catch(e){p.warn("error waiting for media permissons")}}let n=yield navigator.mediaDevices.enumerateDevices();if(t&&(!isSafari()||!this.hasDeviceInUse(e))){if(0===n.length||n.some((t=>{const i=""===t.label,n=!e||t.kind===e;return i&&n}))){const t={video:"audioinput"!==e&&"audiooutput"!==e,audio:"videoinput"!==e},i=yield navigator.mediaDevices.getUserMedia(t);n=yield navigator.mediaDevices.enumerateDevices(),i.getTracks().forEach((e=>{e.stop()}))}}return e&&(n=n.filter((t=>t.kind===e))),n}))}normalizeDeviceId(e,t,i){return __awaiter(this,void 0,void 0,(function*(){if(t!==ze)return t;const n=(yield this.getDevices(e)).find((e=>e.groupId===i&&e.deviceId!==ze));return null==n?void 0:n.deviceId}))}hasDeviceInUse(e){return e?DeviceManager.userMediaPromiseMap.has(e):DeviceManager.userMediaPromiseMap.size>0}}DeviceManager.mediaDeviceKinds=["audioinput","audiooutput","videoinput"],DeviceManager.userMediaPromiseMap=new Map;class LocalTrack extends Track{get constraints(){return this._constraints}constructor(e,t,i){let n=arguments.length>3&&void 0!==arguments[3]&&arguments[3];super(e,t),this._isUpstreamPaused=!1,this.handleTrackMuteEvent=()=>this.debouncedTrackMuteHandler().catch((()=>p.debug("track mute bounce got cancelled by an unmute event"))),this.debouncedTrackMuteHandler=r((()=>__awaiter(this,void 0,void 0,(function*(){yield this.pauseUpstream()}))),5e3),this.handleTrackUnmuteEvent=()=>__awaiter(this,void 0,void 0,(function*(){this.debouncedTrackMuteHandler.cancel("unmute"),yield this.resumeUpstream()})),this.handleEnded=()=>{this.isInBackground&&(this.reacquireTrack=!0),this._mediaStreamTrack.removeEventListener("mute",this.handleTrackMuteEvent),this._mediaStreamTrack.removeEventListener("unmute",this.handleTrackUnmuteEvent),this.emit(Me.Ended,this)},this.reacquireTrack=!1,this.providedByUser=n,this.muteLock=new Mutex,this.pauseUpstreamLock=new Mutex,this.processorLock=new Mutex,this.setMediaStreamTrack(e,!0),this._constraints=e.getConstraints(),i&&(this._constraints=i)}get id(){return this._mediaStreamTrack.id}get dimensions(){if(this.kind!==Track.Kind.Video)return;const{width:e,height:t}=this._mediaStreamTrack.getSettings();return e&&t?{width:e,height:t}:void 0}get isUpstreamPaused(){return this._isUpstreamPaused}get isUserProvided(){return this.providedByUser}get mediaStreamTrack(){var e,t;return null!==(t=null===(e=this.processor)||void 0===e?void 0:e.processedTrack)&&void 0!==t?t:this._mediaStreamTrack}setMediaStreamTrack(e,t){return __awaiter(this,void 0,void 0,(function*(){if(e===this._mediaStreamTrack&&!t)return;let i;if(this._mediaStreamTrack&&(this.attachedElements.forEach((e=>{detachTrack(this._mediaStreamTrack,e)})),this._mediaStreamTrack.removeEventListener("ended",this.handleEnded),this._mediaStreamTrack.removeEventListener("mute",this.handleTrackMuteEvent),this._mediaStreamTrack.removeEventListener("unmute",this.handleTrackUnmuteEvent),this.providedByUser||this._mediaStreamTrack===e||this._mediaStreamTrack.stop()),this.mediaStream=new MediaStream([e]),e&&(e.addEventListener("ended",this.handleEnded),e.addEventListener("mute",this.handleTrackMuteEvent),e.addEventListener("unmute",this.handleTrackUnmuteEvent),this._constraints=e.getConstraints()),this.processor&&e&&this.processorElement){if(p.debug("restarting processor"),"unknown"===this.kind)throw TypeError("cannot set processor on track of unknown kind");attachToElement(e,this.processorElement),yield this.processor.restart({track:e,kind:this.kind,element:this.processorElement}),i=this.processor.processedTrack}this.sender&&(yield this.sender.replaceTrack(null!=i?i:e)),this._mediaStreamTrack=e,e&&(this._mediaStreamTrack.enabled=!this.isMuted,yield this.resumeUpstream(),this.attachedElements.forEach((t=>{attachToElement(null!=i?i:e,t)})))}))}waitForDimensions(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:1e3;return __awaiter(this,void 0,void 0,(function*(){if(this.kind===Track.Kind.Audio)throw new Error("cannot get dimensions for audio tracks");const t=Date.now();for(;Date.now()-t<e;){const e=this.dimensions;if(e)return e;yield sleep(50)}throw new TrackInvalidError("unable to get track dimensions after timeout")}))}getDeviceId(){return __awaiter(this,void 0,void 0,(function*(){if(this.source===Track.Source.ScreenShare)return;const{deviceId:e,groupId:t}=this._mediaStreamTrack.getSettings(),i=this.kind===Track.Kind.Audio?"audioinput":"videoinput";return DeviceManager.getInstance().normalizeDeviceId(i,e,t)}))}mute(){return __awaiter(this,void 0,void 0,(function*(){return this.setTrackMuted(!0),this}))}unmute(){return __awaiter(this,void 0,void 0,(function*(){return this.setTrackMuted(!1),this}))}replaceTrack(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];return __awaiter(this,void 0,void 0,(function*(){if(!this.sender)throw new TrackInvalidError("unable to replace an unpublished track");return p.debug("replace MediaStreamTrack"),yield this.setMediaStreamTrack(e),this.providedByUser=t,this.processor&&(yield this.stopProcessor()),this}))}restart(e){return __awaiter(this,void 0,void 0,(function*(){e||(e=this._constraints),p.debug("restarting track with constraints",e);const t={audio:!1,video:!1};this.kind===Track.Kind.Video?t.video=e:t.audio=e,this.attachedElements.forEach((e=>{detachTrack(this.mediaStreamTrack,e)})),this._mediaStreamTrack.removeEventListener("ended",this.handleEnded),this._mediaStreamTrack.stop();const i=(yield navigator.mediaDevices.getUserMedia(t)).getTracks()[0];return i.addEventListener("ended",this.handleEnded),p.debug("re-acquired MediaStreamTrack"),yield this.setMediaStreamTrack(i),this._constraints=e,this.emit(Me.Restarted,this),this}))}setTrackMuted(e){p.debug("setting ".concat(this.kind," track ").concat(e?"muted":"unmuted")),this.isMuted===e&&this._mediaStreamTrack.enabled!==e||(this.isMuted=e,this._mediaStreamTrack.enabled=!e,this.emit(e?Me.Muted:Me.Unmuted,this))}get needsReAcquisition(){return"live"!==this._mediaStreamTrack.readyState||this._mediaStreamTrack.muted||!this._mediaStreamTrack.enabled||this.reacquireTrack}handleAppVisibilityChanged(){const e=Object.create(null,{handleAppVisibilityChanged:{get:()=>super.handleAppVisibilityChanged}});return __awaiter(this,void 0,void 0,(function*(){yield e.handleAppVisibilityChanged.call(this),isMobile()&&(p.debug("visibility changed, is in Background: ".concat(this.isInBackground)),this.isInBackground||!this.needsReAcquisition||this.isUserProvided||this.isMuted||(p.debug("track needs to be reacquired, restarting ".concat(this.source)),yield this.restart(),this.reacquireTrack=!1))}))}stop(){var e;super.stop(),this._mediaStreamTrack.removeEventListener("ended",this.handleEnded),this._mediaStreamTrack.removeEventListener("mute",this.handleTrackMuteEvent),this._mediaStreamTrack.removeEventListener("unmute",this.handleTrackUnmuteEvent),null===(e=this.processor)||void 0===e||e.destroy(),this.processor=void 0}pauseUpstream(){return __awaiter(this,void 0,void 0,(function*(){const e=yield this.pauseUpstreamLock.lock();try{if(!0===this._isUpstreamPaused)return;if(!this.sender)return void p.warn("unable to pause upstream for an unpublished track");this._isUpstreamPaused=!0,this.emit(Me.UpstreamPaused,this);const t=getBrowser();if("Safari"===(null==t?void 0:t.name)&&compareVersions(t.version,"12.0")<0)throw new DeviceUnsupportedError("pauseUpstream is not supported on Safari < 12.");yield this.sender.replaceTrack(null)}finally{e()}}))}resumeUpstream(){return __awaiter(this,void 0,void 0,(function*(){const e=yield this.pauseUpstreamLock.lock();try{if(!1===this._isUpstreamPaused)return;if(!this.sender)return void p.warn("unable to resume upstream for an unpublished track");this._isUpstreamPaused=!1,this.emit(Me.UpstreamResumed,this),yield this.sender.replaceTrack(this._mediaStreamTrack)}finally{e()}}))}setProcessor(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];var i,n;return __awaiter(this,void 0,void 0,(function*(){const s=yield this.processorLock.lock();try{if(p.debug("setting up processor"),this.processor&&(yield this.stopProcessor()),"unknown"===this.kind)throw TypeError("cannot set processor on track of unknown kind");this.processorElement=null!==(i=this.processorElement)&&void 0!==i?i:document.createElement(this.kind),this.processorElement.muted=!0,attachToElement(this._mediaStreamTrack,this.processorElement),this.processorElement.play().catch((e=>p.error("failed to play processor element",{error:e})));const a={kind:this.kind,track:this._mediaStreamTrack,element:this.processorElement};if(yield e.init(a),this.processor=e,this.processor.processedTrack){for(const e of this.attachedElements)e!==this.processorElement&&t&&(detachTrack(this._mediaStreamTrack,e),attachToElement(this.processor.processedTrack,e));yield null===(n=this.sender)||void 0===n?void 0:n.replaceTrack(this.processor.processedTrack)}}finally{s()}}))}getProcessor(){return this.processor}stopProcessor(){var e,t;return __awaiter(this,void 0,void 0,(function*(){this.processor&&(p.debug("stopping processor"),null===(e=this.processor.processedTrack)||void 0===e||e.stop(),yield this.processor.destroy(),this.processor=void 0,null===(t=this.processorElement)||void 0===t||t.remove(),this.processorElement=void 0,yield this.restart())}))}}class E2EEManager extends ie.EventEmitter{constructor(e){super(),this.onWorkerMessage=e=>{var t,i;const{kind:n,data:s}=e.data;switch(n){case"error":p.error(s.error.message),this.emit(He.EncryptionError,s.error);break;case"initAck":s.enabled&&this.keyProvider.getKeys().forEach((e=>{this.postKey(e)}));break;case"enable":if(this.encryptionEnabled!==s.enabled&&s.participantIdentity===(null===(t=this.room)||void 0===t?void 0:t.localParticipant.identity))this.emit(He.ParticipantEncryptionStatusChanged,s.enabled,this.room.localParticipant),this.encryptionEnabled=s.enabled;else if(s.participantIdentity){const e=null===(i=this.room)||void 0===i?void 0:i.getParticipantByIdentity(s.participantIdentity);if(!e)throw TypeError("couldn't set encryption status, participant not found".concat(s.participantIdentity));this.emit(He.ParticipantEncryptionStatusChanged,s.enabled,e)}this.encryptionEnabled&&this.keyProvider.getKeys().forEach((e=>{this.postKey(e)}));break;case"ratchetKey":this.keyProvider.emit(Ke.KeyRatcheted,s.material,s.keyIndex)}},this.onWorkerError=e=>{p.error("e2ee worker encountered an error:",{error:e.error}),this.emit(He.EncryptionError,e.error)},this.keyProvider=e.keyProvider,this.worker=e.worker,this.encryptionEnabled=!1}setup(e){if(!isE2EESupported())throw new DeviceUnsupportedError("tried to setup end-to-end encryption on an unsupported browser");if(p.info("setting up e2ee"),e!==this.room){this.room=e,this.setupEventListeners(e,this.keyProvider);const t={kind:"init",data:{keyProviderOptions:this.keyProvider.getOptions()}};this.worker&&(p.info("initializing worker",{worker:this.worker}),this.worker.onmessage=this.onWorkerMessage,this.worker.onerror=this.onWorkerError,this.worker.postMessage(t))}}setParticipantCryptorEnabled(e,t){p.debug("set e2ee to ".concat(e," for participant ").concat(t)),this.postEnable(e,t)}setSifTrailer(e){e&&0!==e.length?this.postSifTrailer(e):p.warn("ignoring server sent trailer as it's empty")}setupEngine(e){e.on(Le.RTPVideoMapUpdate,(e=>{this.postRTPMap(e)}))}setupEventListeners(e,t){e.on(Ie.TrackPublished,((e,t)=>this.setParticipantCryptorEnabled(e.trackInfo.encryption!==W.NONE,t.identity))),e.on(Ie.ConnectionStateChanged,(t=>{t===Rt.Connected&&e.participants.forEach((e=>{e.tracks.forEach((t=>{this.setParticipantCryptorEnabled(t.trackInfo.encryption!==W.NONE,e.identity)}))}))})).on(Ie.TrackUnsubscribed,((e,t,i)=>{var n;const s={kind:"removeTransform",data:{participantIdentity:i.identity,trackId:e.mediaStreamID}};null===(n=this.worker)||void 0===n||n.postMessage(s)})).on(Ie.TrackSubscribed,((e,t,i)=>{this.setupE2EEReceiver(e,i.identity,t.trackInfo)})).on(Ie.SignalConnected,(()=>{if(!this.room)throw new TypeError("expected room to be present on signal connect");this.setParticipantCryptorEnabled(this.room.localParticipant.isE2EEEnabled,this.room.localParticipant.identity),t.getKeys().forEach((e=>{this.postKey(e)}))})),e.localParticipant.on(De.LocalTrackPublished,(e=>__awaiter(this,void 0,void 0,(function*(){this.setupE2EESender(e.track,e.track.sender)})))),t.on(Ke.SetKey,(e=>this.postKey(e))).on(Ke.RatchetRequest,((e,t)=>this.postRatchetRequest(e,t)))}postRatchetRequest(e,t){if(!this.worker)throw Error("could not ratchet key, worker is missing");const i={kind:"ratchetRequest",data:{participantIdentity:e,keyIndex:t}};this.worker.postMessage(i)}postKey(e){let{key:t,participantIdentity:i,keyIndex:n}=e;var s;if(!this.worker)throw Error("could not set key, worker is missing");const a={kind:"setKey",data:{participantIdentity:i,isPublisher:i===(null===(s=this.room)||void 0===s?void 0:s.localParticipant.identity),key:t,keyIndex:n}};this.worker.postMessage(a)}postEnable(e,t){if(!this.worker)throw new ReferenceError("failed to enable e2ee, worker is not ready");{const i={kind:"enable",data:{enabled:e,participantIdentity:t}};this.worker.postMessage(i)}}postRTPMap(e){var t;if(!this.worker)throw TypeError("could not post rtp map, worker is missing");if(!(null===(t=this.room)||void 0===t?void 0:t.localParticipant.identity))throw TypeError("could not post rtp map, local participant identity is missing");const i={kind:"setRTPMap",data:{map:e,participantIdentity:this.room.localParticipant.identity}};this.worker.postMessage(i)}postSifTrailer(e){if(!this.worker)throw Error("could not post SIF trailer, worker is missing");const t={kind:"setSifTrailer",data:{trailer:e}};this.worker.postMessage(t)}setupE2EEReceiver(e,t,i){if(e.receiver){if(!(null==i?void 0:i.mimeType)||""===i.mimeType)throw new TypeError("MimeType missing from trackInfo, cannot set up E2EE cryptor");this.handleReceiver(e.receiver,e.mediaStreamID,t,"video"===e.kind?mimeTypeToVideoCodecString(i.mimeType):void 0)}}setupE2EESender(e,t){e instanceof LocalTrack&&t?this.handleSender(t,e.mediaStreamID,void 0):t||p.warn("early return because sender is not ready")}handleReceiver(e,t,i,n){return __awaiter(this,void 0,void 0,(function*(){if(this.worker){if(isScriptTransformSupported()){const s={kind:"decode",participantIdentity:i,trackId:t,codec:n};e.transform=new RTCRtpScriptTransform(this.worker,s)}else{if(je in e&&n){const e={kind:"updateCodec",data:{trackId:t,codec:n,participantIdentity:i}};return void this.worker.postMessage(e)}let s=e.writableStream,a=e.readableStream;if(!s||!a){const t=e.createEncodedStreams();e.writableStream=t.writable,s=t.writable,e.readableStream=t.readable,a=t.readable}const o={kind:"decode",data:{readableStream:a,writableStream:s,trackId:t,codec:n,participantIdentity:i}};this.worker.postMessage(o,[a,s])}e.lk_e2ee=!0}}))}handleSender(e,t,i){var n;if(!(je in e)&&this.worker){if(!(null===(n=this.room)||void 0===n?void 0:n.localParticipant.identity)||""===this.room.localParticipant.identity)throw TypeError("local identity needs to be known in order to set up encrypted sender");if(isScriptTransformSupported()){p.info("initialize script transform");const n={kind:"encode",participantIdentity:this.room.localParticipant.identity,trackId:t,codec:i};e.transform=new RTCRtpScriptTransform(this.worker,n)}else{p.info("initialize encoded streams");const n=e.createEncodedStreams(),s={kind:"encode",data:{readableStream:n.readable,writableStream:n.writable,codec:i,trackId:t,participantIdentity:this.room.localParticipant.identity}};this.worker.postMessage(s,[n.readable,n.writable])}e.lk_e2ee=!0}}}var $e={},Ye={exports:{}},Xe=Ye.exports={v:[{name:"version",reg:/^(\d*)$/}],o:[{name:"origin",reg:/^(\S*) (\d*) (\d*) (\S*) IP(\d) (\S*)/,names:["username","sessionId","sessionVersion","netType","ipVer","address"],format:"%s %s %d %s IP%d %s"}],s:[{name:"name"}],i:[{name:"description"}],u:[{name:"uri"}],e:[{name:"email"}],p:[{name:"phone"}],z:[{name:"timezones"}],r:[{name:"repeats"}],t:[{name:"timing",reg:/^(\d*) (\d*)/,names:["start","stop"],format:"%d %d"}],c:[{name:"connection",reg:/^IN IP(\d) (\S*)/,names:["version","ip"],format:"IN IP%d %s"}],b:[{push:"bandwidth",reg:/^(TIAS|AS|CT|RR|RS):(\d*)/,names:["type","limit"],format:"%s:%s"}],m:[{reg:/^(\w*) (\d*) ([\w/]*)(?: (.*))?/,names:["type","port","protocol","payloads"],format:"%s %d %s %s"}],a:[{push:"rtp",reg:/^rtpmap:(\d*) ([\w\-.]*)(?:\s*\/(\d*)(?:\s*\/(\S*))?)?/,names:["payload","codec","rate","encoding"],format:function(e){return e.encoding?"rtpmap:%d %s/%s/%s":e.rate?"rtpmap:%d %s/%s":"rtpmap:%d %s"}},{push:"fmtp",reg:/^fmtp:(\d*) ([\S| ]*)/,names:["payload","config"],format:"fmtp:%d %s"},{name:"control",reg:/^control:(.*)/,format:"control:%s"},{name:"rtcp",reg:/^rtcp:(\d*)(?: (\S*) IP(\d) (\S*))?/,names:["port","netType","ipVer","address"],format:function(e){return null!=e.address?"rtcp:%d %s IP%d %s":"rtcp:%d"}},{push:"rtcpFbTrrInt",reg:/^rtcp-fb:(\*|\d*) trr-int (\d*)/,names:["payload","value"],format:"rtcp-fb:%s trr-int %d"},{push:"rtcpFb",reg:/^rtcp-fb:(\*|\d*) ([\w-_]*)(?: ([\w-_]*))?/,names:["payload","type","subtype"],format:function(e){return null!=e.subtype?"rtcp-fb:%s %s %s":"rtcp-fb:%s %s"}},{push:"ext",reg:/^extmap:(\d+)(?:\/(\w+))?(?: (urn:ietf:params:rtp-hdrext:encrypt))? (\S*)(?: (\S*))?/,names:["value","direction","encrypt-uri","uri","config"],format:function(e){return"extmap:%d"+(e.direction?"/%s":"%v")+(e["encrypt-uri"]?" %s":"%v")+" %s"+(e.config?" %s":"")}},{name:"extmapAllowMixed",reg:/^(extmap-allow-mixed)/},{push:"crypto",reg:/^crypto:(\d*) ([\w_]*) (\S*)(?: (\S*))?/,names:["id","suite","config","sessionConfig"],format:function(e){return null!=e.sessionConfig?"crypto:%d %s %s %s":"crypto:%d %s %s"}},{name:"setup",reg:/^setup:(\w*)/,format:"setup:%s"},{name:"connectionType",reg:/^connection:(new|existing)/,format:"connection:%s"},{name:"mid",reg:/^mid:([^\s]*)/,format:"mid:%s"},{name:"msid",reg:/^msid:(.*)/,format:"msid:%s"},{name:"ptime",reg:/^ptime:(\d*(?:\.\d*)*)/,format:"ptime:%d"},{name:"maxptime",reg:/^maxptime:(\d*(?:\.\d*)*)/,format:"maxptime:%d"},{name:"direction",reg:/^(sendrecv|recvonly|sendonly|inactive)/},{name:"icelite",reg:/^(ice-lite)/},{name:"iceUfrag",reg:/^ice-ufrag:(\S*)/,format:"ice-ufrag:%s"},{name:"icePwd",reg:/^ice-pwd:(\S*)/,format:"ice-pwd:%s"},{name:"fingerprint",reg:/^fingerprint:(\S*) (\S*)/,names:["type","hash"],format:"fingerprint:%s %s"},{push:"candidates",reg:/^candidate:(\S*) (\d*) (\S*) (\d*) (\S*) (\d*) typ (\S*)(?: raddr (\S*) rport (\d*))?(?: tcptype (\S*))?(?: generation (\d*))?(?: network-id (\d*))?(?: network-cost (\d*))?/,names:["foundation","component","transport","priority","ip","port","type","raddr","rport","tcptype","generation","network-id","network-cost"],format:function(e){var t="candidate:%s %d %s %d %s %d typ %s";return t+=null!=e.raddr?" raddr %s rport %d":"%v%v",t+=null!=e.tcptype?" tcptype %s":"%v",null!=e.generation&&(t+=" generation %d"),t+=null!=e["network-id"]?" network-id %d":"%v",t+=null!=e["network-cost"]?" network-cost %d":"%v"}},{name:"endOfCandidates",reg:/^(end-of-candidates)/},{name:"remoteCandidates",reg:/^remote-candidates:(.*)/,format:"remote-candidates:%s"},{name:"iceOptions",reg:/^ice-options:(\S*)/,format:"ice-options:%s"},{push:"ssrcs",reg:/^ssrc:(\d*) ([\w_-]*)(?::(.*))?/,names:["id","attribute","value"],format:function(e){var t="ssrc:%d";return null!=e.attribute&&(t+=" %s",null!=e.value&&(t+=":%s")),t}},{push:"ssrcGroups",reg:/^ssrc-group:([\x21\x23\x24\x25\x26\x27\x2A\x2B\x2D\x2E\w]*) (.*)/,names:["semantics","ssrcs"],format:"ssrc-group:%s %s"},{name:"msidSemantic",reg:/^msid-semantic:\s?(\w*) (\S*)/,names:["semantic","token"],format:"msid-semantic: %s %s"},{push:"groups",reg:/^group:(\w*) (.*)/,names:["type","mids"],format:"group:%s %s"},{name:"rtcpMux",reg:/^(rtcp-mux)/},{name:"rtcpRsize",reg:/^(rtcp-rsize)/},{name:"sctpmap",reg:/^sctpmap:([\w_/]*) (\S*)(?: (\S*))?/,names:["sctpmapNumber","app","maxMessageSize"],format:function(e){return null!=e.maxMessageSize?"sctpmap:%s %s %s":"sctpmap:%s %s"}},{name:"xGoogleFlag",reg:/^x-google-flag:([^\s]*)/,format:"x-google-flag:%s"},{push:"rids",reg:/^rid:([\d\w]+) (\w+)(?: ([\S| ]*))?/,names:["id","direction","params"],format:function(e){return e.params?"rid:%s %s %s":"rid:%s %s"}},{push:"imageattrs",reg:new RegExp("^imageattr:(\\d+|\\*)[\\s\\t]+(send|recv)[\\s\\t]+(\\*|\\[\\S+\\](?:[\\s\\t]+\\[\\S+\\])*)(?:[\\s\\t]+(recv|send)[\\s\\t]+(\\*|\\[\\S+\\](?:[\\s\\t]+\\[\\S+\\])*))?"),names:["pt","dir1","attrs1","dir2","attrs2"],format:function(e){return"imageattr:%s %s %s"+(e.dir2?" %s %s":"")}},{name:"simulcast",reg:new RegExp("^simulcast:(send|recv) ([a-zA-Z0-9\\-_~;,]+)(?:\\s?(send|recv) ([a-zA-Z0-9\\-_~;,]+))?$"),names:["dir1","list1","dir2","list2"],format:function(e){return"simulcast:%s %s"+(e.dir2?" %s %s":"")}},{name:"simulcast_03",reg:/^simulcast:[\s\t]+([\S+\s\t]+)$/,names:["value"],format:"simulcast: %s"},{name:"framerate",reg:/^framerate:(\d+(?:$|\.\d+))/,format:"framerate:%s"},{name:"sourceFilter",reg:/^source-filter: *(excl|incl) (\S*) (IP4|IP6|\*) (\S*) (.*)/,names:["filterMode","netType","addressTypes","destAddress","srcList"],format:"source-filter: %s %s %s %s %s"},{name:"bundleOnly",reg:/^(bundle-only)/},{name:"label",reg:/^label:(.+)/,format:"label:%s"},{name:"sctpPort",reg:/^sctp-port:(\d+)$/,format:"sctp-port:%s"},{name:"maxMessageSize",reg:/^max-message-size:(\d+)$/,format:"max-message-size:%s"},{push:"tsRefClocks",reg:/^ts-refclk:([^\s=]*)(?:=(\S*))?/,names:["clksrc","clksrcExt"],format:function(e){return"ts-refclk:%s"+(null!=e.clksrcExt?"=%s":"")}},{name:"mediaClk",reg:/^mediaclk:(?:id=(\S*))? *([^\s=]*)(?:=(\S*))?(?: *rate=(\d+)\/(\d+))?/,names:["id","mediaClockName","mediaClockValue","rateNumerator","rateDenominator"],format:function(e){var t="mediaclk:";return t+=null!=e.id?"id=%s %s":"%v%s",t+=null!=e.mediaClockValue?"=%s":"",t+=null!=e.rateNumerator?" rate=%s":"",t+=null!=e.rateDenominator?"/%s":""}},{name:"keywords",reg:/^keywds:(.+)$/,format:"keywds:%s"},{name:"content",reg:/^content:(.+)/,format:"content:%s"},{name:"bfcpFloorCtrl",reg:/^floorctrl:(c-only|s-only|c-s)/,format:"floorctrl:%s"},{name:"bfcpConfId",reg:/^confid:(\d+)/,format:"confid:%s"},{name:"bfcpUserId",reg:/^userid:(\d+)/,format:"userid:%s"},{name:"bfcpFloorId",reg:/^floorid:(.+) (?:m-stream|mstrm):(.+)/,names:["id","mStream"],format:"floorid:%s mstrm:%s"},{push:"invalid",names:["value"]}]};Object.keys(Xe).forEach((function(e){Xe[e].forEach((function(e){e.reg||(e.reg=/(.*)/),e.format||(e.format="%s")}))}));var Ze=Ye.exports;!function(e){var toIntIfInt=function(e){return String(Number(e))===e?Number(e):e},parseReg=function(e,t,i){var n=e.name&&e.names;e.push&&!t[e.push]?t[e.push]=[]:n&&!t[e.name]&&(t[e.name]={});var s=e.push?{}:n?t[e.name]:t;!function(e,t,i,n){if(n&&!i)t[n]=toIntIfInt(e[1]);else for(var s=0;s<i.length;s+=1)null!=e[s+1]&&(t[i[s]]=toIntIfInt(e[s+1]))}(i.match(e.reg),s,e.names,e.name),e.push&&t[e.push].push(s)},t=Ze,i=RegExp.prototype.test.bind(/^([a-z])=(.*)/);e.parse=function(e){var n={},s=[],a=n;return e.split(/(\r\n|\r|\n)/).filter(i).forEach((function(e){var i=e[0],n=e.slice(2);"m"===i&&(s.push({rtp:[],fmtp:[]}),a=s[s.length-1]);for(var o=0;o<(t[i]||[]).length;o+=1){var c=t[i][o];if(c.reg.test(n))return parseReg(c,a,n)}})),n.media=s,n};var paramReducer=function(e,t){var i=t.split(/=(.+)/,2);return 2===i.length?e[i[0]]=toIntIfInt(i[1]):1===i.length&&t.length>1&&(e[i[0]]=void 0),e};e.parseParams=function(e){return e.split(/;\s?/).reduce(paramReducer,{})},e.parseFmtpConfig=e.parseParams,e.parsePayloads=function(e){return e.toString().split(" ").map(Number)},e.parseRemoteCandidates=function(e){for(var t=[],i=e.split(" ").map(toIntIfInt),n=0;n<i.length;n+=3)t.push({component:i[n],ip:i[n+1],port:i[n+2]});return t},e.parseImageAttributes=function(e){return e.split(" ").map((function(e){return e.substring(1,e.length-1).split(",").reduce(paramReducer,{})}))},e.parseSimulcastStreamList=function(e){return e.split(";").map((function(e){return e.split(",").map((function(e){var t,i=!1;return"~"!==e[0]?t=toIntIfInt(e):(t=toIntIfInt(e.substring(1,e.length)),i=!0),{scid:t,paused:i}}))}))}}($e);var et=Ze,tt=/%[sdv%]/g,format=function(e){var t=1,i=arguments,n=i.length;return e.replace(tt,(function(e){if(t>=n)return e;var s=i[t];switch(t+=1,e){case"%%":return"%";case"%s":return String(s);case"%d":return Number(s);case"%v":return""}}))},makeLine=function(e,t,i){var n=[e+"="+(t.format instanceof Function?t.format(t.push?i:i[t.name]):t.format)];if(t.names)for(var s=0;s<t.names.length;s+=1){var a=t.names[s];t.name?n.push(i[t.name][a]):n.push(i[t.names[s]])}else n.push(i[t.name]);return format.apply(null,n)},it=["v","o","s","i","u","e","p","c","b","t","r","z","a"],nt=["i","c","b","a"],rt=$e,writer=function(e,t){t=t||{},null==e.version&&(e.version=0),null==e.name&&(e.name=" "),e.media.forEach((function(e){null==e.payloads&&(e.payloads="")}));var i=t.outerOrder||it,n=t.innerOrder||nt,s=[];return i.forEach((function(t){et[t].forEach((function(i){i.name in e&&null!=e[i.name]?s.push(makeLine(t,i,e)):i.push in e&&null!=e[i.push]&&e[i.push].forEach((function(e){s.push(makeLine(t,i,e))}))}))})),e.media.forEach((function(e){s.push(makeLine("m",et.m[0],e)),n.forEach((function(t){et[t].forEach((function(i){i.name in e&&null!=e[i.name]?s.push(makeLine(t,i,e)):i.push in e&&null!=e[i.push]&&e[i.push].forEach((function(e){s.push(makeLine(t,i,e))}))}))}))})),s.join("\r\n")+"\r\n"},st=writer,at=rt.parse;const ot="negotiationStarted",ct="negotiationComplete",dt="rtpVideoPayloadTypes";class PCTransport extends ie.EventEmitter{get pc(){if(this._pc)return this._pc;throw new UnexpectedConnectionState("Expected peer connection to be available")}constructor(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};super(),this.pendingCandidates=[],this.restartingIce=!1,this.renegotiate=!1,this.trackBitrates=[],this.remoteStereoMids=[],this.remoteNackMids=[],this.negotiate=r((e=>{this.emit(ot);try{this.createAndSendOffer()}catch(t){if(!e)throw t;e(t)}}),100),this._pc=function isChromiumBased(){var e;return"Chrome"===(null===(e=getBrowser())||void 0===e?void 0:e.name)}()?new RTCPeerConnection(e,t):new RTCPeerConnection(e)}get isICEConnected(){return null!==this._pc&&("connected"===this.pc.iceConnectionState||"completed"===this.pc.iceConnectionState)}addIceCandidate(e){return __awaiter(this,void 0,void 0,(function*(){if(this.pc.remoteDescription&&!this.restartingIce)return this.pc.addIceCandidate(e);this.pendingCandidates.push(e)}))}setRemoteDescription(e){var t;return __awaiter(this,void 0,void 0,(function*(){let i;if("offer"===e.type){let{stereoMids:t,nackMids:i}=function extractStereoAndNackAudioFromOffer(e){var t;const i=[],n=[],s=at(null!==(t=e.sdp)&&void 0!==t?t:"");let a=0;return s.media.forEach((e=>{var t;"audio"===e.type&&(e.rtp.some((e=>"opus"===e.codec&&(a=e.payload,!0))),(null===(t=e.rtcpFb)||void 0===t?void 0:t.some((e=>e.payload===a&&"nack"===e.type)))&&n.push(e.mid),e.fmtp.some((t=>t.payload===a&&(t.config.includes("sprop-stereo=1")&&i.push(e.mid),!0))))})),{stereoMids:i,nackMids:n}}(e);this.remoteStereoMids=t,this.remoteNackMids=i}else if("answer"===e.type){const n=at(null!==(t=e.sdp)&&void 0!==t?t:"");n.media.forEach((e=>{"audio"===e.type&&this.trackBitrates.some((t=>{if(!t.transceiver||e.mid!=t.transceiver.mid)return!1;let i=0;if(e.rtp.some((e=>e.codec.toUpperCase()===t.codec.toUpperCase()&&(i=e.payload,!0))),0===i)return!0;let n=!1;for(const s of e.fmtp)if(s.payload===i){s.config=s.config.split(";").filter((e=>!e.includes("maxaveragebitrate"))).join(";"),t.maxbr>0&&(s.config+=";maxaveragebitrate=".concat(1e3*t.maxbr)),n=!0;break}return n||t.maxbr>0&&e.fmtp.push({payload:i,config:"maxaveragebitrate=".concat(1e3*t.maxbr)}),!0}))})),i=st(n)}if(yield this.setMungedSDP(e,i,!0),this.pendingCandidates.forEach((e=>{this.pc.addIceCandidate(e)})),this.pendingCandidates=[],this.restartingIce=!1,this.renegotiate)this.renegotiate=!1,this.createAndSendOffer();else if("answer"===e.type&&(this.emit(ct),e.sdp)){at(e.sdp).media.forEach((e=>{"video"===e.type&&this.emit(dt,e.rtp)}))}}))}createAndSendOffer(e){var t;return __awaiter(this,void 0,void 0,(function*(){if(void 0===this.onOffer)return;if((null==e?void 0:e.iceRestart)&&(p.debug("restarting ICE"),this.restartingIce=!0),this._pc&&"have-local-offer"===this._pc.signalingState){const t=this.pc.remoteDescription;if(!(null==e?void 0:e.iceRestart)||!t)return void(this.renegotiate=!0);yield this.pc.setRemoteDescription(t)}else if(!this._pc||"closed"===this._pc.signalingState)return void p.warn("could not createOffer with closed peer connection");p.debug("starting to negotiate");const i=yield this.pc.createOffer(e),n=at(null!==(t=i.sdp)&&void 0!==t?t:"");n.media.forEach((e=>{"audio"===e.type?ensureAudioNackAndStereo(e,[],[]):"video"===e.type&&(!function ensureVideoDDExtensionForSVC(e){var t,i,n,s;if(!isSVCCodec(null===(i=null===(t=e.rtp[0])||void 0===t?void 0:t.codec)||void 0===i?void 0:i.toLowerCase()))return;let a=0;(null===(n=e.ext)||void 0===n?void 0:n.some((e=>e.uri===Ue||(e.value>a&&(a=e.value),!1))))||null===(s=e.ext)||void 0===s||s.push({value:a+1,uri:Ue})}(e),this.trackBitrates.some((t=>{if(!e.msid||!t.cid||!e.msid.includes(t.cid))return!1;let i=0;if(e.rtp.some((e=>e.codec.toUpperCase()===t.codec.toUpperCase()&&(i=e.payload,!0))),0===i)return!0;let n=!1;for(const s of e.fmtp)if(s.payload===i){s.config.includes("x-google-start-bitrate")||(s.config+=";x-google-start-bitrate=".concat(.7*t.maxbr)),s.config.includes("x-google-max-bitrate")||(s.config+=";x-google-max-bitrate=".concat(t.maxbr)),n=!0;break}return n||e.fmtp.push({payload:i,config:"x-google-start-bitrate=".concat(.7*t.maxbr,";x-google-max-bitrate=").concat(t.maxbr)}),!0})))})),yield this.setMungedSDP(i,st(n)),this.onOffer(i)}))}createAndSetAnswer(){var e;return __awaiter(this,void 0,void 0,(function*(){const t=yield this.pc.createAnswer(),i=at(null!==(e=t.sdp)&&void 0!==e?e:"");return i.media.forEach((e=>{"audio"===e.type&&ensureAudioNackAndStereo(e,this.remoteStereoMids,this.remoteNackMids)})),yield this.setMungedSDP(t,st(i)),t}))}setTrackCodecBitrate(e){this.trackBitrates.push(e)}close(){this._pc&&(this._pc.close(),this._pc.onconnectionstatechange=null,this._pc.oniceconnectionstatechange=null,this._pc.onicegatheringstatechange=null,this._pc.ondatachannel=null,this._pc.onnegotiationneeded=null,this._pc.onsignalingstatechange=null,this._pc.onicecandidate=null,this._pc.ondatachannel=null,this._pc.ontrack=null,this._pc.onconnectionstatechange=null,this._pc.oniceconnectionstatechange=null,this._pc=null)}setMungedSDP(e,t,i){return __awaiter(this,void 0,void 0,(function*(){if(t){const n=e.sdp;e.sdp=t;try{return p.debug("setting munged ".concat(i?"remote":"local"," description")),void(i?yield this.pc.setRemoteDescription(e):yield this.pc.setLocalDescription(e))}catch(i){p.warn("not able to set ".concat(e.type,", falling back to unmodified sdp"),{error:i,sdp:t}),e.sdp=n}}try{i?yield this.pc.setRemoteDescription(e):yield this.pc.setLocalDescription(e)}catch(t){let n="unknown error";t instanceof Error?n=t.message:"string"==typeof t&&(n=t);const s={error:n,sdp:e.sdp};throw!i&&this.pc.remoteDescription&&(s.remoteSdp=this.pc.remoteDescription),p.error("unable to set ".concat(e.type),s),new NegotiationError(n)}}))}}function ensureAudioNackAndStereo(e,t,i){let n=0;e.rtp.some((e=>"opus"===e.codec&&(n=e.payload,!0))),n>0&&(e.rtcpFb||(e.rtcpFb=[]),i.includes(e.mid)&&!e.rtcpFb.some((e=>e.payload===n&&"nack"===e.type))&&e.rtcpFb.push({payload:n,type:"nack"}),t.includes(e.mid)&&e.fmtp.some((e=>e.payload===n&&(e.config.includes("stereo=1")||(e.config+=";stereo=1"),!0))))}const ut={audioBitrate:Ee.music.maxBitrate,audioPreset:Ee.music,dtx:!0,red:!0,forceStereo:!1,simulcast:!0,screenShareEncoding:_e.h1080fps15.encoding,stopMicTrackOnMute:!1,videoCodec:"vp8",backupCodec:!1},lt={autoGainControl:!0,echoCancellation:!0,noiseSuppression:!0},ht={resolution:Pe.h720.resolution},pt={adaptiveStream:!1,dynacast:!1,stopLocalTrackOnUnpublish:!0,reconnectPolicy:new DefaultReconnectPolicy,disconnectOnPageLeave:!0,expWebAudioMix:!1},mt={autoSubscribe:!0,maxRetries:1,peerConnectionTimeout:15e3,websocketTimeout:15e3},ft="_lossy",gt="_reliable",vt="leave-reconnect";var kt;!function(e){e[e.New=0]="New",e[e.Connected=1]="Connected",e[e.Disconnected=2]="Disconnected",e[e.Reconnecting=3]="Reconnecting",e[e.Closed=4]="Closed"}(kt||(kt={}));class RTCEngine extends ie.EventEmitter{get isClosed(){return this._isClosed}constructor(e){super(),this.options=e,this.rtcConfig={},this.peerConnectionTimeout=mt.peerConnectionTimeout,this.fullReconnectOnNext=!1,this.subscriberPrimary=!1,this.pcState=kt.New,this._isClosed=!0,this.pendingTrackResolvers={},this.hasPublished=!1,this.reconnectAttempts=0,this.reconnectStart=0,this.attemptingReconnect=!1,this.joinAttempts=0,this.maxJoinAttempts=1,this.shouldFailNext=!1,this.handleDataChannel=e=>{let{channel:t}=e;return __awaiter(this,void 0,void 0,(function*(){if(t){if(t.label===gt)this.reliableDCSub=t;else{if(t.label!==ft)return;this.lossyDCSub=t}p.debug("on data channel ".concat(t.id,", ").concat(t.label)),t.onmessage=this.handleDataMessage}}))},this.handleDataMessage=e=>__awaiter(this,void 0,void 0,(function*(){var t,i;const n=yield this.dataProcessLock.lock();try{let s;if(e.data instanceof ArrayBuffer)s=e.data;else{if(!(e.data instanceof Blob))return void p.error("unsupported data type",e.data);s=yield e.data.arrayBuffer()}const a=DataPacket.fromBinary(new Uint8Array(s));"speaker"===(null===(t=a.value)||void 0===t?void 0:t.case)?this.emit(Le.ActiveSpeakersUpdate,a.value.value.speakers):"user"===(null===(i=a.value)||void 0===i?void 0:i.case)&&this.emit(Le.DataPacketReceived,a.value.value,a.kind)}finally{n()}})),this.handleDataError=e=>{const t=0===e.currentTarget.maxRetransmits?"lossy":"reliable";if(e instanceof ErrorEvent&&e.error){const{error:i}=e.error;p.error("DataChannel error on ".concat(t,": ").concat(e.message),i)}else p.error("Unknown DataChannel error on ".concat(t),e)},this.handleBufferedAmountLow=e=>{const t=0===e.currentTarget.maxRetransmits?K.LOSSY:K.RELIABLE;this.updateAndEmitDCBufferStatus(t)},this.handleDisconnect=(e,t)=>{if(this._isClosed)return;p.warn("".concat(e," disconnected")),0===this.reconnectAttempts&&(this.reconnectStart=Date.now());const disconnect=e=>{p.warn("could not recover connection after ".concat(this.reconnectAttempts," attempts, ").concat(e,"ms. giving up")),this.emit(Le.Disconnected),this.close()},i=Date.now()-this.reconnectStart;let n=this.getNextRetryDelay({elapsedMs:i,retryCount:this.reconnectAttempts});null!==n?(e===vt&&(n=0),p.debug("reconnecting in ".concat(n,"ms")),this.clearReconnectTimeout(),this.token&&this.regionUrlProvider&&this.regionUrlProvider.updateToken(this.token),this.reconnectTimeout=CriticalTimers.setTimeout((()=>this.attemptReconnect(t)),n)):disconnect(i)},this.waitForRestarted=()=>new Promise(((e,t)=>{this.pcState===kt.Connected&&e();const onRestarted=()=>{this.off(Le.Disconnected,onDisconnected),e()},onDisconnected=()=>{this.off(Le.Restarted,onRestarted),t()};this.once(Le.Restarted,onRestarted),this.once(Le.Disconnected,onDisconnected)})),this.updateAndEmitDCBufferStatus=e=>{const t=this.isBufferStatusLow(e);void 0!==t&&t!==this.dcBufferStatus.get(e)&&(this.dcBufferStatus.set(e,t),this.emit(Le.DCBufferStatusChanged,t,e))},this.isBufferStatusLow=e=>{const t=this.dataChannelForKind(e);if(t)return t.bufferedAmount<=t.bufferedAmountLowThreshold},this.handleBrowserOnLine=()=>{this.client.isReconnecting&&(this.clearReconnectTimeout(),this.attemptReconnect(V.RR_SIGNAL_DISCONNECTED))},this.client=new SignalClient,this.client.signalLatency=this.options.expSignalLatency,this.reconnectPolicy=this.options.reconnectPolicy,this.registerOnLineListener(),this.closingLock=new Mutex,this.dataProcessLock=new Mutex,this.dcBufferStatus=new Map([[K.LOSSY,!0],[K.RELIABLE,!0]]),this.client.onParticipantUpdate=e=>this.emit(Le.ParticipantUpdate,e),this.client.onConnectionQuality=e=>this.emit(Le.ConnectionQualityUpdate,e),this.client.onRoomUpdate=e=>this.emit(Le.RoomUpdate,e),this.client.onSubscriptionError=e=>this.emit(Le.SubscriptionError,e),this.client.onSubscriptionPermissionUpdate=e=>this.emit(Le.SubscriptionPermissionUpdate,e),this.client.onSpeakersChanged=e=>this.emit(Le.SpeakersChanged,e),this.client.onStreamStateUpdate=e=>this.emit(Le.StreamStateChanged,e)}join(e,t,i,n){return __awaiter(this,void 0,void 0,(function*(){this.url=e,this.token=t,this.signalOpts=i,this.maxJoinAttempts=i.maxRetries;try{this.joinAttempts+=1,this.setupSignalClientCallbacks();const s=yield this.client.join(e,t,i,n);return this._isClosed=!1,this.latestJoinResponse=s,this.subscriberPrimary=s.subscriberPrimary,this.publisher||this.configure(s),this.subscriberPrimary||this.negotiate(),this.clientConfiguration=s.clientConfiguration,s}catch(s){if(s instanceof ConnectionError&&1===s.reason&&(p.warn("Couldn't connect to server, attempt ".concat(this.joinAttempts," of ").concat(this.maxJoinAttempts)),this.joinAttempts<this.maxJoinAttempts))return this.join(e,t,i,n);throw s}}))}close(){return __awaiter(this,void 0,void 0,(function*(){const e=yield this.closingLock.lock();if(this.isClosed)e();else try{this._isClosed=!0,this.emit(Le.Closing),this.removeAllListeners(),this.deregisterOnLineListener(),this.clearPendingReconnect(),yield this.cleanupPeerConnections(),yield this.cleanupClient()}finally{e()}}))}cleanupPeerConnections(){return __awaiter(this,void 0,void 0,(function*(){this.publisher&&"closed"!==this.publisher.pc.signalingState&&this.publisher.pc.getSenders().forEach((e=>{var t,i;try{(null===(t=this.publisher)||void 0===t?void 0:t.pc.removeTrack)&&(null===(i=this.publisher)||void 0===i||i.pc.removeTrack(e))}catch(e){p.warn("could not removeTrack",{error:e})}})),this.publisher&&(this.publisher.close(),this.publisher=void 0),this.subscriber&&(this.subscriber.close(),this.subscriber=void 0),this.primaryPC=void 0;const dcCleanup=e=>{e&&(e.close(),e.onbufferedamountlow=null,e.onclose=null,e.onclosing=null,e.onerror=null,e.onmessage=null,e.onopen=null)};dcCleanup(this.lossyDC),dcCleanup(this.lossyDCSub),dcCleanup(this.reliableDC),dcCleanup(this.reliableDCSub),this.lossyDC=void 0,this.lossyDCSub=void 0,this.reliableDC=void 0,this.reliableDCSub=void 0}))}cleanupClient(){return __awaiter(this,void 0,void 0,(function*(){yield this.client.close(),this.client.resetCallbacks()}))}addTrack(e){if(this.pendingTrackResolvers[e.cid])throw new TrackInvalidError("a track with the same ID has already been published");return new Promise(((t,i)=>{const n=setTimeout((()=>{delete this.pendingTrackResolvers[e.cid],i(new ConnectionError("publication of local track timed out, no response from server"))}),1e4);this.pendingTrackResolvers[e.cid]={resolve:e=>{clearTimeout(n),t(e)},reject:()=>{clearTimeout(n),i(new Error("Cancelled publication by calling unpublish"))}},this.client.sendAddTrack(e)}))}removeTrack(e){var t;if(e.track&&this.pendingTrackResolvers[e.track.id]){const{reject:t}=this.pendingTrackResolvers[e.track.id];t&&t(),delete this.pendingTrackResolvers[e.track.id]}try{return null===(t=this.publisher)||void 0===t||t.pc.removeTrack(e),!0}catch(e){p.warn("failed to remove track",{error:e,method:"removeTrack"})}return!1}updateMuteStatus(e,t){this.client.sendMuteTrack(e,t)}get dataSubscriberReadyState(){var e;return null===(e=this.reliableDCSub)||void 0===e?void 0:e.readyState}getConnectedServerAddress(){return __awaiter(this,void 0,void 0,(function*(){if(void 0!==this.primaryPC)return function getConnectedAddress(e){var t;return __awaiter(this,void 0,void 0,(function*(){let i="";const n=new Map,s=new Map;if((yield e.getStats()).forEach((e=>{switch(e.type){case"transport":i=e.selectedCandidatePairId;break;case"candidate-pair":""===i&&e.selected&&(i=e.id),n.set(e.id,e);break;case"remote-candidate":s.set(e.id,"".concat(e.address,":").concat(e.port))}})),""===i)return;const a=null===(t=n.get(i))||void 0===t?void 0:t.remoteCandidateId;return void 0!==a?s.get(a):void 0}))}(this.primaryPC)}))}setRegionUrlProvider(e){this.regionUrlProvider=e}configure(e){var t,i;if(this.publisher||this.subscriber)return;this.participantSid=null===(t=e.participant)||void 0===t?void 0:t.sid;const n=this.makeRTCConfiguration(e);(null===(i=this.signalOpts)||void 0===i?void 0:i.e2eeEnabled)&&(p.debug("E2EE - setting up transports with insertable streams"),n.encodedInsertableStreams=!0);this.publisher=new PCTransport(n,{optional:[{googDscp:!0}]}),this.subscriber=new PCTransport(n),this.emit(Le.TransportsCreated,this.publisher,this.subscriber),this.publisher.pc.onicecandidate=e=>{e.candidate&&(p.trace("adding ICE candidate for peer",e.candidate),this.client.sendIceCandidate(e.candidate,pe.PUBLISHER))},this.subscriber.pc.onicecandidate=e=>{e.candidate&&this.client.sendIceCandidate(e.candidate,pe.SUBSCRIBER)},this.publisher.onOffer=e=>{this.client.sendOffer(e)};let s=this.publisher.pc,a=this.subscriber.pc,o=e.subscriberPrimary;o&&(s=this.subscriber.pc,a=this.publisher.pc,this.subscriber.pc.ondatachannel=this.handleDataChannel),this.primaryPC=s,s.onconnectionstatechange=()=>__awaiter(this,void 0,void 0,(function*(){if(p.debug("primary PC state changed ".concat(s.connectionState)),"connected"===s.connectionState){const t=this.pcState===kt.New;this.pcState=kt.Connected,t&&this.emit(Le.Connected,e)}else"failed"===s.connectionState&&this.pcState===kt.Connected&&(this.pcState=kt.Disconnected,this.handleDisconnect("primary peerconnection",o?V.RR_SUBSCRIBER_FAILED:V.RR_PUBLISHER_FAILED))})),a.onconnectionstatechange=()=>__awaiter(this,void 0,void 0,(function*(){p.debug("secondary PC state changed ".concat(a.connectionState)),"failed"===a.connectionState&&this.handleDisconnect("secondary peerconnection",o?V.RR_PUBLISHER_FAILED:V.RR_SUBSCRIBER_FAILED)})),this.subscriber.pc.ontrack=e=>{this.emit(Le.MediaTrackAdded,e.track,e.streams[0],e.receiver)},this.createDataChannels()}setupSignalClientCallbacks(){this.client.onAnswer=e=>__awaiter(this,void 0,void 0,(function*(){this.publisher&&(p.debug("received server answer",{RTCSdpType:e.type,signalingState:this.publisher.pc.signalingState.toString()}),yield this.publisher.setRemoteDescription(e))})),this.client.onTrickle=(e,t)=>{this.publisher&&this.subscriber&&(p.trace("got ICE candidate from peer",{candidate:e,target:t}),t===pe.PUBLISHER?this.publisher.addIceCandidate(e):this.subscriber.addIceCandidate(e))},this.client.onOffer=e=>__awaiter(this,void 0,void 0,(function*(){if(!this.subscriber)return;p.debug("received server offer",{RTCSdpType:e.type,signalingState:this.subscriber.pc.signalingState.toString()}),yield this.subscriber.setRemoteDescription(e);const t=yield this.subscriber.createAndSetAnswer();this.client.sendAnswer(t)})),this.client.onLocalTrackPublished=e=>{if(p.debug("received trackPublishedResponse",e),!this.pendingTrackResolvers[e.cid])return void p.error("missing track resolver for ".concat(e.cid));const{resolve:t}=this.pendingTrackResolvers[e.cid];delete this.pendingTrackResolvers[e.cid],t(e.track)},this.client.onTokenRefresh=e=>{this.token=e},this.client.onClose=()=>{this.handleDisconnect("signal",V.RR_SIGNAL_DISCONNECTED)},this.client.onLeave=e=>{(null==e?void 0:e.canReconnect)?(this.fullReconnectOnNext=!0,this.primaryPC=void 0,this.handleDisconnect(vt)):(this.emit(Le.Disconnected,null==e?void 0:e.reason),this.close()),p.trace("leave request",{leave:e})}}makeRTCConfiguration(e){const t=Object.assign({},this.rtcConfig);if(e.iceServers&&!t.iceServers){const i=[];e.iceServers.forEach((e=>{const t={urls:e.urls};e.username&&(t.username=e.username),e.credential&&(t.credential=e.credential),i.push(t)})),t.iceServers=i}return e.clientConfiguration&&e.clientConfiguration.forceRelay===F.ENABLED&&(t.iceTransportPolicy="relay"),t.sdpSemantics="unified-plan",t.continualGatheringPolicy="gather_continually",t}createDataChannels(){this.publisher&&(this.lossyDC&&(this.lossyDC.onmessage=null,this.lossyDC.onerror=null),this.reliableDC&&(this.reliableDC.onmessage=null,this.reliableDC.onerror=null),this.lossyDC=this.publisher.pc.createDataChannel(ft,{ordered:!0,maxRetransmits:0}),this.reliableDC=this.publisher.pc.createDataChannel(gt,{ordered:!0}),this.lossyDC.onmessage=this.handleDataMessage,this.reliableDC.onmessage=this.handleDataMessage,this.lossyDC.onerror=this.handleDataError,this.reliableDC.onerror=this.handleDataError,this.lossyDC.bufferedAmountLowThreshold=65535,this.reliableDC.bufferedAmountLowThreshold=65535,this.lossyDC.onbufferedamountlow=this.handleBufferedAmountLow,this.reliableDC.onbufferedamountlow=this.handleBufferedAmountLow)}setPreferredCodec(e,t,i){if(!("getCapabilities"in RTCRtpSender))return;const n=RTCRtpSender.getCapabilities(t);if(!n)return;p.debug("get capabilities",n);const s=[],a=[],o=[];n.codecs.forEach((e=>{const t=e.mimeType.toLowerCase();if("audio/opus"===t)return void s.push(e);t==="video/".concat(i)?"h264"!==i||e.sdpFmtpLine&&e.sdpFmtpLine.includes("profile-level-id=42e01f")?s.push(e):a.push(e):o.push(e)})),function supportsSetCodecPreferences(e){if(!isWeb())return!1;if(!("setCodecPreferences"in e))return!1;const t=getBrowser();if(!(null==t?void 0:t.name)||!t.version)return!1;const i=Oe[t.name];return!!i&&compareVersions(t.version,i)>=0}(e)&&e.setCodecPreferences(s.concat(a,o))}createSender(e,t,i){return __awaiter(this,void 0,void 0,(function*(){if(supportsTransceiver()){return yield this.createTransceiverRTCRtpSender(e,t,i)}if(supportsAddTrack()){p.warn("using add-track fallback");return yield this.createRTCRtpSender(e.mediaStreamTrack)}throw new UnexpectedConnectionState("Required webRTC APIs not supported on this device")}))}createSimulcastSender(e,t,i,n){return __awaiter(this,void 0,void 0,(function*(){if(supportsTransceiver())return this.createSimulcastTransceiverSender(e,t,i,n);if(supportsAddTrack())return p.debug("using add-track fallback"),this.createRTCRtpSender(e.mediaStreamTrack);throw new UnexpectedConnectionState("Cannot stream on this device")}))}createTransceiverRTCRtpSender(e,t,i){return __awaiter(this,void 0,void 0,(function*(){if(!this.publisher)throw new UnexpectedConnectionState("publisher is closed");const n=[];e.mediaStream&&n.push(e.mediaStream);const s={direction:"sendonly",streams:n};i&&(s.sendEncodings=i);const a=yield this.publisher.pc.addTransceiver(e.mediaStreamTrack,s);return e.kind===Track.Kind.Video&&t.videoCodec&&(this.setPreferredCodec(a,e.kind,t.videoCodec),e.codec=t.videoCodec),a.sender}))}createSimulcastTransceiverSender(e,t,i,n){return __awaiter(this,void 0,void 0,(function*(){if(!this.publisher)throw new UnexpectedConnectionState("publisher is closed");const s={direction:"sendonly"};n&&(s.sendEncodings=n);const a=yield this.publisher.pc.addTransceiver(t.mediaStreamTrack,s);if(i.videoCodec)return this.setPreferredCodec(a,e.kind,i.videoCodec),e.setSimulcastTrackSender(i.videoCodec,a.sender),a.sender}))}createRTCRtpSender(e){return __awaiter(this,void 0,void 0,(function*(){if(!this.publisher)throw new UnexpectedConnectionState("publisher is closed");return this.publisher.pc.addTrack(e)}))}attemptReconnect(e){var t,i,n;return __awaiter(this,void 0,void 0,(function*(){if(!this._isClosed&&!this.attemptingReconnect){(null===(t=this.clientConfiguration)||void 0===t?void 0:t.resumeConnection)!==F.DISABLED&&"closed"!==(null!==(n=null===(i=this.primaryPC)||void 0===i?void 0:i.signalingState)&&void 0!==n?n:"closed")||(this.fullReconnectOnNext=!0);try{this.attemptingReconnect=!0,this.fullReconnectOnNext?yield this.restartConnection():yield this.resumeConnection(e),this.clearPendingReconnect(),this.fullReconnectOnNext=!1}catch(e){this.reconnectAttempts+=1;let t=!0;e instanceof UnexpectedConnectionState?(p.debug("received unrecoverable error",{error:e}),t=!1):e instanceof SignalReconnectError||(this.fullReconnectOnNext=!0),t?this.handleDisconnect("reconnect",V.RR_UNKNOWN):(p.info("could not recover connection after ".concat(this.reconnectAttempts," attempts, ").concat(Date.now()-this.reconnectStart,"ms. giving up")),this.emit(Le.Disconnected),yield this.close())}finally{this.attemptingReconnect=!1}}}))}getNextRetryDelay(e){try{return this.reconnectPolicy.nextRetryDelayInMs(e)}catch(e){p.warn("encountered error in reconnect policy",{error:e})}return null}restartConnection(e){var t,i,n;return __awaiter(this,void 0,void 0,(function*(){try{if(!this.url||!this.token)throw new UnexpectedConnectionState("could not reconnect, url or token not saved");let i;p.info("reconnecting, attempt: ".concat(this.reconnectAttempts)),this.emit(Le.Restarting),this.client.isConnected&&(yield this.client.sendLeave()),yield this.cleanupPeerConnections(),yield this.cleanupClient();try{if(!this.signalOpts)throw p.warn("attempted connection restart, without signal options present"),new SignalReconnectError;i=yield this.join(null!=e?e:this.url,this.token,this.signalOpts)}catch(e){if(e instanceof ConnectionError&&0===e.reason)throw new UnexpectedConnectionState("could not reconnect, token might be expired");throw new SignalReconnectError}if(this.shouldFailNext)throw this.shouldFailNext=!1,new Error("simulated failure");this.client.setReconnected(),this.emit(Le.SignalRestarted,i),yield this.waitForPCReconnected(),null===(t=this.regionUrlProvider)||void 0===t||t.resetAttempts(),this.emit(Le.Restarted)}catch(e){const t=yield null===(i=this.regionUrlProvider)||void 0===i?void 0:i.getNextBestRegionUrl();if(t)return void(yield this.restartConnection(t));throw null===(n=this.regionUrlProvider)||void 0===n||n.resetAttempts(),e}}))}resumeConnection(e){var t;return __awaiter(this,void 0,void 0,(function*(){if(!this.url||!this.token)throw new UnexpectedConnectionState("could not reconnect, url or token not saved");if(!this.publisher||!this.subscriber)throw new UnexpectedConnectionState("publisher and subscriber connections unset");p.info("resuming signal connection, attempt ".concat(this.reconnectAttempts)),this.emit(Le.Resuming);try{this.setupSignalClientCallbacks();const t=yield this.client.reconnect(this.url,this.token,this.participantSid,e);if(t){const e=this.makeRTCConfiguration(t);this.publisher.pc.setConfiguration(e),this.subscriber.pc.setConfiguration(e)}}catch(e){let t="";if(e instanceof Error&&(t=e.message),e instanceof ConnectionError&&0===e.reason)throw new UnexpectedConnectionState("could not reconnect, token might be expired");throw new SignalReconnectError(t)}if(this.emit(Le.SignalResumed),this.shouldFailNext)throw this.shouldFailNext=!1,new Error("simulated failure");this.subscriber.restartingIce=!0,this.hasPublished&&(yield this.publisher.createAndSendOffer({iceRestart:!0})),yield this.waitForPCReconnected(),this.client.setReconnected(),"open"===(null===(t=this.reliableDC)||void 0===t?void 0:t.readyState)&&null===this.reliableDC.id&&this.createDataChannels(),this.emit(Le.Resumed)}))}waitForPCInitialConnection(e,t){return __awaiter(this,void 0,void 0,(function*(){if(this.pcState!==kt.Connected){if(this.pcState!==kt.New)throw new UnexpectedConnectionState("Expected peer connection to be new on initial connection");return new Promise(((i,n)=>{const abortHandler=()=>{p.warn("closing engine"),CriticalTimers.clearTimeout(s),n(new ConnectionError("room connection has been cancelled",3))};(null==t?void 0:t.signal.aborted)&&abortHandler(),null==t||t.signal.addEventListener("abort",abortHandler);const onConnected=()=>{CriticalTimers.clearTimeout(s),null==t||t.signal.removeEventListener("abort",abortHandler),i()},s=CriticalTimers.setTimeout((()=>{this.off(Le.Connected,onConnected),n(new ConnectionError("could not establish pc connection"))}),null!=e?e:this.peerConnectionTimeout);this.once(Le.Connected,onConnected)}))}}))}waitForPCReconnected(){var e;return __awaiter(this,void 0,void 0,(function*(){const t=Date.now();let i=t;for(this.pcState=kt.Reconnecting,p.debug("waiting for peer connection to reconnect");i-t<this.peerConnectionTimeout&&void 0!==this.primaryPC;){if(i-t>2e3&&"connected"===(null===(e=this.primaryPC)||void 0===e?void 0:e.connectionState)&&(this.pcState=kt.Connected),this.pcState===kt.Connected)return;yield sleep(100),i=Date.now()}throw new ConnectionError("could not establish PC connection")}))}sendDataPacket(e,t){return __awaiter(this,void 0,void 0,(function*(){const i=e.toBinary();yield this.ensurePublisherConnected(t);const n=this.dataChannelForKind(t);n&&n.send(i),this.updateAndEmitDCBufferStatus(t)}))}ensureDataTransportConnected(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:this.subscriberPrimary;var i,n,s;return __awaiter(this,void 0,void 0,(function*(){const a=t?this.subscriber:this.publisher,o=t?"Subscriber":"Publisher";if(!a)throw new ConnectionError("".concat(o," connection not set"));t||(null===(i=this.publisher)||void 0===i?void 0:i.isICEConnected)||"checking"===(null===(n=this.publisher)||void 0===n?void 0:n.pc.iceConnectionState)||this.negotiate();const c=this.dataChannelForKind(e,t);if("open"===(null==c?void 0:c.readyState))return;const u=(new Date).getTime()+this.peerConnectionTimeout;for(;(new Date).getTime()<u;){if(a.isICEConnected&&"open"===(null===(s=this.dataChannelForKind(e,t))||void 0===s?void 0:s.readyState))return;yield sleep(50)}throw new ConnectionError("could not establish ".concat(o," connection, state: ").concat(a.pc.iceConnectionState))}))}ensurePublisherConnected(e){return __awaiter(this,void 0,void 0,(function*(){yield this.ensureDataTransportConnected(e,!1)}))}verifyTransport(){if(!this.primaryPC)return!1;if("closed"===this.primaryPC.connectionState||"failed"===this.primaryPC.connectionState)return!1;if(this.hasPublished&&this.subscriberPrimary){if(!this.publisher)return!1;if("closed"===this.publisher.pc.connectionState||"failed"===this.publisher.pc.connectionState)return!1}return!(!this.client.ws||this.client.ws.readyState===WebSocket.CLOSED)}negotiate(){return new Promise(((e,t)=>{if(!this.publisher)return void t(new NegotiationError("publisher is not defined"));this.hasPublished=!0;const handleClosed=()=>{p.debug("engine disconnected while negotiation was ongoing"),cleanup(),e()};this.isClosed&&t("cannot negotiate on closed engine"),this.on(Le.Closing,handleClosed);const i=setTimeout((()=>{t("negotiation timed out"),this.handleDisconnect("negotiation",V.RR_SIGNAL_DISCONNECTED)}),this.peerConnectionTimeout),cleanup=()=>{clearTimeout(i),this.off(Le.Closing,handleClosed)};this.publisher.once(ot,(()=>{var t;null===(t=this.publisher)||void 0===t||t.once(ct,(()=>{cleanup(),e()}))})),this.publisher.once(dt,(e=>{const t=new Map;e.forEach((e=>{const i=e.codec.toLowerCase();(function isVideoCodec(e){return we.includes(e)})(i)&&t.set(e.payload,i)})),this.emit(Le.RTPVideoMapUpdate,t)})),this.publisher.negotiate((e=>{cleanup(),t(e),e instanceof NegotiationError&&(this.fullReconnectOnNext=!0),this.handleDisconnect("negotiation",V.RR_UNKNOWN)}))}))}dataChannelForKind(e,t){if(t){if(e===K.LOSSY)return this.lossyDCSub;if(e===K.RELIABLE)return this.reliableDCSub}else{if(e===K.LOSSY)return this.lossyDC;if(e===K.RELIABLE)return this.reliableDC}}failNext(){this.shouldFailNext=!0}clearReconnectTimeout(){this.reconnectTimeout&&CriticalTimers.clearTimeout(this.reconnectTimeout)}clearPendingReconnect(){this.clearReconnectTimeout(),this.reconnectAttempts=0}registerOnLineListener(){isWeb()&&window.addEventListener("online",this.handleBrowserOnLine)}deregisterOnLineListener(){isWeb()&&window.removeEventListener("online",this.handleBrowserOnLine)}}class SignalReconnectError extends Error{}class RegionUrlProvider{constructor(e,t){this.lastUpdateAt=0,this.settingsCacheTime=3e3,this.attemptedRegions=[],this.serverUrl=new URL(e),this.token=t}updateToken(e){this.token=e}isCloud(){return isCloud(this.serverUrl)}getServerUrl(){return this.serverUrl}getNextBestRegionUrl(e){return __awaiter(this,void 0,void 0,(function*(){if(!this.isCloud())throw Error("region availability is only supported for LiveKit Cloud domains");(!this.regionSettings||Date.now()-this.lastUpdateAt>this.settingsCacheTime)&&(this.regionSettings=yield this.fetchRegionSettings(e));const t=this.regionSettings.regions.filter((e=>!this.attemptedRegions.find((t=>t.url===e.url))));if(t.length>0){const e=t[0];return this.attemptedRegions.push(e),p.debug("next region: ".concat(e.region)),e.url}return null}))}resetAttempts(){this.attemptedRegions=[]}fetchRegionSettings(e){return __awaiter(this,void 0,void 0,(function*(){const t=yield fetch("".concat(function getCloudConfigUrl(e){return"".concat(e.protocol.replace("ws","http"),"//").concat(e.host,"/settings")}(this.serverUrl),"/regions"),{headers:{authorization:"Bearer ".concat(this.token)},signal:e});if(t.ok){const e=yield t.json();return this.lastUpdateAt=Date.now(),e}throw new ConnectionError("Could not fetch region settings: ".concat(t.statusText),401===t.status?0:void 0,t.status)}))}}const yt=2e3;function computeBitrate(e,t){if(!t)return 0;let i,n;return"bytesReceived"in e?(i=e.bytesReceived,n=t.bytesReceived):"bytesSent"in e&&(i=e.bytesSent,n=t.bytesSent),void 0===i||void 0===n||void 0===e.timestamp||void 0===t.timestamp?0:8*(i-n)*1e3/(e.timestamp-t.timestamp)}class LocalAudioTrack extends LocalTrack{constructor(e,t){let i=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],n=arguments.length>3?arguments[3]:void 0;super(e,Track.Kind.Audio,t,i),this.stopOnMute=!1,this.monitorSender=()=>__awaiter(this,void 0,void 0,(function*(){if(!this.sender)return void(this._currentBitrate=0);let e;try{e=yield this.getSenderStats()}catch(e){return void p.error("could not get audio sender stats",{error:e})}e&&this.prevStats&&(this._currentBitrate=computeBitrate(e,this.prevStats)),this.prevStats=e})),this.audioContext=n,this.checkForSilence()}setDeviceId(e){return __awaiter(this,void 0,void 0,(function*(){return this._constraints.deviceId===e||(this._constraints.deviceId=e,this.isMuted||(yield this.restartTrack()),this.isMuted||unwrapConstraint(e)===this.mediaStreamTrack.getSettings().deviceId)}))}mute(){const e=Object.create(null,{mute:{get:()=>super.mute}});return __awaiter(this,void 0,void 0,(function*(){const t=yield this.muteLock.lock();try{return this.source===Track.Source.Microphone&&this.stopOnMute&&!this.isUserProvided&&(p.debug("stopping mic track"),this._mediaStreamTrack.stop()),yield e.mute.call(this),this}finally{t()}}))}unmute(){const e=Object.create(null,{unmute:{get:()=>super.unmute}});return __awaiter(this,void 0,void 0,(function*(){const t=yield this.muteLock.lock();try{const i=this._constraints.deviceId&&this._mediaStreamTrack.getSettings().deviceId!==unwrapConstraint(this._constraints.deviceId);return this.source!==Track.Source.Microphone||!this.stopOnMute&&"ended"!==this._mediaStreamTrack.readyState&&!i||this.isUserProvided||(p.debug("reacquiring mic track"),yield this.restartTrack()),yield e.unmute.call(this),this}finally{t()}}))}restartTrack(e){return __awaiter(this,void 0,void 0,(function*(){let t;if(e){const i=constraintsForOptions({audio:e});"boolean"!=typeof i.audio&&(t=i.audio)}yield this.restart(t)}))}restart(e){const t=Object.create(null,{restart:{get:()=>super.restart}});return __awaiter(this,void 0,void 0,(function*(){const i=yield t.restart.call(this,e);return this.checkForSilence(),i}))}startMonitor(){isWeb()&&(this.monitorInterval||(this.monitorInterval=setInterval((()=>{this.monitorSender()}),yt)))}setProcessor(e){var t;return __awaiter(this,void 0,void 0,(function*(){const i=yield this.processorLock.lock();try{if(!this.audioContext)throw Error("Audio context needs to be set on LocalAudioTrack in order to enable processors");if(this.processor&&(yield this.stopProcessor()),"unknown"===this.kind)throw TypeError("cannot set processor on track of unknown kind");const n={kind:this.kind,track:this._mediaStreamTrack,audioContext:this.audioContext};p.debug("setting up audio processor ".concat(e.name)),yield e.init(n),this.processor=e,this.processor.processedTrack&&(yield null===(t=this.sender)||void 0===t?void 0:t.replaceTrack(this.processor.processedTrack))}finally{i()}}))}setAudioContext(e){this.audioContext=e}getSenderStats(){var e;return __awaiter(this,void 0,void 0,(function*(){if(!(null===(e=this.sender)||void 0===e?void 0:e.getStats))return;let t;return(yield this.sender.getStats()).forEach((e=>{"outbound-rtp"===e.type&&(t={type:"audio",streamId:e.id,packetsSent:e.packetsSent,packetsLost:e.packetsLost,bytesSent:e.bytesSent,timestamp:e.timestamp,roundTripTime:e.roundTripTime,jitter:e.jitter})})),t}))}checkForSilence(){return __awaiter(this,void 0,void 0,(function*(){const e=yield function detectSilence(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:200;return __awaiter(this,void 0,void 0,(function*(){const i=getNewAudioContext();if(i){const n=i.createAnalyser();n.fftSize=2048;const s=n.frequencyBinCount,a=new Uint8Array(s);i.createMediaStreamSource(new MediaStream([e.mediaStreamTrack])).connect(n),yield sleep(t),n.getByteTimeDomainData(a);const o=a.some((e=>128!==e&&0!==e));return i.close(),!o}return!1}))}(this);return e&&(this.isMuted||p.warn("silence detected on local audio track"),this.emit(Me.AudioSilenceDetected)),e}))}}function mediaTrackToLocalTrack(e,t){switch(e.kind){case"audio":return new LocalAudioTrack(e,t,!1);case"video":return new LocalVideoTrack(e,t,!1);default:throw new TrackInvalidError("unsupported track type: ".concat(e.kind))}}const St=Object.values(Pe),Tt=Object.values(Re),bt=Object.values(_e),Ct=[Pe.h180,Pe.h360],wt=[Re.h180,Re.h360],Et=["q","h","f"];function computeVideoEncodings(e,t,i,n){var s,a;let o=null==n?void 0:n.videoEncoding;e&&(o=null==n?void 0:n.screenShareEncoding);const c=null==n?void 0:n.simulcast,u=null==n?void 0:n.scalabilityMode,l=null==n?void 0:n.videoCodec;if(!o&&!c&&!u||!t||!i)return[{}];o||(o=function determineAppropriateEncoding(e,t,i,n){const s=function presetsForResolution(e,t,i){if(e)return bt;const n=t>i?t/i:i/t;if(Math.abs(n-16/9)<Math.abs(n-4/3))return St;return Tt}(e,t,i);let{encoding:a}=s[0];const o=Math.max(t,i);for(let e=0;e<s.length;e+=1){const t=s[e];if(a=t.encoding,t.width>=o)break}if(n)switch(n){case"av1":a=Object.assign({},a),a.maxBitrate=.7*a.maxBitrate;break;case"vp9":a=Object.assign({},a),a.maxBitrate=.85*a.maxBitrate}return a}(e,t,i,l),p.debug("using video encoding",o));const h=new VideoPreset(t,i,o.maxBitrate,o.maxFramerate,o.priority);if(u&&isSVCCodec(l)){p.debug("using svc with scalabilityMode ".concat(u));const e=new ScalabilityMode(u),t=[];if(e.spatial>3)throw new Error("unsupported scalabilityMode: ".concat(u));for(let i=0;i<e.spatial;i+=1)t.push({rid:Et[2-i],maxBitrate:o.maxBitrate/Math.pow(3,i),maxFramerate:h.encoding.maxFramerate});return t[0].scalabilityMode=u,p.debug("encodings",t),t}if(!c)return[o];let m,g=[];if(g=e?null!==(s=sortPresets(null==n?void 0:n.screenShareSimulcastLayers))&&void 0!==s?s:defaultSimulcastLayers(e,h):null!==(a=sortPresets(null==n?void 0:n.videoSimulcastLayers))&&void 0!==a?a:defaultSimulcastLayers(e,h),g.length>0){const e=g[0];g.length>1&&([,m]=g);const n=Math.max(t,i);if(n>=960&&m)return encodingsFromPresets(t,i,[e,m,h]);if(n>=480)return encodingsFromPresets(t,i,[e,h])}return encodingsFromPresets(t,i,[h])}function computeTrackBackupEncodings(e,t,i){var n,s,a,o;if(!i.backupCodec||i.backupCodec.codec===i.videoCodec)return;t!==i.backupCodec.codec&&p.warn("requested a different codec than specified as backup",{serverRequested:t,backup:i.backupCodec.codec}),i.videoCodec=t,i.videoEncoding=i.backupCodec.encoding;const c=e.mediaStreamTrack.getSettings(),u=null!==(n=c.width)&&void 0!==n?n:null===(s=e.dimensions)||void 0===s?void 0:s.width,l=null!==(a=c.height)&&void 0!==a?a:null===(o=e.dimensions)||void 0===o?void 0:o.height;return computeVideoEncodings(e.source===Track.Source.ScreenShare,u,l,i)}function defaultSimulcastLayers(e,t){if(e)return i=t,[{scaleResolutionDownBy:2,fps:3}].map((e=>{var t;return new VideoPreset(Math.floor(i.width/e.scaleResolutionDownBy),Math.floor(i.height/e.scaleResolutionDownBy),Math.max(15e4,Math.floor(i.encoding.maxBitrate/(Math.pow(e.scaleResolutionDownBy,2)*((null!==(t=i.encoding.maxFramerate)&&void 0!==t?t:30)/e.fps)))),e.fps,i.encoding.priority)}));var i;const{width:n,height:s}=t,a=n>s?n/s:s/n;return Math.abs(a-16/9)<Math.abs(a-4/3)?Ct:wt}function encodingsFromPresets(e,t,i){const n=[];if(i.forEach(((i,s)=>{if(s>=Et.length)return;const a=Math.min(e,t),o={rid:Et[s],scaleResolutionDownBy:Math.max(1,a/Math.min(i.width,i.height)),maxBitrate:i.encoding.maxBitrate};i.encoding.maxFramerate&&(o.maxFramerate=i.encoding.maxFramerate);const c=isFireFox()||0===s;i.encoding.priority&&c&&(o.priority=i.encoding.priority,o.networkPriority=i.encoding.priority),n.push(o)})),isReactNative()&&"ios"===getReactNativeOs()){let e;n.forEach((t=>{e?t.maxFramerate&&t.maxFramerate>e&&(e=t.maxFramerate):e=t.maxFramerate}));let t=!0;n.forEach((i=>{var n;i.maxFramerate!=e&&(t&&(t=!1,p.info("Simulcast on iOS React-Native requires all encodings to share the same framerate.")),p.info('Setting framerate of encoding "'.concat(null!==(n=i.rid)&&void 0!==n?n:"",'" to ').concat(e)),i.maxFramerate=e)}))}return n}function sortPresets(e){if(e)return e.sort(((e,t)=>{const{encoding:i}=e,{encoding:n}=t;return i.maxBitrate>n.maxBitrate?1:i.maxBitrate<n.maxBitrate?-1:i.maxBitrate===n.maxBitrate&&i.maxFramerate&&n.maxFramerate?i.maxFramerate>n.maxFramerate?1:-1:0}))}class ScalabilityMode{constructor(e){const t=e.match(/^L(\d)T(\d)(h|_KEY|_KEY_SHIFT){0,1}$/);if(!t)throw new Error("invalid scalability mode");if(this.spatial=parseInt(t[1]),this.temporal=parseInt(t[2]),t.length>3)switch(t[3]){case"h":case"_KEY":case"_KEY_SHIFT":this.suffix=t[3]}}toString(){var e;return"L".concat(this.spatial,"T").concat(this.temporal).concat(null!==(e=this.suffix)&&void 0!==e?e:"")}}class LocalVideoTrack extends LocalTrack{constructor(e,t){let i=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,Track.Kind.Video,t,i),this.simulcastCodecs=new Map,this.monitorSender=()=>__awaiter(this,void 0,void 0,(function*(){if(!this.sender)return void(this._currentBitrate=0);let e;try{e=yield this.getSenderStats()}catch(e){return void p.error("could not get audio sender stats",{error:e})}const t=new Map(e.map((e=>[e.rid,e])));if(this.prevStats){let e=0;t.forEach(((t,i)=>{var n;const s=null===(n=this.prevStats)||void 0===n?void 0:n.get(i);e+=computeBitrate(t,s)})),this._currentBitrate=e}this.prevStats=t})),this.senderLock=new Mutex}get isSimulcast(){return!!(this.sender&&this.sender.getParameters().encodings.length>1)}startMonitor(e){var t;if(this.signalClient=e,!isWeb())return;const i=null===(t=this.sender)||void 0===t?void 0:t.getParameters();i&&(this.encodings=i.encodings),this.monitorInterval||(this.monitorInterval=setInterval((()=>{this.monitorSender()}),yt))}stop(){this._mediaStreamTrack.getConstraints(),this.simulcastCodecs.forEach((e=>{e.mediaStreamTrack.stop()})),super.stop()}pauseUpstream(){const e=Object.create(null,{pauseUpstream:{get:()=>super.pauseUpstream}});var t,i,n,s,a;return __awaiter(this,void 0,void 0,(function*(){yield e.pauseUpstream.call(this);try{for(var o,c=!0,u=__asyncValues(this.simulcastCodecs.values());o=yield u.next(),!(t=o.done);c=!0){s=o.value,c=!1;const e=s;yield null===(a=e.sender)||void 0===a?void 0:a.replaceTrack(null)}}catch(e){i={error:e}}finally{try{c||t||!(n=u.return)||(yield n.call(u))}finally{if(i)throw i.error}}}))}resumeUpstream(){const e=Object.create(null,{resumeUpstream:{get:()=>super.resumeUpstream}});var t,i,n,s,a;return __awaiter(this,void 0,void 0,(function*(){yield e.resumeUpstream.call(this);try{for(var o,c=!0,u=__asyncValues(this.simulcastCodecs.values());o=yield u.next(),!(t=o.done);c=!0){s=o.value,c=!1;const e=s;yield null===(a=e.sender)||void 0===a?void 0:a.replaceTrack(e.mediaStreamTrack)}}catch(e){i={error:e}}finally{try{c||t||!(n=u.return)||(yield n.call(u))}finally{if(i)throw i.error}}}))}mute(){const e=Object.create(null,{mute:{get:()=>super.mute}});return __awaiter(this,void 0,void 0,(function*(){const t=yield this.muteLock.lock();try{return this.source!==Track.Source.Camera||this.isUserProvided||(p.debug("stopping camera track"),this._mediaStreamTrack.stop()),yield e.mute.call(this),this}finally{t()}}))}unmute(){const e=Object.create(null,{unmute:{get:()=>super.unmute}});return __awaiter(this,void 0,void 0,(function*(){const t=yield this.muteLock.lock();try{return this.source!==Track.Source.Camera||this.isUserProvided||(p.debug("reacquiring camera track"),yield this.restartTrack()),yield e.unmute.call(this),this}finally{t()}}))}setTrackMuted(e){super.setTrackMuted(e);for(const t of this.simulcastCodecs.values())t.mediaStreamTrack.enabled=!e}getSenderStats(){var e;return __awaiter(this,void 0,void 0,(function*(){if(!(null===(e=this.sender)||void 0===e?void 0:e.getStats))return[];const t=[],i=yield this.sender.getStats();return i.forEach((e=>{var n;if("outbound-rtp"===e.type){const s={type:"video",streamId:e.id,frameHeight:e.frameHeight,frameWidth:e.frameWidth,firCount:e.firCount,pliCount:e.pliCount,nackCount:e.nackCount,packetsSent:e.packetsSent,bytesSent:e.bytesSent,framesSent:e.framesSent,timestamp:e.timestamp,rid:null!==(n=e.rid)&&void 0!==n?n:e.id,retransmittedPacketsSent:e.retransmittedPacketsSent,qualityLimitationReason:e.qualityLimitationReason,qualityLimitationResolutionChanges:e.qualityLimitationResolutionChanges},a=i.get(e.remoteId);a&&(s.jitter=a.jitter,s.packetsLost=a.packetsLost,s.roundTripTime=a.roundTripTime),t.push(s)}})),t}))}setPublishingQuality(e){const t=[];for(let i=N.LOW;i<=N.HIGH;i+=1)t.push(new SubscribedQuality({quality:i,enabled:i<=e}));p.debug("setting publishing quality. max quality ".concat(e)),this.setPublishingLayers(t)}setDeviceId(e){return __awaiter(this,void 0,void 0,(function*(){return this._constraints.deviceId===e&&this._mediaStreamTrack.getSettings().deviceId===unwrapConstraint(e)||(this._constraints.deviceId=e,this.isMuted||(yield this.restartTrack()),this.isMuted||unwrapConstraint(e)===this._mediaStreamTrack.getSettings().deviceId)}))}restartTrack(e){var t,i,n,s;return __awaiter(this,void 0,void 0,(function*(){let a;if(e){const t=constraintsForOptions({video:e});"boolean"!=typeof t.video&&(a=t.video)}yield this.restart(a);try{for(var o,c=!0,u=__asyncValues(this.simulcastCodecs.values());o=yield u.next(),!(t=o.done);c=!0){s=o.value,c=!1;const e=s;e.sender&&(e.mediaStreamTrack=this.mediaStreamTrack.clone(),yield e.sender.replaceTrack(e.mediaStreamTrack))}}catch(e){i={error:e}}finally{try{c||t||!(n=u.return)||(yield n.call(u))}finally{if(i)throw i.error}}}))}setProcessor(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];const i=Object.create(null,{setProcessor:{get:()=>super.setProcessor}});var n,s,a,o,c,u;return __awaiter(this,void 0,void 0,(function*(){if(yield i.setProcessor.call(this,e,t),null===(c=this.processor)||void 0===c?void 0:c.processedTrack)try{for(var l,h=!0,p=__asyncValues(this.simulcastCodecs.values());l=yield p.next(),!(n=l.done);h=!0){o=l.value,h=!1;const e=o;yield null===(u=e.sender)||void 0===u?void 0:u.replaceTrack(this.processor.processedTrack)}}catch(e){s={error:e}}finally{try{h||n||!(a=p.return)||(yield a.call(p))}finally{if(s)throw s.error}}}))}addSimulcastTrack(e,t){if(this.simulcastCodecs.has(e))throw new Error("".concat(e," already added"));const i={codec:e,mediaStreamTrack:this.mediaStreamTrack.clone(),sender:void 0,encodings:t};return this.simulcastCodecs.set(e,i),i}setSimulcastTrackSender(e,t){const i=this.simulcastCodecs.get(e);i&&(i.sender=t,setTimeout((()=>{this.subscribedCodecs&&this.setPublishingCodecs(this.subscribedCodecs)}),5e3))}setPublishingCodecs(e){var t,i,n,s,a,o,c;return __awaiter(this,void 0,void 0,(function*(){if(p.debug("setting publishing codecs",{codecs:e,currentCodec:this.codec}),!this.codec&&e.length>0)return yield this.setPublishingLayers(e[0].qualities),[];this.subscribedCodecs=e;const u=[];try{for(t=!0,i=__asyncValues(e);n=yield i.next(),!(s=n.done);t=!0){c=n.value,t=!1;const e=c;if(this.codec&&this.codec!==e.codec){const t=this.simulcastCodecs.get(e.codec);if(p.debug("try setPublishingCodec for ".concat(e.codec),t),t&&t.sender)t.encodings&&(p.debug("try setPublishingLayersForSender ".concat(e.codec)),yield setPublishingLayersForSender(t.sender,t.encodings,e.qualities,this.senderLock));else for(const t of e.qualities)if(t.enabled){u.push(e.codec);break}}else yield this.setPublishingLayers(e.qualities)}}catch(e){a={error:e}}finally{try{t||s||!(o=i.return)||(yield o.call(i))}finally{if(a)throw a.error}}return u}))}setPublishingLayers(e){return __awaiter(this,void 0,void 0,(function*(){p.debug("setting publishing layers",e),this.sender&&this.encodings&&(yield setPublishingLayersForSender(this.sender,this.encodings,e,this.senderLock))}))}handleAppVisibilityChanged(){const e=Object.create(null,{handleAppVisibilityChanged:{get:()=>super.handleAppVisibilityChanged}});return __awaiter(this,void 0,void 0,(function*(){yield e.handleAppVisibilityChanged.call(this),isMobile()&&this.isInBackground&&this.source===Track.Source.Camera&&(this._mediaStreamTrack.enabled=!1)}))}}function setPublishingLayersForSender(e,t,i,n){return __awaiter(this,void 0,void 0,(function*(){const s=yield n.lock();p.debug("setPublishingLayersForSender",{sender:e,qualities:i,senderEncodings:t});try{const n=e.getParameters(),{encodings:a}=n;if(!a)return;if(a.length!==t.length)return void p.warn("cannot set publishing layers, encodings mismatch");let o=!1;!1&&a[0].scalabilityMode||a.forEach(((e,n)=>{var s;let a=null!==(s=e.rid)&&void 0!==s?s:"";""===a&&(a="q");const c=videoQualityForRid(a),u=i.find((e=>e.quality===c));u&&e.active!==u.enabled&&(o=!0,e.active=u.enabled,p.debug("setting layer ".concat(u.quality," to ").concat(e.active?"enabled":"disabled")),isFireFox()&&(u.enabled?(e.scaleResolutionDownBy=t[n].scaleResolutionDownBy,e.maxBitrate=t[n].maxBitrate,e.maxFrameRate=t[n].maxFrameRate):(e.scaleResolutionDownBy=4,e.maxBitrate=10,e.maxFrameRate=2)))})),o&&(n.encodings=a,p.debug("setting encodings",n.encodings),yield e.setParameters(n))}finally{s()}}))}function videoQualityForRid(e){switch(e){case"f":default:return N.HIGH;case"h":return N.MEDIUM;case"q":return N.LOW}}function videoLayersFromEncodings(e,t,i,n){if(!i)return[new VideoLayer({quality:N.HIGH,width:e,height:t,bitrate:0,ssrc:0})];if(n){const n=i[0].scalabilityMode,s=new ScalabilityMode(n),a=[];for(let n=0;n<s.spatial;n+=1)a.push(new VideoLayer({quality:N.HIGH-n,width:Math.ceil(e/Math.pow(2,n)),height:Math.ceil(t/Math.pow(2,n)),bitrate:i[0].maxBitrate?Math.ceil(i[0].maxBitrate/Math.pow(3,n)):0,ssrc:0}));return a}return i.map((i=>{var n,s,a;const o=null!==(n=i.scaleResolutionDownBy)&&void 0!==n?n:1;let c=videoQualityForRid(null!==(s=i.rid)&&void 0!==s?s:"");return new VideoLayer({quality:c,width:Math.ceil(e/o),height:Math.ceil(t/o),bitrate:null!==(a=i.maxBitrate)&&void 0!==a?a:0,ssrc:0})}))}class RemoteTrack extends Track{constructor(e,t,i,n){super(e,i),this.sid=t,this.receiver=n}setMuted(e){this.isMuted!==e&&(this.isMuted=e,this._mediaStreamTrack.enabled=!e,this.emit(e?Me.Muted:Me.Unmuted,this))}setMediaStream(e){this.mediaStream=e,e.onremovetrack=()=>{this.receiver=void 0,this._currentBitrate=0,this.emit(Me.Ended,this)}}start(){this.startMonitor(),super.enable()}stop(){this.stopMonitor(),super.disable()}startMonitor(){this.monitorInterval||(this.monitorInterval=setInterval((()=>this.monitorReceiver()),yt))}}class RemoteAudioTrack extends RemoteTrack{constructor(e,t,i,n,s){super(e,t,Track.Kind.Audio,i),this.monitorReceiver=()=>__awaiter(this,void 0,void 0,(function*(){if(!this.receiver)return void(this._currentBitrate=0);const e=yield this.getReceiverStats();e&&this.prevStats&&this.receiver&&(this._currentBitrate=computeBitrate(e,this.prevStats)),this.prevStats=e})),this.audioContext=n,this.webAudioPluginNodes=[],s&&(this.sinkId=s.deviceId)}setVolume(e){var t;for(const i of this.attachedElements)this.audioContext?null===(t=this.gainNode)||void 0===t||t.gain.setTargetAtTime(e,0,.1):i.volume=e;isReactNative()&&this._mediaStreamTrack._setVolume(e),this.elementVolume=e}getVolume(){if(this.elementVolume)return this.elementVolume;if(isReactNative())return 1;let e=0;return this.attachedElements.forEach((t=>{t.volume>e&&(e=t.volume)})),e}setSinkId(e){return __awaiter(this,void 0,void 0,(function*(){this.sinkId=e,yield Promise.all(this.attachedElements.map((t=>{if(supportsSetSinkId(t))return t.setSinkId(e)})))}))}attach(e){const t=0===this.attachedElements.length;return e?super.attach(e):e=super.attach(),this.elementVolume&&(e.volume=this.elementVolume),this.sinkId&&supportsSetSinkId(e)&&e.setSinkId(this.sinkId),this.audioContext&&t&&(p.debug("using audio context mapping"),this.connectWebAudio(this.audioContext,e),e.volume=0,e.muted=!0),e}detach(e){let t;return e?(t=super.detach(e),this.audioContext&&(this.attachedElements.length>0?this.connectWebAudio(this.audioContext,this.attachedElements[0]):this.disconnectWebAudio())):(t=super.detach(),this.disconnectWebAudio()),t}setAudioContext(e){this.audioContext=e,e&&this.attachedElements.length>0?this.connectWebAudio(e,this.attachedElements[0]):e||this.disconnectWebAudio()}setWebAudioPlugins(e){this.webAudioPluginNodes=e,this.attachedElements.length>0&&this.audioContext&&this.connectWebAudio(this.audioContext,this.attachedElements[0])}connectWebAudio(e,t){this.disconnectWebAudio(),this.sourceNode=e.createMediaStreamSource(t.srcObject);let i=this.sourceNode;this.webAudioPluginNodes.forEach((e=>{i.connect(e),i=e})),this.gainNode=e.createGain(),i.connect(this.gainNode),this.gainNode.connect(e.destination),this.elementVolume&&this.gainNode.gain.setTargetAtTime(this.elementVolume,0,.1),"running"!==e.state&&e.resume().then((()=>{"running"!==e.state&&this.emit(Me.AudioPlaybackFailed,new Error("Audio Context couldn't be started automatically"))})).catch((e=>{this.emit(Me.AudioPlaybackFailed,e)}))}disconnectWebAudio(){var e,t;null===(e=this.gainNode)||void 0===e||e.disconnect(),null===(t=this.sourceNode)||void 0===t||t.disconnect(),this.gainNode=void 0,this.sourceNode=void 0}getReceiverStats(){return __awaiter(this,void 0,void 0,(function*(){if(!this.receiver||!this.receiver.getStats)return;let e;return(yield this.receiver.getStats()).forEach((t=>{"inbound-rtp"===t.type&&(e={type:"audio",timestamp:t.timestamp,jitter:t.jitter,bytesReceived:t.bytesReceived,concealedSamples:t.concealedSamples,concealmentEvents:t.concealmentEvents,silentConcealedSamples:t.silentConcealedSamples,silentConcealmentEvents:t.silentConcealmentEvents,totalAudioEnergy:t.totalAudioEnergy,totalSamplesDuration:t.totalSamplesDuration})})),e}))}}class RemoteVideoTrack extends RemoteTrack{constructor(e,t,i,n){super(e,t,Track.Kind.Video,i),this.elementInfos=[],this.monitorReceiver=()=>__awaiter(this,void 0,void 0,(function*(){if(!this.receiver)return void(this._currentBitrate=0);const e=yield this.getReceiverStats();e&&this.prevStats&&this.receiver&&(this._currentBitrate=computeBitrate(e,this.prevStats)),this.prevStats=e})),this.debouncedHandleResize=r((()=>{this.updateDimensions()}),100),this.adaptiveStreamSettings=n}get isAdaptiveStream(){return void 0!==this.adaptiveStreamSettings}get mediaStreamTrack(){return this._mediaStreamTrack}setMuted(e){super.setMuted(e),this.attachedElements.forEach((t=>{e?detachTrack(this._mediaStreamTrack,t):attachToElement(this._mediaStreamTrack,t)}))}attach(e){if(e?super.attach(e):e=super.attach(),this.adaptiveStreamSettings&&void 0===this.elementInfos.find((t=>t.element===e))){const t=new HTMLElementInfo(e);this.observeElementInfo(t)}return e}observeElementInfo(e){this.adaptiveStreamSettings&&void 0===this.elementInfos.find((t=>t===e))?(e.handleResize=()=>{this.debouncedHandleResize()},e.handleVisibilityChanged=()=>{this.updateVisibility()},this.elementInfos.push(e),e.observe(),this.debouncedHandleResize(),this.updateVisibility()):p.warn("visibility resize observer not triggered")}stopObservingElementInfo(e){if(!this.isAdaptiveStream)return void p.warn("stopObservingElementInfo ignored");const t=this.elementInfos.filter((t=>t===e));for(const e of t)e.stopObserving();this.elementInfos=this.elementInfos.filter((t=>t!==e)),this.updateVisibility(),this.debouncedHandleResize()}detach(e){let t=[];if(e)return this.stopObservingElement(e),super.detach(e);t=super.detach();for(const e of t)this.stopObservingElement(e);return t}getDecoderImplementation(){var e;return null===(e=this.prevStats)||void 0===e?void 0:e.decoderImplementation}getReceiverStats(){return __awaiter(this,void 0,void 0,(function*(){if(!this.receiver||!this.receiver.getStats)return;let e;return(yield this.receiver.getStats()).forEach((t=>{"inbound-rtp"===t.type&&(e={type:"video",framesDecoded:t.framesDecoded,framesDropped:t.framesDropped,framesReceived:t.framesReceived,packetsReceived:t.packetsReceived,packetsLost:t.packetsLost,frameWidth:t.frameWidth,frameHeight:t.frameHeight,pliCount:t.pliCount,firCount:t.firCount,nackCount:t.nackCount,jitter:t.jitter,timestamp:t.timestamp,bytesReceived:t.bytesReceived,decoderImplementation:t.decoderImplementation})})),e}))}stopObservingElement(e){const t=this.elementInfos.filter((t=>t.element===e));for(const e of t)this.stopObservingElementInfo(e)}handleAppVisibilityChanged(){const e=Object.create(null,{handleAppVisibilityChanged:{get:()=>super.handleAppVisibilityChanged}});return __awaiter(this,void 0,void 0,(function*(){yield e.handleAppVisibilityChanged.call(this),this.isAdaptiveStream&&this.updateVisibility()}))}updateVisibility(){var e,t;const i=this.elementInfos.reduce(((e,t)=>Math.max(e,t.visibilityChangedAt||0)),0),n=!(null!==(t=null===(e=this.adaptiveStreamSettings)||void 0===e?void 0:e.pauseVideoInBackground)&&void 0!==t&&!t)&&this.isInBackground,s=this.elementInfos.some((e=>e.pictureInPicture)),a=this.elementInfos.some((e=>e.visible))&&!n||s;this.lastVisible!==a&&(!a&&Date.now()-i<100?CriticalTimers.setTimeout((()=>{this.updateVisibility()}),100):(this.lastVisible=a,this.emit(Me.VisibilityChanged,a,this)))}updateDimensions(){var e,t;let i=0,n=0;const s=this.getPixelDensity();for(const e of this.elementInfos){const t=e.width()*s,a=e.height()*s;t+a>i+n&&(i=t,n=a)}(null===(e=this.lastDimensions)||void 0===e?void 0:e.width)===i&&(null===(t=this.lastDimensions)||void 0===t?void 0:t.height)===n||(this.lastDimensions={width:i,height:n},this.emit(Me.VideoDimensionsChanged,this.lastDimensions,this))}getPixelDensity(){var e;const t=null===(e=this.adaptiveStreamSettings)||void 0===e?void 0:e.pixelDensity;if("screen"===t)return getDevicePixelRatio();if(!t){return getDevicePixelRatio()>2?2:1}return t}}class HTMLElementInfo{get visible(){return this.isPiP||this.isIntersecting}get pictureInPicture(){return this.isPiP}constructor(e,t){this.onVisibilityChanged=e=>{var t;const{target:i,isIntersecting:n}=e;i===this.element&&(this.isIntersecting=n,this.visibilityChangedAt=Date.now(),null===(t=this.handleVisibilityChanged)||void 0===t||t.call(this))},this.onEnterPiP=()=>{var e;this.isPiP=!0,null===(e=this.handleVisibilityChanged)||void 0===e||e.call(this)},this.onLeavePiP=()=>{var e;this.isPiP=!1,null===(e=this.handleVisibilityChanged)||void 0===e||e.call(this)},this.element=e,this.isIntersecting=null!=t?t:isElementInViewport(e),this.isPiP=isWeb()&&document.pictureInPictureElement===e,this.visibilityChangedAt=0}width(){return this.element.clientWidth}height(){return this.element.clientHeight}observe(){this.isIntersecting=isElementInViewport(this.element),this.isPiP=document.pictureInPictureElement===this.element,this.element.handleResize=()=>{var e;null===(e=this.handleResize)||void 0===e||e.call(this)},this.element.handleVisibilityChanged=this.onVisibilityChanged,getIntersectionObserver().observe(this.element),getResizeObserver().observe(this.element),this.element.addEventListener("enterpictureinpicture",this.onEnterPiP),this.element.addEventListener("leavepictureinpicture",this.onLeavePiP)}stopObserving(){var e,t;null===(e=getIntersectionObserver())||void 0===e||e.unobserve(this.element),null===(t=getResizeObserver())||void 0===t||t.unobserve(this.element),this.element.removeEventListener("enterpictureinpicture",this.onEnterPiP),this.element.removeEventListener("leavepictureinpicture",this.onLeavePiP)}}function isElementInViewport(e){let t=e.offsetTop,i=e.offsetLeft;const n=e.offsetWidth,s=e.offsetHeight,{hidden:a}=e,{opacity:o,display:c}=getComputedStyle(e);for(;e.offsetParent;)t+=(e=e.offsetParent).offsetTop,i+=e.offsetLeft;return t<window.pageYOffset+window.innerHeight&&i<window.pageXOffset+window.innerWidth&&t+s>window.pageYOffset&&i+n>window.pageXOffset&&!a&&(""===o||parseFloat(o)>0)&&"none"!==c}class TrackPublication extends ie.EventEmitter{constructor(e,t,i){super(),this.metadataMuted=!1,this.encryption=W.NONE,this.handleMuted=()=>{this.emit(Me.Muted)},this.handleUnmuted=()=>{this.emit(Me.Unmuted)},this.setMaxListeners(100),this.kind=e,this.trackSid=t,this.trackName=i,this.source=Track.Source.Unknown}setTrack(e){this.track&&(this.track.off(Me.Muted,this.handleMuted),this.track.off(Me.Unmuted,this.handleUnmuted)),this.track=e,e&&(e.on(Me.Muted,this.handleMuted),e.on(Me.Unmuted,this.handleUnmuted))}get isMuted(){return this.metadataMuted}get isEnabled(){return!0}get isSubscribed(){return void 0!==this.track}get isEncrypted(){return this.encryption!==W.NONE}get audioTrack(){if(this.track instanceof LocalAudioTrack||this.track instanceof RemoteAudioTrack)return this.track}get videoTrack(){if(this.track instanceof LocalVideoTrack||this.track instanceof RemoteVideoTrack)return this.track}updateInfo(e){this.trackSid=e.sid,this.trackName=e.name,this.source=Track.sourceFromProto(e.source),this.mimeType=e.mimeType,this.kind===Track.Kind.Video&&e.width>0&&(this.dimensions={width:e.width,height:e.height},this.simulcasted=e.simulcast),this.encryption=e.encryption,this.trackInfo=e,p.debug("update publication info",{info:e})}}!function(e){var t,i;(t=e.SubscriptionStatus||(e.SubscriptionStatus={})).Desired="desired",t.Subscribed="subscribed",t.Unsubscribed="unsubscribed",(i=e.PermissionStatus||(e.PermissionStatus={})).Allowed="allowed",i.NotAllowed="not_allowed"}(TrackPublication||(TrackPublication={}));class LocalTrackPublication extends TrackPublication{get isUpstreamPaused(){var e;return null===(e=this.track)||void 0===e?void 0:e.isUpstreamPaused}constructor(e,t,i){super(e,t.sid,t.name),this.track=void 0,this.handleTrackEnded=()=>{this.emit(Me.Ended)},this.updateInfo(t),this.setTrack(i)}setTrack(e){this.track&&this.track.off(Me.Ended,this.handleTrackEnded),super.setTrack(e),e&&e.on(Me.Ended,this.handleTrackEnded)}get isMuted(){return this.track?this.track.isMuted:super.isMuted}get audioTrack(){return super.audioTrack}get videoTrack(){return super.videoTrack}mute(){var e;return __awaiter(this,void 0,void 0,(function*(){return null===(e=this.track)||void 0===e?void 0:e.mute()}))}unmute(){var e;return __awaiter(this,void 0,void 0,(function*(){return null===(e=this.track)||void 0===e?void 0:e.unmute()}))}pauseUpstream(){var e;return __awaiter(this,void 0,void 0,(function*(){yield null===(e=this.track)||void 0===e?void 0:e.pauseUpstream()}))}resumeUpstream(){var e;return __awaiter(this,void 0,void 0,(function*(){yield null===(e=this.track)||void 0===e?void 0:e.resumeUpstream()}))}}var Pt,Rt;!function(e){e.Excellent="excellent",e.Good="good",e.Poor="poor",e.Unknown="unknown"}(Pt||(Pt={}));class Participant extends ie.EventEmitter{get isEncrypted(){return this.tracks.size>0&&Array.from(this.tracks.values()).every((e=>e.isEncrypted))}constructor(e,t,i,n){super(),this.audioLevel=0,this.isSpeaking=!1,this._connectionQuality=Pt.Unknown,this.setMaxListeners(100),this.sid=e,this.identity=t,this.name=i,this.metadata=n,this.audioTracks=new Map,this.videoTracks=new Map,this.tracks=new Map}getTracks(){return Array.from(this.tracks.values())}getTrack(e){for(const[,t]of this.tracks)if(t.source===e)return t}getTrackByName(e){for(const[,t]of this.tracks)if(t.trackName===e)return t}get connectionQuality(){return this._connectionQuality}get isCameraEnabled(){var e;const t=this.getTrack(Track.Source.Camera);return!(null===(e=null==t?void 0:t.isMuted)||void 0===e||e)}get isMicrophoneEnabled(){var e;const t=this.getTrack(Track.Source.Microphone);return!(null===(e=null==t?void 0:t.isMuted)||void 0===e||e)}get isScreenShareEnabled(){return!!this.getTrack(Track.Source.ScreenShare)}get isLocal(){return!1}get joinedAt(){return this.participantInfo?new Date(1e3*Number.parseInt(this.participantInfo.joinedAt.toString())):new Date}updateInfo(e){return!(this.participantInfo&&this.participantInfo.sid===e.sid&&this.participantInfo.version>e.version)&&(this.identity=e.identity,this.sid=e.sid,this.setName(e.name),this.setMetadata(e.metadata),e.permission&&this.setPermissions(e.permission),this.participantInfo=e,p.trace("update participant info",{info:e}),!0)}setMetadata(e){const t=this.metadata!==e,i=this.metadata;this.metadata=e,t&&this.emit(De.ParticipantMetadataChanged,i)}setName(e){const t=this.name!==e;this.name=e,t&&this.emit(De.ParticipantNameChanged,e)}setPermissions(e){var t,i,n,s,a;const o=this.permissions,c=e.canPublish!==(null===(t=this.permissions)||void 0===t?void 0:t.canPublish)||e.canSubscribe!==(null===(i=this.permissions)||void 0===i?void 0:i.canSubscribe)||e.canPublishData!==(null===(n=this.permissions)||void 0===n?void 0:n.canPublishData)||e.hidden!==(null===(s=this.permissions)||void 0===s?void 0:s.hidden)||e.recorder!==(null===(a=this.permissions)||void 0===a?void 0:a.recorder)||e.canPublishSources.length!==this.permissions.canPublishSources.length||e.canPublishSources.some(((e,t)=>{var i;return e!==(null===(i=this.permissions)||void 0===i?void 0:i.canPublishSources[t])}));return this.permissions=e,c&&this.emit(De.ParticipantPermissionsChanged,o),c}setIsSpeaking(e){e!==this.isSpeaking&&(this.isSpeaking=e,e&&(this.lastSpokeAt=new Date),this.emit(De.IsSpeakingChanged,e))}setConnectionQuality(e){const t=this._connectionQuality;this._connectionQuality=function qualityFromProto(e){switch(e){case x.EXCELLENT:return Pt.Excellent;case x.GOOD:return Pt.Good;case x.POOR:return Pt.Poor;default:return Pt.Unknown}}(e),t!==this._connectionQuality&&this.emit(De.ConnectionQualityChanged,this._connectionQuality)}setAudioContext(e){this.audioContext=e,this.audioTracks.forEach((t=>(t.track instanceof RemoteAudioTrack||t.track instanceof LocalAudioTrack)&&t.track.setAudioContext(e)))}addTrackPublication(e){e.on(Me.Muted,(()=>{this.emit(De.TrackMuted,e)})),e.on(Me.Unmuted,(()=>{this.emit(De.TrackUnmuted,e)}));const t=e;switch(t.track&&(t.track.sid=e.trackSid),this.tracks.set(e.trackSid,e),e.kind){case Track.Kind.Audio:this.audioTracks.set(e.trackSid,e);break;case Track.Kind.Video:this.videoTracks.set(e.trackSid,e)}}}class RemoteTrackPublication extends TrackPublication{constructor(e,t,i){super(e,t.sid,t.name),this.track=void 0,this.allowed=!0,this.disabled=!1,this.currentVideoQuality=N.HIGH,this.handleEnded=e=>{this.setTrack(void 0),this.emit(Me.Ended,e)},this.handleVisibilityChange=e=>{p.debug("adaptivestream video visibility ".concat(this.trackSid,", visible=").concat(e),{trackSid:this.trackSid}),this.disabled=!e,this.emitTrackUpdate()},this.handleVideoDimensionsChange=e=>{p.debug("adaptivestream video dimensions ".concat(e.width,"x").concat(e.height),{trackSid:this.trackSid}),this.videoDimensions=e,this.emitTrackUpdate()},this.subscribed=i,this.updateInfo(t)}setSubscribed(e){const t=this.subscriptionStatus,i=this.permissionStatus;this.subscribed=e,e&&(this.allowed=!0);const n=new UpdateSubscription({trackSids:[this.trackSid],subscribe:this.subscribed,participantTracks:[new ParticipantTracks({participantSid:"",trackSids:[this.trackSid]})]});this.emit(Me.UpdateSubscription,n),this.emitSubscriptionUpdateIfChanged(t),this.emitPermissionUpdateIfChanged(i)}get subscriptionStatus(){return!1===this.subscribed?TrackPublication.SubscriptionStatus.Unsubscribed:super.isSubscribed?TrackPublication.SubscriptionStatus.Subscribed:TrackPublication.SubscriptionStatus.Desired}get permissionStatus(){return this.allowed?TrackPublication.PermissionStatus.Allowed:TrackPublication.PermissionStatus.NotAllowed}get isSubscribed(){return!1!==this.subscribed&&super.isSubscribed}get isDesired(){return!1!==this.subscribed}get isEnabled(){return!this.disabled}setEnabled(e){this.isManualOperationAllowed()&&this.disabled!==!e&&(this.disabled=!e,this.emitTrackUpdate())}setVideoQuality(e){this.isManualOperationAllowed()&&this.currentVideoQuality!==e&&(this.currentVideoQuality=e,this.videoDimensions=void 0,this.emitTrackUpdate())}setVideoDimensions(e){var t,i;this.isManualOperationAllowed()&&((null===(t=this.videoDimensions)||void 0===t?void 0:t.width)===e.width&&(null===(i=this.videoDimensions)||void 0===i?void 0:i.height)===e.height||(this.track instanceof RemoteVideoTrack&&(this.videoDimensions=e),this.currentVideoQuality=void 0,this.emitTrackUpdate()))}setVideoFPS(e){this.isManualOperationAllowed()&&this.track instanceof RemoteVideoTrack&&this.fps!==e&&(this.fps=e,this.emitTrackUpdate())}get videoQuality(){return this.currentVideoQuality}setTrack(e){const t=this.subscriptionStatus,i=this.permissionStatus,n=this.track;n!==e&&(n&&(n.off(Me.VideoDimensionsChanged,this.handleVideoDimensionsChange),n.off(Me.VisibilityChanged,this.handleVisibilityChange),n.off(Me.Ended,this.handleEnded),n.detach(),n.stopMonitor(),this.emit(Me.Unsubscribed,n)),super.setTrack(e),e&&(e.sid=this.trackSid,e.on(Me.VideoDimensionsChanged,this.handleVideoDimensionsChange),e.on(Me.VisibilityChanged,this.handleVisibilityChange),e.on(Me.Ended,this.handleEnded),this.emit(Me.Subscribed,e)),this.emitPermissionUpdateIfChanged(i),this.emitSubscriptionUpdateIfChanged(t))}setAllowed(e){const t=this.subscriptionStatus,i=this.permissionStatus;this.allowed=e,this.emitPermissionUpdateIfChanged(i),this.emitSubscriptionUpdateIfChanged(t)}setSubscriptionError(e){this.emit(Me.SubscriptionFailed,e)}updateInfo(e){super.updateInfo(e);const t=this.metadataMuted;this.metadataMuted=e.muted,this.track?this.track.setMuted(e.muted):t!==e.muted&&this.emit(e.muted?Me.Muted:Me.Unmuted)}emitSubscriptionUpdateIfChanged(e){const t=this.subscriptionStatus;e!==t&&this.emit(Me.SubscriptionStatusChanged,t,e)}emitPermissionUpdateIfChanged(e){this.permissionStatus!==e&&this.emit(Me.SubscriptionPermissionChanged,this.permissionStatus,e)}isManualOperationAllowed(){return this.kind===Track.Kind.Video&&this.isAdaptiveStream?(p.warn("adaptive stream is enabled, cannot change video track settings",{trackSid:this.trackSid}),!1):!!this.isDesired||(p.warn("cannot update track settings when not subscribed",{trackSid:this.trackSid}),!1)}get isAdaptiveStream(){return this.track instanceof RemoteVideoTrack&&this.track.isAdaptiveStream}emitTrackUpdate(){const e=new UpdateTrackSettings({trackSids:[this.trackSid],disabled:this.disabled,fps:this.fps});this.videoDimensions?(e.width=Math.ceil(this.videoDimensions.width),e.height=Math.ceil(this.videoDimensions.height)):void 0!==this.currentVideoQuality?e.quality=this.currentVideoQuality:e.quality=N.HIGH,this.emit(Me.UpdateSettings,e)}}class RemoteParticipant extends Participant{static fromParticipantInfo(e,t){return new RemoteParticipant(e,t.sid,t.identity,t.name,t.metadata)}constructor(e,t,i,n,s){super(t,i||"",n,s),this.signalClient=e,this.tracks=new Map,this.audioTracks=new Map,this.videoTracks=new Map,this.volumeMap=new Map}addTrackPublication(e){super.addTrackPublication(e),e.on(Me.UpdateSettings,(e=>{p.debug("send update settings",e),this.signalClient.sendUpdateTrackSettings(e)})),e.on(Me.UpdateSubscription,(e=>{e.participantTracks.forEach((e=>{e.participantSid=this.sid})),this.signalClient.sendUpdateSubscription(e)})),e.on(Me.SubscriptionPermissionChanged,(t=>{this.emit(De.TrackSubscriptionPermissionChanged,e,t)})),e.on(Me.SubscriptionStatusChanged,(t=>{this.emit(De.TrackSubscriptionStatusChanged,e,t)})),e.on(Me.Subscribed,(t=>{this.emit(De.TrackSubscribed,t,e)})),e.on(Me.Unsubscribed,(t=>{this.emit(De.TrackUnsubscribed,t,e)})),e.on(Me.SubscriptionFailed,(t=>{this.emit(De.TrackSubscriptionFailed,e.trackSid,t)}))}getTrack(e){const t=super.getTrack(e);if(t)return t}getTrackByName(e){const t=super.getTrackByName(e);if(t)return t}setVolume(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:Track.Source.Microphone;this.volumeMap.set(t,e);const i=this.getTrack(t);i&&i.track&&i.track.setVolume(e)}getVolume(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:Track.Source.Microphone;const t=this.getTrack(e);return t&&t.track?t.track.getVolume():this.volumeMap.get(e)}addSubscribedMediaTrack(e,t,i,n,s,a){let o=this.getTrackPublication(t);if(o||t.startsWith("TR")||this.tracks.forEach((t=>{o||e.kind!==t.kind.toString()||(o=t)})),!o)return 0===a?(p.error("could not find published track",{participant:this.sid,trackSid:t}),void this.emit(De.TrackSubscriptionFailed,t)):(void 0===a&&(a=20),void setTimeout((()=>{this.addSubscribedMediaTrack(e,t,i,n,s,a-1)}),150));if("ended"===e.readyState)return p.error("unable to subscribe because MediaStreamTrack is ended. Do not call MediaStreamTrack.stop()",{participant:this.sid,trackSid:t}),void this.emit(De.TrackSubscriptionFailed,t);let c;return c="video"===e.kind?new RemoteVideoTrack(e,t,n,s):new RemoteAudioTrack(e,t,n,this.audioContext,this.audioOutput),c.source=o.source,c.isMuted=o.isMuted,c.setMediaStream(i),c.start(),o.setTrack(c),this.volumeMap.has(o.source)&&c instanceof RemoteAudioTrack&&c.setVolume(this.volumeMap.get(o.source)),o}get hasMetadata(){return!!this.participantInfo}getTrackPublication(e){return this.tracks.get(e)}updateInfo(e){if(!super.updateInfo(e))return!1;const t=new Map,i=new Map;return e.tracks.forEach((n=>{var s;let a=this.getTrackPublication(n.sid);if(a)a.updateInfo(n);else{const t=Track.kindFromProto(n.type);if(!t)return;a=new RemoteTrackPublication(t,n,null===(s=this.signalClient.connectOptions)||void 0===s?void 0:s.autoSubscribe),a.updateInfo(n),i.set(n.sid,a);const o=Array.from(this.tracks.values()).find((e=>e.source===(null==a?void 0:a.source)));o&&a.source!==Track.Source.Unknown&&p.debug("received a second track publication for ".concat(this.identity," with the same source: ").concat(a.source),{oldTrack:o,newTrack:a,participant:this,participantInfo:e}),this.addTrackPublication(a)}t.set(n.sid,a)})),this.tracks.forEach((e=>{t.has(e.trackSid)||(p.trace("detected removed track on remote participant, unpublishing",{publication:e,participantSid:this.sid}),this.unpublishTrack(e.trackSid,!0))})),i.forEach((e=>{this.emit(De.TrackPublished,e)})),!0}unpublishTrack(e,t){const i=this.tracks.get(e);if(!i)return;const{track:n}=i;switch(n&&(n.stop(),i.setTrack(void 0)),this.tracks.delete(e),i.kind){case Track.Kind.Audio:this.audioTracks.delete(e);break;case Track.Kind.Video:this.videoTracks.delete(e)}t&&this.emit(De.TrackUnpublished,i)}setAudioOutput(e){return __awaiter(this,void 0,void 0,(function*(){this.audioOutput=e;const t=[];this.audioTracks.forEach((i=>{var n;i.track instanceof RemoteAudioTrack&&t.push(i.track.setSinkId(null!==(n=e.deviceId)&&void 0!==n?n:"default"))})),yield Promise.all(t)}))}emit(e){for(var t=arguments.length,i=new Array(t>1?t-1:0),n=1;n<t;n++)i[n-1]=arguments[n];return p.trace("participant event",{participant:this.sid,event:e,args:i}),super.emit(e,...i)}}class LocalParticipant extends Participant{constructor(e,t,i,n){super(e,t),this.pendingPublishing=new Set,this.pendingPublishPromises=new Map,this.participantTrackPermissions=[],this.allParticipantsAllowedToSubscribe=!0,this.encryptionType=W.NONE,this.handleReconnecting=()=>{this.reconnectFuture||(this.reconnectFuture=new Future)},this.handleReconnected=()=>{var e,t;null===(t=null===(e=this.reconnectFuture)||void 0===e?void 0:e.resolve)||void 0===t||t.call(e),this.reconnectFuture=void 0,this.updateTrackSubscriptionPermissions()},this.handleDisconnected=()=>{var e,t;this.reconnectFuture&&(this.reconnectFuture.promise.catch((e=>p.warn(e))),null===(t=null===(e=this.reconnectFuture)||void 0===e?void 0:e.reject)||void 0===t||t.call(e,"Got disconnected during reconnection attempt"),this.reconnectFuture=void 0)},this.updateTrackSubscriptionPermissions=()=>{p.debug("updating track subscription permissions",{allParticipantsAllowed:this.allParticipantsAllowedToSubscribe,participantTrackPermissions:this.participantTrackPermissions}),this.engine.client.sendUpdateSubscriptionPermissions(this.allParticipantsAllowedToSubscribe,this.participantTrackPermissions.map((e=>function trackPermissionToProto(e){var t,i,n;if(!e.participantSid&&!e.participantIdentity)throw new Error("Invalid track permission, must provide at least one of participantIdentity and participantSid");return new TrackPermission({participantIdentity:null!==(t=e.participantIdentity)&&void 0!==t?t:"",participantSid:null!==(i=e.participantSid)&&void 0!==i?i:"",allTracks:null!==(n=e.allowAll)&&void 0!==n&&n,trackSids:e.allowedTrackSids||[]})}(e))))},this.onTrackUnmuted=e=>{this.onTrackMuted(e,e.isUpstreamPaused)},this.onTrackMuted=(e,t)=>{void 0===t&&(t=!0),e.sid?this.engine.updateMuteStatus(e.sid,t):p.error("could not update mute status for unpublished track",e)},this.onTrackUpstreamPaused=e=>{p.debug("upstream paused"),this.onTrackMuted(e,!0)},this.onTrackUpstreamResumed=e=>{p.debug("upstream resumed"),this.onTrackMuted(e,e.isMuted)},this.handleSubscribedQualityUpdate=e=>__awaiter(this,void 0,void 0,(function*(){var t,i,n,s,a,o;if(!(null===(a=this.roomOptions)||void 0===a?void 0:a.dynacast))return;const c=this.videoTracks.get(e.trackSid);if(c)if(e.subscribedCodecs.length>0){if(!c.videoTrack)return;const a=yield c.videoTrack.setPublishingCodecs(e.subscribedCodecs);try{for(var u,l=!0,h=__asyncValues(a);!(t=(u=yield h.next()).done);l=!0){s=u.value,l=!1;const e=s;isBackupCodec(e)&&(p.debug("publish ".concat(e," for ").concat(c.videoTrack.sid)),yield this.publishAdditionalCodecForTrack(c.videoTrack,e,c.options))}}catch(e){i={error:e}}finally{try{l||t||!(n=h.return)||(yield n.call(h))}finally{if(i)throw i.error}}}else e.subscribedQualities.length>0&&(yield null===(o=c.videoTrack)||void 0===o?void 0:o.setPublishingLayers(e.subscribedQualities));else p.warn("received subscribed quality update for unknown track",{method:"handleSubscribedQualityUpdate",sid:e.trackSid})})),this.handleLocalTrackUnpublished=e=>{const t=this.tracks.get(e.trackSid);t?this.unpublishTrack(t.track):p.warn("received unpublished event for unknown track",{method:"handleLocalTrackUnpublished",trackSid:e.trackSid})},this.handleTrackEnded=e=>__awaiter(this,void 0,void 0,(function*(){if(e.source===Track.Source.ScreenShare||e.source===Track.Source.ScreenShareAudio)p.debug("unpublishing local track due to TrackEnded",{track:e.sid}),this.unpublishTrack(e);else if(e.isUserProvided)yield e.mute();else if(e instanceof LocalAudioTrack||e instanceof LocalVideoTrack)try{if(isWeb())try{const t=yield null===navigator||void 0===navigator?void 0:navigator.permissions.query({name:e.source===Track.Source.Camera?"camera":"microphone"});if(t&&"denied"===t.state)throw p.warn("user has revoked access to ".concat(e.source)),t.onchange=()=>{"denied"!==t.state&&(e.isMuted||e.restartTrack(),t.onchange=null)},new Error("GetUserMedia Permission denied")}catch(e){}e.isMuted||(p.debug("track ended, attempting to use a different device"),yield e.restartTrack())}catch(t){p.warn("could not restart track, muting instead"),yield e.mute()}})),this.audioTracks=new Map,this.videoTracks=new Map,this.tracks=new Map,this.engine=i,this.roomOptions=n,this.setupEngine(i),this.activeDeviceMap=new Map}get lastCameraError(){return this.cameraError}get lastMicrophoneError(){return this.microphoneError}get isE2EEEnabled(){return this.encryptionType!==W.NONE}getTrack(e){const t=super.getTrack(e);if(t)return t}getTrackByName(e){const t=super.getTrackByName(e);if(t)return t}setupEngine(e){this.engine=e,this.engine.client.onRemoteMuteChanged=(e,t)=>{const i=this.tracks.get(e);i&&i.track&&(t?i.mute():i.unmute())},this.engine.client.onSubscribedQualityUpdate=this.handleSubscribedQualityUpdate,this.engine.client.onLocalTrackUnpublished=this.handleLocalTrackUnpublished,this.engine.on(Le.Connected,this.handleReconnected).on(Le.Restarted,this.handleReconnected).on(Le.Resumed,this.handleReconnected).on(Le.Restarting,this.handleReconnecting).on(Le.Resuming,this.handleReconnecting).on(Le.Disconnected,this.handleDisconnected)}setMetadata(e){var t;super.setMetadata(e),this.engine.client.sendUpdateLocalMetadata(e,null!==(t=this.name)&&void 0!==t?t:"")}setName(e){var t;super.setName(e),this.engine.client.sendUpdateLocalMetadata(null!==(t=this.metadata)&&void 0!==t?t:"",e)}setCameraEnabled(e,t,i){return this.setTrackEnabled(Track.Source.Camera,e,t,i)}setMicrophoneEnabled(e,t,i){return this.setTrackEnabled(Track.Source.Microphone,e,t,i)}setScreenShareEnabled(e,t,i){return this.setTrackEnabled(Track.Source.ScreenShare,e,t,i)}setPermissions(e){const t=this.permissions,i=super.setPermissions(e);return i&&t&&this.emit(De.ParticipantPermissionsChanged,t),i}setE2EEEnabled(e){return __awaiter(this,void 0,void 0,(function*(){this.encryptionType=e?W.GCM:W.NONE,yield this.republishAllTracks(void 0,!1)}))}setTrackEnabled(e,t,i,n){var s,a;return __awaiter(this,void 0,void 0,(function*(){p.debug("setTrackEnabled",{source:e,enabled:t});let o=this.getTrack(e);if(t)if(o)yield o.unmute();else{let t;if(this.pendingPublishing.has(e))return void p.info("skipping duplicate published source",{source:e});this.pendingPublishing.add(e);try{switch(e){case Track.Source.Camera:t=yield this.createTracks({video:null===(s=i)||void 0===s||s});break;case Track.Source.Microphone:t=yield this.createTracks({audio:null===(a=i)||void 0===a||a});break;case Track.Source.ScreenShare:t=yield this.createScreenTracks(Object.assign({},i));break;default:throw new TrackInvalidError(e)}const c=[];for(const e of t)p.info("publishing track",{localTrack:e}),c.push(this.publishTrack(e,n));const u=yield Promise.all(c);[o]=u}catch(e){throw null==t||t.forEach((e=>{e.stop()})),e instanceof Error&&!(e instanceof TrackInvalidError)&&this.emit(De.MediaDevicesError,e),e}finally{this.pendingPublishing.delete(e)}}else if(o&&o.track)if(e===Track.Source.ScreenShare){o=yield this.unpublishTrack(o.track);const e=this.getTrack(Track.Source.ScreenShareAudio);e&&e.track&&this.unpublishTrack(e.track)}else yield o.mute();return o}))}enableCameraAndMicrophone(){return __awaiter(this,void 0,void 0,(function*(){if(!this.pendingPublishing.has(Track.Source.Camera)&&!this.pendingPublishing.has(Track.Source.Microphone)){this.pendingPublishing.add(Track.Source.Camera),this.pendingPublishing.add(Track.Source.Microphone);try{const e=yield this.createTracks({audio:!0,video:!0});yield Promise.all(e.map((e=>this.publishTrack(e))))}finally{this.pendingPublishing.delete(Track.Source.Camera),this.pendingPublishing.delete(Track.Source.Microphone)}}}))}createTracks(e){var t,i;return __awaiter(this,void 0,void 0,(function*(){const n=constraintsForOptions(mergeDefaultOptions(e,null===(t=this.roomOptions)||void 0===t?void 0:t.audioCaptureDefaults,null===(i=this.roomOptions)||void 0===i?void 0:i.videoCaptureDefaults));let s;try{s=yield navigator.mediaDevices.getUserMedia(n)}catch(e){throw e instanceof Error&&(n.audio&&(this.microphoneError=e),n.video&&(this.cameraError=e)),e}return n.audio&&(this.microphoneError=void 0),n.video&&(this.cameraError=void 0),s.getTracks().map((t=>{const i="audio"===t.kind;let a;i?e.audio:e.video;const o=i?n.audio:n.video;"boolean"!=typeof o&&(a=o);const c=mediaTrackToLocalTrack(t,a);return c.kind===Track.Kind.Video?c.source=Track.Source.Camera:c.kind===Track.Kind.Audio&&(c.source=Track.Source.Microphone),c.mediaStream=s,c}))}))}createScreenTracks(e){return __awaiter(this,void 0,void 0,(function*(){if(void 0===e&&(e={}),void 0===e.resolution&&(e.resolution=_e.h1080fps15.resolution),void 0===navigator.mediaDevices.getDisplayMedia)throw new DeviceUnsupportedError("getDisplayMedia not supported");const t=screenCaptureToDisplayMediaStreamOptions(e),i=yield navigator.mediaDevices.getDisplayMedia(t),n=i.getVideoTracks();if(0===n.length)throw new TrackInvalidError("no video track found");const s=new LocalVideoTrack(n[0],void 0,!1);s.source=Track.Source.ScreenShare;const a=[s];if(i.getAudioTracks().length>0){const e=new LocalAudioTrack(i.getAudioTracks()[0],void 0,!1,this.audioContext);e.source=Track.Source.ScreenShareAudio,a.push(e)}return a}))}publishTrack(e,t){var i,n,s,a;return __awaiter(this,void 0,void 0,(function*(){let o,c;if(yield null===(i=this.reconnectFuture)||void 0===i?void 0:i.promise,e instanceof LocalTrack&&this.pendingPublishPromises.has(e)&&(yield this.pendingPublishPromises.get(e)),e instanceof MediaStreamTrack)o=e.getConstraints();else{let t;switch(o=e.constraints,e.source){case Track.Source.Microphone:t="audioinput";break;case Track.Source.Camera:t="videoinput"}t&&this.activeDeviceMap.has(t)&&(o=Object.assign(Object.assign({},o),{deviceId:this.activeDeviceMap.get(t)}))}if(e instanceof MediaStreamTrack)switch(e.kind){case"audio":e=new LocalAudioTrack(e,o,!0,this.audioContext);break;case"video":e=new LocalVideoTrack(e,o,!0);break;default:throw new TrackInvalidError("unsupported MediaStreamTrack kind ".concat(e.kind))}if(e instanceof LocalAudioTrack&&e.setAudioContext(this.audioContext),this.tracks.forEach((t=>{t.track&&t.track===e&&(c=t)})),c)return p.warn("track has already been published, skipping"),c;const u="channelCount"in e.mediaStreamTrack.getSettings()&&2===e.mediaStreamTrack.getSettings().channelCount||2===e.mediaStreamTrack.getConstraints().channelCount,l=null!==(n=null==t?void 0:t.forceStereo)&&void 0!==n?n:u;l&&(t||(t={}),void 0===t.dtx&&p.info("Opus DTX will be disabled for stereo tracks by default. Enable them explicitly to make it work."),void 0===t.red&&p.info("Opus RED will be disabled for stereo tracks by default. Enable them explicitly to make it work."),null!==(s=t.dtx)&&void 0!==s||(t.dtx=!1),null!==(a=t.red)&&void 0!==a||(t.red=!1));const h=Object.assign(Object.assign({},this.roomOptions.publishDefaults),t);isSafari()&&this.roomOptions.e2ee&&(p.info("End-to-end encryption is set up, simulcast publishing will be disabled on Safari"),h.simulcast=!1),h.source&&(e.source=h.source);const m=this.publish(e,h,l);this.pendingPublishPromises.set(e,m);try{return yield m}catch(e){throw e}finally{this.pendingPublishPromises.delete(e)}}))}publish(e,t,i){var n,s,a,o,c,u,l,h,m,g,v,k,y,S;return __awaiter(this,void 0,void 0,(function*(){const T=Array.from(this.tracks.values()).find((t=>e instanceof LocalTrack&&t.source===e.source));if(T&&e.source!==Track.Source.Unknown)try{throw Error("publishing a second track with the same source: ".concat(e.source))}catch(t){t instanceof Error&&p.warn(t.message,{oldTrack:T,newTrack:e,trace:t.stack})}t.stopMicTrackOnMute&&e instanceof LocalAudioTrack&&(e.stopOnMute=!0),e.source===Track.Source.ScreenShare&&isFireFox()&&(t.simulcast=!1),"av1"!==t.videoCodec||supportsAV1()||(t.videoCodec=void 0),"vp9"!==t.videoCodec||supportsVP9()||(t.videoCodec=void 0),e.on(Me.Muted,this.onTrackMuted),e.on(Me.Unmuted,this.onTrackUnmuted),e.on(Me.Ended,this.handleTrackEnded),e.on(Me.UpstreamPaused,this.onTrackUpstreamPaused),e.on(Me.UpstreamResumed,this.onTrackUpstreamResumed);const b=new AddTrackRequest({cid:e.mediaStreamTrack.id,name:t.name,type:Track.kindToProto(e.kind),muted:e.isMuted,source:Track.sourceToProto(e.source),disableDtx:!(null===(n=t.dtx)||void 0===n||n),encryption:this.encryptionType,stereo:i,disableRed:!(null===(s=t.red)||void 0===s||s)});let C,w;if(e.kind===Track.Kind.Video){let i={width:0,height:0};try{i=yield e.waitForDimensions()}catch(e){const t=null!==(o=null===(a=this.roomOptions.videoCaptureDefaults)||void 0===a?void 0:a.resolution)&&void 0!==o?o:Pe.h720.resolution;i={width:t.width,height:t.height},p.error("could not determine track dimensions, using defaults",i)}if(b.width=i.width,b.height=i.height,e instanceof LocalVideoTrack)if(isSVCCodec(t.videoCodec)&&(t.scalabilityMode=null!==(c=t.scalabilityMode)&&void 0!==c?c:"L3T3_KEY"),t.videoCodec&&t.backupCodec&&t.videoCodec!==t.backupCodec.codec){this.roomOptions.dynacast||(this.roomOptions.dynacast=!0);const i=Object.assign({},t);i.simulcast=!0,w=computeTrackBackupEncodings(e,t.backupCodec.codec,i),b.simulcastCodecs=[new SimulcastCodec({codec:t.videoCodec,cid:e.mediaStreamTrack.id,enableSimulcastLayers:!0}),new SimulcastCodec({codec:t.backupCodec.codec,cid:"",enableSimulcastLayers:!0})]}else t.videoCodec&&(b.simulcastCodecs=[new SimulcastCodec({codec:t.videoCodec,cid:e.mediaStreamTrack.id,enableSimulcastLayers:null!==(u=t.simulcast)&&void 0!==u&&u})]);C=computeVideoEncodings(e.source===Track.Source.ScreenShare,i.width,i.height,t),b.layers=videoLayersFromEncodings(b.width,b.height,C,isSVCCodec(t.videoCodec))}else e.kind===Track.Kind.Audio&&(C=[{maxBitrate:null!==(h=null===(l=t.audioPreset)||void 0===l?void 0:l.maxBitrate)&&void 0!==h?h:t.audioBitrate,priority:null!==(g=null===(m=t.audioPreset)||void 0===m?void 0:m.priority)&&void 0!==g?g:"high",networkPriority:null!==(k=null===(v=t.audioPreset)||void 0===v?void 0:v.priority)&&void 0!==k?k:"high"}]);if(!this.engine||this.engine.isClosed)throw new UnexpectedConnectionState("cannot publish track when not connected");const E=yield this.engine.addTrack(b);let P=!1,R=!1;if(E.codecs.forEach((e=>{isCodecEqual(e.mimeType,t.videoCodec)?P=!0:t.backupCodec&&isCodecEqual(e.mimeType,t.backupCodec.codec)&&(R=!0)})),b.simulcastCodecs.length>0){if(!P&&!R)throw Error("cannot publish track, codec not supported by server");if(!P&&t.backupCodec){const e=t.backupCodec;t=Object.assign({},t),p.debug("primary codec ".concat(t.videoCodec," not supported, fallback to ").concat(e.codec)),t.videoCodec=e.codec,t.videoEncoding=e.encoding,C=w}}const _=new LocalTrackPublication(e.kind,E,e);if(_.options=t,e.sid=E.sid,!this.engine.publisher)throw new UnexpectedConnectionState("publisher is closed");if(p.debug("publishing ".concat(e.kind," with encodings"),{encodings:C,trackInfo:E}),e.sender=yield this.engine.createSender(e,t,C),C)if(isFireFox()&&e.kind===Track.Kind.Audio){let t;for(const i of this.engine.publisher.pc.getTransceivers())if(i.sender===e.sender){t=i;break}t&&this.engine.publisher.setTrackCodecBitrate({transceiver:t,codec:"opus",maxbr:(null===(y=C[0])||void 0===y?void 0:y.maxBitrate)?C[0].maxBitrate/1e3:0})}else e.codec&&isSVCCodec(e.codec)&&(null===(S=C[0])||void 0===S?void 0:S.maxBitrate)&&this.engine.publisher.setTrackCodecBitrate({cid:b.cid,codec:e.codec,maxbr:C[0].maxBitrate/1e3});return yield this.engine.negotiate(),e instanceof LocalVideoTrack?e.startMonitor(this.engine.client):e instanceof LocalAudioTrack&&e.startMonitor(),this.addTrackPublication(_),this.emit(De.LocalTrackPublished,_),_}))}get isLocal(){return!0}publishAdditionalCodecForTrack(e,t,i){var n;return __awaiter(this,void 0,void 0,(function*(){let s;if(this.tracks.forEach((t=>{t.track&&t.track===e&&(s=t)})),!s)throw new TrackInvalidError("track is not published");if(!(e instanceof LocalVideoTrack))throw new TrackInvalidError("track is not a video track");const a=Object.assign(Object.assign({},null===(n=this.roomOptions)||void 0===n?void 0:n.publishDefaults),i),o=computeTrackBackupEncodings(e,t,a);if(!o)return void p.info("backup codec has been disabled, ignoring request to add additional codec for track");const c=e.addSimulcastTrack(t,o),u=new AddTrackRequest({cid:c.mediaStreamTrack.id,type:Track.kindToProto(e.kind),muted:e.isMuted,source:Track.sourceToProto(e.source),sid:e.sid,simulcastCodecs:[{codec:a.videoCodec,cid:c.mediaStreamTrack.id,enableSimulcastLayers:a.simulcast}]});if(u.layers=videoLayersFromEncodings(u.width,u.height,o),!this.engine||this.engine.isClosed)throw new UnexpectedConnectionState("cannot publish track when not connected");const l=yield this.engine.addTrack(u);yield this.engine.createSimulcastSender(e,c,a,o),yield this.engine.negotiate(),p.debug("published ".concat(t," for track ").concat(e.sid),{encodings:o,trackInfo:l})}))}unpublishTrack(e,t){var i,n;return __awaiter(this,void 0,void 0,(function*(){const s=this.getPublicationForTrack(e);if(p.debug("unpublishing track",{track:e,method:"unpublishTrack"}),!s||!s.track)return void p.warn("track was not unpublished because no publication was found",{track:e,method:"unpublishTrack"});(e=s.track).off(Me.Muted,this.onTrackMuted),e.off(Me.Unmuted,this.onTrackUnmuted),e.off(Me.Ended,this.handleTrackEnded),e.off(Me.UpstreamPaused,this.onTrackUpstreamPaused),e.off(Me.UpstreamResumed,this.onTrackUpstreamResumed),void 0===t&&(t=null===(n=null===(i=this.roomOptions)||void 0===i?void 0:i.stopLocalTrackOnUnpublish)||void 0===n||n),t&&e.stop();let a=!1;const o=e.sender;if(e.sender=void 0,this.engine.publisher&&"closed"!==this.engine.publisher.pc.connectionState&&o)try{for(const e of this.engine.publisher.pc.getTransceivers())e.sender===o&&(e.direction="inactive",a=!0);if(this.engine.removeTrack(o)&&(a=!0),e instanceof LocalVideoTrack){for(const[,t]of e.simulcastCodecs)t.sender&&(this.engine.removeTrack(t.sender)&&(a=!0),t.sender=void 0);e.simulcastCodecs.clear()}}catch(e){p.warn("failed to unpublish track",{error:e,method:"unpublishTrack"})}switch(this.tracks.delete(s.trackSid),s.kind){case Track.Kind.Audio:this.audioTracks.delete(s.trackSid);break;case Track.Kind.Video:this.videoTracks.delete(s.trackSid)}return this.emit(De.LocalTrackUnpublished,s),s.setTrack(void 0),a&&(yield this.engine.negotiate()),s}))}unpublishTracks(e){return __awaiter(this,void 0,void 0,(function*(){return(yield Promise.all(e.map((e=>this.unpublishTrack(e))))).filter((e=>e instanceof LocalTrackPublication))}))}republishAllTracks(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];return __awaiter(this,void 0,void 0,(function*(){const i=[];this.tracks.forEach((t=>{t.track&&(e&&(t.options=Object.assign(Object.assign({},t.options),e)),i.push(t))})),yield Promise.all(i.map((e=>__awaiter(this,void 0,void 0,(function*(){const i=e.track;yield this.unpublishTrack(i,!1),t&&!i.isMuted&&(i instanceof LocalAudioTrack||i instanceof LocalVideoTrack)&&!i.isUserProvided&&(p.debug("restarting existing track",{track:e.trackSid}),yield i.restartTrack()),yield this.publishTrack(i,e.options)})))))}))}publishData(e,t){let i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};return __awaiter(this,void 0,void 0,(function*(){const n=Array.isArray(i)?i:null==i?void 0:i.destination,s=[],a=Array.isArray(i)?void 0:i.topic;void 0!==n&&n.forEach((e=>{e instanceof RemoteParticipant?s.push(e.sid):s.push(e)}));const o=new DataPacket({kind:t,value:{case:"user",value:new UserPacket({participantSid:this.sid,payload:e,destinationSids:s,topic:a})}});yield this.engine.sendDataPacket(o,t)}))}setTrackSubscriptionPermissions(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[];this.participantTrackPermissions=t,this.allParticipantsAllowedToSubscribe=e,this.engine.client.isConnected&&this.updateTrackSubscriptionPermissions()}updateInfo(e){return e.sid===this.sid&&(!!super.updateInfo(e)&&(e.tracks.forEach((e=>{var t,i;const n=this.tracks.get(e.sid);if(n){const s=n.isMuted||null!==(i=null===(t=n.track)||void 0===t?void 0:t.isUpstreamPaused)&&void 0!==i&&i;s!==e.muted&&(p.debug("updating server mute state after reconcile",{sid:e.sid,muted:s}),this.engine.client.sendMuteTrack(e.sid,s))}})),!0))}getPublicationForTrack(e){let t;return this.tracks.forEach((i=>{const n=i.track;n&&(e instanceof MediaStreamTrack?(n instanceof LocalAudioTrack||n instanceof LocalVideoTrack)&&n.mediaStreamTrack===e&&(t=i):e===n&&(t=i))})),t}publishedTracksInfo(){const e=[];return this.tracks.forEach((t=>{void 0!==t.track&&e.push(new TrackPublishedResponse({cid:t.track.mediaStreamID,track:t.trackInfo}))})),e}dataChannelsInfo(){const e=[],getInfo=(t,i)=>{void 0!==(null==t?void 0:t.id)&&null!==t.id&&e.push(new DataChannelInfo({label:t.label,id:t.id,target:i}))};return getInfo(this.engine.dataChannelForKind(K.LOSSY),pe.PUBLISHER),getInfo(this.engine.dataChannelForKind(K.RELIABLE),pe.PUBLISHER),getInfo(this.engine.dataChannelForKind(K.LOSSY,!0),pe.SUBSCRIBER),getInfo(this.engine.dataChannelForKind(K.RELIABLE,!0),pe.SUBSCRIBER),e}}!function(e){e.Disconnected="disconnected",e.Connecting="connecting",e.Connected="connected",e.Reconnecting="reconnecting"}(Rt||(Rt={}));const _t=Rt;class Room extends ie.EventEmitter{constructor(e){var t,i;super(),t=this,this.state=Rt.Disconnected,this.activeSpeakers=[],this.isE2EEEnabled=!1,this.audioEnabled=!0,this.connect=(e,t,i)=>__awaiter(this,void 0,void 0,(function*(){var n;const s=yield this.disconnectLock.lock();if(this.state===Rt.Connected)return p.info("already connected to room ".concat(this.name)),s(),Promise.resolve();if(this.connectFuture)return s(),this.connectFuture.promise;this.setAndEmitConnectionState(Rt.Connecting),(null===(n=this.regionUrlProvider)||void 0===n?void 0:n.getServerUrl().toString())!==e&&(this.regionUrl=void 0,this.regionUrlProvider=void 0),isCloud(new URL(e))&&(void 0===this.regionUrlProvider?this.regionUrlProvider=new RegionUrlProvider(e,t):this.regionUrlProvider.updateToken(t),this.regionUrlProvider.fetchRegionSettings().catch((e=>{p.warn("could not fetch region settings",{error:e})})));const connectFn=(n,a,o)=>__awaiter(this,void 0,void 0,(function*(){var c;this.abortController&&this.abortController.abort();const u=new AbortController;this.abortController=u,null==s||s();try{yield this.attemptConnection(null!=o?o:e,t,i,u),this.abortController=void 0,n()}catch(e){if(this.regionUrlProvider&&e instanceof ConnectionError&&3!==e.reason&&0!==e.reason){let t=null;try{t=yield this.regionUrlProvider.getNextBestRegionUrl(null===(c=this.abortController)||void 0===c?void 0:c.signal)}catch(e){if(e instanceof ConnectionError&&(401===e.status||3===e.reason))return void a(e)}t?(p.info("initial connection failed, retrying with another region",{nextUrl:t}),yield connectFn(n,a,t)):a(e)}else a(e)}})),a=this.regionUrl;return this.regionUrl=void 0,this.connectFuture=new Future(((e,t)=>{connectFn(e,t,a)}),(()=>{this.clearConnectionFutures()})),this.connectFuture.promise})),this.connectSignal=(e,t,i,n,s,a)=>__awaiter(this,void 0,void 0,(function*(){const o=yield i.join(e,t,{autoSubscribe:n.autoSubscribe,publishOnly:n.publishOnly,adaptiveStream:"object"==typeof s.adaptiveStream||s.adaptiveStream,maxRetries:n.maxRetries,e2eeEnabled:!!this.e2eeManager,websocketTimeout:n.websocketTimeout},a.signal);let c=o.serverInfo;if(c||(c={version:o.serverVersion,region:o.serverRegion}),p.debug("connected to Livekit Server ".concat(Object.entries(c).map((e=>{let[t,i]=e;return"".concat(t,": ").concat(i)})).join(", "))),!o.serverVersion)throw new UnsupportedServer("unknown server version");return"0.15.1"===o.serverVersion&&this.options.dynacast&&(p.debug("disabling dynacast due to server version"),s.dynacast=!1),o})),this.applyJoinResponse=e=>{const t=e.participant;this.localParticipant.sid=t.sid,this.localParticipant.identity=t.identity,this.handleParticipantUpdates([t,...e.otherParticipants]),e.room&&this.handleRoomUpdate(e.room),this.options.e2ee&&this.e2eeManager&&this.e2eeManager.setSifTrailer(e.sifTrailer)},this.attemptConnection=(e,t,i,n)=>__awaiter(this,void 0,void 0,(function*(){var s,a;this.state===Rt.Reconnecting?(p.info("Reconnection attempt replaced by new connection attempt"),this.recreateEngine()):this.maybeCreateEngine(),(null===(s=this.regionUrlProvider)||void 0===s?void 0:s.isCloud())&&this.engine.setRegionUrlProvider(this.regionUrlProvider),this.acquireAudioContext(),this.connOptions=Object.assign(Object.assign({},mt),i),this.connOptions.rtcConfig&&(this.engine.rtcConfig=this.connOptions.rtcConfig),this.connOptions.peerConnectionTimeout&&(this.engine.peerConnectionTimeout=this.connOptions.peerConnectionTimeout);try{const i=yield this.connectSignal(e,t,this.engine,this.connOptions,this.options,n);this.applyJoinResponse(i),this.setupLocalParticipantEvents(),this.emit(Ie.SignalConnected)}catch(e){this.recreateEngine(),this.handleDisconnect(this.options.stopLocalTrackOnUnpublish);const t=new ConnectionError("could not establish signal connection");throw e instanceof Error&&(t.message="".concat(t.message,": ").concat(e.message)),e instanceof ConnectionError&&(t.reason=e.reason,t.status=e.status),p.debug("error trying to establish signal connection",{error:e}),t}if(n.signal.aborted)throw this.recreateEngine(),this.handleDisconnect(this.options.stopLocalTrackOnUnpublish),new ConnectionError("Connection attempt aborted");try{yield this.engine.waitForPCInitialConnection(this.connOptions.peerConnectionTimeout,n)}catch(e){throw this.recreateEngine(),this.handleDisconnect(this.options.stopLocalTrackOnUnpublish),e}isWeb()&&this.options.disconnectOnPageLeave&&(window.addEventListener("pagehide",this.onPageLeave),window.addEventListener("beforeunload",this.onPageLeave)),isWeb()&&(document.addEventListener("freeze",this.onPageLeave),null===(a=navigator.mediaDevices)||void 0===a||a.addEventListener("devicechange",this.handleDeviceChange)),this.setAndEmitConnectionState(Rt.Connected),this.emit(Ie.Connected),this.registerConnectionReconcile()})),this.disconnect=function(){let e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];return __awaiter(t,void 0,void 0,(function*(){var t,i,n,s;const a=yield this.disconnectLock.lock();try{if(this.state===Rt.Disconnected)return void p.debug("already disconnected");p.info("disconnect from room",{identity:this.localParticipant.identity}),this.state!==Rt.Connecting&&this.state!==Rt.Reconnecting||(p.warn("abort connection attempt"),null===(t=this.abortController)||void 0===t||t.abort(),null===(n=null===(i=this.connectFuture)||void 0===i?void 0:i.reject)||void 0===n||n.call(i,new ConnectionError("Client initiated disconnect")),this.connectFuture=void 0),(null===(s=this.engine)||void 0===s?void 0:s.client.isConnected)&&(yield this.engine.client.sendLeave()),this.engine&&(yield this.engine.close()),this.handleDisconnect(e,B.CLIENT_INITIATED),this.engine=void 0}finally{a()}}))},this.onPageLeave=()=>__awaiter(this,void 0,void 0,(function*(){yield this.disconnect()})),this.handleRestarting=()=>{this.clearConnectionReconcile();for(const e of this.participants.values())this.handleParticipantDisconnected(e.sid,e);this.setAndEmitConnectionState(Rt.Reconnecting)&&this.emit(Ie.Reconnecting)},this.handleSignalRestarted=e=>__awaiter(this,void 0,void 0,(function*(){p.debug("signal reconnected to server",{region:e.serverRegion}),this.cachedParticipantSids=[],this.applyJoinResponse(e);try{const e=[];this.localParticipant.tracks.forEach((t=>{t.track&&e.push(t)})),yield Promise.all(e.map((e=>__awaiter(this,void 0,void 0,(function*(){const t=e.track;this.localParticipant.unpublishTrack(t,!1),t.isMuted||((t instanceof LocalAudioTrack||t instanceof LocalVideoTrack)&&t.source!==Track.Source.ScreenShare&&t.source!==Track.Source.ScreenShareAudio&&!t.isUserProvided&&(p.debug("restarting existing track",{track:e.trackSid}),yield t.restartTrack()),p.debug("publishing new track",{track:e.trackSid}),yield this.localParticipant.publishTrack(t,e.options))})))))}catch(e){p.error("error trying to re-publish tracks after reconnection",{error:e})}try{yield this.engine.waitForRestarted(),p.debug("fully reconnected to server",{region:e.serverRegion})}catch(e){return}this.setAndEmitConnectionState(Rt.Connected),this.emit(Ie.Reconnected),this.registerConnectionReconcile(),this.participants.forEach((e=>{this.emit(Ie.ParticipantConnected,e)}))})),this.handleParticipantUpdates=e=>{e.forEach((e=>{if(e.identity===this.localParticipant.identity)return void this.localParticipant.updateInfo(e);const t=this.identityToSid.get(e.identity);t&&t!==e.sid&&this.handleParticipantDisconnected(t,this.participants.get(t));let i=this.participants.get(e.sid);const n=!i;e.state===j.DISCONNECTED?this.handleParticipantDisconnected(e.sid,i):(i=this.getOrCreateParticipant(e.sid,e),n||i.updateInfo(e))}))},this.handleActiveSpeakersUpdate=e=>{const t=[],i={};e.forEach((e=>{if(i[e.sid]=!0,e.sid===this.localParticipant.sid)this.localParticipant.audioLevel=e.level,this.localParticipant.setIsSpeaking(!0),t.push(this.localParticipant);else{const i=this.participants.get(e.sid);i&&(i.audioLevel=e.level,i.setIsSpeaking(!0),t.push(i))}})),i[this.localParticipant.sid]||(this.localParticipant.audioLevel=0,this.localParticipant.setIsSpeaking(!1)),this.participants.forEach((e=>{i[e.sid]||(e.audioLevel=0,e.setIsSpeaking(!1))})),this.activeSpeakers=t,this.emitWhenConnected(Ie.ActiveSpeakersChanged,t)},this.handleSpeakersChanged=e=>{const t=new Map;this.activeSpeakers.forEach((e=>{t.set(e.sid,e)})),e.forEach((e=>{let i=this.participants.get(e.sid);e.sid===this.localParticipant.sid&&(i=this.localParticipant),i&&(i.audioLevel=e.level,i.setIsSpeaking(e.active),e.active?t.set(e.sid,i):t.delete(e.sid))}));const i=Array.from(t.values());i.sort(((e,t)=>t.audioLevel-e.audioLevel)),this.activeSpeakers=i,this.emitWhenConnected(Ie.ActiveSpeakersChanged,i)},this.handleStreamStateUpdate=e=>{e.streamStates.forEach((e=>{const t=this.participants.get(e.participantSid);if(!t)return;const i=t.getTrackPublication(e.trackSid);i&&i.track&&(i.track.streamState=Track.streamStateFromProto(e.state),t.emit(De.TrackStreamStateChanged,i,i.track.streamState),this.emitWhenConnected(Ie.TrackStreamStateChanged,i,i.track.streamState,t))}))},this.handleSubscriptionPermissionUpdate=e=>{const t=this.participants.get(e.participantSid);if(!t)return;const i=t.getTrackPublication(e.trackSid);i&&i.setAllowed(e.allowed)},this.handleSubscriptionError=e=>{const t=Array.from(this.participants.values()).find((t=>t.tracks.has(e.trackSid)));if(!t)return;const i=t.getTrackPublication(e.trackSid);i&&i.setSubscriptionError(e.err)},this.handleDataPacket=(e,t)=>{const i=this.participants.get(e.participantSid);this.emit(Ie.DataReceived,e.payload,i,t,e.topic),null==i||i.emit(De.DataReceived,e.payload,t)},this.handleAudioPlaybackStarted=()=>{this.canPlaybackAudio||(this.audioEnabled=!0,this.emit(Ie.AudioPlaybackStatusChanged,!0))},this.handleAudioPlaybackFailed=e=>{p.warn("could not playback audio",e),this.canPlaybackAudio&&(this.audioEnabled=!1,this.emit(Ie.AudioPlaybackStatusChanged,!1))},this.handleDeviceChange=()=>__awaiter(this,void 0,void 0,(function*(){this.emit(Ie.MediaDevicesChanged)})),this.handleRoomUpdate=e=>{const t=this.roomInfo;this.roomInfo=e,t&&t.metadata!==e.metadata&&this.emitWhenConnected(Ie.RoomMetadataChanged,e.metadata),(null==t?void 0:t.activeRecording)!==e.activeRecording&&this.emitWhenConnected(Ie.RecordingStatusChanged,e.activeRecording)},this.handleConnectionQualityUpdate=e=>{e.updates.forEach((e=>{if(e.participantSid===this.localParticipant.sid)return void this.localParticipant.setConnectionQuality(e.quality);const t=this.participants.get(e.participantSid);t&&t.setConnectionQuality(e.quality)}))},this.onLocalParticipantMetadataChanged=e=>{this.emit(Ie.ParticipantMetadataChanged,e,this.localParticipant)},this.onLocalParticipantNameChanged=e=>{this.emit(Ie.ParticipantNameChanged,e,this.localParticipant)},this.onLocalTrackMuted=e=>{this.emit(Ie.TrackMuted,e,this.localParticipant)},this.onLocalTrackUnmuted=e=>{this.emit(Ie.TrackUnmuted,e,this.localParticipant)},this.onLocalTrackPublished=e=>__awaiter(this,void 0,void 0,(function*(){var t;if(this.emit(Ie.LocalTrackPublished,e,this.localParticipant),e.track instanceof LocalAudioTrack){(yield e.track.checkForSilence())&&this.emit(Ie.LocalAudioSilenceDetected,e)}const i=yield null===(t=e.track)||void 0===t?void 0:t.getDeviceId(),n=function sourceToKind(e){return e===Track.Source.Microphone?"audioinput":e===Track.Source.Camera?"videoinput":void 0}(e.source);n&&i&&i!==this.localParticipant.activeDeviceMap.get(n)&&(this.localParticipant.activeDeviceMap.set(n,i),this.emit(Ie.ActiveDeviceChanged,n,i))})),this.onLocalTrackUnpublished=e=>{this.emit(Ie.LocalTrackUnpublished,e,this.localParticipant)},this.onLocalConnectionQualityChanged=e=>{this.emit(Ie.ConnectionQualityChanged,e,this.localParticipant)},this.onMediaDevicesError=e=>{this.emit(Ie.MediaDevicesError,e)},this.onLocalParticipantPermissionsChanged=e=>{this.emit(Ie.ParticipantPermissionsChanged,e,this.localParticipant)},this.setMaxListeners(100),this.participants=new Map,this.cachedParticipantSids=[],this.identityToSid=new Map,this.options=Object.assign(Object.assign({},pt),e),this.options.audioCaptureDefaults=Object.assign(Object.assign({},lt),null==e?void 0:e.audioCaptureDefaults),this.options.videoCaptureDefaults=Object.assign(Object.assign({},ht),null==e?void 0:e.videoCaptureDefaults),this.options.publishDefaults=Object.assign(Object.assign({},ut),null==e?void 0:e.publishDefaults),this.maybeCreateEngine(),this.disconnectLock=new Mutex,this.localParticipant=new LocalParticipant("","",this.engine,this.options),this.options.videoCaptureDefaults.deviceId&&this.localParticipant.activeDeviceMap.set("videoinput",unwrapConstraint(this.options.videoCaptureDefaults.deviceId)),this.options.audioCaptureDefaults.deviceId&&this.localParticipant.activeDeviceMap.set("audioinput",unwrapConstraint(this.options.audioCaptureDefaults.deviceId)),(null===(i=this.options.audioOutput)||void 0===i?void 0:i.deviceId)&&this.switchActiveDevice("audiooutput",unwrapConstraint(this.options.audioOutput.deviceId)),this.options.e2ee&&this.setupE2EE()}setE2EEEnabled(e){return __awaiter(this,void 0,void 0,(function*(){if(!this.e2eeManager)throw Error("e2ee not configured, please set e2ee settings within the room options");yield Promise.all([this.localParticipant.setE2EEEnabled(e)]),""!==this.localParticipant.identity&&this.e2eeManager.setParticipantCryptorEnabled(e,this.localParticipant.identity)}))}setupE2EE(){var e;this.options.e2ee&&(this.e2eeManager=new E2EEManager(this.options.e2ee),this.e2eeManager.on(He.ParticipantEncryptionStatusChanged,((e,t)=>{t instanceof LocalParticipant&&(this.isE2EEEnabled=e),this.emit(Ie.ParticipantEncryptionStatusChanged,e,t)})),this.e2eeManager.on(He.EncryptionError,(e=>this.emit(Ie.EncryptionError,e))),null===(e=this.e2eeManager)||void 0===e||e.setup(this))}get isRecording(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.activeRecording)&&void 0!==t&&t}get sid(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.sid)&&void 0!==t?t:""}get name(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.name)&&void 0!==t?t:""}get metadata(){var e;return null===(e=this.roomInfo)||void 0===e?void 0:e.metadata}get numParticipants(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.numParticipants)&&void 0!==t?t:0}get numPublishers(){var e,t;return null!==(t=null===(e=this.roomInfo)||void 0===e?void 0:e.numPublishers)&&void 0!==t?t:0}maybeCreateEngine(){this.engine&&!this.engine.isClosed||(this.engine=new RTCEngine(this.options),this.engine.on(Le.ParticipantUpdate,this.handleParticipantUpdates).on(Le.RoomUpdate,this.handleRoomUpdate).on(Le.SpeakersChanged,this.handleSpeakersChanged).on(Le.StreamStateChanged,this.handleStreamStateUpdate).on(Le.ConnectionQualityUpdate,this.handleConnectionQualityUpdate).on(Le.SubscriptionError,this.handleSubscriptionError).on(Le.SubscriptionPermissionUpdate,this.handleSubscriptionPermissionUpdate).on(Le.MediaTrackAdded,((e,t,i)=>{this.onTrackAdded(e,t,i)})).on(Le.Disconnected,(e=>{this.handleDisconnect(this.options.stopLocalTrackOnUnpublish,e)})).on(Le.ActiveSpeakersUpdate,this.handleActiveSpeakersUpdate).on(Le.DataPacketReceived,this.handleDataPacket).on(Le.Resuming,(()=>{this.clearConnectionReconcile(),this.setAndEmitConnectionState(Rt.Reconnecting)&&this.emit(Ie.Reconnecting),this.cachedParticipantSids=Array.from(this.participants.keys())})).on(Le.Resumed,(()=>{this.setAndEmitConnectionState(Rt.Connected),this.emit(Ie.Reconnected),this.registerConnectionReconcile(),this.updateSubscriptions();Array.from(this.participants.values()).filter((e=>!this.cachedParticipantSids.includes(e.sid))).forEach((e=>this.emit(Ie.ParticipantConnected,e))),this.cachedParticipantSids=[]})).on(Le.SignalResumed,(()=>{this.state===Rt.Reconnecting&&this.sendSyncState()})).on(Le.Restarting,this.handleRestarting).on(Le.SignalRestarted,this.handleSignalRestarted).on(Le.DCBufferStatusChanged,((e,t)=>{this.emit(Ie.DCBufferStatusChanged,e,t)})),this.localParticipant&&this.localParticipant.setupEngine(this.engine),this.e2eeManager&&this.e2eeManager.setupEngine(this.engine))}static getLocalDevices(e){let t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];return DeviceManager.getInstance().getDevices(e,t)}prepareConnection(e,t){return __awaiter(this,void 0,void 0,(function*(){if(this.state===Rt.Disconnected){p.debug("prepareConnection to ".concat(e));try{if(isCloud(new URL(e))&&t){this.regionUrlProvider=new RegionUrlProvider(e,t);const i=yield this.regionUrlProvider.getNextBestRegionUrl();i&&this.state===Rt.Disconnected&&(this.regionUrl=i,yield fetch(toHttpUrl(i),{method:"HEAD"}),p.debug("prepared connection to ".concat(i)))}else yield fetch(toHttpUrl(e),{method:"HEAD"})}catch(e){p.warn("could not prepare connection",{error:e})}}}))}getParticipantByIdentity(e){if(this.localParticipant.identity===e)return this.localParticipant;const t=this.identityToSid.get(e);return t?this.participants.get(t):void 0}clearConnectionFutures(){this.connectFuture=void 0}simulateScenario(e,t){return __awaiter(this,void 0,void 0,(function*(){let i,postAction=()=>{};switch(e){case"signal-reconnect":yield this.engine.client.handleOnClose("simulate disconnect");break;case"speaker":i=new SimulateScenario({scenario:{case:"speakerUpdate",value:3}});break;case"node-failure":i=new SimulateScenario({scenario:{case:"nodeFailure",value:!0}});break;case"server-leave":i=new SimulateScenario({scenario:{case:"serverLeave",value:!0}});break;case"migration":i=new SimulateScenario({scenario:{case:"migration",value:!0}});break;case"resume-reconnect":this.engine.failNext(),yield this.engine.client.handleOnClose("simulate resume-disconnect");break;case"full-reconnect":this.engine.fullReconnectOnNext=!0,yield this.engine.client.handleOnClose("simulate full-reconnect");break;case"force-tcp":case"force-tls":i=new SimulateScenario({scenario:{case:"switchCandidateProtocol",value:"force-tls"===e?2:1}}),postAction=()=>__awaiter(this,void 0,void 0,(function*(){const e=this.engine.client.onLeave;e&&e(new LeaveRequest({reason:B.CLIENT_INITIATED,canReconnect:!0}))}));break;case"subscriber-bandwidth":if(void 0===t||"number"!=typeof t)throw new Error("subscriber-bandwidth requires a number as argument");i=new SimulateScenario({scenario:{case:"subscriberBandwidth",value:BigInt(t)}})}i&&(this.engine.client.sendSimulateScenario(i),postAction())}))}startAudio(){return __awaiter(this,void 0,void 0,(function*(){const e=[],t=getBrowser();if(t&&"iOS"===t.os){const t="livekit-dummy-audio-el";let i=document.getElementById(t);if(!i){i=document.createElement("audio"),i.id=t,i.autoplay=!0,i.hidden=!0;const e=getEmptyAudioStreamTrack();e.enabled=!0;const n=new MediaStream([e]);i.srcObject=n,document.addEventListener("visibilitychange",(()=>{i&&(i.srcObject=document.hidden?null:n)})),document.body.append(i),this.once(Ie.Disconnected,(()=>{null==i||i.remove()}))}e.push(i)}this.participants.forEach((t=>{t.audioTracks.forEach((t=>{t.track&&t.track.attachedElements.forEach((t=>{e.push(t)}))}))}));try{yield Promise.all([this.acquireAudioContext(),...e.map((e=>(e.muted=!1,e.play())))]),this.handleAudioPlaybackStarted()}catch(e){throw this.handleAudioPlaybackFailed(e),e}}))}get canPlaybackAudio(){return this.audioEnabled}getActiveAudioOutputDevice(){var e,t;return null!==(t=null===(e=this.options.audioOutput)||void 0===e?void 0:e.deviceId)&&void 0!==t?t:""}getActiveDevice(e){return this.localParticipant.activeDeviceMap.get(e)}switchActiveDevice(e,t){let i=arguments.length>2&&void 0!==arguments[2]&&arguments[2];var n,s,a;return __awaiter(this,void 0,void 0,(function*(){let o=!1,c=!0;const u=i?{exact:t}:t;if("audioinput"===e){const e=this.options.audioCaptureDefaults.deviceId;this.options.audioCaptureDefaults.deviceId=u,o=e!==u;const t=Array.from(this.localParticipant.audioTracks.values()).filter((e=>e.source===Track.Source.Microphone));try{c=(yield Promise.all(t.map((e=>{var t;return null===(t=e.audioTrack)||void 0===t?void 0:t.setDeviceId(u)})))).every((e=>!0===e))}catch(t){throw this.options.audioCaptureDefaults.deviceId=e,t}}else if("videoinput"===e){const e=this.options.videoCaptureDefaults.deviceId;this.options.videoCaptureDefaults.deviceId=u,o=e!==u;const t=Array.from(this.localParticipant.videoTracks.values()).filter((e=>e.source===Track.Source.Camera));try{c=(yield Promise.all(t.map((e=>{var t;return null===(t=e.videoTrack)||void 0===t?void 0:t.setDeviceId(u)})))).every((e=>!0===e))}catch(t){throw this.options.videoCaptureDefaults.deviceId=e,t}}else if("audiooutput"===e){if(!supportsSetSinkId()&&!this.options.expWebAudioMix||this.options.expWebAudioMix&&this.audioContext&&!("setSinkId"in this.audioContext))throw new Error("cannot switch audio output, setSinkId not supported");null!==(n=(a=this.options).audioOutput)&&void 0!==n||(a.audioOutput={});const e=this.options.audioOutput.deviceId;this.options.audioOutput.deviceId=t,o=e!==u;try{this.options.expWebAudioMix?null===(s=this.audioContext)||void 0===s||s.setSinkId(t):yield Promise.all(Array.from(this.participants.values()).map((e=>e.setAudioOutput({deviceId:t}))))}catch(t){throw this.options.audioOutput.deviceId=e,t}}return o&&c&&(this.localParticipant.activeDeviceMap.set(e,t),this.emit(Ie.ActiveDeviceChanged,e,t)),c}))}setupLocalParticipantEvents(){this.localParticipant.on(De.ParticipantMetadataChanged,this.onLocalParticipantMetadataChanged).on(De.ParticipantNameChanged,this.onLocalParticipantNameChanged).on(De.TrackMuted,this.onLocalTrackMuted).on(De.TrackUnmuted,this.onLocalTrackUnmuted).on(De.LocalTrackPublished,this.onLocalTrackPublished).on(De.LocalTrackUnpublished,this.onLocalTrackUnpublished).on(De.ConnectionQualityChanged,this.onLocalConnectionQualityChanged).on(De.MediaDevicesError,this.onMediaDevicesError).on(De.ParticipantPermissionsChanged,this.onLocalParticipantPermissionsChanged)}recreateEngine(){var e;null===(e=this.engine)||void 0===e||e.close(),this.engine=void 0,this.participants.clear(),this.maybeCreateEngine()}onTrackAdded(e,t,i){if(this.state===Rt.Connecting||this.state===Rt.Reconnecting){const reconnectedHandler=()=>{this.onTrackAdded(e,t,i),cleanup()},cleanup=()=>{this.off(Ie.Reconnected,reconnectedHandler),this.off(Ie.Connected,reconnectedHandler),this.off(Ie.Disconnected,cleanup)};return this.once(Ie.Reconnected,reconnectedHandler),this.once(Ie.Connected,reconnectedHandler),void this.once(Ie.Disconnected,cleanup)}if(this.state===Rt.Disconnected)return void p.warn("skipping incoming track after Room disconnected");const n=function unpackStreamId(e){const t=e.split("|");return t.length>1?[t[0],e.substr(t[0].length+1)]:[e,""]}(t.id),s=n[0];let a=n[1];if(a&&""!==a||(a=e.id),s===this.localParticipant.sid)return void p.warn("tried to create RemoteParticipant for local participant");const o=this.participants.get(s);if(!o)return void p.error("Tried to add a track for a participant, that's not present. Sid: ".concat(s));let c;this.options.adaptiveStream&&(c="object"==typeof this.options.adaptiveStream?this.options.adaptiveStream:{}),o.addSubscribedMediaTrack(e,a,t,i,c)}handleDisconnect(){let e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0],t=arguments.length>1?arguments[1]:void 0;var i;if(this.clearConnectionReconcile(),this.state!==Rt.Disconnected){this.regionUrl=void 0;try{this.participants.forEach((e=>{e.tracks.forEach((t=>{e.unpublishTrack(t.trackSid)}))})),this.localParticipant.tracks.forEach((t=>{var i,n;t.track&&this.localParticipant.unpublishTrack(t.track,e),e&&(null===(i=t.track)||void 0===i||i.detach(),null===(n=t.track)||void 0===n||n.stop())})),this.localParticipant.off(De.ParticipantMetadataChanged,this.onLocalParticipantMetadataChanged).off(De.ParticipantNameChanged,this.onLocalParticipantNameChanged).off(De.TrackMuted,this.onLocalTrackMuted).off(De.TrackUnmuted,this.onLocalTrackUnmuted).off(De.LocalTrackPublished,this.onLocalTrackPublished).off(De.LocalTrackUnpublished,this.onLocalTrackUnpublished).off(De.ConnectionQualityChanged,this.onLocalConnectionQualityChanged).off(De.MediaDevicesError,this.onMediaDevicesError).off(De.ParticipantPermissionsChanged,this.onLocalParticipantPermissionsChanged),this.localParticipant.tracks.clear(),this.localParticipant.videoTracks.clear(),this.localParticipant.audioTracks.clear(),this.participants.clear(),this.activeSpeakers=[],this.audioContext&&"boolean"==typeof this.options.expWebAudioMix&&(this.audioContext.close(),this.audioContext=void 0),isWeb()&&(window.removeEventListener("beforeunload",this.onPageLeave),window.removeEventListener("pagehide",this.onPageLeave),window.removeEventListener("freeze",this.onPageLeave),null===(i=navigator.mediaDevices)||void 0===i||i.removeEventListener("devicechange",this.handleDeviceChange))}finally{this.setAndEmitConnectionState(Rt.Disconnected),this.emit(Ie.Disconnected,t)}}}handleParticipantDisconnected(e,t){this.participants.delete(e),t&&(this.identityToSid.delete(t.identity),t.tracks.forEach((e=>{t.unpublishTrack(e.trackSid,!0)})),this.emit(Ie.ParticipantDisconnected,t))}acquireAudioContext(){var e,t;return __awaiter(this,void 0,void 0,(function*(){if("boolean"!=typeof this.options.expWebAudioMix&&this.options.expWebAudioMix.audioContext?this.audioContext=this.options.expWebAudioMix.audioContext:this.audioContext&&"closed"!==this.audioContext.state||(this.audioContext=null!==(e=getNewAudioContext())&&void 0!==e?e:void 0),this.audioContext&&"suspended"===this.audioContext.state)try{yield this.audioContext.resume()}catch(e){p.warn(e)}this.options.expWebAudioMix&&this.participants.forEach((e=>e.setAudioContext(this.audioContext))),this.localParticipant.setAudioContext(this.audioContext);const i="running"===(null===(t=this.audioContext)||void 0===t?void 0:t.state);i!==this.canPlaybackAudio&&(this.audioEnabled=i,this.emit(Ie.AudioPlaybackStatusChanged,i))}))}createParticipant(e,t){let i;return i=t?RemoteParticipant.fromParticipantInfo(this.engine.client,t):new RemoteParticipant(this.engine.client,e,"",void 0,void 0),this.options.expWebAudioMix&&i.setAudioContext(this.audioContext),i}getOrCreateParticipant(e,t){if(this.participants.has(e))return this.participants.get(e);const i=this.createParticipant(e,t);return this.participants.set(e,i),this.identityToSid.set(t.identity,t.sid),this.emitWhenConnected(Ie.ParticipantConnected,i),i.on(De.TrackPublished,(e=>{this.emitWhenConnected(Ie.TrackPublished,e,i)})).on(De.TrackSubscribed,((e,t)=>{e.kind===Track.Kind.Audio&&(e.on(Me.AudioPlaybackStarted,this.handleAudioPlaybackStarted),e.on(Me.AudioPlaybackFailed,this.handleAudioPlaybackFailed)),this.emit(Ie.TrackSubscribed,e,t,i)})).on(De.TrackUnpublished,(e=>{this.emit(Ie.TrackUnpublished,e,i)})).on(De.TrackUnsubscribed,((e,t)=>{this.emit(Ie.TrackUnsubscribed,e,t,i)})).on(De.TrackSubscriptionFailed,(e=>{this.emit(Ie.TrackSubscriptionFailed,e,i)})).on(De.TrackMuted,(e=>{this.emitWhenConnected(Ie.TrackMuted,e,i)})).on(De.TrackUnmuted,(e=>{this.emitWhenConnected(Ie.TrackUnmuted,e,i)})).on(De.ParticipantMetadataChanged,(e=>{this.emitWhenConnected(Ie.ParticipantMetadataChanged,e,i)})).on(De.ParticipantNameChanged,(e=>{this.emitWhenConnected(Ie.ParticipantNameChanged,e,i)})).on(De.ConnectionQualityChanged,(e=>{this.emitWhenConnected(Ie.ConnectionQualityChanged,e,i)})).on(De.ParticipantPermissionsChanged,(e=>{this.emitWhenConnected(Ie.ParticipantPermissionsChanged,e,i)})).on(De.TrackSubscriptionStatusChanged,((e,t)=>{this.emitWhenConnected(Ie.TrackSubscriptionStatusChanged,e,t,i)})).on(De.TrackSubscriptionFailed,((e,t)=>{this.emit(Ie.TrackSubscriptionFailed,e,i,t)})).on(De.TrackSubscriptionPermissionChanged,((e,t)=>{this.emitWhenConnected(Ie.TrackSubscriptionPermissionChanged,e,t,i)})),t&&i.updateInfo(t),i}sendSyncState(){var e,t;if(void 0===this.engine.subscriber||null===this.engine.subscriber.pc.localDescription)return;const i=this.engine.subscriber.pc.localDescription,n=this.engine.subscriber.pc.remoteDescription,s=null===(t=null===(e=this.connOptions)||void 0===e?void 0:e.autoSubscribe)||void 0===t||t,a=new Array;this.participants.forEach((e=>{e.tracks.forEach((e=>{e.isDesired!==s&&a.push(e.trackSid)}))})),this.engine.client.sendSyncState(new SyncState({answer:toProtoSessionDescription({sdp:i.sdp,type:i.type}),offer:n?toProtoSessionDescription({sdp:n.sdp,type:n.type}):void 0,subscription:new UpdateSubscription({trackSids:a,subscribe:!s,participantTracks:[]}),publishTracks:this.localParticipant.publishedTracksInfo(),dataChannels:this.localParticipant.dataChannelsInfo()}))}updateSubscriptions(){for(const e of this.participants.values())for(const t of e.videoTracks.values())t.isSubscribed&&t instanceof RemoteTrackPublication&&t.emitTrackUpdate()}registerConnectionReconcile(){this.clearConnectionReconcile();let e=0;this.connectionReconcileInterval=CriticalTimers.setInterval((()=>{this.engine&&!this.engine.isClosed&&this.engine.verifyTransport()?e=0:(e++,p.warn("detected connection state mismatch",{numFailures:e}),e>=3&&(this.recreateEngine(),this.handleDisconnect(this.options.stopLocalTrackOnUnpublish,B.STATE_MISMATCH)))}),2e3)}clearConnectionReconcile(){this.connectionReconcileInterval&&CriticalTimers.clearInterval(this.connectionReconcileInterval)}setAndEmitConnectionState(e){return e!==this.state&&(this.state=e,this.emit(Ie.ConnectionStateChanged,this.state),!0)}emitWhenConnected(e){if(this.state===Rt.Connected){for(var t=arguments.length,i=new Array(t>1?t-1:0),n=1;n<t;n++)i[n-1]=arguments[n];return this.emit(e,...i)}return!1}simulateParticipants(e){var t,i;return __awaiter(this,void 0,void 0,(function*(){const n=Object.assign({audio:!0,video:!0,useRealTracks:!1},e.publish),s=Object.assign({count:9,audio:!1,video:!0,aspectRatios:[1.66,1.7,1.3]},e.participants);if(this.handleDisconnect(),this.roomInfo=new q({sid:"RM_SIMULATED",name:"simulated-room",emptyTimeout:0,maxParticipants:0,creationTime:k.parse((new Date).getTime()),metadata:"",numParticipants:1,numPublishers:1,turnPassword:"",enabledCodecs:[],activeRecording:!1}),this.localParticipant.updateInfo(new ParticipantInfo({identity:"simulated-local",name:"local-name"})),this.setupLocalParticipantEvents(),this.emit(Ie.SignalConnected),this.emit(Ie.Connected),this.setAndEmitConnectionState(Rt.Connected),n.video){const e=new LocalTrackPublication(Track.Kind.Video,new TrackInfo({source:O.CAMERA,sid:Math.floor(1e4*Math.random()).toString(),type:U.AUDIO,name:"video-dummy"}),new LocalVideoTrack(n.useRealTracks?(yield window.navigator.mediaDevices.getUserMedia({video:!0})).getVideoTracks()[0]:createDummyVideoStreamTrack(null!==(t=160*s.aspectRatios[0])&&void 0!==t?t:1,160,!0,!0)));this.localParticipant.addTrackPublication(e),this.localParticipant.emit(De.LocalTrackPublished,e)}if(n.audio){const e=new LocalTrackPublication(Track.Kind.Audio,new TrackInfo({source:O.MICROPHONE,sid:Math.floor(1e4*Math.random()).toString(),type:U.AUDIO}),new LocalAudioTrack(n.useRealTracks?(yield navigator.mediaDevices.getUserMedia({audio:!0})).getAudioTracks()[0]:getEmptyAudioStreamTrack()));this.localParticipant.addTrackPublication(e),this.localParticipant.emit(De.LocalTrackPublished,e)}for(let e=0;e<s.count-1;e+=1){let t=new ParticipantInfo({sid:Math.floor(1e4*Math.random()).toString(),identity:"simulated-".concat(e),state:j.ACTIVE,tracks:[],joinedAt:k.parse(Date.now())});const n=this.getOrCreateParticipant(t.identity,t);if(s.video){const a=createDummyVideoStreamTrack(null!==(i=160*s.aspectRatios[e%s.aspectRatios.length])&&void 0!==i?i:1,160,!1,!0),o=new TrackInfo({source:O.CAMERA,sid:Math.floor(1e4*Math.random()).toString(),type:U.AUDIO});n.addSubscribedMediaTrack(a,o.sid,new MediaStream([a])),t.tracks=[...t.tracks,o]}if(s.audio){const e=getEmptyAudioStreamTrack(),i=new TrackInfo({source:O.MICROPHONE,sid:Math.floor(1e4*Math.random()).toString(),type:U.AUDIO});n.addSubscribedMediaTrack(e,i.sid,new MediaStream([e])),t.tracks=[...t.tracks,i]}n.updateInfo(t)}}))}emit(e){for(var t=arguments.length,i=new Array(t>1?t-1:0),n=1;n<t;n++)i[n-1]=arguments[n];return e!==Ie.ActiveSpeakersChanged&&p.debug("room event ".concat(e),{event:e,args:i}),super.emit(e,...i)}}var It;!function(e){e[e.IDLE=0]="IDLE",e[e.RUNNING=1]="RUNNING",e[e.SKIPPED=2]="SKIPPED",e[e.SUCCESS=3]="SUCCESS",e[e.FAILED=4]="FAILED"}(It||(It={}));class Checker extends ie.EventEmitter{constructor(e,t){let i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};super(),this.status=It.IDLE,this.logs=[],this.errorsAsWarnings=!1,this.url=e,this.token=t,this.name=this.constructor.name,this.room=new Room(i.roomOptions),this.connectOptions=i.connectOptions,i.errorsAsWarnings&&(this.errorsAsWarnings=i.errorsAsWarnings)}run(e){return __awaiter(this,void 0,void 0,(function*(){if(this.status!==It.IDLE)throw Error("check is running already");this.setStatus(It.RUNNING);try{yield this.perform()}catch(e){e instanceof Error&&(this.errorsAsWarnings?this.appendWarning(e.message):this.appendError(e.message))}return yield this.disconnect(),yield new Promise((e=>setTimeout(e,500))),this.status!==It.SKIPPED&&this.setStatus(this.isSuccess()?It.SUCCESS:It.FAILED),e&&e(),this.getInfo()}))}isSuccess(){return!this.logs.some((e=>"error"===e.level))}connect(){return __awaiter(this,void 0,void 0,(function*(){return this.room.state===Rt.Connected||(yield this.room.connect(this.url,this.token)),this.room}))}disconnect(){return __awaiter(this,void 0,void 0,(function*(){this.room&&this.room.state!==Rt.Disconnected&&(yield this.room.disconnect(),yield new Promise((e=>setTimeout(e,500))))}))}skip(){this.setStatus(It.SKIPPED)}appendMessage(e){this.logs.push({level:"info",message:e}),this.emit("update",this.getInfo())}appendWarning(e){this.logs.push({level:"warning",message:e}),this.emit("update",this.getInfo())}appendError(e){this.logs.push({level:"error",message:e}),this.emit("update",this.getInfo())}setStatus(e){this.status=e,this.emit("update",this.getInfo())}get engine(){var e;return null===(e=this.room)||void 0===e?void 0:e.engine}getInfo(){return{logs:this.logs,name:this.name,status:this.status,description:this.description}}}function createLocalTracks(e){var t,i;return __awaiter(this,void 0,void 0,(function*(){null!=e||(e={}),null!==(t=e.audio)&&void 0!==t||(e.audio=!0),null!==(i=e.video)&&void 0!==i||(e.video=!0);const n=constraintsForOptions(mergeDefaultOptions(e,lt,ht)),s=navigator.mediaDevices.getUserMedia(n);e.audio&&(DeviceManager.userMediaPromiseMap.set("audioinput",s),s.catch((()=>DeviceManager.userMediaPromiseMap.delete("audioinput")))),e.video&&(DeviceManager.userMediaPromiseMap.set("videoinput",s),s.catch((()=>DeviceManager.userMediaPromiseMap.delete("videoinput"))));const a=yield s;return a.getTracks().map((t=>{const i="audio"===t.kind;let s;i?e.audio:e.video;const o=i?n.audio:n.video;"boolean"!=typeof o&&(s=o),s?s.deviceId=t.getSettings().deviceId:s={deviceId:t.getSettings().deviceId};const c=mediaTrackToLocalTrack(t,s);return c.kind===Track.Kind.Video?c.source=Track.Source.Camera:c.kind===Track.Kind.Audio&&(c.source=Track.Source.Microphone),c.mediaStream=a,c}))}))}function createLocalVideoTrack(e){return __awaiter(this,void 0,void 0,(function*(){return(yield createLocalTracks({audio:!1,video:e}))[0]}))}function createLocalAudioTrack(e){return __awaiter(this,void 0,void 0,(function*(){return(yield createLocalTracks({audio:e,video:!1}))[0]}))}function createLocalScreenTracks(e){return __awaiter(this,void 0,void 0,(function*(){if(void 0===e&&(e={}),void 0===e.resolution&&(e.resolution=_e.h1080fps15.resolution),void 0===navigator.mediaDevices.getDisplayMedia)throw new DeviceUnsupportedError("getDisplayMedia not supported");const t=screenCaptureToDisplayMediaStreamOptions(e),i=yield navigator.mediaDevices.getDisplayMedia(t),n=i.getVideoTracks();if(0===n.length)throw new TrackInvalidError("no video track found");const s=new LocalVideoTrack(n[0],void 0,!1);s.source=Track.Source.ScreenShare;const a=[s];if(i.getAudioTracks().length>0){const e=new LocalAudioTrack(i.getAudioTracks()[0],void 0,!1);e.source=Track.Source.ScreenShareAudio,a.push(e)}return a}))}class PublishAudioCheck extends Checker{get description(){return"Can publish audio"}perform(){var e;return __awaiter(this,void 0,void 0,(function*(){const t=yield this.connect(),i=yield createLocalAudioTrack();t.localParticipant.publishTrack(i),yield new Promise((e=>setTimeout(e,3e3)));const n=yield null===(e=i.sender)||void 0===e?void 0:e.getStats();if(!n)throw new Error("Could not get RTCStats");let s=0;if(n.forEach((e=>{"outbound-rtp"===e.type&&"audio"===e.mediaType&&(s=e.packetsSent)})),0===s)throw new Error("Could not determine packets are sent");this.appendMessage("published ".concat(s," audio packets"))}))}}class PublishVideoCheck extends Checker{get description(){return"Can publish video"}perform(){var e;return __awaiter(this,void 0,void 0,(function*(){const t=yield this.connect(),i=yield createLocalVideoTrack();t.localParticipant.publishTrack(i),yield new Promise((e=>setTimeout(e,3e3)));const n=yield null===(e=i.sender)||void 0===e?void 0:e.getStats();if(!n)throw new Error("Could not get RTCStats");let s=0;if(n.forEach((e=>{"outbound-rtp"===e.type&&"video"===e.mediaType&&(s=e.packetsSent)})),0===s)throw new Error("Could not determine packets are sent");this.appendMessage("published ".concat(s," video packets"))}))}}class ReconnectCheck extends Checker{get description(){return"Resuming connection after interruption"}perform(){var e;return __awaiter(this,void 0,void 0,(function*(){const t=yield this.connect();let i,n=!1,s=!1;const a=new Promise((e=>{setTimeout(e,5e3),i=e}));t.on(Ie.Reconnecting,(()=>{n=!0})).on(Ie.Reconnected,(()=>{s=!0,i(!0)})),null===(e=t.engine.client.ws)||void 0===e||e.close();const o=t.engine.client.onClose;if(o&&o(""),yield a,!n)throw new Error("Did not attempt to reconnect");if(!s||t.state!==Rt.Connected)throw this.appendWarning("reconnection is only possible in Redis-based configurations"),new Error("Not able to reconnect")}))}}class TURNCheck extends Checker{get description(){return"Can connect via TURN"}perform(){var e,t;return __awaiter(this,void 0,void 0,(function*(){const i=new SignalClient,n=yield i.join(this.url,this.token,{autoSubscribe:!0,maxRetries:0,e2eeEnabled:!1,websocketTimeout:15e3});let s=!1,a=!1,o=!1;for(let e of n.iceServers)for(let t of e.urls)t.startsWith("turn:")?(a=!0,o=!0):t.startsWith("turns:")&&(a=!0,o=!0,s=!0),t.startsWith("stun:")&&(o=!0);o?a&&!s&&this.appendWarning("TURN is configured server side, but TURN/TLS is unavailable."):this.appendWarning("No STUN servers configured on server side."),yield i.close(),(null===(t=null===(e=this.connectOptions)||void 0===e?void 0:e.rtcConfig)||void 0===t?void 0:t.iceServers)||a?yield this.room.connect(this.url,this.token,{rtcConfig:{iceTransportPolicy:"relay"}}):(this.appendWarning("No TURN servers configured."),this.skip(),yield new Promise((e=>setTimeout(e,0))))}))}}class WebRTCCheck extends Checker{get description(){return"Establishing WebRTC connection"}perform(){return __awaiter(this,void 0,void 0,(function*(){let e=!1,t=!1;this.room.on(Ie.SignalConnected,(()=>{const i=this.room.engine.client.onTrickle;this.room.engine.client.onTrickle=(n,s)=>{if(n.candidate){const i=new RTCIceCandidate(n);let s="".concat(i.protocol," ").concat(i.address,":").concat(i.port," ").concat(i.type);i.address&&(!function isIPPrivate(e){const t=e.split(".");if(4===t.length){if("10"===t[0])return!0;if("192"===t[0]&&"168"===t[1])return!0;if("172"===t[0]){const e=parseInt(t[1],10);if(e>=16&&e<=31)return!0}}return!1}(i.address)?"tcp"===i.protocol&&"passive"===i.tcpType?(e=!0,s+=" (passive)"):"udp"===i.protocol&&(t=!0):s+=" (private)"),this.appendMessage(s)}i&&i(n,s)},this.room.engine.subscriber&&(this.room.engine.subscriber.pc.onicecandidateerror=e=>{e instanceof RTCPeerConnectionIceErrorEvent&&this.appendWarning("error with ICE candidate: ".concat(e.errorCode," ").concat(e.errorText," ").concat(e.url))})}));try{yield this.connect(),p.info("now the room is connected")}catch(e){throw this.appendWarning("ports need to be open on firewall in order to connect."),e}e||this.appendWarning("Server is not configured for ICE/TCP"),t||this.appendWarning("No public IPv4 UDP candidates were found. Your server is likely not configured correctly")}))}}class WebSocketCheck extends Checker{get description(){return"Connecting to signal connection via WebSocket"}perform(){var e,t,i;return __awaiter(this,void 0,void 0,(function*(){(this.url.startsWith("ws:")||this.url.startsWith("http:"))&&this.appendWarning("Server is insecure, clients may block connections to it");let n=new SignalClient;const s=yield n.join(this.url,this.token,{autoSubscribe:!0,maxRetries:0,e2eeEnabled:!1,websocketTimeout:15e3});this.appendMessage("Connected to server, version ".concat(s.serverVersion,".")),(null===(e=s.serverInfo)||void 0===e?void 0:e.edition)===G.Cloud&&(null===(t=s.serverInfo)||void 0===t?void 0:t.region)&&this.appendMessage("LiveKit Cloud: ".concat(null===(i=s.serverInfo)||void 0===i?void 0:i.region)),yield n.close()}))}}class ConnectionCheck extends ie.EventEmitter{constructor(e,t){super(),this.checkResults=new Map,this.url=e,this.token=t}getNextCheckId(){const e=this.checkResults.size;return this.checkResults.set(e,{logs:[],status:It.IDLE,name:"",description:""}),e}updateCheck(e,t){this.checkResults.set(e,t),this.emit("checkUpdate",e,t)}isSuccess(){return Array.from(this.checkResults.values()).every((e=>e.status!==It.FAILED))}getResults(){return Array.from(this.checkResults.values())}createAndRunCheck(e){return __awaiter(this,void 0,void 0,(function*(){const t=this.getNextCheckId(),i=new e(this.url,this.token),handleUpdate=e=>{this.updateCheck(t,e)};i.on("update",handleUpdate);const n=yield i.run();return i.off("update",handleUpdate),n}))}checkWebsocket(){return __awaiter(this,void 0,void 0,(function*(){return this.createAndRunCheck(WebSocketCheck)}))}checkWebRTC(){return __awaiter(this,void 0,void 0,(function*(){return this.createAndRunCheck(WebRTCCheck)}))}checkTURN(){return __awaiter(this,void 0,void 0,(function*(){return this.createAndRunCheck(TURNCheck)}))}checkReconnect(){return __awaiter(this,void 0,void 0,(function*(){return this.createAndRunCheck(ReconnectCheck)}))}checkPublishAudio(){return __awaiter(this,void 0,void 0,(function*(){return this.createAndRunCheck(PublishAudioCheck)}))}checkPublishVideo(){return __awaiter(this,void 0,void 0,(function*(){return this.createAndRunCheck(PublishVideoCheck)}))}}function facingModeFromLocalTrack(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};var i;const n=e instanceof LocalTrack?e.mediaStreamTrack:e,s=n.getSettings();let a={facingMode:null!==(i=t.defaultFacingMode)&&void 0!==i?i:"user",confidence:"low"};if("facingMode"in s){const e=s.facingMode;p.debug("rawFacingMode",{rawFacingMode:e}),e&&"string"==typeof e&&isFacingModeValue(e)&&(a={facingMode:e,confidence:"high"})}if(["low","medium"].includes(a.confidence)){p.debug("Try to get facing mode from device label: (".concat(n.label,")"));const e=facingModeFromDeviceLabel(n.label);void 0!==e&&(a=e)}return a}const Dt=new Map([["obs virtual camera",{facingMode:"environment",confidence:"medium"}]]),Lt=new Map([["iphone",{facingMode:"environment",confidence:"medium"}],["ipad",{facingMode:"environment",confidence:"medium"}]]);function facingModeFromDeviceLabel(e){var t;const i=e.trim().toLowerCase();if(""!==i)return Dt.has(i)?Dt.get(i):null===(t=Array.from(Lt.entries()).find((e=>{let[t]=e;return i.includes(t)})))||void 0===t?void 0:t[1]}function isFacingModeValue(e){return void 0===e||["user","environment","left","right"].includes(e)}n=__webpack_require__.O(n),window.livekit=n})()
+var unityFramework = (() => {
+  var _scriptDir = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : undefined;
+  if (typeof __filename !== 'undefined') _scriptDir = _scriptDir || __filename;
+  return (
+function(unityFramework) {
+  unityFramework = unityFramework || {};
+
+var Module = typeof unityFramework != "undefined" ? unityFramework : {};
+
+var readyPromiseResolve, readyPromiseReject;
+
+Module["ready"] = new Promise(function(resolve, reject) {
+ readyPromiseResolve = resolve;
+ readyPromiseReject = reject;
+});
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "_main")) {
+ Object.defineProperty(Module["ready"], "_main", {
+  configurable: true,
+  get: function() {
+   abort("You are getting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "_main", {
+  configurable: true,
+  set: function() {
+   abort("You are setting _main on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "_getMemInfo")) {
+ Object.defineProperty(Module["ready"], "_getMemInfo", {
+  configurable: true,
+  get: function() {
+   abort("You are getting _getMemInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "_getMemInfo", {
+  configurable: true,
+  set: function() {
+   abort("You are setting _getMemInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "_SendMessageFloat")) {
+ Object.defineProperty(Module["ready"], "_SendMessageFloat", {
+  configurable: true,
+  get: function() {
+   abort("You are getting _SendMessageFloat on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "_SendMessageFloat", {
+  configurable: true,
+  set: function() {
+   abort("You are setting _SendMessageFloat on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "_SendMessageString")) {
+ Object.defineProperty(Module["ready"], "_SendMessageString", {
+  configurable: true,
+  get: function() {
+   abort("You are getting _SendMessageString on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "_SendMessageString", {
+  configurable: true,
+  set: function() {
+   abort("You are setting _SendMessageString on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "_SendMessage")) {
+ Object.defineProperty(Module["ready"], "_SendMessage", {
+  configurable: true,
+  get: function() {
+   abort("You are getting _SendMessage on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "_SendMessage", {
+  configurable: true,
+  set: function() {
+   abort("You are setting _SendMessage on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "_SetFullscreen")) {
+ Object.defineProperty(Module["ready"], "_SetFullscreen", {
+  configurable: true,
+  get: function() {
+   abort("You are getting _SetFullscreen on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "_SetFullscreen", {
+  configurable: true,
+  set: function() {
+   abort("You are setting _SetFullscreen on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "_InjectProfilerSample")) {
+ Object.defineProperty(Module["ready"], "_InjectProfilerSample", {
+  configurable: true,
+  get: function() {
+   abort("You are getting _InjectProfilerSample on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "_InjectProfilerSample", {
+  configurable: true,
+  set: function() {
+   abort("You are setting _InjectProfilerSample on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "___stdio_exit")) {
+ Object.defineProperty(Module["ready"], "___stdio_exit", {
+  configurable: true,
+  get: function() {
+   abort("You are getting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "___stdio_exit", {
+  configurable: true,
+  set: function() {
+   abort("You are setting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+if (!Object.getOwnPropertyDescriptor(Module["ready"], "onRuntimeInitialized")) {
+ Object.defineProperty(Module["ready"], "onRuntimeInitialized", {
+  configurable: true,
+  get: function() {
+   abort("You are getting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+ Object.defineProperty(Module["ready"], "onRuntimeInitialized", {
+  configurable: true,
+  set: function() {
+   abort("You are setting onRuntimeInitialized on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js");
+  }
+ });
+}
+
+
 
 
 function Pointer_stringify(s, len) {
@@ -50,7 +198,7 @@ Module["SetFullscreen"] = function(fullscreen) {
  }
 };
 
-if (typeof ENVIRONMENT_IS_PTHREAD === "undefined" || !ENVIRONMENT_IS_PTHREAD) {
+if (!Module["ENVIRONMENT_IS_PTHREAD"]) {
  Module["preRun"].push(function() {
   var unityFileSystemInit = Module["unityFileSystemInit"] || function() {
    FS.mkdir("/idbfs");
@@ -67,7 +215,11 @@ if (typeof ENVIRONMENT_IS_PTHREAD === "undefined" || !ENVIRONMENT_IS_PTHREAD) {
 
 var videoInputDevices = [];
 
+var videoInputDevicesEnumerated = false;
+
 var removeEnumerateMediaDevicesRunDependency;
+
+var enumerateWatchdog = null;
 
 function matchToOldDevice(newDevice) {
  var oldDevices = Object.keys(videoInputDevices);
@@ -125,6 +277,7 @@ function enumerateMediaDeviceList() {
  if (!videoInputDevices) return;
  navigator.mediaDevices.enumerateDevices().then(function(devices) {
   updateVideoInputDevices(devices);
+  videoInputDevicesEnumerated = true;
  }).catch(function(e) {
   console.warn("Unable to enumerate media devices: " + e + "\nWebcams will not be available.");
   disableAccessToMediaDevices();
@@ -151,11 +304,13 @@ if (!navigator.mediaDevices) {
  try {
   addRunDependency("enumerateMediaDevices");
   removeEnumerateMediaDevicesRunDependency = function() {
+   if (enumerateWatchdog !== null) clearTimeout(enumerateWatchdog);
    removeRunDependency("enumerateMediaDevices");
    if (navigator.mediaDevices) console.log("navigator.mediaDevices support available");
    removeEnumerateMediaDevicesRunDependency = function() {};
   };
   enumerateMediaDeviceList();
+  enumerateWatchdog = setTimeout(removeEnumerateMediaDevicesRunDependency, 1e3);
   navigator.mediaDevices.addEventListener("devicechange", enumerateMediaDeviceList);
  } catch (e) {
   console.warn("Unable to enumerate media devices: " + e);
@@ -169,39 +324,23 @@ function SendMessage(gameObject, func, param) {
 
 Module["SendMessage"] = SendMessage;
 
-var moduleOverrides = {};
-
-var key;
-
-for (key in Module) {
- if (Module.hasOwnProperty(key)) {
-  moduleOverrides[key] = Module[key];
- }
-}
+var moduleOverrides = Object.assign({}, Module);
 
 var arguments_ = [];
 
 var thisProgram = "./this.program";
 
-var quit_ = function(status, toThrow) {
+var quit_ = (status, toThrow) => {
  throw toThrow;
 };
 
-var ENVIRONMENT_IS_WEB = false;
+var ENVIRONMENT_IS_WEB = typeof window == "object";
 
-var ENVIRONMENT_IS_WORKER = false;
+var ENVIRONMENT_IS_WORKER = typeof importScripts == "function";
 
-var ENVIRONMENT_IS_NODE = false;
+var ENVIRONMENT_IS_NODE = typeof process == "object" && typeof process.versions == "object" && typeof process.versions.node == "string";
 
-var ENVIRONMENT_IS_SHELL = false;
-
-ENVIRONMENT_IS_WEB = typeof window === "object";
-
-ENVIRONMENT_IS_WORKER = typeof importScripts === "function";
-
-ENVIRONMENT_IS_NODE = typeof process === "object" && typeof process.versions === "object" && typeof process.versions.node === "string";
-
-ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIRONMENT_IS_WORKER;
+var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIRONMENT_IS_WORKER;
 
 if (Module["ENVIRONMENT"]) {
  throw new Error("Module.ENVIRONMENT has been deprecated. To force the environment, use the ENVIRONMENT compile-time option (for example, -s ENVIRONMENT=web or -s ENVIRONMENT=node)");
@@ -218,124 +357,159 @@ function locateFile(path) {
 
 var read_, readAsync, readBinary, setWindowTitle;
 
-var nodeFS;
+function logExceptionOnExit(e) {
+ if (e instanceof ExitStatus) return;
+ let toLog = e;
+ if (e && typeof e == "object" && e.stack) {
+  toLog = [ e, e.stack ];
+ }
+ err("exiting due to exception: " + toLog);
+}
+
+var fs;
 
 var nodePath;
 
+var requireNodeFS;
+
 if (ENVIRONMENT_IS_NODE) {
+ if (!(typeof process == "object" && typeof require == "function")) throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");
  if (ENVIRONMENT_IS_WORKER) {
   scriptDirectory = require("path").dirname(scriptDirectory) + "/";
  } else {
   scriptDirectory = __dirname + "/";
  }
+ requireNodeFS = (() => {
+  if (!nodePath) {
+   fs = require("fs");
+   nodePath = require("path");
+  }
+ });
  read_ = function shell_read(filename, binary) {
-  if (!nodeFS) nodeFS = require("fs");
-  if (!nodePath) nodePath = require("path");
+  requireNodeFS();
   filename = nodePath["normalize"](filename);
-  return nodeFS["readFileSync"](filename, binary ? null : "utf8");
+  return fs.readFileSync(filename, binary ? undefined : "utf8");
  };
- readBinary = function readBinary(filename) {
+ readBinary = (filename => {
   var ret = read_(filename, true);
   if (!ret.buffer) {
    ret = new Uint8Array(ret);
   }
   assert(ret.buffer);
   return ret;
- };
+ });
+ readAsync = ((filename, onload, onerror) => {
+  requireNodeFS();
+  filename = nodePath["normalize"](filename);
+  fs.readFile(filename, function(err, data) {
+   if (err) onerror(err); else onload(data.buffer);
+  });
+ });
  if (process["argv"].length > 1) {
   thisProgram = process["argv"][1].replace(/\\/g, "/");
  }
  arguments_ = process["argv"].slice(2);
- if (typeof module !== "undefined") {
-  module["exports"] = Module;
- }
  process["on"]("uncaughtException", function(ex) {
   if (!(ex instanceof ExitStatus)) {
    throw ex;
   }
  });
- process["on"]("unhandledRejection", abort);
- quit_ = function(status) {
+ process["on"]("unhandledRejection", function(reason) {
+  throw reason;
+ });
+ quit_ = ((status, toThrow) => {
+  if (keepRuntimeAlive()) {
+   process["exitCode"] = status;
+   throw toThrow;
+  }
+  logExceptionOnExit(toThrow);
   process["exit"](status);
- };
+ });
  Module["inspect"] = function() {
   return "[Emscripten Module object]";
  };
 } else if (ENVIRONMENT_IS_SHELL) {
+ if (typeof process == "object" && typeof require === "function" || typeof window == "object" || typeof importScripts == "function") throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");
  if (typeof read != "undefined") {
   read_ = function shell_read(f) {
    return read(f);
   };
  }
  readBinary = function readBinary(f) {
-  var data;
-  if (typeof readbuffer === "function") {
+  let data;
+  if (typeof readbuffer == "function") {
    return new Uint8Array(readbuffer(f));
   }
   data = read(f, "binary");
-  assert(typeof data === "object");
+  assert(typeof data == "object");
   return data;
+ };
+ readAsync = function readAsync(f, onload, onerror) {
+  setTimeout(() => onload(readBinary(f)), 0);
  };
  if (typeof scriptArgs != "undefined") {
   arguments_ = scriptArgs;
  } else if (typeof arguments != "undefined") {
   arguments_ = arguments;
  }
- if (typeof quit === "function") {
-  quit_ = function(status) {
+ if (typeof quit == "function") {
+  quit_ = ((status, toThrow) => {
+   logExceptionOnExit(toThrow);
    quit(status);
-  };
+  });
  }
- if (typeof print !== "undefined") {
-  if (typeof console === "undefined") console = {};
+ if (typeof print != "undefined") {
+  if (typeof console == "undefined") console = {};
   console.log = print;
-  console.warn = console.error = typeof printErr !== "undefined" ? printErr : print;
+  console.warn = console.error = typeof printErr != "undefined" ? printErr : print;
  }
 } else if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
  if (ENVIRONMENT_IS_WORKER) {
   scriptDirectory = self.location.href;
- } else if (typeof document !== "undefined" && document.currentScript) {
+ } else if (typeof document != "undefined" && document.currentScript) {
   scriptDirectory = document.currentScript.src;
  }
+ if (_scriptDir) {
+  scriptDirectory = _scriptDir;
+ }
  if (scriptDirectory.indexOf("blob:") !== 0) {
-  scriptDirectory = scriptDirectory.substr(0, scriptDirectory.lastIndexOf("/") + 1);
+  scriptDirectory = scriptDirectory.substr(0, scriptDirectory.replace(/[?#].*/, "").lastIndexOf("/") + 1);
  } else {
   scriptDirectory = "";
  }
+ if (!(typeof window == "object" || typeof importScripts == "function")) throw new Error("not compiled for this environment (did you build to HTML and try to run it not on the web, or set ENVIRONMENT to something - like node - and run it someplace else - like on the web?)");
  {
-  read_ = function(url) {
+  read_ = (url => {
    var xhr = new XMLHttpRequest();
    xhr.open("GET", url, false);
    xhr.send(null);
    return xhr.responseText;
-  };
+  });
   if (ENVIRONMENT_IS_WORKER) {
-   readBinary = function(url) {
+   readBinary = (url => {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, false);
     xhr.responseType = "arraybuffer";
     xhr.send(null);
     return new Uint8Array(xhr.response);
-   };
+   });
   }
-  readAsync = function(url, onload, onerror) {
+  readAsync = ((url, onload, onerror) => {
    var xhr = new XMLHttpRequest();
    xhr.open("GET", url, true);
    xhr.responseType = "arraybuffer";
-   xhr.onload = function() {
+   xhr.onload = (() => {
     if (xhr.status == 200 || xhr.status == 0 && xhr.response) {
      onload(xhr.response);
      return;
     }
     onerror();
-   };
+   });
    xhr.onerror = onerror;
    xhr.send(null);
-  };
+  });
  }
- setWindowTitle = function(title) {
-  document.title = title;
- };
+ setWindowTitle = (title => document.title = title);
 } else {
  throw new Error("environment detection error");
 }
@@ -344,106 +518,96 @@ var out = Module["print"] || console.log.bind(console);
 
 var err = Module["printErr"] || console.warn.bind(console);
 
-for (key in moduleOverrides) {
- if (moduleOverrides.hasOwnProperty(key)) {
-  Module[key] = moduleOverrides[key];
- }
-}
+Object.assign(Module, moduleOverrides);
 
 moduleOverrides = null;
 
+checkIncomingModuleAPI();
+
 if (Module["arguments"]) arguments_ = Module["arguments"];
 
-if (!Object.getOwnPropertyDescriptor(Module, "arguments")) {
- Object.defineProperty(Module, "arguments", {
-  configurable: true,
-  get: function() {
-   abort("Module.arguments has been replaced with plain arguments_ (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("arguments", "arguments_");
 
 if (Module["thisProgram"]) thisProgram = Module["thisProgram"];
 
-if (!Object.getOwnPropertyDescriptor(Module, "thisProgram")) {
- Object.defineProperty(Module, "thisProgram", {
-  configurable: true,
-  get: function() {
-   abort("Module.thisProgram has been replaced with plain thisProgram (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("thisProgram", "thisProgram");
 
 if (Module["quit"]) quit_ = Module["quit"];
 
-if (!Object.getOwnPropertyDescriptor(Module, "quit")) {
- Object.defineProperty(Module, "quit", {
-  configurable: true,
-  get: function() {
-   abort("Module.quit has been replaced with plain quit_ (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("quit", "quit_");
 
-assert(typeof Module["memoryInitializerPrefixURL"] === "undefined", "Module.memoryInitializerPrefixURL option was removed, use Module.locateFile instead");
+assert(typeof Module["memoryInitializerPrefixURL"] == "undefined", "Module.memoryInitializerPrefixURL option was removed, use Module.locateFile instead");
 
-assert(typeof Module["pthreadMainPrefixURL"] === "undefined", "Module.pthreadMainPrefixURL option was removed, use Module.locateFile instead");
+assert(typeof Module["pthreadMainPrefixURL"] == "undefined", "Module.pthreadMainPrefixURL option was removed, use Module.locateFile instead");
 
-assert(typeof Module["cdInitializerPrefixURL"] === "undefined", "Module.cdInitializerPrefixURL option was removed, use Module.locateFile instead");
+assert(typeof Module["cdInitializerPrefixURL"] == "undefined", "Module.cdInitializerPrefixURL option was removed, use Module.locateFile instead");
 
-assert(typeof Module["filePackagePrefixURL"] === "undefined", "Module.filePackagePrefixURL option was removed, use Module.locateFile instead");
+assert(typeof Module["filePackagePrefixURL"] == "undefined", "Module.filePackagePrefixURL option was removed, use Module.locateFile instead");
 
-assert(typeof Module["read"] === "undefined", "Module.read option was removed (modify read_ in JS)");
+assert(typeof Module["read"] == "undefined", "Module.read option was removed (modify read_ in JS)");
 
-assert(typeof Module["readAsync"] === "undefined", "Module.readAsync option was removed (modify readAsync in JS)");
+assert(typeof Module["readAsync"] == "undefined", "Module.readAsync option was removed (modify readAsync in JS)");
 
-assert(typeof Module["readBinary"] === "undefined", "Module.readBinary option was removed (modify readBinary in JS)");
+assert(typeof Module["readBinary"] == "undefined", "Module.readBinary option was removed (modify readBinary in JS)");
 
-assert(typeof Module["setWindowTitle"] === "undefined", "Module.setWindowTitle option was removed (modify setWindowTitle in JS)");
+assert(typeof Module["setWindowTitle"] == "undefined", "Module.setWindowTitle option was removed (modify setWindowTitle in JS)");
 
-assert(typeof Module["TOTAL_MEMORY"] === "undefined", "Module.TOTAL_MEMORY has been renamed Module.INITIAL_MEMORY");
+assert(typeof Module["TOTAL_MEMORY"] == "undefined", "Module.TOTAL_MEMORY has been renamed Module.INITIAL_MEMORY");
 
-if (!Object.getOwnPropertyDescriptor(Module, "read")) {
- Object.defineProperty(Module, "read", {
-  configurable: true,
-  get: function() {
-   abort("Module.read has been replaced with plain read_ (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("read", "read_");
 
-if (!Object.getOwnPropertyDescriptor(Module, "readAsync")) {
- Object.defineProperty(Module, "readAsync", {
-  configurable: true,
-  get: function() {
-   abort("Module.readAsync has been replaced with plain readAsync (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("readAsync", "readAsync");
 
-if (!Object.getOwnPropertyDescriptor(Module, "readBinary")) {
- Object.defineProperty(Module, "readBinary", {
-  configurable: true,
-  get: function() {
-   abort("Module.readBinary has been replaced with plain readBinary (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("readBinary", "readBinary");
 
-if (!Object.getOwnPropertyDescriptor(Module, "setWindowTitle")) {
- Object.defineProperty(Module, "setWindowTitle", {
-  configurable: true,
-  get: function() {
-   abort("Module.setWindowTitle has been replaced with plain setWindowTitle (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("setWindowTitle", "setWindowTitle");
+
+var PROXYFS = "PROXYFS is no longer included by default; build with -lproxyfs.js";
+
+var WORKERFS = "WORKERFS is no longer included by default; build with -lworkerfs.js";
+
+var NODEFS = "NODEFS is no longer included by default; build with -lnodefs.js";
+
+assert(!ENVIRONMENT_IS_SHELL, "shell environment detected but not enabled at build time.  Add 'shell' to `-s ENVIRONMENT` to enable.");
 
 var STACK_ALIGN = 16;
 
-function alignMemory(size, factor) {
- if (!factor) factor = STACK_ALIGN;
- return Math.ceil(size / factor) * factor;
+var POINTER_SIZE = 4;
+
+function getNativeTypeSize(type) {
+ switch (type) {
+ case "i1":
+ case "i8":
+  return 1;
+
+ case "i16":
+  return 2;
+
+ case "i32":
+  return 4;
+
+ case "i64":
+  return 8;
+
+ case "float":
+  return 4;
+
+ case "double":
+  return 8;
+
+ default:
+  {
+   if (type[type.length - 1] === "*") {
+    return POINTER_SIZE;
+   } else if (type[0] === "i") {
+    const bits = Number(type.substr(1));
+    assert(bits % 8 === 0, "getNativeTypeSize invalid bits " + bits + ", type " + type);
+    return bits / 8;
+   } else {
+    return 0;
+   }
+  }
+ }
 }
 
 function warnOnce(text) {
@@ -455,7 +619,7 @@ function warnOnce(text) {
 }
 
 function convertJsFunctionToWasm(func, sig) {
- if (typeof WebAssembly.Function === "function") {
+ if (typeof WebAssembly.Function == "function") {
   var typeNames = {
    "i": "i32",
    "j": "i64",
@@ -520,70 +684,173 @@ function getEmptyTableSlot() {
  return wasmTable.length - 1;
 }
 
-function addFunctionWasm(func, sig) {
+function updateTableMap(offset, count) {
+ for (var i = offset; i < offset + count; i++) {
+  var item = getWasmTableEntry(i);
+  if (item) {
+   functionsInTableMap.set(item, i);
+  }
+ }
+}
+
+function addFunction(func, sig) {
+ assert(typeof func != "undefined");
  if (!functionsInTableMap) {
   functionsInTableMap = new WeakMap();
-  for (var i = 0; i < wasmTable.length; i++) {
-   var item = wasmTable.get(i);
-   if (item) {
-    functionsInTableMap.set(item, i);
-   }
-  }
+  updateTableMap(0, wasmTable.length);
  }
  if (functionsInTableMap.has(func)) {
   return functionsInTableMap.get(func);
  }
  var ret = getEmptyTableSlot();
  try {
-  wasmTable.set(ret, func);
+  setWasmTableEntry(ret, func);
  } catch (err) {
   if (!(err instanceof TypeError)) {
    throw err;
   }
-  assert(typeof sig !== "undefined", "Missing signature argument to addFunction: " + func);
+  assert(typeof sig != "undefined", "Missing signature argument to addFunction: " + func);
   var wrapped = convertJsFunctionToWasm(func, sig);
-  wasmTable.set(ret, wrapped);
+  setWasmTableEntry(ret, wrapped);
  }
  functionsInTableMap.set(func, ret);
  return ret;
 }
 
+function removeFunction(index) {
+ functionsInTableMap.delete(getWasmTableEntry(index));
+ freeTableIndexes.push(index);
+}
+
+function legacyModuleProp(prop, newName) {
+ if (!Object.getOwnPropertyDescriptor(Module, prop)) {
+  Object.defineProperty(Module, prop, {
+   configurable: true,
+   get: function() {
+    abort("Module." + prop + " has been replaced with plain " + newName + " (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
+   }
+  });
+ }
+}
+
+function ignoredModuleProp(prop) {
+ if (Object.getOwnPropertyDescriptor(Module, prop)) {
+  abort("`Module." + prop + "` was supplied but `" + prop + "` not included in INCOMING_MODULE_JS_API");
+ }
+}
+
+function unexportedMessage(sym, isFSSybol) {
+ var msg = "'" + sym + "' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)";
+ if (isFSSybol) {
+  msg += ". Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you";
+ }
+ return msg;
+}
+
+function unexportedRuntimeSymbol(sym, isFSSybol) {
+ if (!Object.getOwnPropertyDescriptor(Module, sym)) {
+  Object.defineProperty(Module, sym, {
+   configurable: true,
+   get: function() {
+    abort(unexportedMessage(sym, isFSSybol));
+   }
+  });
+ }
+}
+
+function unexportedRuntimeFunction(sym, isFSSybol) {
+ if (!Object.getOwnPropertyDescriptor(Module, sym)) {
+  Module[sym] = (() => abort(unexportedMessage(sym, isFSSybol)));
+ }
+}
+
 var tempRet0 = 0;
 
-var setTempRet0 = function(value) {
+var setTempRet0 = value => {
  tempRet0 = value;
 };
 
-var getTempRet0 = function() {
- return tempRet0;
-};
+var getTempRet0 = () => tempRet0;
 
 var wasmBinary;
 
 if (Module["wasmBinary"]) wasmBinary = Module["wasmBinary"];
 
-if (!Object.getOwnPropertyDescriptor(Module, "wasmBinary")) {
- Object.defineProperty(Module, "wasmBinary", {
-  configurable: true,
-  get: function() {
-   abort("Module.wasmBinary has been replaced with plain wasmBinary (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("wasmBinary", "wasmBinary");
 
 var noExitRuntime = Module["noExitRuntime"] || true;
 
-if (!Object.getOwnPropertyDescriptor(Module, "noExitRuntime")) {
- Object.defineProperty(Module, "noExitRuntime", {
-  configurable: true,
-  get: function() {
-   abort("Module.noExitRuntime has been replaced with plain noExitRuntime (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
+legacyModuleProp("noExitRuntime", "noExitRuntime");
+
+if (typeof WebAssembly != "object") {
+ abort("no native wasm support detected");
 }
 
-if (typeof WebAssembly !== "object") {
- abort("no native wasm support detected");
+function setValue(ptr, value, type = "i8", noSafe) {
+ if (type.charAt(type.length - 1) === "*") type = "i32";
+ switch (type) {
+ case "i1":
+  HEAP8[ptr >>> 0] = value;
+  break;
+
+ case "i8":
+  HEAP8[ptr >>> 0] = value;
+  break;
+
+ case "i16":
+  HEAP16[ptr >>> 1] = value;
+  break;
+
+ case "i32":
+  HEAP32[ptr >>> 2] = value;
+  break;
+
+ case "i64":
+  tempI64 = [ value >>> 0, (tempDouble = value, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
+  HEAP32[ptr >>> 2] = tempI64[0], HEAP32[ptr + 4 >>> 2] = tempI64[1];
+  break;
+
+ case "float":
+  HEAPF32[ptr >>> 2] = value;
+  break;
+
+ case "double":
+  HEAPF64[ptr >>> 3] = value;
+  break;
+
+ default:
+  abort("invalid type for setValue: " + type);
+ }
+}
+
+function getValue(ptr, type = "i8", noSafe) {
+ if (type.charAt(type.length - 1) === "*") type = "i32";
+ switch (type) {
+ case "i1":
+  return HEAP8[ptr >>> 0];
+
+ case "i8":
+  return HEAP8[ptr >>> 0];
+
+ case "i16":
+  return HEAP16[ptr >>> 1];
+
+ case "i32":
+  return HEAP32[ptr >>> 2];
+
+ case "i64":
+  return HEAP32[ptr >>> 2];
+
+ case "float":
+  return HEAPF32[ptr >>> 2];
+
+ case "double":
+  return Number(HEAPF64[ptr >>> 3]);
+
+ default:
+  abort("invalid type for getValue: " + type);
+ }
+ return null;
 }
 
 var wasmMemory;
@@ -594,7 +861,7 @@ var EXITSTATUS;
 
 function assert(condition, text) {
  if (!condition) {
-  abort("Assertion failed: " + text);
+  abort("Assertion failed" + (text ? ": " + text : ""));
  }
 }
 
@@ -642,8 +909,11 @@ function ccall(ident, returnType, argTypes, args, opts) {
   }
  }
  var ret = func.apply(null, cArgs);
- ret = convertReturnValue(ret);
- if (stack !== 0) stackRestore(stack);
+ function onDone(ret) {
+  if (stack !== 0) stackRestore(stack);
+  return convertReturnValue(ret);
+ }
+ ret = onDone(ret);
  return ret;
 }
 
@@ -653,35 +923,54 @@ function cwrap(ident, returnType, argTypes, opts) {
  };
 }
 
+var ALLOC_NORMAL = 0;
+
 var ALLOC_STACK = 1;
 
-var UTF8Decoder = typeof TextDecoder !== "undefined" ? new TextDecoder("utf8") : undefined;
+function allocate(slab, allocator) {
+ var ret;
+ assert(typeof allocator == "number", "allocate no longer takes a type argument");
+ assert(typeof slab != "number", "allocate no longer takes a number as arg0");
+ if (allocator == ALLOC_STACK) {
+  ret = stackAlloc(slab.length);
+ } else {
+  ret = _malloc(slab.length);
+ }
+ if (!slab.subarray && !slab.slice) {
+  slab = new Uint8Array(slab);
+ }
+ HEAPU8.set(slab, ret >>> 0);
+ return ret;
+}
 
-function UTF8ArrayToString(heap, idx, maxBytesToRead) {
+var UTF8Decoder = typeof TextDecoder != "undefined" ? new TextDecoder("utf8") : undefined;
+
+function UTF8ArrayToString(heapOrArray, idx, maxBytesToRead) {
+ idx >>>= 0;
  var endIdx = idx + maxBytesToRead;
  var endPtr = idx;
- while (heap[endPtr] && !(endPtr >= endIdx)) ++endPtr;
- if (endPtr - idx > 16 && heap.subarray && UTF8Decoder) {
-  return UTF8Decoder.decode(heap.subarray(idx, endPtr));
+ while (heapOrArray[endPtr] && !(endPtr >= endIdx)) ++endPtr;
+ if (endPtr - idx > 16 && heapOrArray.buffer && UTF8Decoder) {
+  return UTF8Decoder.decode(heapOrArray.subarray(idx, endPtr));
  } else {
   var str = "";
   while (idx < endPtr) {
-   var u0 = heap[idx++];
+   var u0 = heapOrArray[idx++];
    if (!(u0 & 128)) {
     str += String.fromCharCode(u0);
     continue;
    }
-   var u1 = heap[idx++] & 63;
+   var u1 = heapOrArray[idx++] & 63;
    if ((u0 & 224) == 192) {
     str += String.fromCharCode((u0 & 31) << 6 | u1);
     continue;
    }
-   var u2 = heap[idx++] & 63;
+   var u2 = heapOrArray[idx++] & 63;
    if ((u0 & 240) == 224) {
     u0 = (u0 & 15) << 12 | u1 << 6 | u2;
    } else {
     if ((u0 & 248) != 240) warnOnce("Invalid UTF-8 leading byte 0x" + u0.toString(16) + " encountered when deserializing a UTF-8 string in wasm memory to a JS string!");
-    u0 = (u0 & 7) << 18 | u1 << 12 | u2 << 6 | heap[idx++] & 63;
+    u0 = (u0 & 7) << 18 | u1 << 12 | u2 << 6 | heapOrArray[idx++] & 63;
    }
    if (u0 < 65536) {
     str += String.fromCharCode(u0);
@@ -695,10 +984,12 @@ function UTF8ArrayToString(heap, idx, maxBytesToRead) {
 }
 
 function UTF8ToString(ptr, maxBytesToRead) {
+ ptr >>>= 0;
  return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : "";
 }
 
 function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
+ outIdx >>>= 0;
  if (!(maxBytesToWrite > 0)) return 0;
  var startIdx = outIdx;
  var endIdx = outIdx + maxBytesToWrite - 1;
@@ -710,26 +1001,26 @@ function stringToUTF8Array(str, heap, outIdx, maxBytesToWrite) {
   }
   if (u <= 127) {
    if (outIdx >= endIdx) break;
-   heap[outIdx++] = u;
+   heap[outIdx++ >>> 0] = u;
   } else if (u <= 2047) {
    if (outIdx + 1 >= endIdx) break;
-   heap[outIdx++] = 192 | u >> 6;
-   heap[outIdx++] = 128 | u & 63;
+   heap[outIdx++ >>> 0] = 192 | u >> 6;
+   heap[outIdx++ >>> 0] = 128 | u & 63;
   } else if (u <= 65535) {
    if (outIdx + 2 >= endIdx) break;
-   heap[outIdx++] = 224 | u >> 12;
-   heap[outIdx++] = 128 | u >> 6 & 63;
-   heap[outIdx++] = 128 | u & 63;
+   heap[outIdx++ >>> 0] = 224 | u >> 12;
+   heap[outIdx++ >>> 0] = 128 | u >> 6 & 63;
+   heap[outIdx++ >>> 0] = 128 | u & 63;
   } else {
    if (outIdx + 3 >= endIdx) break;
-   if (u >= 2097152) warnOnce("Invalid Unicode code point 0x" + u.toString(16) + " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x1FFFFF).");
-   heap[outIdx++] = 240 | u >> 18;
-   heap[outIdx++] = 128 | u >> 12 & 63;
-   heap[outIdx++] = 128 | u >> 6 & 63;
-   heap[outIdx++] = 128 | u & 63;
+   if (u > 1114111) warnOnce("Invalid Unicode code point 0x" + u.toString(16) + " encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF).");
+   heap[outIdx++ >>> 0] = 240 | u >> 18;
+   heap[outIdx++ >>> 0] = 128 | u >> 12 & 63;
+   heap[outIdx++ >>> 0] = 128 | u >> 6 & 63;
+   heap[outIdx++ >>> 0] = 128 | u & 63;
   }
  }
- heap[outIdx] = 0;
+ heap[outIdx >>> 0] = 0;
  return outIdx - startIdx;
 }
 
@@ -748,7 +1039,116 @@ function lengthBytesUTF8(str) {
  return len;
 }
 
-var UTF16Decoder = typeof TextDecoder !== "undefined" ? new TextDecoder("utf-16le") : undefined;
+function AsciiToString(ptr) {
+ ptr >>>= 0;
+ var str = "";
+ while (1) {
+  var ch = HEAPU8[ptr++ >>> 0];
+  if (!ch) return str;
+  str += String.fromCharCode(ch);
+ }
+}
+
+function stringToAscii(str, outPtr) {
+ return writeAsciiToMemory(str, outPtr, false);
+}
+
+var UTF16Decoder = typeof TextDecoder != "undefined" ? new TextDecoder("utf-16le") : undefined;
+
+function UTF16ToString(ptr, maxBytesToRead) {
+ assert(ptr % 2 == 0, "Pointer passed to UTF16ToString must be aligned to two bytes!");
+ var endPtr = ptr;
+ var idx = endPtr >> 1;
+ var maxIdx = idx + maxBytesToRead / 2;
+ while (!(idx >= maxIdx) && HEAPU16[idx >>> 0]) ++idx;
+ endPtr = idx << 1;
+ if (endPtr - ptr > 32 && UTF16Decoder) {
+  return UTF16Decoder.decode(HEAPU8.subarray(ptr >>> 0, endPtr >>> 0));
+ } else {
+  var str = "";
+  for (var i = 0; !(i >= maxBytesToRead / 2); ++i) {
+   var codeUnit = HEAP16[ptr + i * 2 >>> 1];
+   if (codeUnit == 0) break;
+   str += String.fromCharCode(codeUnit);
+  }
+  return str;
+ }
+}
+
+function stringToUTF16(str, outPtr, maxBytesToWrite) {
+ assert(outPtr % 2 == 0, "Pointer passed to stringToUTF16 must be aligned to two bytes!");
+ assert(typeof maxBytesToWrite == "number", "stringToUTF16(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!");
+ if (maxBytesToWrite === undefined) {
+  maxBytesToWrite = 2147483647;
+ }
+ if (maxBytesToWrite < 2) return 0;
+ maxBytesToWrite -= 2;
+ var startPtr = outPtr;
+ var numCharsToWrite = maxBytesToWrite < str.length * 2 ? maxBytesToWrite / 2 : str.length;
+ for (var i = 0; i < numCharsToWrite; ++i) {
+  var codeUnit = str.charCodeAt(i);
+  HEAP16[outPtr >>> 1] = codeUnit;
+  outPtr += 2;
+ }
+ HEAP16[outPtr >>> 1] = 0;
+ return outPtr - startPtr;
+}
+
+function lengthBytesUTF16(str) {
+ return str.length * 2;
+}
+
+function UTF32ToString(ptr, maxBytesToRead) {
+ assert(ptr % 4 == 0, "Pointer passed to UTF32ToString must be aligned to four bytes!");
+ var i = 0;
+ var str = "";
+ while (!(i >= maxBytesToRead / 4)) {
+  var utf32 = HEAP32[ptr + i * 4 >>> 2];
+  if (utf32 == 0) break;
+  ++i;
+  if (utf32 >= 65536) {
+   var ch = utf32 - 65536;
+   str += String.fromCharCode(55296 | ch >> 10, 56320 | ch & 1023);
+  } else {
+   str += String.fromCharCode(utf32);
+  }
+ }
+ return str;
+}
+
+function stringToUTF32(str, outPtr, maxBytesToWrite) {
+ outPtr >>>= 0;
+ assert(outPtr % 4 == 0, "Pointer passed to stringToUTF32 must be aligned to four bytes!");
+ assert(typeof maxBytesToWrite == "number", "stringToUTF32(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!");
+ if (maxBytesToWrite === undefined) {
+  maxBytesToWrite = 2147483647;
+ }
+ if (maxBytesToWrite < 4) return 0;
+ var startPtr = outPtr;
+ var endPtr = startPtr + maxBytesToWrite - 4;
+ for (var i = 0; i < str.length; ++i) {
+  var codeUnit = str.charCodeAt(i);
+  if (codeUnit >= 55296 && codeUnit <= 57343) {
+   var trailSurrogate = str.charCodeAt(++i);
+   codeUnit = 65536 + ((codeUnit & 1023) << 10) | trailSurrogate & 1023;
+  }
+  HEAP32[outPtr >>> 2] = codeUnit;
+  outPtr += 4;
+  if (outPtr + 4 > endPtr) break;
+ }
+ HEAP32[outPtr >>> 2] = 0;
+ return outPtr - startPtr;
+}
+
+function lengthBytesUTF32(str) {
+ var len = 0;
+ for (var i = 0; i < str.length; ++i) {
+  var codeUnit = str.charCodeAt(i);
+  if (codeUnit >= 55296 && codeUnit <= 57343) ++i;
+  len += 4;
+ }
+ return len;
+}
 
 function allocateUTF8(str) {
  var size = lengthBytesUTF8(str) + 1;
@@ -764,27 +1164,31 @@ function allocateUTF8OnStack(str) {
  return ret;
 }
 
+function writeStringToMemory(string, buffer, dontAddNull) {
+ warnOnce("writeStringToMemory is deprecated and should not be called! Use stringToUTF8() instead!");
+ var lastChar, end;
+ if (dontAddNull) {
+  end = buffer + lengthBytesUTF8(string);
+  lastChar = HEAP8[end >>> 0];
+ }
+ stringToUTF8(string, buffer, Infinity);
+ if (dontAddNull) HEAP8[end >>> 0] = lastChar;
+}
+
 function writeArrayToMemory(array, buffer) {
  assert(array.length >= 0, "writeArrayToMemory array must have a length (should be an array or typed array)");
- HEAP8.set(array, buffer);
+ HEAP8.set(array, buffer >>> 0);
 }
 
 function writeAsciiToMemory(str, buffer, dontAddNull) {
  for (var i = 0; i < str.length; ++i) {
-  assert(str.charCodeAt(i) === str.charCodeAt(i) & 255);
-  HEAP8[buffer++ >> 0] = str.charCodeAt(i);
+  assert(str.charCodeAt(i) === (str.charCodeAt(i) & 255));
+  HEAP8[buffer++ >>> 0] = str.charCodeAt(i);
  }
- if (!dontAddNull) HEAP8[buffer >> 0] = 0;
+ if (!dontAddNull) HEAP8[buffer >>> 0] = 0;
 }
 
-function alignUp(x, multiple) {
- if (x % multiple > 0) {
-  x += multiple - x % multiple;
- }
- return x;
-}
-
-var buffer, HEAP8, HEAPU8, HEAP16, HEAPU16, HEAP32, HEAPU32, HEAPF32, HEAPF64;
+var HEAP, buffer, HEAP8, HEAPU8, HEAP16, HEAPU16, HEAP32, HEAPU32, HEAPF32, HEAPF64;
 
 function updateGlobalBufferAndViews(buf) {
  buffer = buf;
@@ -802,44 +1206,37 @@ var TOTAL_STACK = 5242880;
 
 if (Module["TOTAL_STACK"]) assert(TOTAL_STACK === Module["TOTAL_STACK"], "the stack size can no longer be determined at runtime");
 
-var INITIAL_MEMORY = Module["INITIAL_MEMORY"] || 33554432;
+var INITIAL_MEMORY = Module["INITIAL_MEMORY"] || 4238344192;
 
-if (!Object.getOwnPropertyDescriptor(Module, "INITIAL_MEMORY")) {
- Object.defineProperty(Module, "INITIAL_MEMORY", {
-  configurable: true,
-  get: function() {
-   abort("Module.INITIAL_MEMORY has been replaced with plain INITIAL_MEMORY (the initial value can be provided on Module, but after startup the value is only looked for on a local variable of that name)");
-  }
- });
-}
+legacyModuleProp("INITIAL_MEMORY", "INITIAL_MEMORY");
 
 assert(INITIAL_MEMORY >= TOTAL_STACK, "INITIAL_MEMORY should be larger than TOTAL_STACK, was " + INITIAL_MEMORY + "! (TOTAL_STACK=" + TOTAL_STACK + ")");
 
-assert(typeof Int32Array !== "undefined" && typeof Float64Array !== "undefined" && Int32Array.prototype.subarray !== undefined && Int32Array.prototype.set !== undefined, "JS engine does not provide full typed array support");
+assert(typeof Int32Array != "undefined" && typeof Float64Array !== "undefined" && Int32Array.prototype.subarray != undefined && Int32Array.prototype.set != undefined, "JS engine does not provide full typed array support");
 
 assert(!Module["wasmMemory"], "Use of `wasmMemory` detected.  Use -s IMPORTED_MEMORY to define wasmMemory externally");
 
-assert(INITIAL_MEMORY == 33554432, "Detected runtime INITIAL_MEMORY setting.  Use -s IMPORTED_MEMORY to define wasmMemory dynamically");
+assert(INITIAL_MEMORY == 4238344192, "Detected runtime INITIAL_MEMORY setting.  Use -s IMPORTED_MEMORY to define wasmMemory dynamically");
 
 var wasmTable;
 
 function writeStackCookie() {
  var max = _emscripten_stack_get_end();
  assert((max & 3) == 0);
- HEAPU32[(max >> 2) + 1] = 34821223;
- HEAPU32[(max >> 2) + 2] = 2310721022;
- HEAP32[0] = 1668509029;
+ HEAP32[max >>> 2] = 34821223;
+ HEAP32[max + 4 >>> 2] = 2310721022;
+ HEAP32[0 >>> 0] = 1668509029;
 }
 
 function checkStackCookie() {
  if (ABORT) return;
  var max = _emscripten_stack_get_end();
- var cookie1 = HEAPU32[(max >> 2) + 1];
- var cookie2 = HEAPU32[(max >> 2) + 2];
+ var cookie1 = HEAPU32[max >>> 2];
+ var cookie2 = HEAPU32[max + 4 >>> 2];
  if (cookie1 != 34821223 || cookie2 != 2310721022) {
-  abort("Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x" + cookie2.toString(16) + " " + cookie1.toString(16));
+  abort("Stack overflow! Stack cookie has been overwritten, expected hex dwords 0x89BACDFE and 0x2135467, but received 0x" + cookie2.toString(16) + " 0x" + cookie1.toString(16));
  }
- if (HEAP32[0] !== 1668509029) abort("Runtime error: The application has corrupted its heap memory area (address zero)!");
+ if (HEAP32[0 >>> 0] !== 1668509029) abort("Runtime error: The application has corrupted its heap memory area (address zero)!");
 }
 
 (function() {
@@ -861,7 +1258,9 @@ var __ATPOSTRUN__ = [];
 
 var runtimeInitialized = false;
 
-var runtimeExited = false;
+function keepRuntimeAlive() {
+ return noExitRuntime;
+}
 
 function preRun() {
  if (Module["preRun"]) {
@@ -878,21 +1277,15 @@ function initRuntime() {
  assert(!runtimeInitialized);
  runtimeInitialized = true;
  if (!Module["noFSInit"] && !FS.init.initialized) FS.init();
+ FS.ignorePermissions = false;
  TTY.init();
  SOCKFS.root = FS.mount(SOCKFS, {}, null);
- PIPEFS.root = FS.mount(PIPEFS, {}, null);
  callRuntimeCallbacks(__ATINIT__);
 }
 
 function preMain() {
  checkStackCookie();
- FS.ignorePermissions = false;
  callRuntimeCallbacks(__ATMAIN__);
-}
-
-function exitRuntime() {
- checkStackCookie();
- runtimeExited = true;
 }
 
 function postRun() {
@@ -913,6 +1306,12 @@ function addOnPreRun(cb) {
 function addOnInit(cb) {
  __ATINIT__.unshift(cb);
 }
+
+function addOnPreMain(cb) {
+ __ATMAIN__.unshift(cb);
+}
+
+function addOnExit(cb) {}
 
 function addOnPostRun(cb) {
  __ATPOSTRUN__.unshift(cb);
@@ -950,7 +1349,7 @@ function addRunDependency(id) {
  if (id) {
   assert(!runDependencyTracking[id]);
   runDependencyTracking[id] = 1;
-  if (runDependencyWatcher === null && typeof setInterval !== "undefined") {
+  if (runDependencyWatcher === null && typeof setInterval != "undefined") {
    runDependencyWatcher = setInterval(function() {
     if (ABORT) {
      clearInterval(runDependencyWatcher);
@@ -1004,16 +1403,17 @@ Module["preloadedImages"] = {};
 Module["preloadedAudios"] = {};
 
 function abort(what) {
- if (Module["onAbort"]) {
-  Module["onAbort"](what);
+ {
+  if (Module["onAbort"]) {
+   Module["onAbort"](what);
+  }
  }
- what += "";
+ what = "Aborted(" + what + ")";
  err(what);
  ABORT = true;
  EXITSTATUS = 1;
- var output = "abort(" + what + ") at " + stackTrace();
- what = output;
  var e = new WebAssembly.RuntimeError(what);
+ readyPromiseReject(e);
  throw e;
 }
 
@@ -1035,7 +1435,6 @@ function createExportWrapper(name, fixedasm) {
    asm = Module["asm"];
   }
   assert(runtimeInitialized, "native function `" + displayName + "` called before runtime initialization");
-  assert(!runtimeExited, "native function `" + displayName + "` called after runtime exit (use NO_EXIT_RUNTIME to keep it alive after main() exits)");
   if (!asm[name]) {
    assert(asm[name], "exported native function `" + displayName + "` not found");
   }
@@ -1043,7 +1442,9 @@ function createExportWrapper(name, fixedasm) {
  };
 }
 
-var wasmBinaryFile = "build.wasm";
+var wasmBinaryFile;
+
+wasmBinaryFile = "build.wasm";
 
 if (!isDataURI(wasmBinaryFile)) {
  wasmBinaryFile = locateFile(wasmBinaryFile);
@@ -1066,7 +1467,7 @@ function getBinary(file) {
 
 function getBinaryPromise() {
  if (!wasmBinary && (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER)) {
-  if (typeof fetch === "function" && !isFileURI(wasmBinaryFile)) {
+  if (typeof fetch == "function" && !isFileURI(wasmBinaryFile)) {
    return fetch(wasmBinaryFile, {
     credentials: "same-origin"
    }).then(function(response) {
@@ -1117,8 +1518,9 @@ function createWasm() {
  }
  function instantiateArrayBuffer(receiver) {
   return getBinaryPromise().then(function(binary) {
-   var result = WebAssembly.instantiate(binary, info);
-   return result;
+   return WebAssembly.instantiate(binary, info);
+  }).then(function(instance) {
+   return instance;
   }).then(receiver, function(reason) {
    err("failed to asynchronously prepare wasm: " + reason);
    if (isFileURI(wasmBinaryFile)) {
@@ -1128,7 +1530,7 @@ function createWasm() {
   });
  }
  function instantiateAsync() {
-  if (!wasmBinary && typeof WebAssembly.instantiateStreaming === "function" && !isDataURI(wasmBinaryFile) && !isFileURI(wasmBinaryFile) && typeof fetch === "function") {
+  if (!wasmBinary && typeof WebAssembly.instantiateStreaming == "function" && !isDataURI(wasmBinaryFile) && !isFileURI(wasmBinaryFile) && typeof fetch == "function") {
    return fetch(wasmBinaryFile, {
     credentials: "same-origin"
    }).then(function(response) {
@@ -1152,7 +1554,7 @@ function createWasm() {
    return false;
   }
  }
- instantiateAsync();
+ instantiateAsync().catch(readyPromiseReject);
  return {};
 }
 
@@ -1161,27 +1563,30 @@ var tempDouble;
 var tempI64;
 
 var ASM_CONSTS = {
- 3683076: function() {
+ 5948124: function() {
   Module["emscripten_get_now_backup"] = performance.now;
  },
- 3683131: function($0) {
+ 5948179: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 3683179: function($0) {
+ 5948227: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 3683227: function() {
+ 5948275: function() {
   performance.now = Module["emscripten_get_now_backup"];
  },
- 3683282: function() {
+ 5948330: function() {
   return Module.webglContextAttributes.premultipliedAlpha;
  },
- 3683343: function() {
+ 5948391: function() {
   return Module.webglContextAttributes.preserveDrawingBuffer;
+ },
+ 5948455: function() {
+  return Module.webglContextAttributes.powerPreference;
  }
 };
 
@@ -1193,7 +1598,7 @@ function callRuntimeCallbacks(callbacks) {
    continue;
   }
   var func = callback.func;
-  if (typeof func === "number") {
+  if (typeof func == "number") {
    if (callback.arg === undefined) {
     (function() {
      dynCall_v.call(null, func);
@@ -1209,29 +1614,36 @@ function callRuntimeCallbacks(callbacks) {
  }
 }
 
+function withStackSave(f) {
+ var stack = stackSave();
+ var ret = f();
+ stackRestore(stack);
+ return ret;
+}
+
 function demangle(func) {
  demangle.recursionGuard = (demangle.recursionGuard | 0) + 1;
  if (demangle.recursionGuard > 1) return func;
  var __cxa_demangle_func = Module["___cxa_demangle"] || Module["__cxa_demangle"];
  assert(__cxa_demangle_func);
- var stackTop = stackSave();
- try {
-  var s = func;
-  if (s.startsWith("__Z")) s = s.substr(1);
-  var len = lengthBytesUTF8(s) + 1;
-  var buf = stackAlloc(len);
-  stringToUTF8(s, buf, len);
-  var status = stackAlloc(4);
-  var ret = __cxa_demangle_func(buf, 0, 0, status);
-  if (HEAP32[status >> 2] === 0 && ret) {
-   return UTF8ToString(ret);
+ return withStackSave(function() {
+  try {
+   var s = func;
+   if (s.startsWith("__Z")) s = s.substr(1);
+   var len = lengthBytesUTF8(s) + 1;
+   var buf = stackAlloc(len);
+   stringToUTF8(s, buf, len);
+   var status = stackAlloc(4);
+   var ret = __cxa_demangle_func(buf, 0, 0, status);
+   if (HEAP32[status >>> 2] === 0 && ret) {
+    return UTF8ToString(ret);
+   }
+  } catch (e) {} finally {
+   _free(ret);
+   if (demangle.recursionGuard < 2) --demangle.recursionGuard;
   }
- } catch (e) {} finally {
-  _free(ret);
-  stackRestore(stackTop);
-  if (demangle.recursionGuard < 2) --demangle.recursionGuard;
- }
- return func;
+  return func;
+ });
 }
 
 function demangleAll(text) {
@@ -1253,8 +1665,27 @@ function dynCallLegacy(sig, ptr, args) {
  return args && args.length ? f.apply(null, [ ptr ].concat(args)) : f.call(null, ptr);
 }
 
+var wasmTableMirror = [];
+
+function getWasmTableEntry(funcPtr) {
+ var func = wasmTableMirror[funcPtr];
+ if (!func) {
+  if (funcPtr >= wasmTableMirror.length) wasmTableMirror.length = funcPtr + 1;
+  wasmTableMirror[funcPtr] = func = wasmTable.get(funcPtr);
+ }
+ assert(wasmTable.get(funcPtr) == func, "JavaScript-side Wasm function table mirror is out of date!");
+ return func;
+}
+
 function dynCall(sig, ptr, args) {
  return dynCallLegacy(sig, ptr, args);
+}
+
+function handleException(e) {
+ if (e instanceof ExitStatus || e == "unwind") {
+  return EXITSTATUS;
+ }
+ quit_(1, e);
 }
 
 function jsStackTrace() {
@@ -1272,10 +1703,9 @@ function jsStackTrace() {
  return error.stack.toString();
 }
 
-var runtimeKeepaliveCounter = 0;
-
-function keepRuntimeAlive() {
- return noExitRuntime || runtimeKeepaliveCounter > 0;
+function setWasmTableEntry(idx, func) {
+ wasmTable.set(idx, func);
+ wasmTableMirror[idx] = func;
 }
 
 function stackTrace() {
@@ -1284,270 +1714,14 @@ function stackTrace() {
  return demangleAll(js);
 }
 
-var LKBridge = {
- Data: null,
- Pointers: null,
- RefCount: null,
- Debug: false,
- RefIndex: 1,
- Stack: [],
- StackCSharp: [],
- FunctionInstance: null,
- NullPtr: 0,
- DynCall: function(sig, fnc, args) {
-  if (typeof Runtime !== "undefined") {
-   Runtime.dynCall(sig, fnc, args);
-  } else {
-   dynCall(sig, fnc, args);
-  }
- },
- NewRef: function() {
-  var nPtr = LKBridge.RefIndex++;
-  LKBridge.RefCount.set(nPtr, 0);
-  LKBridge.SetRef(nPtr, null);
-  return nPtr;
- },
- FreeRef: function(ptr) {
-  var obj = LKBridge.Data.get(ptr);
-  LKBridge.Data.delete(ptr);
-  LKBridge.RefCount.delete(ptr);
-  LKBridge.Pointers.delete(obj);
- },
- SetRef: function(ptr, obj) {
-  LKBridge.Data.set(ptr, obj);
-  if (typeof obj === "object" && obj !== null) {
-   LKBridge.Pointers.set(obj, ptr);
-  }
- },
- GetOrNewRef: function(obj) {
-  var ptr = LKBridge.Pointers.get(obj);
-  if (ptr === undefined || typeof obj !== "object" || obj === null) {
-   ptr = LKBridge.NewRef();
-   LKBridge.SetRef(ptr, obj);
-  }
-  return ptr;
- },
- AddRef: function(ptr) {
-  LKBridge.RefCount.set(ptr, LKBridge.RefCount.get(ptr) + 1);
-  return ptr;
- },
- RemRef: function(ptr) {
-  var count = LKBridge.RefCount.get(ptr) - 1;
-  LKBridge.RefCount.set(ptr, count);
-  if (count < 0) {
-   console.error("LKBridge: The ref count of " + ptr + "(obj: " + LKBridge.Data.get(ptr) + ") is negative ( Ptr management is wrong ! )");
-  }
-  if (count <= 0) {
-   LKBridge.FreeRef(ptr);
-  }
-  return ptr;
+function _GetJSMemoryInfo(totalJSptr, usedJSptr) {
+ if (performance.memory) {
+  HEAPF64[totalJSptr >>> 3] = performance.memory.totalJSHeapSize;
+  HEAPF64[usedJSptr >>> 3] = performance.memory.usedJSHeapSize;
+ } else {
+  HEAPF64[totalJSptr >>> 3] = NaN;
+  HEAPF64[usedJSptr >>> 3] = NaN;
  }
-};
-
-function _AttachVideo(videoPtr, texId) {
- var tex = GL.textures[texId];
- var lastTime = -1;
- var initialVideo = LKBridge.Data.get(videoPtr);
- initialVideo.style.opacity = 0;
- initialVideo.style.width = 0;
- initialVideo.style.height = 0;
- setTimeout(function() {
-  initialVideo.play();
- }, 0);
- initialVideo.addEventListener("canplay", event => {
-  initialVideo.play();
- });
- document.body.appendChild(initialVideo);
- var updateVideo = function() {
-  var video = LKBridge.Data.get(videoPtr);
-  if (video === undefined) {
-   initialVideo.remove();
-   return;
-  }
-  var time = video.currentTime;
-  if (!video.paused && video.srcObject !== null && time !== lastTime) {
-   lastTime = time;
-   GLctx.bindTexture(GLctx.TEXTURE_2D, tex);
-   GLctx.pixelStorei(GLctx.UNPACK_FLIP_Y_WEBGL, true);
-   GLctx.texImage2D(GLctx.TEXTURE_2D, 0, GLctx.RGBA, GLctx.RGBA, GLctx.UNSIGNED_BYTE, video);
-   GLctx.pixelStorei(GLctx.UNPACK_FLIP_Y_WEBGL, false);
-   GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MAG_FILTER, GLctx.LINEAR);
-   GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MIN_FILTER, GLctx.LINEAR);
-   GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_S, GLctx.CLAMP_TO_EDGE);
-   GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_T, GLctx.CLAMP_TO_EDGE);
-  }
-  requestAnimationFrame(updateVideo);
- };
- requestAnimationFrame(updateVideo);
-}
-
-function _BrowserFireEvent(eventName, eventValue) {
- var e = UTF8ToString(eventName);
- var v = UTF8ToString(eventValue);
- BrowserInteraction.FireEventLocal(e, v);
-}
-
-function _CallMethod(ptr, str) {
- var stack = LKBridge.Stack;
- LKBridge.Stack = [];
- var obj = LKBridge.Data.get(ptr);
- var mName = UTF8ToString(str);
- var fnc = obj[mName];
- var result = undefined;
- try {
-  result = fnc.apply(obj, stack);
- } catch (e) {
-  console.error("Internal issue when calling " + mName + "\n", "Stack: ", stack, e);
- }
- return LKBridge.AddRef(LKBridge.GetOrNewRef(result));
-}
-
-var SimpleWeb = {
- webSockets: [],
- next: 1,
- GetWebSocket: function(index) {
-  return SimpleWeb.webSockets[index];
- },
- AddNextSocket: function(webSocket) {
-  var index = SimpleWeb.next;
-  SimpleWeb.next++;
-  SimpleWeb.webSockets[index] = webSocket;
-  return index;
- },
- RemoveSocket: function(index) {
-  SimpleWeb.webSockets[index] = undefined;
- }
-};
-
-function _Connect(addressPtr, openCallbackPtr, closeCallBackPtr, messageCallbackPtr, errorCallbackPtr) {
- if (typeof Runtime === "undefined") {
-  Runtime = {
-   dynCall: dynCall
-  };
- }
- const address = UTF8ToString(addressPtr);
- console.log("Connecting to " + address);
- webSocket = new WebSocket(address);
- webSocket.binaryType = "arraybuffer";
- const index = SimpleWeb.AddNextSocket(webSocket);
- webSocket.addEventListener("open", function(event) {
-  console.log("Connected to " + address);
-  Runtime.dynCall("vi", openCallbackPtr, [ index ]);
- });
- webSocket.addEventListener("close", function(event) {
-  console.log("Disconnected from " + address);
-  Runtime.dynCall("vi", closeCallBackPtr, [ index ]);
- });
- webSocket.addEventListener("message", function(event) {
-  if (event.data instanceof ArrayBuffer) {
-   var array = new Uint8Array(event.data);
-   var arrayLength = array.length;
-   var bufferPtr = _malloc(arrayLength);
-   var dataBuffer = new Uint8Array(HEAPU8.buffer, bufferPtr, arrayLength);
-   dataBuffer.set(array);
-   Runtime.dynCall("viii", messageCallbackPtr, [ index, bufferPtr, arrayLength ]);
-   _free(bufferPtr);
-  } else {
-   console.error("message type not supported");
-  }
- });
- webSocket.addEventListener("error", function(event) {
-  console.error("Socket Error", event);
-  Runtime.dynCall("vi", errorCallbackPtr, [ index ]);
- });
- return index;
-}
-
-function _CopyData(ptr, buff, offset, count) {
- var value = LKBridge.Data.get(ptr);
- var arr = new Uint8Array(value, offset, count);
- HEAPU8.set(arr, buff);
-}
-
-function _DestroyTexture(id) {
- GLctx.deleteTexture(GL.textures[id]);
-}
-
-function _Disconnect(index) {
- var webSocket = SimpleWeb.GetWebSocket(index);
- if (webSocket) {
-  webSocket.close(1e3, "Disconnect Called by Mirror");
- }
- SimpleWeb.RemoveSocket(index);
-}
-
-function _GetBoolean(ptr) {
- return LKBridge.Data.get(ptr);
-}
-
-function _GetFunctionInstance() {
- var v = LKBridge.FunctionInstance;
- return LKBridge.AddRef(LKBridge.GetOrNewRef(v));
-}
-
-function _GetNumber(ptr) {
- return LKBridge.Data.get(ptr);
-}
-
-function _GetProperty(ptr) {
- var key = LKBridge.Stack[0];
- LKBridge.Stack = [];
- var p = LKBridge.Data.get(ptr);
- var obj = p[key];
- return LKBridge.AddRef(LKBridge.GetOrNewRef(obj));
-}
-
-function _GetString(ptr) {
- var value = LKBridge.Data.get(ptr);
- if (value === undefined || value === null) return null;
- var bufferSize = lengthBytesUTF8(value) + 1;
- var buffer = _malloc(bufferSize);
- stringToUTF8(value, buffer, bufferSize);
- return buffer;
-}
-
-function _HideReadyPlayerMeFrame() {
- hideRpm();
-}
-
-function _Home() {
- window.location.href = "https://custmeet.com";
-}
-
-function _InitLiveKit(debug) {
- LKBridge.Debug = debug === 1;
- LKBridge.Data = new Map();
- LKBridge.Pointers = new Map();
- LKBridge.RefCount = new Map();
- window.lkinternal = LKBridge;
-}
-
-function _IsBoolean(ptr) {
- var obj = LKBridge.Data.get(ptr);
- return typeof obj === "boolean";
-}
-
-function _IsNull(ptr) {
- return LKBridge.Data.get(ptr) === null;
-}
-
-function _IsNumber(ptr) {
- var obj = LKBridge.Data.get(ptr);
- return typeof obj === "number" && !isNaN(obj);
-}
-
-function _IsObject(ptr) {
- var obj = LKBridge.Data.get(ptr);
- return typeof obj === "object" && obj !== null;
-}
-
-function _IsString(ptr) {
- var obj = LKBridge.Data.get(ptr);
- return typeof obj === "string" || obj instanceof String;
-}
-
-function _IsUndefined(ptr) {
- return LKBridge.Data.get(ptr) === undefined;
 }
 
 var JS_Accelerometer = null;
@@ -1736,7 +1910,7 @@ function _JS_Accelerometer_Stop() {
 
 function _JS_Cursor_SetImage(ptr, length) {
  var binary = "";
- for (var i = 0; i < length; i++) binary += String.fromCharCode(HEAPU8[ptr + i]);
+ for (var i = 0; i < length; i++) binary += String.fromCharCode(HEAPU8[ptr + i >>> 0]);
  Module.canvas.style.cursor = "url(data:image/cur;base64," + btoa(binary) + "),default";
 }
 
@@ -1751,13 +1925,17 @@ function jsDomCssEscapeId(id) {
  return id.replace(/(#|\.|\+|\[|\]|\(|\)|\{|\})/g, "\\$1");
 }
 
-function _JS_DOM_MapViewportCoordinateToElementLocalCoordinate(viewportX, viewportY, targetX, targetY) {
+function jsCanvasSelector() {
+ if (Module["canvas"] && !Module["canvas"].id) throw 'Module["canvas"] must have a CSS ID associated with it!';
  var canvasId = Module["canvas"] ? Module["canvas"].id : "unity-canvas";
- var canvasSelector = "#" + jsDomCssEscapeId(canvasId);
- var canvas = document.querySelector(canvasSelector);
- var rect = canvas.getBoundingClientRect();
- HEAPU32[targetX >> 2] = viewportX - rect.left;
- HEAPU32[targetY >> 2] = viewportY - rect.top;
+ return "#" + jsDomCssEscapeId(canvasId);
+}
+
+function _JS_DOM_MapViewportCoordinateToElementLocalCoordinate(viewportX, viewportY, targetX, targetY) {
+ var canvas = document.querySelector(jsCanvasSelector());
+ var rect = canvas && canvas.getBoundingClientRect();
+ HEAPU32[targetX >>> 2] = viewportX - (rect ? rect.left : 0);
+ HEAPU32[targetY >>> 2] = viewportY - (rect ? rect.top : 0);
 }
 
 function stringToNewUTF8(jsString) {
@@ -1768,11 +1946,11 @@ function stringToNewUTF8(jsString) {
 }
 
 function _JS_DOM_UnityCanvasSelector() {
- if (Module["canvas"] && !Module["canvas"].id) throw 'Module["canvas"] must have a CSS ID associated with it!';
- if (!_JS_DOM_UnityCanvasSelector.ptr) {
-  var canvasId = Module["canvas"] ? Module["canvas"].id : "unity-canvas";
-  var canvasSelector = "#" + jsDomCssEscapeId(canvasId);
+ var canvasSelector = jsCanvasSelector();
+ if (_JS_DOM_UnityCanvasSelector.selector != canvasSelector) {
+  _free(_JS_DOM_UnityCanvasSelector.ptr);
   _JS_DOM_UnityCanvasSelector.ptr = stringToNewUTF8(canvasSelector);
+  _JS_DOM_UnityCanvasSelector.selector = canvasSelector;
  }
  return _JS_DOM_UnityCanvasSelector.ptr;
 }
@@ -1809,16 +1987,6 @@ function _JS_FileSystem_Initialize() {
 
 function _JS_FileSystem_Sync() {
  fs.sync(false);
-}
-
-function _JS_Focus_Window() {
- var activeElem = document.activeElement;
- var canvasId = Module["canvas"] ? Module["canvas"].id : "unity-canvas";
- var canvasSelector = "#" + jsDomCssEscapeId(canvasId);
- var canvas = document.querySelector(canvasSelector);
- if (activeElem != canvas && activeElem != window && activeElem != document.body) {
-  window.focus();
- }
 }
 
 var JS_GravitySensor = null;
@@ -1966,6 +2134,16 @@ function _JS_GravitySensor_Stop() {
  }
 }
 
+function _JS_GuardAgainstJsExceptions(cb) {
+ try {
+  (function() {
+   dynCall_v.call(null, cb);
+  })();
+ } catch (e) {
+  console.warn(e);
+ }
+}
+
 var JS_Gyroscope = null;
 
 function _JS_Gyroscope_IsRunning() {
@@ -2063,6 +2241,175 @@ function _JS_Log_StackTrace(buffer, bufferSize) {
  var trace = stackTrace();
  if (buffer) stringToUTF8(trace, buffer, bufferSize);
  return lengthBytesUTF8(trace);
+}
+
+var mobile_input_hide_delay = null;
+
+var mobile_input_text = null;
+
+var mobile_input = null;
+
+var mobile_input_ignore_blur_event = false;
+
+function _JS_MobileKeybard_GetIgnoreBlurEvent() {
+ return mobile_input_ignore_blur_event;
+}
+
+function _JS_MobileKeyboard_GetKeyboardStatus() {
+ var kKeyboardStatusVisible = 0;
+ var kKeyboardStatusDone = 1;
+ if (!mobile_input) return kKeyboardStatusDone;
+ return kKeyboardStatusVisible;
+}
+
+function _JS_MobileKeyboard_GetText(buffer, bufferSize) {
+ var text = mobile_input && mobile_input.input ? mobile_input.input.value : mobile_input_text ? mobile_input_text : "";
+ if (buffer) stringToUTF8(text, buffer, bufferSize);
+ return lengthBytesUTF8(text);
+}
+
+function _JS_MobileKeyboard_GetTextSelection(outStart, outLength) {
+ if (!mobile_input) {
+  HEAP32[outStart >>> 2] = 0;
+  HEAP32[outLength >>> 2] = 0;
+  return;
+ }
+ HEAP32[outStart >>> 2] = mobile_input.input.selectionStart;
+ HEAP32[outLength >>> 2] = mobile_input.input.selectionEnd - mobile_input.input.selectionStart;
+}
+
+function _JS_MobileKeyboard_Hide(delay) {
+ if (mobile_input_hide_delay) return;
+ mobile_input_ignore_blur_event = true;
+ function hideMobileKeyboard() {
+  if (mobile_input && mobile_input.input) {
+   mobile_input_text = mobile_input.input.value;
+   mobile_input.input = null;
+   if (mobile_input.parentNode && mobile_input.parentNode) {
+    mobile_input.parentNode.removeChild(mobile_input);
+   }
+  }
+  mobile_input = null;
+  mobile_input_hide_delay = null;
+  setTimeout(function() {
+   mobile_input_ignore_blur_event = false;
+  }, 100);
+ }
+ if (delay) {
+  var hideDelay = 200;
+  mobile_input_hide_delay = setTimeout(hideMobileKeyboard, hideDelay);
+ } else {
+  hideMobileKeyboard();
+ }
+}
+
+function _JS_MobileKeyboard_SetCharacterLimit(limit) {
+ if (!mobile_input) return;
+ mobile_input.input.maxLength = limit;
+}
+
+function _JS_MobileKeyboard_SetText(text) {
+ if (!mobile_input) return;
+ text = UTF8ToString(text);
+ mobile_input.input.value = text;
+}
+
+function _JS_MobileKeyboard_SetTextSelection(start, length) {
+ if (!mobile_input) return;
+ mobile_input.input.setSelectionRange(start, start + length);
+}
+
+function _JS_MobileKeyboard_Show(text, keyboardType, autocorrection, multiline, secure, alert, placeholder, characterLimit) {
+ if (mobile_input_hide_delay) {
+  clearTimeout(mobile_input_hide_delay);
+  mobile_input_hide_delay = null;
+ }
+ text = UTF8ToString(text);
+ mobile_input_text = text;
+ placeholder = UTF8ToString(placeholder);
+ var container = document.body;
+ var hasExistingMobileInput = !!mobile_input;
+ var input_type;
+ var KEYBOARD_TYPE_NUMBERS_AND_PUNCTUATION = 2;
+ var KEYBOARD_TYPE_URL = 3;
+ var KEYBOARD_TYPE_NUMBER_PAD = 4;
+ var KEYBOARD_TYPE_PHONE_PAD = 5;
+ var KEYBOARD_TYPE_EMAIL_ADDRESS = 7;
+ if (!secure) {
+  switch (keyboardType) {
+  case KEYBOARD_TYPE_EMAIL_ADDRESS:
+   input_type = "email";
+   break;
+
+  case KEYBOARD_TYPE_URL:
+   input_type = "url";
+   break;
+
+  case KEYBOARD_TYPE_NUMBERS_AND_PUNCTUATION:
+  case KEYBOARD_TYPE_NUMBER_PAD:
+  case KEYBOARD_TYPE_PHONE_PAD:
+   input_type = "number";
+   break;
+
+  default:
+   input_type = "text";
+   break;
+  }
+ } else {
+  input_type = "password";
+ }
+ if (hasExistingMobileInput) {
+  if (mobile_input.multiline != multiline) {
+   _JS_MobileKeyboard_Hide(false);
+   return;
+  }
+ }
+ var inputContainer = mobile_input || document.createElement("div");
+ if (!hasExistingMobileInput) {
+  inputContainer.style = "width:100%; position:fixed; bottom:0px; margin:0px; padding:0px; left:0px; border: 1px solid #000; border-radius: 5px; background-color:#fff; font-size:14pt;";
+  container.appendChild(inputContainer);
+  mobile_input = inputContainer;
+ }
+ var input = hasExistingMobileInput ? mobile_input.input : document.createElement(multiline ? "textarea" : "input");
+ mobile_input.multiline = multiline;
+ mobile_input.secure = secure;
+ mobile_input.keyboardType = keyboardType;
+ mobile_input.inputType = input_type;
+ input.type = input_type;
+ input.style = "width:calc(100% - 85px); " + (multiline ? "height:100px;" : "") + "vertical-align:top; border-radius: 5px; outline:none; cursor:default; resize:none; border:0px; padding:10px 0px 10px 10px;";
+ input.spellcheck = autocorrection ? true : false;
+ input.maxLength = characterLimit > 0 ? characterLimit : 524288;
+ input.value = text;
+ input.placeholder = placeholder;
+ if (!hasExistingMobileInput) {
+  inputContainer.appendChild(input);
+  inputContainer.input = input;
+ }
+ if (!hasExistingMobileInput) {
+  var okButton = document.createElement("button");
+  okButton.innerText = "OK";
+  okButton.style = "border:0; position:absolute; left:calc(100% - 75px); top:0px; width:75px; height:100%; margin:0; padding:0; border-radius: 5px; background-color:#fff";
+  okButton.addEventListener("touchend", function() {
+   _JS_MobileKeyboard_Hide(true);
+  });
+  inputContainer.appendChild(okButton);
+  inputContainer.okButton = okButton;
+  input.addEventListener("keyup", function(e) {
+   if (input.parentNode.multiline) return;
+   if (e.code == "Enter" || e.which == 13 || e.keyCode == 13) {
+    _JS_MobileKeyboard_Hide(true);
+   }
+  });
+  input.addEventListener("blur", function(e) {
+   _JS_MobileKeyboard_Hide(true);
+   e.stopPropagation();
+   e.preventDefault();
+  });
+  input.select();
+  input.focus();
+ } else {
+  input.select();
+ }
 }
 
 var JS_OrientationSensor = null;
@@ -2276,7 +2623,7 @@ function jsAudioCreateUncompressedSoundClip(buffer, error) {
    return 0;
   }
   var startOutputBuffer = ptr >> 2;
-  var output = HEAPF32.subarray(startOutputBuffer, startOutputBuffer + (length >> 2));
+  var output = HEAPF32.subarray(startOutputBuffer >>> 0, startOutputBuffer + (length >> 2) >>> 0);
   var numMaxSamples = Math.floor((length >> 2) / this.buffer.numberOfChannels);
   var numReadSamples = Math.min(this.buffer.length, numMaxSamples);
   for (var i = 0; i < this.buffer.numberOfChannels; i++) {
@@ -2336,6 +2683,7 @@ function jsAudioCreateChannel(callback, userData) {
    this.source = soundClip.createSourceNode();
    this.setupPanning();
    this.source.onended = function() {
+    self.source.isStopped = true;
     self.disconnectSource();
     if (self.callback) {
      dynCall("vi", self.callback, [ self.userData ]);
@@ -2354,10 +2702,6 @@ function jsAudioCreateChannel(callback, userData) {
  };
  channel.stop = function(delay) {
   if (!this.source) {
-   return;
-  }
-  if (this.source.isPausedMockNode) {
-   delete this.source;
    return;
   }
   try {
@@ -2395,9 +2739,13 @@ function jsAudioCreateChannel(callback, userData) {
    loopEnd: this.source.loopEnd,
    playbackRate: this.source.playbackRate.value,
    scheduledStartTime: this.source.scheduledStartTime,
+   scheduledStopTime: undefined,
    playbackPausedAtPosition: this.source.estimatePlaybackPosition(),
    setPitch: function(v) {
     this.playbackRate = v;
+   },
+   stop: function(when) {
+    this.scheduledStopTime = when;
    }
   };
   this.stop(0);
@@ -2406,7 +2754,7 @@ function jsAudioCreateChannel(callback, userData) {
  };
  channel.resume = function() {
   if (this.source && this.source.mediaElement) {
-   this.source.start();
+   this.source.start(undefined, this.source.currentTime);
    return;
   }
   if (!this.source || !this.source.isPausedMockNode) {
@@ -2419,6 +2767,10 @@ function jsAudioCreateChannel(callback, userData) {
   this.source.loopStart = pausedSource.loopStart;
   this.source.loopEnd = pausedSource.loopEnd;
   this.source.setPitch(pausedSource.playbackRate);
+  if (typeof pausedSource.scheduledStopTime !== "undefined") {
+   var delay = Math.max(pausedSource.scheduledStopTime - WEBAudio.audioContext.currentTime, 0);
+   this.stop(delay);
+  }
  };
  channel.setLoop = function(loop) {
   this.loop = loop;
@@ -2500,6 +2852,15 @@ function jsAudioCreateChannel(callback, userData) {
   }
   this.gain.connect(WEBAudio.audioContext.destination);
  };
+ channel.isStopped = function() {
+  if (!this.source) {
+   return true;
+  }
+  if (this.source.mediaElement) {
+   return this.source.isStopped;
+  }
+  return false;
+ };
  return channel;
 }
 
@@ -2507,13 +2868,6 @@ function _JS_Sound_Create_Channel(callback, userData) {
  if (WEBAudio.audioWebEnabled == 0) return;
  WEBAudio.audioInstances[++WEBAudio.audioInstanceIdCounter] = jsAudioCreateChannel(callback, userData);
  return WEBAudio.audioInstanceIdCounter;
-}
-
-function _JS_Sound_GetData(bufferInstance, ptr, length) {
- if (WEBAudio.audioWebEnabled == 0) return 0;
- var soundClip = WEBAudio.audioInstances[bufferInstance];
- if (!soundClip) return 0;
- return soundClip.getData(ptr, length);
 }
 
 function _JS_Sound_GetLength(bufferInstance) {
@@ -2529,23 +2883,6 @@ function _JS_Sound_GetLoadState(bufferInstance) {
  if (sound.error) return 2;
  if (sound.buffer || sound.url) return 0;
  return 1;
-}
-
-function _JS_Sound_GetMetaData(bufferInstance, metaData) {
- if (WEBAudio.audioWebEnabled == 0) {
-  HEAPU32[metaData >> 2] = 0;
-  HEAPU32[(metaData >> 2) + 1] = 0;
-  return false;
- }
- var soundClip = WEBAudio.audioInstances[bufferInstance];
- if (!soundClip) {
-  HEAPU32[metaData >> 2] = 0;
-  HEAPU32[(metaData >> 2) + 1] = 0;
-  return false;
- }
- HEAPU32[metaData >> 2] = soundClip.getNumberOfChannels();
- HEAPU32[(metaData >> 2) + 1] = soundClip.getFrequency();
- return true;
 }
 
 function jsAudioPlayPendingBlockedAudio(soundId) {
@@ -2565,14 +2902,18 @@ function _JS_Sound_Init() {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   WEBAudio.audioContext = new AudioContext();
   var tryToResumeAudioContext = function() {
-   if (WEBAudio.audioContext.state === "suspended") WEBAudio.audioContext.resume(); else Module.clearInterval(resumeInterval);
+   if (WEBAudio.audioContext.state === "suspended") WEBAudio.audioContext.resume().catch(function(error) {
+    console.warn("Could not resume audio context. Exception: " + error);
+   }); else Module.clearInterval(resumeInterval);
   };
   var resumeInterval = Module.setInterval(tryToResumeAudioContext, 400);
   WEBAudio.audioWebEnabled = 1;
   var _userEventCallback = function() {
    try {
-    if (WEBAudio.audioContext.state !== "running") {
-     WEBAudio.audioContext.resume();
+    if (WEBAudio.audioContext.state !== "running" && WEBAudio.audioContext.state !== "closed") {
+     WEBAudio.audioContext.resume().catch(function(error) {
+      console.warn("Could not resume audio context. Exception: " + error);
+     });
     }
     jsAudioPlayBlockedAudios();
     var audioCacheSize = 20;
@@ -2612,9 +2953,23 @@ function jsAudioAddPendingBlockedAudio(sourceNode, offset) {
  };
 }
 
-function jsAudioCreateCompressedSoundClip(audioData) {
+function jsAudioGetMimeTypeFromType(fmodSoundType) {
+ switch (fmodSoundType) {
+ case 13:
+  return "audio/mpeg";
+
+ case 20:
+  return "audio/wav";
+
+ default:
+  return "audio/mp4";
+ }
+}
+
+function jsAudioCreateCompressedSoundClip(audioData, fmodSoundType) {
+ var mimeType = jsAudioGetMimeTypeFromType(fmodSoundType);
  var blob = new Blob([ audioData ], {
-  type: "audio/mp4"
+  type: mimeType
  });
  var soundClip = {
   url: URL.createObjectURL(blob),
@@ -2686,9 +3041,18 @@ function jsAudioCreateCompressedSoundClip(audioData) {
     if (source.mediaElement.mute !== v) source.mediaElement.mute = v;
    }
   });
+  Object.defineProperty(source, "onended", {
+   get: function() {
+    return source.mediaElement.onended;
+   },
+   set: function(onended) {
+    source.mediaElement.onended = onended;
+   }
+  });
   source.playPromise = null;
   source.playTimeout = null;
   source.pauseRequested = false;
+  source.isStopped = false;
   source._pauseMediaElement = function() {
    if (source.playPromise || source.playTimeout) {
     source.pauseRequested = true;
@@ -2745,9 +3109,11 @@ function jsAudioCreateCompressedSoundClip(audioData) {
    if (stopDelayMS > stopDelayThresholdMS) {
     setTimeout(function() {
      source._pauseMediaElement();
+     source.isStopped = true;
     }, stopDelayMS);
    } else {
     source._pauseMediaElement();
+    source.isStopped = true;
    }
   };
   jsAudioMixinSetPitch(source);
@@ -2756,7 +3122,7 @@ function jsAudioCreateCompressedSoundClip(audioData) {
  return soundClip;
 }
 
-function _JS_Sound_Load(ptr, length, decompress) {
+function _JS_Sound_Load(ptr, length, decompress, fmodSoundType) {
  if (WEBAudio.audioWebEnabled == 0) return 0;
  var audioData = HEAPU8.buffer.slice(ptr, ptr + length);
  if (length < 131072) decompress = 1;
@@ -2764,7 +3130,7 @@ function _JS_Sound_Load(ptr, length, decompress) {
  if (decompress) {
   sound = jsAudioCreateUncompressedSoundClipFromCompressedAudio(audioData);
  } else {
-  sound = jsAudioCreateCompressedSoundClip(audioData);
+  sound = jsAudioCreateCompressedSoundClip(audioData, fmodSoundType);
  }
  WEBAudio.audioInstances[++WEBAudio.audioInstanceIdCounter] = sound;
  return WEBAudio.audioInstanceIdCounter;
@@ -2778,7 +3144,7 @@ function jsAudioCreateUncompressedSoundClipFromPCM(channels, length, sampleRate,
    var clipped = source.subarray(0, Math.min(source.length, this.length - (startInChannel | 0)));
    this.getChannelData(channelNumber | 0).set(clipped, startInChannel | 0);
   };
-  copyToChannel.apply(buffer, [ HEAPF32.subarray(offs, offs + length), i, 0 ]);
+  copyToChannel.apply(buffer, [ HEAPF32.subarray(offs >>> 0, offs + length >>> 0), i, 0 ]);
  }
  return jsAudioCreateUncompressedSoundClip(buffer, false);
 }
@@ -2816,7 +3182,9 @@ function _JS_Sound_ReleaseInstance(instance) {
 
 function _JS_Sound_ResumeIfNeeded() {
  if (WEBAudio.audioWebEnabled == 0) return;
- if (WEBAudio.audioContext.state === "suspended") WEBAudio.audioContext.resume();
+ if (WEBAudio.audioContext.state === "suspended") WEBAudio.audioContext.resume().catch(function(error) {
+  console.warn("Could not resume audio context. Exception: " + error);
+ });
 }
 
 function _JS_Sound_Set3D(channelInstance, threeD) {
@@ -2936,8 +3304,8 @@ function _JS_SystemInfo_GetCanvasClientSize(domElementSelector, outWidth, outHei
   w = size.width;
   h = size.height;
  }
- HEAPF64[outWidth >> 3] = w;
- HEAPF64[outHeight >> 3] = h;
+ HEAPF64[outWidth >>> 3] = w;
+ HEAPF64[outHeight >>> 3] = h;
 }
 
 function _JS_SystemInfo_GetDocumentURL(buffer, bufferSize) {
@@ -2976,13 +3344,8 @@ function _JS_SystemInfo_GetPreferredDevicePixelRatio() {
 }
 
 function _JS_SystemInfo_GetScreenSize(outWidth, outHeight) {
- HEAPF64[outWidth >> 3] = Module.SystemInfo.width;
- HEAPF64[outHeight >> 3] = Module.SystemInfo.height;
-}
-
-function _JS_SystemInfo_GetStreamingAssetsURL(buffer, bufferSize) {
- if (buffer) stringToUTF8(Module.streamingAssetsUrl, buffer, bufferSize);
- return lengthBytesUTF8(Module.streamingAssetsUrl);
+ HEAPF64[outWidth >>> 3] = Module.SystemInfo.width;
+ HEAPF64[outHeight >>> 3] = Module.SystemInfo.height;
 }
 
 function _JS_SystemInfo_HasAstcHdr() {
@@ -3003,6 +3366,10 @@ function _JS_SystemInfo_HasFullscreen() {
 
 function _JS_SystemInfo_HasWebGL() {
  return Module.SystemInfo.hasWebGL;
+}
+
+function _JS_SystemInfo_IsMobile() {
+ return Module.SystemInfo.mobile;
 }
 
 function _JS_UnityEngineShouldQuit() {
@@ -3067,6 +3434,7 @@ function jsVideoRemovePendingBlockedVideo(video) {
  delete jsVideoPendingBlockedVideos[video];
  if (Object.keys(jsVideoPendingBlockedVideos).length == 0) {
   window.removeEventListener("mousedown", jsVideoAttemptToPlayBlockedVideos);
+  window.removeEventListener("touchstart", jsVideoAttemptToPlayBlockedVideos);
  }
 }
 
@@ -3107,6 +3475,10 @@ function _JS_Video_GetAudioLanguageCode(video, trackIndex) {
 function _JS_Video_GetNumAudioTracks(video) {
  var tracks = videoInstances[video].audioTracks;
  return tracks ? tracks.length : 1;
+}
+
+function _JS_Video_GetPlaybackRate(video) {
+ return videoInstances[video].playbackRate;
 }
 
 function _JS_Video_Height(video) {
@@ -3163,7 +3535,10 @@ function jsVideoAllAudioTracksAreDisabled(v) {
 }
 
 function jsVideoAddPendingBlockedVideo(video, v) {
- if (Object.keys(jsVideoPendingBlockedVideos).length == 0) window.addEventListener("mousedown", jsVideoAttemptToPlayBlockedVideos);
+ if (Object.keys(jsVideoPendingBlockedVideos).length == 0) {
+  window.addEventListener("mousedown", jsVideoAttemptToPlayBlockedVideos, true);
+  window.addEventListener("touchstart", jsVideoAttemptToPlayBlockedVideos, true);
+ }
  jsVideoPendingBlockedVideos[video] = v;
 }
 
@@ -3209,8 +3584,10 @@ function _JS_Video_SetReadyHandler(video, ref, onready) {
  };
 }
 
-function _JS_Video_SetSeekedOnceHandler(video, ref, onseeked) {
+function _JS_Video_SetSeekedHandler(video, ref, onseeked) {
  videoInstances[video].onseeked = function() {
+  var v = videoInstances[video];
+  v.lastUpdateTextureTime = null;
   dynCall_vi(onseeked, ref);
  };
 }
@@ -3223,31 +3600,99 @@ function _JS_Video_Time(video) {
  return videoInstances[video].currentTime;
 }
 
+function jsVideoCreateTexture2D() {
+ var t = GLctx.createTexture();
+ GLctx.bindTexture(GLctx.TEXTURE_2D, t);
+ GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_S, GLctx.CLAMP_TO_EDGE);
+ GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_T, GLctx.CLAMP_TO_EDGE);
+ GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MIN_FILTER, GLctx.LINEAR);
+ return t;
+}
+
+var s2lTexture = null;
+
+var s2lFBO = null;
+
+var s2lVBO = null;
+
+var s2lProgram = null;
+
+var s2lVertexPositionNDC = null;
+
 function _JS_Video_UpdateToTexture(video, tex, adjustToLinearspace) {
  var v = videoInstances[video];
  if (!(v.videoWidth > 0 && v.videoHeight > 0)) return false;
  if (v.lastUpdateTextureTime === v.currentTime) return false;
  v.lastUpdateTextureTime = v.currentTime;
  GLctx.pixelStorei(GLctx.UNPACK_FLIP_Y_WEBGL, true);
- var internalFormat = adjustToLinearspace ? hasSRGBATextures ? GLctx.SRGB8_ALPHA8 : GLctx.SRGB8 : GLctx.RGBA;
+ var internalFormat = adjustToLinearspace ? hasSRGBATextures ? GLctx.RGBA : GLctx.RGB : GLctx.RGBA;
  var format = adjustToLinearspace ? hasSRGBATextures ? GLctx.RGBA : GLctx.RGB : GLctx.RGBA;
  if (v.previousUploadedWidth != v.videoWidth || v.previousUploadedHeight != v.videoHeight) {
   GLctx.deleteTexture(GL.textures[tex]);
-  var t = GLctx.createTexture();
+  var t = jsVideoCreateTexture2D();
   t.name = tex;
   GL.textures[tex] = t;
-  GLctx.bindTexture(GLctx.TEXTURE_2D, t);
-  GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_S, GLctx.CLAMP_TO_EDGE);
-  GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_WRAP_T, GLctx.CLAMP_TO_EDGE);
-  GLctx.texParameteri(GLctx.TEXTURE_2D, GLctx.TEXTURE_MIN_FILTER, GLctx.LINEAR);
-  GLctx.texImage2D(GLctx.TEXTURE_2D, 0, internalFormat, format, GLctx.UNSIGNED_BYTE, v);
   v.previousUploadedWidth = v.videoWidth;
   v.previousUploadedHeight = v.videoHeight;
+  if (adjustToLinearspace) {
+   GLctx.texImage2D(GLctx.TEXTURE_2D, 0, internalFormat, v.videoWidth, v.videoHeight, 0, format, GLctx.UNSIGNED_BYTE, null);
+   if (!s2lTexture) {
+    s2lTexture = jsVideoCreateTexture2D();
+   } else {
+    GLctx.bindTexture(GLctx.TEXTURE_2D, s2lTexture);
+   }
+  }
+  GLctx.texImage2D(GLctx.TEXTURE_2D, 0, internalFormat, format, GLctx.UNSIGNED_BYTE, v);
  } else {
-  GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
+  if (adjustToLinearspace) {
+   if (!s2lTexture) {
+    s2lTexture = jsVideoCreateTexture2D();
+   } else {
+    GLctx.bindTexture(GLctx.TEXTURE_2D, s2lTexture);
+   }
+  } else {
+   GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[tex]);
+  }
   GLctx.texImage2D(GLctx.TEXTURE_2D, 0, internalFormat, format, GLctx.UNSIGNED_BYTE, v);
  }
  GLctx.pixelStorei(GLctx.UNPACK_FLIP_Y_WEBGL, false);
+ if (adjustToLinearspace) {
+  if (s2lProgram == null) {
+   var vertexShaderCode = `precision lowp float;\n  \t\t\t\tattribute vec2 vertexPositionNDC;\n  \t\t\t\tvarying vec2 vTexCoords;\n  \t\t\t\tconst vec2 scale = vec2(0.5, 0.5);\n  \t\t\t\tvoid main() {\n  \t\t\t\t    vTexCoords = vertexPositionNDC * scale + scale; // scale vertex attribute to [0,1] range\n  \t\t\t\t    gl_Position = vec4(vertexPositionNDC, 0.0, 1.0);\n  \t\t\t\t}`;
+   var fragmentShaderCode = `precision mediump float;\n  \t\t\t\tuniform sampler2D colorMap;\n  \t\t\t\tvarying vec2 vTexCoords;\n  \t\t\t\tvec4 toLinear(vec4 sRGB) {\n  \t\t\t\t    vec3 c = sRGB.rgb;\n  \t\t\t\t    return vec4(c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878), sRGB.a);\n  \t\t\t\t}\n  \t\t\t\tvoid main() {\n  \t\t\t\t    gl_FragColor = toLinear(texture2D(colorMap, vTexCoords));\n  \t\t\t\t}`;
+   var vertexShader = GLctx.createShader(GLctx.VERTEX_SHADER);
+   GLctx.shaderSource(vertexShader, vertexShaderCode);
+   GLctx.compileShader(vertexShader);
+   var fragmentShader = GLctx.createShader(GLctx.FRAGMENT_SHADER);
+   GLctx.shaderSource(fragmentShader, fragmentShaderCode);
+   GLctx.compileShader(fragmentShader);
+   s2lProgram = GLctx.createProgram();
+   GLctx.attachShader(s2lProgram, vertexShader);
+   GLctx.attachShader(s2lProgram, fragmentShader);
+   GLctx.linkProgram(s2lProgram);
+   s2lVertexPositionNDC = GLctx.getAttribLocation(s2lProgram, "vertexPositionNDC");
+  }
+  if (s2lVBO == null) {
+   s2lVBO = GLctx.createBuffer();
+   GLctx.bindBuffer(GLctx.ARRAY_BUFFER, s2lVBO);
+   var verts = [ 1, 1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1 ];
+   GLctx.bufferData(GLctx.ARRAY_BUFFER, new Float32Array(verts), GLctx.STATIC_DRAW);
+  }
+  if (!s2lFBO) {
+   s2lFBO = GLctx.createFramebuffer();
+  }
+  GLctx.bindFramebuffer(GLctx.FRAMEBUFFER, s2lFBO);
+  GLctx.framebufferTexture2D(GLctx.FRAMEBUFFER, GLctx.COLOR_ATTACHMENT0, GLctx.TEXTURE_2D, GL.textures[tex], 0);
+  GLctx.bindTexture(GLctx.TEXTURE_2D, s2lTexture);
+  GLctx.viewport(0, 0, v.videoWidth, v.videoHeight);
+  GLctx.useProgram(s2lProgram);
+  GLctx.bindBuffer(GLctx.ARRAY_BUFFER, s2lVBO);
+  GLctx.enableVertexAttribArray(s2lVertexPositionNDC);
+  GLctx.vertexAttribPointer(s2lVertexPositionNDC, 2, GLctx.FLOAT, false, 0, 0);
+  GLctx.drawArrays(GLctx.TRIANGLES, 0, 6);
+  GLctx.viewport(0, 0, GLctx.canvas.width, GLctx.canvas.height);
+  GLctx.bindFramebuffer(GLctx.FRAMEBUFFER, null);
+ }
  return true;
 }
 
@@ -3279,33 +3724,14 @@ function _JS_WebCamVideo_GetNativeWidth(deviceId) {
 
 function _JS_WebCamVideo_GetNumDevices() {
  var numDevices = 0;
+ if (!videoInputDevicesEnumerated) {
+  console.warn("WebCam devices were used before being enumerated by the browser. The browser is likely " + "pausing WebCam device enumeration due to the page being out of focus while the Unity " + "application is being loaded in the background.\n" + "If you are a developer, you can ensure WebCam devices are enumerated by first requiring " + "user interaction.\n" + "See https://github.com/w3c/mediacapture-main/issues/905 for details.");
+  return numDevices;
+ }
  Object.keys(videoInputDevices).forEach(function(i) {
   numDevices = Math.max(numDevices, videoInputDevices[i].id + 1);
  });
  return numDevices;
-}
-
-function _JS_WebCamVideo_GrabFrame(deviceId, buffer, destWidth, destHeight) {
- var webcam = activeWebCams[deviceId];
- if (!webcam) return;
- var timeNow = performance.now();
- if (timeNow < webcam.nextFrameAvailableTime) {
-  return;
- }
- webcam.nextFrameAvailableTime += webcam.frameLengthInMsecs;
- if (webcam.nextFrameAvailableTime < timeNow) {
-  webcam.nextFrameAvailableTime = timeNow + webcam.frameLengthInMsecs;
- }
- var canvas = webcam.canvas;
- if (canvas.width != destWidth || canvas.height != destHeight || !webcam.context2d) {
-  canvas.width = destWidth;
-  canvas.height = destHeight;
-  webcam.context2d = canvas.getContext("2d");
- }
- var context = webcam.context2d;
- context.drawImage(webcam.video, 0, 0, webcam.video.videoWidth, webcam.video.videoHeight, 0, 0, destWidth, destHeight);
- HEAPU8.set(context.getImageData(0, 0, destWidth, destHeight).data, buffer);
- return 1;
 }
 
 function _JS_WebCamVideo_IsFrontFacing(deviceId) {
@@ -3337,10 +3763,8 @@ function _JS_WebCamVideo_Start(deviceId) {
    video.setAttribute("playsinline", "");
   }
   video.play();
-  var canvas = document.createElement("canvas");
   activeWebCams[deviceId] = {
    video: video,
-   canvas: document.createElement("canvas"),
    stream: stream,
    frameLengthInMsecs: 1e3 / stream.getVideoTracks()[0].getSettings().frameRate,
    nextFrameAvailableTime: 0,
@@ -3362,6 +3786,30 @@ function _JS_WebCamVideo_Stop(deviceId) {
   });
   delete activeWebCams[deviceId];
  }
+}
+
+function _JS_WebCamVideo_Update(deviceId, textureId, destWidth, destHeight) {
+ var webcam = activeWebCams[deviceId];
+ if (!webcam) return;
+ GLctx.pixelStorei(GLctx.UNPACK_FLIP_Y_WEBGL, true);
+ var webCamTexture = webcam.video;
+ if (webcam.video.videoWidth != destWidth || webcam.video.videoHeight != destHeight) {
+  if (!webcam.canvas) {
+   webcam.canvas = document.createElement("canvas");
+  }
+  var canvas = webcam.canvas;
+  if (canvas.width != destWidth || canvas.height != destHeight || !webcam.context2d) {
+   canvas.width = destWidth;
+   canvas.height = destHeight;
+   webcam.context2d = canvas.getContext("2d");
+  }
+  var context = webcam.context2d;
+  context.drawImage(webcam.video, 0, 0, webcam.video.videoWidth, webcam.video.videoHeight, 0, 0, destWidth, destHeight);
+  webCamTexture = canvas;
+ }
+ GLctx.bindTexture(GLctx.TEXTURE_2D, GL.textures[textureId]);
+ GLctx.texSubImage2D(GLctx.TEXTURE_2D, 0, 0, 0, GLctx.RGBA, GLctx.UNSIGNED_BYTE, webCamTexture);
+ GLctx.pixelStorei(GLctx.UNPACK_FLIP_Y_WEBGL, false);
 }
 
 function _JS_WebCam_IsSupported() {
@@ -3393,8 +3841,11 @@ function _JS_WebRequest_Create(url, method) {
   init: {
    method: _method,
    signal: abortController.signal,
-   headers: {}
-  }
+   headers: {},
+   enableStreamingDownload: true
+  },
+  tempBuffer: null,
+  tempBufferSize: 0
  };
  wr.abortControllers[wr.nextRequestId] = abortController;
  wr.requests[wr.nextRequestId] = requestOptions;
@@ -3437,13 +3888,13 @@ function _JS_WebRequest_GetResponseMetaData(requestId, headerBuffer, headerSize,
 function _JS_WebRequest_GetResponseMetaDataLengths(requestId, buffer) {
  var response = wr.responses[requestId];
  if (!response) {
-  HEAPU32[buffer >> 2] = 0;
-  HEAPU32[(buffer >> 2) + 1] = 0;
+  HEAPU32[buffer >>> 2] = 0;
+  HEAPU32[(buffer >> 2) + 1 >>> 0] = 0;
   return;
  }
  var headers = jsWebRequestGetResponseHeaderString(requestId);
- HEAPU32[buffer >> 2] = lengthBytesUTF8(headers);
- HEAPU32[(buffer >> 2) + 1] = lengthBytesUTF8(response.url);
+ HEAPU32[buffer >>> 2] = lengthBytesUTF8(headers);
+ HEAPU32[(buffer >> 2) + 1 >>> 0] = lengthBytesUTF8(response.url);
 }
 
 function _JS_WebRequest_Release(requestId) {
@@ -3459,6 +3910,19 @@ function _JS_WebRequest_Release(requestId) {
 function _JS_WebRequest_Send(requestId, ptr, length, arg, onresponse, onprogress) {
  var requestOptions = wr.requests[requestId];
  var abortController = wr.abortControllers[requestId];
+ function getTempBuffer(size) {
+  if (!requestOptions.tempBuffer) {
+   const initialSize = Math.max(size, 1024);
+   requestOptions.tempBuffer = _malloc(initialSize);
+   requestOptions.tempBufferSize = initialSize;
+  }
+  if (requestOptions.tempBufferSize < size) {
+   _free(requestOptions.tempBuffer);
+   requestOptions.tempBuffer = _malloc(size);
+   requestOptions.tempBufferSize = size;
+  }
+  return requestOptions.tempBuffer;
+ }
  function ClearTimeout() {
   if (wr.timer[requestId]) {
    clearTimeout(wr.timer[requestId]);
@@ -3471,12 +3935,17 @@ function _JS_WebRequest_Send(requestId, ptr, length, arg, onresponse, onprogress
    return;
   }
   var kWebRequestOK = 0;
-  if (body.length != 0) {
+  if (requestOptions.init.enableStreamingDownload) {
+   dynCall("viiiiii", onresponse, [ arg, response.status, 0, body.length, 0, kWebRequestOK ]);
+  } else if (body.length != 0) {
    var buffer = _malloc(body.length);
-   HEAPU8.set(body, buffer);
+   HEAPU8.set(body, buffer >>> 0);
    dynCall("viiiiii", onresponse, [ arg, response.status, buffer, body.length, 0, kWebRequestOK ]);
   } else {
    dynCall("viiiiii", onresponse, [ arg, response.status, 0, 0, 0, kWebRequestOK ]);
+  }
+  if (requestOptions.tempBuffer) {
+   _free(requestOptions.tempBuffer);
   }
  }
  function HandleError(err, code) {
@@ -3489,16 +3958,27 @@ function _JS_WebRequest_Send(requestId, ptr, length, arg, onresponse, onprogress
   stringToUTF8(err, buffer, len);
   dynCall("viiiiii", onresponse, [ arg, 500, 0, 0, buffer, code ]);
   _free(buffer);
+  if (requestOptions.tempBuffer) {
+   _free(requestOptions.tempBuffer);
+  }
  }
  function HandleProgress(e) {
   if (!onprogress || !e.lengthComputable) {
    return;
   }
-  dynCall("viii", onprogress, [ arg, e.loaded, e.total ]);
+  var response = e.response;
+  wr.responses[requestId] = response;
+  if (e.chunk) {
+   var buffer = getTempBuffer(e.chunk.length);
+   HEAPU8.set(e.chunk, buffer >>> 0);
+   dynCall("viiiiii", onprogress, [ arg, response.status, e.loaded, e.total, buffer, e.chunk.length ]);
+  } else {
+   dynCall("viiiiii", onprogress, [ arg, response.status, e.loaded, e.total, 0, 0 ]);
+  }
  }
  try {
   if (length > 0) {
-   var postData = HEAPU8.subarray(ptr, ptr + length);
+   var postData = HEAPU8.subarray(ptr >>> 0, ptr + length >>> 0);
    requestOptions.init.body = new Blob([ postData ]);
   }
   if (requestOptions.timeout) {
@@ -3513,7 +3993,8 @@ function _JS_WebRequest_Send(requestId, ptr, length, arg, onresponse, onprogress
    fetchImpl = Module.cachedFetch;
    requestOptions.init.companyName = Module.companyName;
    requestOptions.init.productName = Module.productName;
-   requestOptions.control = Module.cacheControl(requestOptions.url);
+   requestOptions.init.productVersion = Module.productVersion;
+   requestOptions.init.control = Module.cacheControl(requestOptions.url);
   }
   fetchImpl(requestOptions.url, requestOptions.init).then(function(response) {
    wr.responses[requestId] = response;
@@ -3562,190 +4043,45 @@ function _JS_WebRequest_SetTimeout(requestId, timeout) {
  requestOptions.timeout = timeout;
 }
 
-function _NewInstance(ptr, toPtr, clazz) {
- var stack = LKBridge.Stack;
- LKBridge.Stack = [];
- var obj;
- if (ptr === 0) {
-  obj = window;
- } else {
-  obj = LKBridge.Data.get(ptr);
- }
- var clazz = UTF8ToString(clazz);
- var inst = undefined;
- try {
-  inst = new (Function.prototype.bind.apply(obj[clazz], stack))();
- } catch (e) {
-  console.error("Internal issue when trying to instantiate " + clazz + "\n", "Stack: ", stack, e);
- }
- LKBridge.SetRef(toPtr, inst);
+function ___assert_fail(condition, filename, line, func) {
+ abort("Assertion failed: " + UTF8ToString(condition) + ", at: " + [ filename ? UTF8ToString(filename) : "unknown filename", line, func ? UTF8ToString(func) : "unknown function" ]);
 }
-
-function _NewRef() {
- return LKBridge.AddRef(LKBridge.NewRef());
-}
-
-function _NewTexture() {
- var tex = GLctx.createTexture();
- if (!tex) {
-  console.error("Failed to create a new texture for VideoReceiving");
-  return LKBridge.NullPtr;
- }
- var id = GL.getNewId(GL.textures);
- tex.name = id;
- GL.textures[id] = tex;
- return id;
-}
-
-function _PushBoolean(bool) {
- LKBridge.Stack.push(bool === 1);
-}
-
-function _PushFunction(ptr, fnc, labelPtr) {
- var label = UTF8ToString(labelPtr);
- LKBridge.Stack.push(function() {
-  if (!LKBridge.Data.has(ptr)) {
-   console.warn("Trying to fire an event on a freed object", ptr, fnc, label);
-   return;
-  }
-  try {
-   LKBridge.StackCSharp = Array.from(arguments);
-   LKBridge.FunctionInstance = this;
-   LKBridge.DynCall("vi", fnc, [ LKBridge.AddRef(ptr) ]);
-   LKBridge.FunctionInstance = null;
-   LKBridge.StackCSharp = [];
-  } catch (e) {
-   console.error("An error occured when calling C# callback", fnc, e, label, "StackCSharp:", LKBridge.StackCSharp);
-  }
- });
-}
-
-function _PushNull() {
- LKBridge.Stack.push(null);
-}
-
-function _PushNumber(nb) {
- LKBridge.Stack.push(nb);
-}
-
-function _PushObject(ptr) {
- LKBridge.Stack.push(LKBridge.Data.get(ptr));
-}
-
-function _PushString(str) {
- LKBridge.Stack.push(UTF8ToString(str));
-}
-
-function _PushStruct(json) {
- LKBridge.Stack.push(JSON.parse(UTF8ToString(json)));
-}
-
-function _PushUndefined() {
- LKBridge.Stack.push(undefined);
-}
-
-function _RemRef(ptr) {
- LKBridge.RemRef(ptr);
- return true;
-}
-
-function _RetrieveBridgeObject() {
- return LKBridge.AddRef(LKBridge.GetOrNewRef(LKBridge));
-}
-
-function _RetrieveWindowObject() {
- return LKBridge.AddRef(LKBridge.GetOrNewRef(window));
-}
-
-function _Send(index, arrayPtr, offset, length) {
- var webSocket = SimpleWeb.GetWebSocket(index);
- if (webSocket) {
-  const start = arrayPtr + offset;
-  const end = start + length;
-  const data = HEAPU8.buffer.slice(start, end);
-  webSocket.send(data);
-  return true;
- }
- return false;
-}
-
-function _SetProperty(ptr) {
- var key = LKBridge.Stack[0];
- var value = LKBridge.Stack[1];
- LKBridge.Stack = [];
- var obj = LKBridge.Data.get(ptr);
- obj[key] = value;
-}
-
-function _SetRef(ptr) {
- var value = LKBridge.Stack[0];
- LKBridge.Stack = [];
- LKBridge.SetRef(ptr, value);
-}
-
-function _SetupRpm(url, targetGameObjectName) {
- setupRpmFrame(UTF8ToString(url), UTF8ToString(targetGameObjectName));
-}
-
-function _ShiftStack() {
- var v = LKBridge.StackCSharp.shift();
- return LKBridge.AddRef(LKBridge.GetOrNewRef(v));
-}
-
-function _ShowReadyPlayerMeFrame() {
- showRpm();
-}
-
-var ExceptionInfoAttrs = {
- DESTRUCTOR_OFFSET: 0,
- REFCOUNT_OFFSET: 4,
- TYPE_OFFSET: 8,
- CAUGHT_OFFSET: 12,
- RETHROWN_OFFSET: 13,
- SIZE: 16
-};
 
 function ___cxa_allocate_exception(size) {
- return _malloc(size + ExceptionInfoAttrs.SIZE) + ExceptionInfoAttrs.SIZE;
-}
-
-function _atexit(func, arg) {}
-
-function ___cxa_atexit(a0, a1) {
- return _atexit(a0, a1);
+ return _malloc(size + 16) + 16;
 }
 
 function ExceptionInfo(excPtr) {
  this.excPtr = excPtr;
- this.ptr = excPtr - ExceptionInfoAttrs.SIZE;
+ this.ptr = excPtr - 16;
  this.set_type = function(type) {
-  HEAP32[this.ptr + ExceptionInfoAttrs.TYPE_OFFSET >> 2] = type;
+  HEAP32[this.ptr + 4 >>> 2] = type;
  };
  this.get_type = function() {
-  return HEAP32[this.ptr + ExceptionInfoAttrs.TYPE_OFFSET >> 2];
+  return HEAP32[this.ptr + 4 >>> 2];
  };
  this.set_destructor = function(destructor) {
-  HEAP32[this.ptr + ExceptionInfoAttrs.DESTRUCTOR_OFFSET >> 2] = destructor;
+  HEAP32[this.ptr + 8 >>> 2] = destructor;
  };
  this.get_destructor = function() {
-  return HEAP32[this.ptr + ExceptionInfoAttrs.DESTRUCTOR_OFFSET >> 2];
+  return HEAP32[this.ptr + 8 >>> 2];
  };
  this.set_refcount = function(refcount) {
-  HEAP32[this.ptr + ExceptionInfoAttrs.REFCOUNT_OFFSET >> 2] = refcount;
+  HEAP32[this.ptr >>> 2] = refcount;
  };
  this.set_caught = function(caught) {
   caught = caught ? 1 : 0;
-  HEAP8[this.ptr + ExceptionInfoAttrs.CAUGHT_OFFSET >> 0] = caught;
+  HEAP8[this.ptr + 12 >>> 0] = caught;
  };
  this.get_caught = function() {
-  return HEAP8[this.ptr + ExceptionInfoAttrs.CAUGHT_OFFSET >> 0] != 0;
+  return HEAP8[this.ptr + 12 >>> 0] != 0;
  };
  this.set_rethrown = function(rethrown) {
   rethrown = rethrown ? 1 : 0;
-  HEAP8[this.ptr + ExceptionInfoAttrs.RETHROWN_OFFSET >> 0] = rethrown;
+  HEAP8[this.ptr + 13 >>> 0] = rethrown;
  };
  this.get_rethrown = function() {
-  return HEAP8[this.ptr + ExceptionInfoAttrs.RETHROWN_OFFSET >> 0] != 0;
+  return HEAP8[this.ptr + 13 >>> 0] != 0;
  };
  this.init = function(type, destructor) {
   this.set_type(type);
@@ -3755,12 +4091,12 @@ function ExceptionInfo(excPtr) {
   this.set_rethrown(false);
  };
  this.add_ref = function() {
-  var value = HEAP32[this.ptr + ExceptionInfoAttrs.REFCOUNT_OFFSET >> 2];
-  HEAP32[this.ptr + ExceptionInfoAttrs.REFCOUNT_OFFSET >> 2] = value + 1;
+  var value = HEAP32[this.ptr >>> 2];
+  HEAP32[this.ptr >>> 2] = value + 1;
  };
  this.release_ref = function() {
-  var prev = HEAP32[this.ptr + ExceptionInfoAttrs.REFCOUNT_OFFSET >> 2];
-  HEAP32[this.ptr + ExceptionInfoAttrs.REFCOUNT_OFFSET >> 2] = prev - 1;
+  var prev = HEAP32[this.ptr >>> 2];
+  HEAP32[this.ptr >>> 2] = prev - 1;
   assert(prev > 0);
   return prev === 1;
  };
@@ -3772,23 +4108,24 @@ function CatchInfo(ptr) {
   this.ptr = 0;
  };
  this.set_base_ptr = function(basePtr) {
-  HEAP32[this.ptr >> 2] = basePtr;
+  HEAP32[this.ptr >>> 2] = basePtr;
  };
  this.get_base_ptr = function() {
-  return HEAP32[this.ptr >> 2];
+  return HEAP32[this.ptr >>> 2];
  };
  this.set_adjusted_ptr = function(adjustedPtr) {
-  var ptrSize = 4;
-  HEAP32[this.ptr + ptrSize >> 2] = adjustedPtr;
+  HEAP32[this.ptr + 4 >>> 2] = adjustedPtr;
+ };
+ this.get_adjusted_ptr_addr = function() {
+  return this.ptr + 4;
  };
  this.get_adjusted_ptr = function() {
-  var ptrSize = 4;
-  return HEAP32[this.ptr + ptrSize >> 2];
+  return HEAP32[this.ptr + 4 >>> 2];
  };
  this.get_exception_ptr = function() {
   var isPointer = ___cxa_is_pointer_type(this.get_exception_info().get_type());
   if (isPointer) {
-   return HEAP32[this.get_base_ptr() >> 2];
+   return HEAP32[this.get_base_ptr() >>> 2];
   }
   var adjusted = this.get_adjusted_ptr();
   if (adjusted !== 0) return adjusted;
@@ -3877,29 +4214,22 @@ function ___cxa_find_matching_catch_2() {
  var thrownType = info.get_type();
  var catchInfo = new CatchInfo();
  catchInfo.set_base_ptr(thrown);
+ catchInfo.set_adjusted_ptr(thrown);
  if (!thrownType) {
   setTempRet0(0);
   return catchInfo.ptr | 0;
  }
  var typeArray = Array.prototype.slice.call(arguments);
- var stackTop = stackSave();
- var exceptionThrowBuf = stackAlloc(4);
- HEAP32[exceptionThrowBuf >> 2] = thrown;
  for (var i = 0; i < typeArray.length; i++) {
   var caughtType = typeArray[i];
   if (caughtType === 0 || caughtType === thrownType) {
    break;
   }
-  if (___cxa_can_catch(caughtType, thrownType, exceptionThrowBuf)) {
-   var adjusted = HEAP32[exceptionThrowBuf >> 2];
-   if (thrown !== adjusted) {
-    catchInfo.set_adjusted_ptr(adjusted);
-   }
+  if (___cxa_can_catch(caughtType, thrownType, catchInfo.get_adjusted_ptr_addr())) {
    setTempRet0(caughtType);
    return catchInfo.ptr | 0;
   }
  }
- stackRestore(stackTop);
  setTempRet0(thrownType);
  return catchInfo.ptr | 0;
 }
@@ -3914,29 +4244,22 @@ function ___cxa_find_matching_catch_3() {
  var thrownType = info.get_type();
  var catchInfo = new CatchInfo();
  catchInfo.set_base_ptr(thrown);
+ catchInfo.set_adjusted_ptr(thrown);
  if (!thrownType) {
   setTempRet0(0);
   return catchInfo.ptr | 0;
  }
  var typeArray = Array.prototype.slice.call(arguments);
- var stackTop = stackSave();
- var exceptionThrowBuf = stackAlloc(4);
- HEAP32[exceptionThrowBuf >> 2] = thrown;
  for (var i = 0; i < typeArray.length; i++) {
   var caughtType = typeArray[i];
   if (caughtType === 0 || caughtType === thrownType) {
    break;
   }
-  if (___cxa_can_catch(caughtType, thrownType, exceptionThrowBuf)) {
-   var adjusted = HEAP32[exceptionThrowBuf >> 2];
-   if (thrown !== adjusted) {
-    catchInfo.set_adjusted_ptr(adjusted);
-   }
+  if (___cxa_can_catch(caughtType, thrownType, catchInfo.get_adjusted_ptr_addr())) {
    setTempRet0(caughtType);
    return catchInfo.ptr | 0;
   }
  }
- stackRestore(stackTop);
  setTempRet0(thrownType);
  return catchInfo.ptr | 0;
 }
@@ -3951,29 +4274,22 @@ function ___cxa_find_matching_catch_4() {
  var thrownType = info.get_type();
  var catchInfo = new CatchInfo();
  catchInfo.set_base_ptr(thrown);
+ catchInfo.set_adjusted_ptr(thrown);
  if (!thrownType) {
   setTempRet0(0);
   return catchInfo.ptr | 0;
  }
  var typeArray = Array.prototype.slice.call(arguments);
- var stackTop = stackSave();
- var exceptionThrowBuf = stackAlloc(4);
- HEAP32[exceptionThrowBuf >> 2] = thrown;
  for (var i = 0; i < typeArray.length; i++) {
   var caughtType = typeArray[i];
   if (caughtType === 0 || caughtType === thrownType) {
    break;
   }
-  if (___cxa_can_catch(caughtType, thrownType, exceptionThrowBuf)) {
-   var adjusted = HEAP32[exceptionThrowBuf >> 2];
-   if (thrown !== adjusted) {
-    catchInfo.set_adjusted_ptr(adjusted);
-   }
+  if (___cxa_can_catch(caughtType, thrownType, catchInfo.get_adjusted_ptr_addr())) {
    setTempRet0(caughtType);
    return catchInfo.ptr | 0;
   }
  }
- stackRestore(stackTop);
  setTempRet0(thrownType);
  return catchInfo.ptr | 0;
 }
@@ -4003,84 +4319,6 @@ function ___cxa_throw(ptr, type, destructor) {
  exceptionLast = ptr;
  uncaughtExceptionCount++;
  throw ptr;
-}
-
-function _gmtime_r(time, tmPtr) {
- var date = new Date(HEAP32[time >> 2] * 1e3);
- HEAP32[tmPtr >> 2] = date.getUTCSeconds();
- HEAP32[tmPtr + 4 >> 2] = date.getUTCMinutes();
- HEAP32[tmPtr + 8 >> 2] = date.getUTCHours();
- HEAP32[tmPtr + 12 >> 2] = date.getUTCDate();
- HEAP32[tmPtr + 16 >> 2] = date.getUTCMonth();
- HEAP32[tmPtr + 20 >> 2] = date.getUTCFullYear() - 1900;
- HEAP32[tmPtr + 24 >> 2] = date.getUTCDay();
- HEAP32[tmPtr + 36 >> 2] = 0;
- HEAP32[tmPtr + 32 >> 2] = 0;
- var start = Date.UTC(date.getUTCFullYear(), 0, 1, 0, 0, 0, 0);
- var yday = (date.getTime() - start) / (1e3 * 60 * 60 * 24) | 0;
- HEAP32[tmPtr + 28 >> 2] = yday;
- if (!_gmtime_r.GMTString) _gmtime_r.GMTString = allocateUTF8("GMT");
- HEAP32[tmPtr + 40 >> 2] = _gmtime_r.GMTString;
- return tmPtr;
-}
-
-function ___gmtime_r(a0, a1) {
- return _gmtime_r(a0, a1);
-}
-
-function _tzset() {
- if (_tzset.called) return;
- _tzset.called = true;
- var currentYear = new Date().getFullYear();
- var winter = new Date(currentYear, 0, 1);
- var summer = new Date(currentYear, 6, 1);
- var winterOffset = winter.getTimezoneOffset();
- var summerOffset = summer.getTimezoneOffset();
- var stdTimezoneOffset = Math.max(winterOffset, summerOffset);
- HEAP32[__get_timezone() >> 2] = stdTimezoneOffset * 60;
- HEAP32[__get_daylight() >> 2] = Number(winterOffset != summerOffset);
- function extractZone(date) {
-  var match = date.toTimeString().match(/\(([A-Za-z ]+)\)$/);
-  return match ? match[1] : "GMT";
- }
- var winterName = extractZone(winter);
- var summerName = extractZone(summer);
- var winterNamePtr = allocateUTF8(winterName);
- var summerNamePtr = allocateUTF8(summerName);
- if (summerOffset < winterOffset) {
-  HEAP32[__get_tzname() >> 2] = winterNamePtr;
-  HEAP32[__get_tzname() + 4 >> 2] = summerNamePtr;
- } else {
-  HEAP32[__get_tzname() >> 2] = summerNamePtr;
-  HEAP32[__get_tzname() + 4 >> 2] = winterNamePtr;
- }
-}
-
-function _localtime_r(time, tmPtr) {
- _tzset();
- var date = new Date(HEAP32[time >> 2] * 1e3);
- HEAP32[tmPtr >> 2] = date.getSeconds();
- HEAP32[tmPtr + 4 >> 2] = date.getMinutes();
- HEAP32[tmPtr + 8 >> 2] = date.getHours();
- HEAP32[tmPtr + 12 >> 2] = date.getDate();
- HEAP32[tmPtr + 16 >> 2] = date.getMonth();
- HEAP32[tmPtr + 20 >> 2] = date.getFullYear() - 1900;
- HEAP32[tmPtr + 24 >> 2] = date.getDay();
- var start = new Date(date.getFullYear(), 0, 1);
- var yday = (date.getTime() - start.getTime()) / (1e3 * 60 * 60 * 24) | 0;
- HEAP32[tmPtr + 28 >> 2] = yday;
- HEAP32[tmPtr + 36 >> 2] = -(date.getTimezoneOffset() * 60);
- var summerOffset = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
- var winterOffset = start.getTimezoneOffset();
- var dst = (summerOffset != winterOffset && date.getTimezoneOffset() == Math.min(winterOffset, summerOffset)) | 0;
- HEAP32[tmPtr + 32 >> 2] = dst;
- var zonePtr = HEAP32[__get_tzname() + (dst ? 4 : 0) >> 2];
- HEAP32[tmPtr + 40 >> 2] = zonePtr;
- return tmPtr;
-}
-
-function ___localtime_r(a0, a1) {
- return _localtime_r(a0, a1);
 }
 
 var PATH = {
@@ -4153,7 +4391,7 @@ var PATH = {
 };
 
 function getRandomDevice() {
- if (typeof crypto === "object" && typeof crypto["getRandomValues"] === "function") {
+ if (typeof crypto == "object" && typeof crypto["getRandomValues"] == "function") {
   var randomBuffer = new Uint8Array(1);
   return function() {
    crypto.getRandomValues(randomBuffer);
@@ -4177,7 +4415,7 @@ var PATH_FS = {
   var resolvedPath = "", resolvedAbsolute = false;
   for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
    var path = i >= 0 ? arguments[i] : FS.cwd();
-   if (typeof path !== "string") {
+   if (typeof path != "string") {
     throw new TypeError("Arguments to path.resolve must be strings");
    } else if (!path) {
     return "";
@@ -4298,10 +4536,10 @@ var TTY = {
     var result = null;
     if (ENVIRONMENT_IS_NODE) {
      var BUFSIZE = 256;
-     var buf = Buffer.alloc ? Buffer.alloc(BUFSIZE) : new Buffer(BUFSIZE);
+     var buf = Buffer.alloc(BUFSIZE);
      var bytesRead = 0;
      try {
-      bytesRead = nodeFS.readSync(process.stdin.fd, buf, 0, BUFSIZE, null);
+      bytesRead = fs.readSync(process.stdin.fd, buf, 0, BUFSIZE, -1);
      } catch (e) {
       if (e.toString().includes("EOF")) bytesRead = 0; else throw e;
      }
@@ -4361,10 +4599,20 @@ var TTY = {
  }
 };
 
+function zeroMemory(address, size) {
+ HEAPU8.fill(0, address, address + size);
+}
+
+function alignMemory(size, alignment) {
+ assert(alignment, "alignment argument is required");
+ return Math.ceil(size / alignment) * alignment;
+}
+
 function mmapAlloc(size) {
- var alignedSize = alignMemory(size, 65536);
- var ptr = _malloc(alignedSize);
- while (size < alignedSize) HEAP8[ptr + size++] = 0;
+ size = alignMemory(size, 65536);
+ var ptr = _emscripten_builtin_memalign(65536, size);
+ if (!ptr) return 0;
+ zeroMemory(ptr, size);
  return ptr;
 }
 
@@ -4456,6 +4704,7 @@ var MEMFS = {
   return new Uint8Array(node.contents);
  },
  expandFileStorage: function(node, newCapacity) {
+  newCapacity >>>= 0;
   var prevCapacity = node.contents ? node.contents.length : 0;
   if (prevCapacity >= newCapacity) return;
   var CAPACITY_DOUBLING_MAX = 1024 * 1024;
@@ -4466,6 +4715,7 @@ var MEMFS = {
   if (node.usedBytes > 0) node.contents.set(oldContents.subarray(0, node.usedBytes), 0);
  },
  resizeFileStorage: function(node, newSize) {
+  newSize >>>= 0;
   if (node.usedBytes == newSize) return;
   if (newSize == 0) {
    node.contents = null;
@@ -4590,9 +4840,6 @@ var MEMFS = {
   },
   write: function(stream, buffer, offset, length, position, canOwn) {
    assert(!(buffer instanceof ArrayBuffer));
-   if (buffer.buffer === HEAP8.buffer) {
-    canOwn = false;
-   }
    if (!length) return 0;
    var node = stream.node;
    node.timestamp = Date.now();
@@ -4666,7 +4913,8 @@ var MEMFS = {
     if (!ptr) {
      throw new FS.ErrnoError(48);
     }
-    HEAP8.set(contents, ptr);
+    ptr >>>= 0;
+    HEAP8.set(contents, ptr >>> 0);
    }
    return {
     ptr: ptr,
@@ -4686,12 +4934,28 @@ var MEMFS = {
  }
 };
 
+function asyncLoad(url, onload, onerror, noRunDep) {
+ var dep = !noRunDep ? getUniqueRunDependency("al " + url) : "";
+ readAsync(url, function(arrayBuffer) {
+  assert(arrayBuffer, 'Loading data file "' + url + '" failed (no arrayBuffer).');
+  onload(new Uint8Array(arrayBuffer));
+  if (dep) removeRunDependency(dep);
+ }, function(event) {
+  if (onerror) {
+   onerror();
+  } else {
+   throw 'Loading data file "' + url + '" failed.';
+  }
+ });
+ if (dep) addRunDependency(dep);
+}
+
 var IDBFS = {
  dbs: {},
- indexedDB: function() {
-  if (typeof indexedDB !== "undefined") return indexedDB;
+ indexedDB: () => {
+  if (typeof indexedDB != "undefined") return indexedDB;
   var ret = null;
-  if (typeof window === "object") ret = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+  if (typeof window == "object") ret = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
   assert(ret, "IDBFS used, but indexedDB not supported");
   return ret;
  },
@@ -4700,10 +4964,10 @@ var IDBFS = {
  mount: function(mount) {
   return MEMFS.mount.apply(null, arguments);
  },
- syncfs: function(mount, populate, callback) {
-  IDBFS.getLocalSet(mount, function(err, local) {
+ syncfs: (mount, populate, callback) => {
+  IDBFS.getLocalSet(mount, (err, local) => {
    if (err) return callback(err);
-   IDBFS.getRemoteSet(mount, function(err, remote) {
+   IDBFS.getRemoteSet(mount, (err, remote) => {
     if (err) return callback(err);
     var src = populate ? remote : local;
     var dst = populate ? local : remote;
@@ -4711,7 +4975,7 @@ var IDBFS = {
    });
   });
  },
- getDB: function(name, callback) {
+ getDB: (name, callback) => {
   var db = IDBFS.dbs[name];
   if (db) {
    return callback(null, db);
@@ -4725,7 +4989,7 @@ var IDBFS = {
   if (!req) {
    return callback("Unable to connect to IndexedDB");
   }
-  req.onupgradeneeded = function(e) {
+  req.onupgradeneeded = (e => {
    var db = e.target.result;
    var transaction = e.target.transaction;
    var fileStore;
@@ -4739,24 +5003,24 @@ var IDBFS = {
      unique: false
     });
    }
-  };
-  req.onsuccess = function() {
+  });
+  req.onsuccess = (() => {
    db = req.result;
    IDBFS.dbs[name] = db;
    callback(null, db);
-  };
-  req.onerror = function(e) {
+  });
+  req.onerror = (e => {
    callback(this.error);
    e.preventDefault();
-  };
+  });
  },
- getLocalSet: function(mount, callback) {
+ getLocalSet: (mount, callback) => {
   var entries = {};
   function isRealDir(p) {
    return p !== "." && p !== "..";
   }
   function toAbsolute(root) {
-   return function(p) {
+   return p => {
     return PATH.join2(root, p);
    };
   }
@@ -4781,19 +5045,19 @@ var IDBFS = {
    entries: entries
   });
  },
- getRemoteSet: function(mount, callback) {
+ getRemoteSet: (mount, callback) => {
   var entries = {};
-  IDBFS.getDB(mount.mountpoint, function(err, db) {
+  IDBFS.getDB(mount.mountpoint, (err, db) => {
    if (err) return callback(err);
    try {
     var transaction = db.transaction([ IDBFS.DB_STORE_NAME ], "readonly");
-    transaction.onerror = function(e) {
+    transaction.onerror = (e => {
      callback(this.error);
      e.preventDefault();
-    };
+    });
     var store = transaction.objectStore(IDBFS.DB_STORE_NAME);
     var index = store.index("timestamp");
-    index.openKeyCursor().onsuccess = function(event) {
+    index.openKeyCursor().onsuccess = (event => {
      var cursor = event.target.result;
      if (!cursor) {
       return callback(null, {
@@ -4806,13 +5070,13 @@ var IDBFS = {
       "timestamp": cursor.key
      };
      cursor.continue();
-    };
+    });
    } catch (e) {
     return callback(e);
    }
   });
  },
- loadLocalEntry: function(path, callback) {
+ loadLocalEntry: (path, callback) => {
   var stat, node;
   try {
    var lookup = FS.lookupPath(path);
@@ -4837,7 +5101,7 @@ var IDBFS = {
    return callback(new Error("node type not supported"));
   }
  },
- storeLocalEntry: function(path, entry, callback) {
+ storeLocalEntry: (path, entry, callback) => {
   try {
    if (FS.isDir(entry["mode"])) {
     FS.mkdirTree(path, entry["mode"]);
@@ -4855,7 +5119,7 @@ var IDBFS = {
   }
   callback(null);
  },
- removeLocalEntry: function(path, callback) {
+ removeLocalEntry: (path, callback) => {
   try {
    var lookup = FS.lookupPath(path);
    var stat = FS.stat(path);
@@ -4869,37 +5133,42 @@ var IDBFS = {
   }
   callback(null);
  },
- loadRemoteEntry: function(store, path, callback) {
+ loadRemoteEntry: (store, path, callback) => {
   var req = store.get(path);
-  req.onsuccess = function(event) {
+  req.onsuccess = (event => {
    callback(null, event.target.result);
-  };
-  req.onerror = function(e) {
+  });
+  req.onerror = (e => {
    callback(this.error);
    e.preventDefault();
-  };
+  });
  },
- storeRemoteEntry: function(store, path, entry, callback) {
-  var req = store.put(entry, path);
-  req.onsuccess = function() {
+ storeRemoteEntry: (store, path, entry, callback) => {
+  try {
+   var req = store.put(entry, path);
+  } catch (e) {
+   callback(e);
+   return;
+  }
+  req.onsuccess = (() => {
    callback(null);
-  };
-  req.onerror = function(e) {
+  });
+  req.onerror = (e => {
    callback(this.error);
    e.preventDefault();
-  };
+  });
  },
- removeRemoteEntry: function(store, path, callback) {
+ removeRemoteEntry: (store, path, callback) => {
   var req = store.delete(path);
-  req.onsuccess = function() {
+  req.onsuccess = (() => {
    callback(null);
-  };
-  req.onerror = function(e) {
+  });
+  req.onerror = (e => {
    callback(this.error);
    e.preventDefault();
-  };
+  });
  },
- reconcile: function(src, dst, callback) {
+ reconcile: (src, dst, callback) => {
   var total = 0;
   var create = [];
   Object.keys(src.entries).forEach(function(key) {
@@ -4930,29 +5199,29 @@ var IDBFS = {
     return callback(err);
    }
   }
-  transaction.onerror = function(e) {
+  transaction.onerror = (e => {
    done(this.error);
    e.preventDefault();
-  };
-  transaction.oncomplete = function(e) {
+  });
+  transaction.oncomplete = (e => {
    if (!errored) {
     callback(null);
    }
-  };
-  create.sort().forEach(function(path) {
+  });
+  create.sort().forEach(path => {
    if (dst.type === "local") {
-    IDBFS.loadRemoteEntry(store, path, function(err, entry) {
+    IDBFS.loadRemoteEntry(store, path, (err, entry) => {
      if (err) return done(err);
      IDBFS.storeLocalEntry(path, entry, done);
     });
    } else {
-    IDBFS.loadLocalEntry(path, function(err, entry) {
+    IDBFS.loadLocalEntry(path, (err, entry) => {
      if (err) return done(err);
      IDBFS.storeRemoteEntry(store, path, entry, done);
     });
    }
   });
-  remove.sort().reverse().forEach(function(path) {
+  remove.sort().reverse().forEach(path => {
    if (dst.type === "local") {
     IDBFS.removeLocalEntry(path, done);
    } else {
@@ -5084,129 +5353,7 @@ var ERRNO_MESSAGES = {
  156: "Level 2 not synchronized"
 };
 
-var ERRNO_CODES = {
- EPERM: 63,
- ENOENT: 44,
- ESRCH: 71,
- EINTR: 27,
- EIO: 29,
- ENXIO: 60,
- E2BIG: 1,
- ENOEXEC: 45,
- EBADF: 8,
- ECHILD: 12,
- EAGAIN: 6,
- EWOULDBLOCK: 6,
- ENOMEM: 48,
- EACCES: 2,
- EFAULT: 21,
- ENOTBLK: 105,
- EBUSY: 10,
- EEXIST: 20,
- EXDEV: 75,
- ENODEV: 43,
- ENOTDIR: 54,
- EISDIR: 31,
- EINVAL: 28,
- ENFILE: 41,
- EMFILE: 33,
- ENOTTY: 59,
- ETXTBSY: 74,
- EFBIG: 22,
- ENOSPC: 51,
- ESPIPE: 70,
- EROFS: 69,
- EMLINK: 34,
- EPIPE: 64,
- EDOM: 18,
- ERANGE: 68,
- ENOMSG: 49,
- EIDRM: 24,
- ECHRNG: 106,
- EL2NSYNC: 156,
- EL3HLT: 107,
- EL3RST: 108,
- ELNRNG: 109,
- EUNATCH: 110,
- ENOCSI: 111,
- EL2HLT: 112,
- EDEADLK: 16,
- ENOLCK: 46,
- EBADE: 113,
- EBADR: 114,
- EXFULL: 115,
- ENOANO: 104,
- EBADRQC: 103,
- EBADSLT: 102,
- EDEADLOCK: 16,
- EBFONT: 101,
- ENOSTR: 100,
- ENODATA: 116,
- ETIME: 117,
- ENOSR: 118,
- ENONET: 119,
- ENOPKG: 120,
- EREMOTE: 121,
- ENOLINK: 47,
- EADV: 122,
- ESRMNT: 123,
- ECOMM: 124,
- EPROTO: 65,
- EMULTIHOP: 36,
- EDOTDOT: 125,
- EBADMSG: 9,
- ENOTUNIQ: 126,
- EBADFD: 127,
- EREMCHG: 128,
- ELIBACC: 129,
- ELIBBAD: 130,
- ELIBSCN: 131,
- ELIBMAX: 132,
- ELIBEXEC: 133,
- ENOSYS: 52,
- ENOTEMPTY: 55,
- ENAMETOOLONG: 37,
- ELOOP: 32,
- EOPNOTSUPP: 138,
- EPFNOSUPPORT: 139,
- ECONNRESET: 15,
- ENOBUFS: 42,
- EAFNOSUPPORT: 5,
- EPROTOTYPE: 67,
- ENOTSOCK: 57,
- ENOPROTOOPT: 50,
- ESHUTDOWN: 140,
- ECONNREFUSED: 14,
- EADDRINUSE: 3,
- ECONNABORTED: 13,
- ENETUNREACH: 40,
- ENETDOWN: 38,
- ETIMEDOUT: 73,
- EHOSTDOWN: 142,
- EHOSTUNREACH: 23,
- EINPROGRESS: 26,
- EALREADY: 7,
- EDESTADDRREQ: 17,
- EMSGSIZE: 35,
- EPROTONOSUPPORT: 66,
- ESOCKTNOSUPPORT: 137,
- EADDRNOTAVAIL: 4,
- ENETRESET: 39,
- EISCONN: 30,
- ENOTCONN: 53,
- ETOOMANYREFS: 141,
- EUSERS: 136,
- EDQUOT: 19,
- ESTALE: 72,
- ENOTSUP: 138,
- ENOMEDIUM: 148,
- EILSEQ: 25,
- EOVERFLOW: 61,
- ECANCELED: 11,
- ENOTRECOVERABLE: 56,
- EOWNERDEAD: 62,
- ESTRPIPE: 135
-};
+var ERRNO_CODES = {};
 
 var FS = {
  root: null,
@@ -5218,20 +5365,12 @@ var FS = {
  currentPath: "/",
  initialized: false,
  ignorePermissions: true,
- trackingDelegate: {},
- tracking: {
-  openFlags: {
-   READ: 1,
-   WRITE: 2
-  }
- },
  ErrnoError: null,
  genericErrors: {},
  filesystems: null,
  syncFSRequests: 0,
- lookupPath: function(path, opts) {
+ lookupPath: (path, opts = {}) => {
   path = PATH_FS.resolve(FS.cwd(), path);
-  opts = opts || {};
   if (!path) return {
    path: "",
    node: null
@@ -5240,17 +5379,11 @@ var FS = {
    follow_mount: true,
    recurse_count: 0
   };
-  for (var key in defaults) {
-   if (opts[key] === undefined) {
-    opts[key] = defaults[key];
-   }
-  }
+  opts = Object.assign(defaults, opts);
   if (opts.recurse_count > 8) {
    throw new FS.ErrnoError(32);
   }
-  var parts = PATH.normalizeArray(path.split("/").filter(function(p) {
-   return !!p;
-  }), false);
+  var parts = PATH.normalizeArray(path.split("/").filter(p => !!p), false);
   var current = FS.root;
   var current_path = "/";
   for (var i = 0; i < parts.length; i++) {
@@ -5271,7 +5404,7 @@ var FS = {
      var link = FS.readlink(current_path);
      current_path = PATH_FS.resolve(PATH.dirname(current_path), link);
      var lookup = FS.lookupPath(current_path, {
-      recurse_count: opts.recurse_count
+      recurse_count: opts.recurse_count + 1
      });
      current = lookup.node;
      if (count++ > 40) {
@@ -5285,7 +5418,7 @@ var FS = {
    node: current
   };
  },
- getPath: function(node) {
+ getPath: node => {
   var path;
   while (true) {
    if (FS.isRoot(node)) {
@@ -5297,19 +5430,19 @@ var FS = {
    node = node.parent;
   }
  },
- hashName: function(parentid, name) {
+ hashName: (parentid, name) => {
   var hash = 0;
   for (var i = 0; i < name.length; i++) {
    hash = (hash << 5) - hash + name.charCodeAt(i) | 0;
   }
   return (parentid + hash >>> 0) % FS.nameTable.length;
  },
- hashAddNode: function(node) {
+ hashAddNode: node => {
   var hash = FS.hashName(node.parent.id, node.name);
   node.name_next = FS.nameTable[hash];
   FS.nameTable[hash] = node;
  },
- hashRemoveNode: function(node) {
+ hashRemoveNode: node => {
   var hash = FS.hashName(node.parent.id, node.name);
   if (FS.nameTable[hash] === node) {
    FS.nameTable[hash] = node.name_next;
@@ -5324,7 +5457,7 @@ var FS = {
    }
   }
  },
- lookupNode: function(parent, name) {
+ lookupNode: (parent, name) => {
   var errCode = FS.mayLookup(parent);
   if (errCode) {
    throw new FS.ErrnoError(errCode, parent);
@@ -5338,40 +5471,40 @@ var FS = {
   }
   return FS.lookup(parent, name);
  },
- createNode: function(parent, name, mode, rdev) {
-  assert(typeof parent === "object");
+ createNode: (parent, name, mode, rdev) => {
+  assert(typeof parent == "object");
   var node = new FS.FSNode(parent, name, mode, rdev);
   FS.hashAddNode(node);
   return node;
  },
- destroyNode: function(node) {
+ destroyNode: node => {
   FS.hashRemoveNode(node);
  },
- isRoot: function(node) {
+ isRoot: node => {
   return node === node.parent;
  },
- isMountpoint: function(node) {
+ isMountpoint: node => {
   return !!node.mounted;
  },
- isFile: function(mode) {
+ isFile: mode => {
   return (mode & 61440) === 32768;
  },
- isDir: function(mode) {
+ isDir: mode => {
   return (mode & 61440) === 16384;
  },
- isLink: function(mode) {
+ isLink: mode => {
   return (mode & 61440) === 40960;
  },
- isChrdev: function(mode) {
+ isChrdev: mode => {
   return (mode & 61440) === 8192;
  },
- isBlkdev: function(mode) {
+ isBlkdev: mode => {
   return (mode & 61440) === 24576;
  },
- isFIFO: function(mode) {
+ isFIFO: mode => {
   return (mode & 61440) === 4096;
  },
- isSocket: function(mode) {
+ isSocket: mode => {
   return (mode & 49152) === 49152;
  },
  flagModes: {
@@ -5382,21 +5515,21 @@ var FS = {
   "a": 1089,
   "a+": 1090
  },
- modeStringToFlags: function(str) {
+ modeStringToFlags: str => {
   var flags = FS.flagModes[str];
-  if (typeof flags === "undefined") {
+  if (typeof flags == "undefined") {
    throw new Error("Unknown file open mode: " + str);
   }
   return flags;
  },
- flagsToPermissionString: function(flag) {
+ flagsToPermissionString: flag => {
   var perms = [ "r", "w", "rw" ][flag & 3];
   if (flag & 512) {
    perms += "w";
   }
   return perms;
  },
- nodePermissions: function(node, perms) {
+ nodePermissions: (node, perms) => {
   if (FS.ignorePermissions) {
    return 0;
   }
@@ -5409,20 +5542,20 @@ var FS = {
   }
   return 0;
  },
- mayLookup: function(dir) {
+ mayLookup: dir => {
   var errCode = FS.nodePermissions(dir, "x");
   if (errCode) return errCode;
   if (!dir.node_ops.lookup) return 2;
   return 0;
  },
- mayCreate: function(dir, name) {
+ mayCreate: (dir, name) => {
   try {
    var node = FS.lookupNode(dir, name);
    return 20;
   } catch (e) {}
   return FS.nodePermissions(dir, "wx");
  },
- mayDelete: function(dir, name, isdir) {
+ mayDelete: (dir, name, isdir) => {
   var node;
   try {
    node = FS.lookupNode(dir, name);
@@ -5447,7 +5580,7 @@ var FS = {
   }
   return 0;
  },
- mayOpen: function(node, flags) {
+ mayOpen: (node, flags) => {
   if (!node) {
    return 44;
   }
@@ -5461,9 +5594,7 @@ var FS = {
   return FS.nodePermissions(node, FS.flagsToPermissionString(flags));
  },
  MAX_OPEN_FDS: 4096,
- nextfd: function(fd_start, fd_end) {
-  fd_start = fd_start || 0;
-  fd_end = fd_end || FS.MAX_OPEN_FDS;
+ nextfd: (fd_start = 0, fd_end = FS.MAX_OPEN_FDS) => {
   for (var fd = fd_start; fd <= fd_end; fd++) {
    if (!FS.streams[fd]) {
     return fd;
@@ -5471,10 +5602,8 @@ var FS = {
   }
   throw new FS.ErrnoError(33);
  },
- getStream: function(fd) {
-  return FS.streams[fd];
- },
- createStream: function(stream, fd_start, fd_end) {
+ getStream: fd => FS.streams[fd],
+ createStream: (stream, fd_start, fd_end) => {
   if (!FS.FSStream) {
    FS.FSStream = function() {};
    FS.FSStream.prototype = {
@@ -5503,49 +5632,37 @@ var FS = {
     }
    };
   }
-  var newStream = new FS.FSStream();
-  for (var p in stream) {
-   newStream[p] = stream[p];
-  }
-  stream = newStream;
+  stream = Object.assign(new FS.FSStream(), stream);
   var fd = FS.nextfd(fd_start, fd_end);
   stream.fd = fd;
   FS.streams[fd] = stream;
   return stream;
  },
- closeStream: function(fd) {
+ closeStream: fd => {
   FS.streams[fd] = null;
  },
  chrdev_stream_ops: {
-  open: function(stream) {
+  open: stream => {
    var device = FS.getDevice(stream.node.rdev);
    stream.stream_ops = device.stream_ops;
    if (stream.stream_ops.open) {
     stream.stream_ops.open(stream);
    }
   },
-  llseek: function() {
+  llseek: () => {
    throw new FS.ErrnoError(70);
   }
  },
- major: function(dev) {
-  return dev >> 8;
- },
- minor: function(dev) {
-  return dev & 255;
- },
- makedev: function(ma, mi) {
-  return ma << 8 | mi;
- },
- registerDevice: function(dev, ops) {
+ major: dev => dev >> 8,
+ minor: dev => dev & 255,
+ makedev: (ma, mi) => ma << 8 | mi,
+ registerDevice: (dev, ops) => {
   FS.devices[dev] = {
    stream_ops: ops
   };
  },
- getDevice: function(dev) {
-  return FS.devices[dev];
- },
- getMounts: function(mount) {
+ getDevice: dev => FS.devices[dev],
+ getMounts: mount => {
   var mounts = [];
   var check = [ mount ];
   while (check.length) {
@@ -5555,8 +5672,8 @@ var FS = {
   }
   return mounts;
  },
- syncfs: function(populate, callback) {
-  if (typeof populate === "function") {
+ syncfs: (populate, callback) => {
+  if (typeof populate == "function") {
    callback = populate;
    populate = false;
   }
@@ -5583,15 +5700,15 @@ var FS = {
     doCallback(null);
    }
   }
-  mounts.forEach(function(mount) {
+  mounts.forEach(mount => {
    if (!mount.type.syncfs) {
     return done(null);
    }
    mount.type.syncfs(mount, populate, done);
   });
  },
- mount: function(type, opts, mountpoint) {
-  if (typeof type === "string") {
+ mount: (type, opts, mountpoint) => {
+  if (typeof type == "string") {
    throw type;
   }
   var root = mountpoint === "/";
@@ -5631,7 +5748,7 @@ var FS = {
   }
   return mountRoot;
  },
- unmount: function(mountpoint) {
+ unmount: mountpoint => {
   var lookup = FS.lookupPath(mountpoint, {
    follow_mount: false
   });
@@ -5641,7 +5758,7 @@ var FS = {
   var node = lookup.node;
   var mount = node.mounted;
   var mounts = FS.getMounts(mount);
-  Object.keys(FS.nameTable).forEach(function(hash) {
+  Object.keys(FS.nameTable).forEach(hash => {
    var current = FS.nameTable[hash];
    while (current) {
     var next = current.name_next;
@@ -5656,10 +5773,10 @@ var FS = {
   assert(idx !== -1);
   node.mount.mounts.splice(idx, 1);
  },
- lookup: function(parent, name) {
+ lookup: (parent, name) => {
   return parent.node_ops.lookup(parent, name);
  },
- mknod: function(path, mode, dev) {
+ mknod: (path, mode, dev) => {
   var lookup = FS.lookupPath(path, {
    parent: true
   });
@@ -5677,19 +5794,19 @@ var FS = {
   }
   return parent.node_ops.mknod(parent, name, mode, dev);
  },
- create: function(path, mode) {
+ create: (path, mode) => {
   mode = mode !== undefined ? mode : 438;
   mode &= 4095;
   mode |= 32768;
   return FS.mknod(path, mode, 0);
  },
- mkdir: function(path, mode) {
+ mkdir: (path, mode) => {
   mode = mode !== undefined ? mode : 511;
   mode &= 511 | 512;
   mode |= 16384;
   return FS.mknod(path, mode, 0);
  },
- mkdirTree: function(path, mode) {
+ mkdirTree: (path, mode) => {
   var dirs = path.split("/");
   var d = "";
   for (var i = 0; i < dirs.length; ++i) {
@@ -5702,15 +5819,15 @@ var FS = {
    }
   }
  },
- mkdev: function(path, mode, dev) {
-  if (typeof dev === "undefined") {
+ mkdev: (path, mode, dev) => {
+  if (typeof dev == "undefined") {
    dev = mode;
    mode = 438;
   }
   mode |= 8192;
   return FS.mknod(path, mode, dev);
  },
- symlink: function(oldpath, newpath) {
+ symlink: (oldpath, newpath) => {
   if (!PATH_FS.resolve(oldpath)) {
    throw new FS.ErrnoError(44);
   }
@@ -5731,7 +5848,7 @@ var FS = {
   }
   return parent.node_ops.symlink(parent, newname, oldpath);
  },
- rename: function(old_path, new_path) {
+ rename: (old_path, new_path) => {
   var old_dirname = PATH.dirname(old_path);
   var new_dirname = PATH.dirname(new_path);
   var old_name = PATH.basename(old_path);
@@ -5786,13 +5903,6 @@ var FS = {
     throw new FS.ErrnoError(errCode);
    }
   }
-  try {
-   if (FS.trackingDelegate["willMovePath"]) {
-    FS.trackingDelegate["willMovePath"](old_path, new_path);
-   }
-  } catch (e) {
-   err("FS.trackingDelegate['willMovePath']('" + old_path + "', '" + new_path + "') threw an exception: " + e.message);
-  }
   FS.hashRemoveNode(old_node);
   try {
    old_dir.node_ops.rename(old_node, new_dir, new_name);
@@ -5801,13 +5911,8 @@ var FS = {
   } finally {
    FS.hashAddNode(old_node);
   }
-  try {
-   if (FS.trackingDelegate["onMovePath"]) FS.trackingDelegate["onMovePath"](old_path, new_path);
-  } catch (e) {
-   err("FS.trackingDelegate['onMovePath']('" + old_path + "', '" + new_path + "') threw an exception: " + e.message);
-  }
  },
- rmdir: function(path) {
+ rmdir: path => {
   var lookup = FS.lookupPath(path, {
    parent: true
   });
@@ -5824,22 +5929,10 @@ var FS = {
   if (FS.isMountpoint(node)) {
    throw new FS.ErrnoError(10);
   }
-  try {
-   if (FS.trackingDelegate["willDeletePath"]) {
-    FS.trackingDelegate["willDeletePath"](path);
-   }
-  } catch (e) {
-   err("FS.trackingDelegate['willDeletePath']('" + path + "') threw an exception: " + e.message);
-  }
   parent.node_ops.rmdir(parent, name);
   FS.destroyNode(node);
-  try {
-   if (FS.trackingDelegate["onDeletePath"]) FS.trackingDelegate["onDeletePath"](path);
-  } catch (e) {
-   err("FS.trackingDelegate['onDeletePath']('" + path + "') threw an exception: " + e.message);
-  }
  },
- readdir: function(path) {
+ readdir: path => {
   var lookup = FS.lookupPath(path, {
    follow: true
   });
@@ -5849,11 +5942,14 @@ var FS = {
   }
   return node.node_ops.readdir(node);
  },
- unlink: function(path) {
+ unlink: path => {
   var lookup = FS.lookupPath(path, {
    parent: true
   });
   var parent = lookup.node;
+  if (!parent) {
+   throw new FS.ErrnoError(44);
+  }
   var name = PATH.basename(path);
   var node = FS.lookupNode(parent, name);
   var errCode = FS.mayDelete(parent, name, false);
@@ -5866,22 +5962,10 @@ var FS = {
   if (FS.isMountpoint(node)) {
    throw new FS.ErrnoError(10);
   }
-  try {
-   if (FS.trackingDelegate["willDeletePath"]) {
-    FS.trackingDelegate["willDeletePath"](path);
-   }
-  } catch (e) {
-   err("FS.trackingDelegate['willDeletePath']('" + path + "') threw an exception: " + e.message);
-  }
   parent.node_ops.unlink(parent, name);
   FS.destroyNode(node);
-  try {
-   if (FS.trackingDelegate["onDeletePath"]) FS.trackingDelegate["onDeletePath"](path);
-  } catch (e) {
-   err("FS.trackingDelegate['onDeletePath']('" + path + "') threw an exception: " + e.message);
-  }
  },
- readlink: function(path) {
+ readlink: path => {
   var lookup = FS.lookupPath(path);
   var link = lookup.node;
   if (!link) {
@@ -5892,7 +5976,7 @@ var FS = {
   }
   return PATH_FS.resolve(FS.getPath(link.parent), link.node_ops.readlink(link));
  },
- stat: function(path, dontFollow) {
+ stat: (path, dontFollow) => {
   var lookup = FS.lookupPath(path, {
    follow: !dontFollow
   });
@@ -5905,12 +5989,12 @@ var FS = {
   }
   return node.node_ops.getattr(node);
  },
- lstat: function(path) {
+ lstat: path => {
   return FS.stat(path, true);
  },
- chmod: function(path, mode, dontFollow) {
+ chmod: (path, mode, dontFollow) => {
   var node;
-  if (typeof path === "string") {
+  if (typeof path == "string") {
    var lookup = FS.lookupPath(path, {
     follow: !dontFollow
    });
@@ -5926,19 +6010,19 @@ var FS = {
    timestamp: Date.now()
   });
  },
- lchmod: function(path, mode) {
+ lchmod: (path, mode) => {
   FS.chmod(path, mode, true);
  },
- fchmod: function(fd, mode) {
+ fchmod: (fd, mode) => {
   var stream = FS.getStream(fd);
   if (!stream) {
    throw new FS.ErrnoError(8);
   }
   FS.chmod(stream.node, mode);
  },
- chown: function(path, uid, gid, dontFollow) {
+ chown: (path, uid, gid, dontFollow) => {
   var node;
-  if (typeof path === "string") {
+  if (typeof path == "string") {
    var lookup = FS.lookupPath(path, {
     follow: !dontFollow
    });
@@ -5953,22 +6037,22 @@ var FS = {
    timestamp: Date.now()
   });
  },
- lchown: function(path, uid, gid) {
+ lchown: (path, uid, gid) => {
   FS.chown(path, uid, gid, true);
  },
- fchown: function(fd, uid, gid) {
+ fchown: (fd, uid, gid) => {
   var stream = FS.getStream(fd);
   if (!stream) {
    throw new FS.ErrnoError(8);
   }
   FS.chown(stream.node, uid, gid);
  },
- truncate: function(path, len) {
+ truncate: (path, len) => {
   if (len < 0) {
    throw new FS.ErrnoError(28);
   }
   var node;
-  if (typeof path === "string") {
+  if (typeof path == "string") {
    var lookup = FS.lookupPath(path, {
     follow: true
    });
@@ -5994,7 +6078,7 @@ var FS = {
    timestamp: Date.now()
   });
  },
- ftruncate: function(fd, len) {
+ ftruncate: (fd, len) => {
   var stream = FS.getStream(fd);
   if (!stream) {
    throw new FS.ErrnoError(8);
@@ -6004,7 +6088,7 @@ var FS = {
   }
   FS.truncate(stream.node, len);
  },
- utime: function(path, atime, mtime) {
+ utime: (path, atime, mtime) => {
   var lookup = FS.lookupPath(path, {
    follow: true
   });
@@ -6013,19 +6097,19 @@ var FS = {
    timestamp: Math.max(atime, mtime)
   });
  },
- open: function(path, flags, mode, fd_start, fd_end) {
+ open: (path, flags, mode, fd_start, fd_end) => {
   if (path === "") {
    throw new FS.ErrnoError(44);
   }
-  flags = typeof flags === "string" ? FS.modeStringToFlags(flags) : flags;
-  mode = typeof mode === "undefined" ? 438 : mode;
+  flags = typeof flags == "string" ? FS.modeStringToFlags(flags) : flags;
+  mode = typeof mode == "undefined" ? 438 : mode;
   if (flags & 64) {
    mode = mode & 4095 | 32768;
   } else {
    mode = 0;
   }
   var node;
-  if (typeof path === "object") {
+  if (typeof path == "object") {
    node = path;
   } else {
    path = PATH.normalize(path);
@@ -6083,26 +6167,11 @@ var FS = {
    if (!FS.readFiles) FS.readFiles = {};
    if (!(path in FS.readFiles)) {
     FS.readFiles[path] = 1;
-    err("FS.trackingDelegate error on read file: " + path);
    }
-  }
-  try {
-   if (FS.trackingDelegate["onOpenFile"]) {
-    var trackingFlags = 0;
-    if ((flags & 2097155) !== 1) {
-     trackingFlags |= FS.tracking.openFlags.READ;
-    }
-    if ((flags & 2097155) !== 0) {
-     trackingFlags |= FS.tracking.openFlags.WRITE;
-    }
-    FS.trackingDelegate["onOpenFile"](path, trackingFlags);
-   }
-  } catch (e) {
-   err("FS.trackingDelegate['onOpenFile']('" + path + "', flags) threw an exception: " + e.message);
   }
   return stream;
  },
- close: function(stream) {
+ close: stream => {
   if (FS.isClosed(stream)) {
    throw new FS.ErrnoError(8);
   }
@@ -6118,10 +6187,10 @@ var FS = {
   }
   stream.fd = null;
  },
- isClosed: function(stream) {
+ isClosed: stream => {
   return stream.fd === null;
  },
- llseek: function(stream, offset, whence) {
+ llseek: (stream, offset, whence) => {
   if (FS.isClosed(stream)) {
    throw new FS.ErrnoError(8);
   }
@@ -6135,7 +6204,8 @@ var FS = {
   stream.ungotten = [];
   return stream.position;
  },
- read: function(stream, buffer, offset, length, position) {
+ read: (stream, buffer, offset, length, position) => {
+  offset >>>= 0;
   if (length < 0 || position < 0) {
    throw new FS.ErrnoError(28);
   }
@@ -6151,7 +6221,7 @@ var FS = {
   if (!stream.stream_ops.read) {
    throw new FS.ErrnoError(28);
   }
-  var seeking = typeof position !== "undefined";
+  var seeking = typeof position != "undefined";
   if (!seeking) {
    position = stream.position;
   } else if (!stream.seekable) {
@@ -6161,7 +6231,8 @@ var FS = {
   if (!seeking) stream.position += bytesRead;
   return bytesRead;
  },
- write: function(stream, buffer, offset, length, position, canOwn) {
+ write: (stream, buffer, offset, length, position, canOwn) => {
+  offset >>>= 0;
   if (length < 0 || position < 0) {
    throw new FS.ErrnoError(28);
   }
@@ -6180,7 +6251,7 @@ var FS = {
   if (stream.seekable && stream.flags & 1024) {
    FS.llseek(stream, 0, 2);
   }
-  var seeking = typeof position !== "undefined";
+  var seeking = typeof position != "undefined";
   if (!seeking) {
    position = stream.position;
   } else if (!stream.seekable) {
@@ -6188,14 +6259,9 @@ var FS = {
   }
   var bytesWritten = stream.stream_ops.write(stream, buffer, offset, length, position, canOwn);
   if (!seeking) stream.position += bytesWritten;
-  try {
-   if (stream.path && FS.trackingDelegate["onWriteToFile"]) FS.trackingDelegate["onWriteToFile"](stream.path);
-  } catch (e) {
-   err("FS.trackingDelegate['onWriteToFile']('" + stream.path + "') threw an exception: " + e.message);
-  }
   return bytesWritten;
  },
- allocate: function(stream, offset, length) {
+ allocate: (stream, offset, length) => {
   if (FS.isClosed(stream)) {
    throw new FS.ErrnoError(8);
   }
@@ -6213,7 +6279,8 @@ var FS = {
   }
   stream.stream_ops.allocate(stream, offset, length);
  },
- mmap: function(stream, address, length, position, prot, flags) {
+ mmap: (stream, address, length, position, prot, flags) => {
+  address >>>= 0;
   if ((prot & 2) !== 0 && (flags & 2) === 0 && (stream.flags & 2097155) !== 2) {
    throw new FS.ErrnoError(2);
   }
@@ -6225,23 +6292,21 @@ var FS = {
   }
   return stream.stream_ops.mmap(stream, address, length, position, prot, flags);
  },
- msync: function(stream, buffer, offset, length, mmapFlags) {
+ msync: (stream, buffer, offset, length, mmapFlags) => {
+  offset >>>= 0;
   if (!stream || !stream.stream_ops.msync) {
    return 0;
   }
   return stream.stream_ops.msync(stream, buffer, offset, length, mmapFlags);
  },
- munmap: function(stream) {
-  return 0;
- },
- ioctl: function(stream, cmd, arg) {
+ munmap: stream => 0,
+ ioctl: (stream, cmd, arg) => {
   if (!stream.stream_ops.ioctl) {
    throw new FS.ErrnoError(59);
   }
   return stream.stream_ops.ioctl(stream, cmd, arg);
  },
- readFile: function(path, opts) {
-  opts = opts || {};
+ readFile: (path, opts = {}) => {
   opts.flags = opts.flags || 0;
   opts.encoding = opts.encoding || "binary";
   if (opts.encoding !== "utf8" && opts.encoding !== "binary") {
@@ -6261,11 +6326,10 @@ var FS = {
   FS.close(stream);
   return ret;
  },
- writeFile: function(path, data, opts) {
-  opts = opts || {};
+ writeFile: (path, data, opts = {}) => {
   opts.flags = opts.flags || 577;
   var stream = FS.open(path, opts.flags, opts.mode);
-  if (typeof data === "string") {
+  if (typeof data == "string") {
    var buf = new Uint8Array(lengthBytesUTF8(data) + 1);
    var actualNumBytes = stringToUTF8Array(data, buf, 0, buf.length);
    FS.write(stream, buf, 0, actualNumBytes, undefined, opts.canOwn);
@@ -6276,10 +6340,8 @@ var FS = {
   }
   FS.close(stream);
  },
- cwd: function() {
-  return FS.currentPath;
- },
- chdir: function(path) {
+ cwd: () => FS.currentPath,
+ chdir: path => {
   var lookup = FS.lookupPath(path, {
    follow: true
   });
@@ -6295,20 +6357,16 @@ var FS = {
   }
   FS.currentPath = lookup.path;
  },
- createDefaultDirectories: function() {
+ createDefaultDirectories: () => {
   FS.mkdir("/tmp");
   FS.mkdir("/home");
   FS.mkdir("/home/web_user");
  },
- createDefaultDevices: function() {
+ createDefaultDevices: () => {
   FS.mkdir("/dev");
   FS.registerDevice(FS.makedev(1, 3), {
-   read: function() {
-    return 0;
-   },
-   write: function(stream, buffer, offset, length, pos) {
-    return length;
-   }
+   read: () => 0,
+   write: (stream, buffer, offset, length, pos) => length
   });
   FS.mkdev("/dev/null", FS.makedev(1, 3));
   TTY.register(FS.makedev(5, 0), TTY.default_tty_ops);
@@ -6321,15 +6379,15 @@ var FS = {
   FS.mkdir("/dev/shm");
   FS.mkdir("/dev/shm/tmp");
  },
- createSpecialDirectories: function() {
+ createSpecialDirectories: () => {
   FS.mkdir("/proc");
   var proc_self = FS.mkdir("/proc/self");
   FS.mkdir("/proc/self/fd");
   FS.mount({
-   mount: function() {
+   mount: () => {
     var node = FS.createNode(proc_self, "fd", 16384 | 511, 73);
     node.node_ops = {
-     lookup: function(parent, name) {
+     lookup: (parent, name) => {
       var fd = +name;
       var stream = FS.getStream(fd);
       if (!stream) throw new FS.ErrnoError(8);
@@ -6339,9 +6397,7 @@ var FS = {
         mountpoint: "fake"
        },
        node_ops: {
-        readlink: function() {
-         return stream.path;
-        }
+        readlink: () => stream.path
        }
       };
       ret.parent = ret;
@@ -6352,7 +6408,7 @@ var FS = {
    }
   }, {}, "/proc/self/fd");
  },
- createStandardStreams: function() {
+ createStandardStreams: () => {
   if (Module["stdin"]) {
    FS.createDevice("/dev", "stdin", Module["stdin"]);
   } else {
@@ -6375,7 +6431,7 @@ var FS = {
   assert(stdout.fd === 1, "invalid handle for stdout (" + stdout.fd + ")");
   assert(stderr.fd === 2, "invalid handle for stderr (" + stderr.fd + ")");
  },
- ensureErrnoError: function() {
+ ensureErrnoError: () => {
   if (FS.ErrnoError) return;
   FS.ErrnoError = function ErrnoError(errno, node) {
    this.node = node;
@@ -6400,12 +6456,12 @@ var FS = {
   };
   FS.ErrnoError.prototype = new Error();
   FS.ErrnoError.prototype.constructor = FS.ErrnoError;
-  [ 44 ].forEach(function(code) {
+  [ 44 ].forEach(code => {
    FS.genericErrors[code] = new FS.ErrnoError(code);
    FS.genericErrors[code].stack = "<generic error, no stack>";
   });
  },
- staticInit: function() {
+ staticInit: () => {
   FS.ensureErrnoError();
   FS.nameTable = new Array(4096);
   FS.mount(MEMFS, {}, "/");
@@ -6417,7 +6473,7 @@ var FS = {
    "IDBFS": IDBFS
   };
  },
- init: function(input, output, error) {
+ init: (input, output, error) => {
   assert(!FS.init.initialized, "FS.init was previously called. If you want to initialize later with custom parameters, remove any earlier calls (note that one is automatically added to the generated code)");
   FS.init.initialized = true;
   FS.ensureErrnoError();
@@ -6426,10 +6482,9 @@ var FS = {
   Module["stderr"] = error || Module["stderr"];
   FS.createStandardStreams();
  },
- quit: function() {
+ quit: () => {
   FS.init.initialized = false;
-  var fflush = Module["_fflush"];
-  if (fflush) fflush(0);
+  ___stdio_exit();
   for (var i = 0; i < FS.streams.length; i++) {
    var stream = FS.streams[i];
    if (!stream) {
@@ -6438,13 +6493,13 @@ var FS = {
    FS.close(stream);
   }
  },
- getMode: function(canRead, canWrite) {
+ getMode: (canRead, canWrite) => {
   var mode = 0;
   if (canRead) mode |= 292 | 73;
   if (canWrite) mode |= 146;
   return mode;
  },
- findObject: function(path, dontResolveLastLink) {
+ findObject: (path, dontResolveLastLink) => {
   var ret = FS.analyzePath(path, dontResolveLastLink);
   if (ret.exists) {
    return ret.object;
@@ -6452,7 +6507,7 @@ var FS = {
    return null;
   }
  },
- analyzePath: function(path, dontResolveLastLink) {
+ analyzePath: (path, dontResolveLastLink) => {
   try {
    var lookup = FS.lookupPath(path, {
     follow: !dontResolveLastLink
@@ -6491,8 +6546,8 @@ var FS = {
   }
   return ret;
  },
- createPath: function(parent, path, canRead, canWrite) {
-  parent = typeof parent === "string" ? parent : FS.getPath(parent);
+ createPath: (parent, path, canRead, canWrite) => {
+  parent = typeof parent == "string" ? parent : FS.getPath(parent);
   var parts = path.split("/").reverse();
   while (parts.length) {
    var part = parts.pop();
@@ -6505,17 +6560,21 @@ var FS = {
   }
   return current;
  },
- createFile: function(parent, name, properties, canRead, canWrite) {
-  var path = PATH.join2(typeof parent === "string" ? parent : FS.getPath(parent), name);
+ createFile: (parent, name, properties, canRead, canWrite) => {
+  var path = PATH.join2(typeof parent == "string" ? parent : FS.getPath(parent), name);
   var mode = FS.getMode(canRead, canWrite);
   return FS.create(path, mode);
  },
- createDataFile: function(parent, name, data, canRead, canWrite, canOwn) {
-  var path = name ? PATH.join2(typeof parent === "string" ? parent : FS.getPath(parent), name) : parent;
+ createDataFile: (parent, name, data, canRead, canWrite, canOwn) => {
+  var path = name;
+  if (parent) {
+   parent = typeof parent == "string" ? parent : FS.getPath(parent);
+   path = name ? PATH.join2(parent, name) : parent;
+  }
   var mode = FS.getMode(canRead, canWrite);
   var node = FS.create(path, mode);
   if (data) {
-   if (typeof data === "string") {
+   if (typeof data == "string") {
     var arr = new Array(data.length);
     for (var i = 0, len = data.length; i < len; ++i) arr[i] = data.charCodeAt(i);
     data = arr;
@@ -6528,21 +6587,21 @@ var FS = {
   }
   return node;
  },
- createDevice: function(parent, name, input, output) {
-  var path = PATH.join2(typeof parent === "string" ? parent : FS.getPath(parent), name);
+ createDevice: (parent, name, input, output) => {
+  var path = PATH.join2(typeof parent == "string" ? parent : FS.getPath(parent), name);
   var mode = FS.getMode(!!input, !!output);
   if (!FS.createDevice.major) FS.createDevice.major = 64;
   var dev = FS.makedev(FS.createDevice.major++, 0);
   FS.registerDevice(dev, {
-   open: function(stream) {
+   open: stream => {
     stream.seekable = false;
    },
-   close: function(stream) {
+   close: stream => {
     if (output && output.buffer && output.buffer.length) {
      output(10);
     }
    },
-   read: function(stream, buffer, offset, length, pos) {
+   read: (stream, buffer, offset, length, pos) => {
     var bytesRead = 0;
     for (var i = 0; i < length; i++) {
      var result;
@@ -6563,7 +6622,7 @@ var FS = {
     }
     return bytesRead;
    },
-   write: function(stream, buffer, offset, length, pos) {
+   write: (stream, buffer, offset, length, pos) => {
     for (var i = 0; i < length; i++) {
      try {
       output(buffer[offset + i]);
@@ -6579,9 +6638,9 @@ var FS = {
   });
   return FS.mkdev(path, mode, dev);
  },
- forceLoadFile: function(obj) {
+ forceLoadFile: obj => {
   if (obj.isDevice || obj.isFolder || obj.link || obj.contents) return true;
-  if (typeof XMLHttpRequest !== "undefined") {
+  if (typeof XMLHttpRequest != "undefined") {
    throw new Error("Lazy loading should have been performed (contents set) in createLazyFile, but it was not. Lazy loading only works in web workers. Use --embed-file or --preload-file in emcc on the main thread.");
   } else if (read_) {
    try {
@@ -6594,7 +6653,7 @@ var FS = {
    throw new Error("Cannot load without read() or XMLHttpRequest.");
   }
  },
- createLazyFile: function(parent, name, url, canRead, canWrite) {
+ createLazyFile: (parent, name, url, canRead, canWrite) => {
   function LazyUint8Array() {
    this.lengthKnown = false;
    this.chunks = [];
@@ -6621,13 +6680,13 @@ var FS = {
    var usesGzip = (header = xhr.getResponseHeader("Content-Encoding")) && header === "gzip";
    var chunkSize = 1024 * 1024;
    if (!hasByteServing) chunkSize = datalength;
-   var doXHR = function(from, to) {
+   var doXHR = (from, to) => {
     if (from > to) throw new Error("invalid range (" + from + ", " + to + ") or no bytes requested!");
     if (to > datalength - 1) throw new Error("only " + datalength + " bytes available! programmer error!");
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, false);
     if (datalength !== chunkSize) xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
-    if (typeof Uint8Array != "undefined") xhr.responseType = "arraybuffer";
+    xhr.responseType = "arraybuffer";
     if (xhr.overrideMimeType) {
      xhr.overrideMimeType("text/plain; charset=x-user-defined");
     }
@@ -6640,14 +6699,14 @@ var FS = {
     }
    };
    var lazyArray = this;
-   lazyArray.setDataGetter(function(chunkNum) {
+   lazyArray.setDataGetter(chunkNum => {
     var start = chunkNum * chunkSize;
     var end = (chunkNum + 1) * chunkSize - 1;
     end = Math.min(end, datalength - 1);
-    if (typeof lazyArray.chunks[chunkNum] === "undefined") {
+    if (typeof lazyArray.chunks[chunkNum] == "undefined") {
      lazyArray.chunks[chunkNum] = doXHR(start, end);
     }
-    if (typeof lazyArray.chunks[chunkNum] === "undefined") throw new Error("doXHR failed!");
+    if (typeof lazyArray.chunks[chunkNum] == "undefined") throw new Error("doXHR failed!");
     return lazyArray.chunks[chunkNum];
    });
    if (usesGzip || !datalength) {
@@ -6660,7 +6719,7 @@ var FS = {
    this._chunkSize = chunkSize;
    this.lengthKnown = true;
   };
-  if (typeof XMLHttpRequest !== "undefined") {
+  if (typeof XMLHttpRequest != "undefined") {
    if (!ENVIRONMENT_IS_WORKER) throw "Cannot do synchronous binary XHRs outside webworkers in modern browsers. Use --embed-file or --preload-file in emcc";
    var lazyArray = new LazyUint8Array();
    Object.defineProperties(lazyArray, {
@@ -6707,14 +6766,14 @@ var FS = {
   });
   var stream_ops = {};
   var keys = Object.keys(node.stream_ops);
-  keys.forEach(function(key) {
+  keys.forEach(key => {
    var fn = node.stream_ops[key];
    stream_ops[key] = function forceLoadLazyFile() {
     FS.forceLoadFile(node);
     return fn.apply(null, arguments);
    };
   });
-  stream_ops.read = function stream_ops_read(stream, buffer, offset, length, position) {
+  stream_ops.read = ((stream, buffer, offset, length, position) => {
    FS.forceLoadFile(node);
    var contents = stream.node.contents;
    if (position >= contents.length) return 0;
@@ -6730,12 +6789,11 @@ var FS = {
     }
    }
    return size;
-  };
+  });
   node.stream_ops = stream_ops;
   return node;
  },
- createPreloadedFile: function(parent, name, url, canRead, canWrite, onload, onerror, dontCreateFile, canOwn, preFinish) {
-  Browser.init();
+ createPreloadedFile: (parent, name, url, canRead, canWrite, onload, onerror, dontCreateFile, canOwn, preFinish) => {
   var fullname = name ? PATH_FS.resolve(PATH.join2(parent, name)) : parent;
   var dep = getUniqueRunDependency("cp " + fullname);
   function processData(byteArray) {
@@ -6747,51 +6805,44 @@ var FS = {
     if (onload) onload();
     removeRunDependency(dep);
    }
-   var handled = false;
-   Module["preloadPlugins"].forEach(function(plugin) {
-    if (handled) return;
-    if (plugin["canHandle"](fullname)) {
-     plugin["handle"](byteArray, fullname, finish, function() {
-      if (onerror) onerror();
-      removeRunDependency(dep);
-     });
-     handled = true;
-    }
-   });
-   if (!handled) finish(byteArray);
+   if (Browser.handledByPreloadPlugin(byteArray, fullname, finish, () => {
+    if (onerror) onerror();
+    removeRunDependency(dep);
+   })) {
+    return;
+   }
+   finish(byteArray);
   }
   addRunDependency(dep);
   if (typeof url == "string") {
-   Browser.asyncLoad(url, function(byteArray) {
-    processData(byteArray);
-   }, onerror);
+   asyncLoad(url, byteArray => processData(byteArray), onerror);
   } else {
    processData(url);
   }
  },
- indexedDB: function() {
+ indexedDB: () => {
   return window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
  },
- DB_NAME: function() {
+ DB_NAME: () => {
   return "EM_FS_" + window.location.pathname;
  },
  DB_VERSION: 20,
  DB_STORE_NAME: "FILE_DATA",
- saveFilesToDB: function(paths, onload, onerror) {
-  onload = onload || function() {};
-  onerror = onerror || function() {};
+ saveFilesToDB: (paths, onload, onerror) => {
+  onload = onload || (() => {});
+  onerror = onerror || (() => {});
   var indexedDB = FS.indexedDB();
   try {
    var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION);
   } catch (e) {
    return onerror(e);
   }
-  openRequest.onupgradeneeded = function openRequest_onupgradeneeded() {
+  openRequest.onupgradeneeded = (() => {
    out("creating db");
    var db = openRequest.result;
    db.createObjectStore(FS.DB_STORE_NAME);
-  };
-  openRequest.onsuccess = function openRequest_onsuccess() {
+  });
+  openRequest.onsuccess = (() => {
    var db = openRequest.result;
    var transaction = db.transaction([ FS.DB_STORE_NAME ], "readwrite");
    var files = transaction.objectStore(FS.DB_STORE_NAME);
@@ -6799,24 +6850,24 @@ var FS = {
    function finish() {
     if (fail == 0) onload(); else onerror();
    }
-   paths.forEach(function(path) {
+   paths.forEach(path => {
     var putRequest = files.put(FS.analyzePath(path).object.contents, path);
-    putRequest.onsuccess = function putRequest_onsuccess() {
+    putRequest.onsuccess = (() => {
      ok++;
      if (ok + fail == total) finish();
-    };
-    putRequest.onerror = function putRequest_onerror() {
+    });
+    putRequest.onerror = (() => {
      fail++;
      if (ok + fail == total) finish();
-    };
+    });
    });
    transaction.onerror = onerror;
-  };
+  });
   openRequest.onerror = onerror;
  },
- loadFilesFromDB: function(paths, onload, onerror) {
-  onload = onload || function() {};
-  onerror = onerror || function() {};
+ loadFilesFromDB: (paths, onload, onerror) => {
+  onload = onload || (() => {});
+  onerror = onerror || (() => {});
   var indexedDB = FS.indexedDB();
   try {
    var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION);
@@ -6824,7 +6875,7 @@ var FS = {
    return onerror(e);
   }
   openRequest.onupgradeneeded = onerror;
-  openRequest.onsuccess = function openRequest_onsuccess() {
+  openRequest.onsuccess = (() => {
    var db = openRequest.result;
    try {
     var transaction = db.transaction([ FS.DB_STORE_NAME ], "readonly");
@@ -6837,49 +6888,47 @@ var FS = {
    function finish() {
     if (fail == 0) onload(); else onerror();
    }
-   paths.forEach(function(path) {
+   paths.forEach(path => {
     var getRequest = files.get(path);
-    getRequest.onsuccess = function getRequest_onsuccess() {
+    getRequest.onsuccess = (() => {
      if (FS.analyzePath(path).exists) {
       FS.unlink(path);
      }
      FS.createDataFile(PATH.dirname(path), PATH.basename(path), getRequest.result, true, true, true);
      ok++;
      if (ok + fail == total) finish();
-    };
-    getRequest.onerror = function getRequest_onerror() {
+    });
+    getRequest.onerror = (() => {
      fail++;
      if (ok + fail == total) finish();
-    };
+    });
    });
    transaction.onerror = onerror;
-  };
+  });
   openRequest.onerror = onerror;
  },
- absolutePath: function() {
+ absolutePath: () => {
   abort("FS.absolutePath has been removed; use PATH_FS.resolve instead");
  },
- createFolder: function() {
+ createFolder: () => {
   abort("FS.createFolder has been removed; use FS.mkdir instead");
  },
- createLink: function() {
+ createLink: () => {
   abort("FS.createLink has been removed; use FS.symlink instead");
  },
- joinPath: function() {
+ joinPath: () => {
   abort("FS.joinPath has been removed; use PATH.join instead");
  },
- mmapAlloc: function() {
+ mmapAlloc: () => {
   abort("FS.mmapAlloc has been replaced by the top level function mmapAlloc");
  },
- standardizePath: function() {
+ standardizePath: () => {
   abort("FS.standardizePath has been removed; use PATH.normalize instead");
  }
 };
 
 var SYSCALLS = {
- mappings: {},
  DEFAULT_POLLMASK: 5,
- umask: 511,
  calculateAt: function(dirfd, path, allowEmpty) {
   if (path[0] === "/") {
    return path;
@@ -6909,27 +6958,27 @@ var SYSCALLS = {
    }
    throw e;
   }
-  HEAP32[buf >> 2] = stat.dev;
-  HEAP32[buf + 4 >> 2] = 0;
-  HEAP32[buf + 8 >> 2] = stat.ino;
-  HEAP32[buf + 12 >> 2] = stat.mode;
-  HEAP32[buf + 16 >> 2] = stat.nlink;
-  HEAP32[buf + 20 >> 2] = stat.uid;
-  HEAP32[buf + 24 >> 2] = stat.gid;
-  HEAP32[buf + 28 >> 2] = stat.rdev;
-  HEAP32[buf + 32 >> 2] = 0;
+  HEAP32[buf >>> 2] = stat.dev;
+  HEAP32[buf + 4 >>> 2] = 0;
+  HEAP32[buf + 8 >>> 2] = stat.ino;
+  HEAP32[buf + 12 >>> 2] = stat.mode;
+  HEAP32[buf + 16 >>> 2] = stat.nlink;
+  HEAP32[buf + 20 >>> 2] = stat.uid;
+  HEAP32[buf + 24 >>> 2] = stat.gid;
+  HEAP32[buf + 28 >>> 2] = stat.rdev;
+  HEAP32[buf + 32 >>> 2] = 0;
   tempI64 = [ stat.size >>> 0, (tempDouble = stat.size, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-  HEAP32[buf + 40 >> 2] = tempI64[0], HEAP32[buf + 44 >> 2] = tempI64[1];
-  HEAP32[buf + 48 >> 2] = 4096;
-  HEAP32[buf + 52 >> 2] = stat.blocks;
-  HEAP32[buf + 56 >> 2] = stat.atime.getTime() / 1e3 | 0;
-  HEAP32[buf + 60 >> 2] = 0;
-  HEAP32[buf + 64 >> 2] = stat.mtime.getTime() / 1e3 | 0;
-  HEAP32[buf + 68 >> 2] = 0;
-  HEAP32[buf + 72 >> 2] = stat.ctime.getTime() / 1e3 | 0;
-  HEAP32[buf + 76 >> 2] = 0;
+  HEAP32[buf + 40 >>> 2] = tempI64[0], HEAP32[buf + 44 >>> 2] = tempI64[1];
+  HEAP32[buf + 48 >>> 2] = 4096;
+  HEAP32[buf + 52 >>> 2] = stat.blocks;
+  HEAP32[buf + 56 >>> 2] = stat.atime.getTime() / 1e3 | 0;
+  HEAP32[buf + 60 >>> 2] = 0;
+  HEAP32[buf + 64 >>> 2] = stat.mtime.getTime() / 1e3 | 0;
+  HEAP32[buf + 68 >>> 2] = 0;
+  HEAP32[buf + 72 >>> 2] = stat.ctime.getTime() / 1e3 | 0;
+  HEAP32[buf + 76 >>> 2] = 0;
   tempI64 = [ stat.ino >>> 0, (tempDouble = stat.ino, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-  HEAP32[buf + 80 >> 2] = tempI64[0], HEAP32[buf + 84 >> 2] = tempI64[1];
+  HEAP32[buf + 80 >>> 2] = tempI64[0], HEAP32[buf + 84 >>> 2] = tempI64[1];
   return 0;
  },
  doMsync: function(addr, stream, len, flags, offset) {
@@ -6961,20 +7010,19 @@ var SYSCALLS = {
   if (bufsize <= 0) return -28;
   var ret = FS.readlink(path);
   var len = Math.min(bufsize, lengthBytesUTF8(ret));
-  var endChar = HEAP8[buf + len];
+  var endChar = HEAP8[buf + len >>> 0];
   stringToUTF8(ret, buf, bufsize + 1);
-  HEAP8[buf + len] = endChar;
+  HEAP8[buf + len >>> 0] = endChar;
   return len;
  },
  doAccess: function(path, amode) {
   if (amode & ~7) {
    return -28;
   }
-  var node;
   var lookup = FS.lookupPath(path, {
    follow: true
   });
-  node = lookup.node;
+  var node = lookup.node;
   if (!node) {
    return -44;
   }
@@ -6987,16 +7035,11 @@ var SYSCALLS = {
   }
   return 0;
  },
- doDup: function(path, flags, suggestFD) {
-  var suggest = FS.getStream(suggestFD);
-  if (suggest) FS.close(suggest);
-  return FS.open(path, flags, 0, suggestFD, suggestFD).fd;
- },
  doReadv: function(stream, iov, iovcnt, offset) {
   var ret = 0;
   for (var i = 0; i < iovcnt; i++) {
-   var ptr = HEAP32[iov + i * 8 >> 2];
-   var len = HEAP32[iov + (i * 8 + 4) >> 2];
+   var ptr = HEAP32[iov + i * 8 >>> 2];
+   var len = HEAP32[iov + (i * 8 + 4) >>> 2];
    var curr = FS.read(stream, HEAP8, ptr, len, offset);
    if (curr < 0) return -1;
    ret += curr;
@@ -7007,8 +7050,8 @@ var SYSCALLS = {
  doWritev: function(stream, iov, iovcnt, offset) {
   var ret = 0;
   for (var i = 0; i < iovcnt; i++) {
-   var ptr = HEAP32[iov + i * 8 >> 2];
-   var len = HEAP32[iov + (i * 8 + 4) >> 2];
+   var ptr = HEAP32[iov + i * 8 >>> 2];
+   var len = HEAP32[iov + (i * 8 + 4) >>> 2];
    var curr = FS.write(stream, HEAP8, ptr, len, offset);
    if (curr < 0) return -1;
    ret += curr;
@@ -7019,7 +7062,7 @@ var SYSCALLS = {
  get: function() {
   assert(SYSCALLS.varargs != undefined);
   SYSCALLS.varargs += 4;
-  var ret = HEAP32[SYSCALLS.varargs - 4 >> 2];
+  var ret = HEAP32[SYSCALLS.varargs - 4 >>> 2];
   return ret;
  },
  getStr: function(ptr) {
@@ -7037,19 +7080,19 @@ var SYSCALLS = {
  }
 };
 
-function ___sys__newselect(nfds, readfds, writefds, exceptfds, timeout) {
+function ___syscall__newselect(nfds, readfds, writefds, exceptfds, timeout) {
  try {
   assert(nfds <= 64, "nfds must be less than or equal to 64");
   assert(!exceptfds, "exceptfds not supported");
   var total = 0;
-  var srcReadLow = readfds ? HEAP32[readfds >> 2] : 0, srcReadHigh = readfds ? HEAP32[readfds + 4 >> 2] : 0;
-  var srcWriteLow = writefds ? HEAP32[writefds >> 2] : 0, srcWriteHigh = writefds ? HEAP32[writefds + 4 >> 2] : 0;
-  var srcExceptLow = exceptfds ? HEAP32[exceptfds >> 2] : 0, srcExceptHigh = exceptfds ? HEAP32[exceptfds + 4 >> 2] : 0;
+  var srcReadLow = readfds ? HEAP32[readfds >>> 2] : 0, srcReadHigh = readfds ? HEAP32[readfds + 4 >>> 2] : 0;
+  var srcWriteLow = writefds ? HEAP32[writefds >>> 2] : 0, srcWriteHigh = writefds ? HEAP32[writefds + 4 >>> 2] : 0;
+  var srcExceptLow = exceptfds ? HEAP32[exceptfds >>> 2] : 0, srcExceptHigh = exceptfds ? HEAP32[exceptfds + 4 >>> 2] : 0;
   var dstReadLow = 0, dstReadHigh = 0;
   var dstWriteLow = 0, dstWriteHigh = 0;
   var dstExceptLow = 0, dstExceptHigh = 0;
-  var allLow = (readfds ? HEAP32[readfds >> 2] : 0) | (writefds ? HEAP32[writefds >> 2] : 0) | (exceptfds ? HEAP32[exceptfds >> 2] : 0);
-  var allHigh = (readfds ? HEAP32[readfds + 4 >> 2] : 0) | (writefds ? HEAP32[writefds + 4 >> 2] : 0) | (exceptfds ? HEAP32[exceptfds + 4 >> 2] : 0);
+  var allLow = (readfds ? HEAP32[readfds >>> 2] : 0) | (writefds ? HEAP32[writefds >>> 2] : 0) | (exceptfds ? HEAP32[exceptfds >>> 2] : 0);
+  var allHigh = (readfds ? HEAP32[readfds + 4 >>> 2] : 0) | (writefds ? HEAP32[writefds + 4 >>> 2] : 0) | (exceptfds ? HEAP32[exceptfds + 4 >>> 2] : 0);
   var check = function(fd, low, high, val) {
    return fd < 32 ? low & val : high & val;
   };
@@ -7078,20 +7121,20 @@ function ___sys__newselect(nfds, readfds, writefds, exceptfds, timeout) {
    }
   }
   if (readfds) {
-   HEAP32[readfds >> 2] = dstReadLow;
-   HEAP32[readfds + 4 >> 2] = dstReadHigh;
+   HEAP32[readfds >>> 2] = dstReadLow;
+   HEAP32[readfds + 4 >>> 2] = dstReadHigh;
   }
   if (writefds) {
-   HEAP32[writefds >> 2] = dstWriteLow;
-   HEAP32[writefds + 4 >> 2] = dstWriteHigh;
+   HEAP32[writefds >>> 2] = dstWriteLow;
+   HEAP32[writefds + 4 >>> 2] = dstWriteHigh;
   }
   if (exceptfds) {
-   HEAP32[exceptfds >> 2] = dstExceptLow;
-   HEAP32[exceptfds + 4 >> 2] = dstExceptHigh;
+   HEAP32[exceptfds >>> 2] = dstExceptLow;
+   HEAP32[exceptfds + 4 >>> 2] = dstExceptHigh;
   }
   return total;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
@@ -7116,8 +7159,8 @@ var SOCKFS = {
  createSocket: function(family, type, protocol) {
   type &= ~526336;
   var streaming = type == 1;
-  if (protocol) {
-   assert(streaming == (protocol == 6));
+  if (streaming && protocol && protocol != 6) {
+   throw new FS.ErrnoError(66);
   }
   var sock = {
    family: family,
@@ -7186,7 +7229,7 @@ var SOCKFS = {
  websocket_sock_ops: {
   createPeer: function(sock, addr, port) {
    var ws;
-   if (typeof addr === "object") {
+   if (typeof addr == "object") {
     ws = addr;
     addr = null;
     port = null;
@@ -7242,7 +7285,7 @@ var SOCKFS = {
      ws = new WebSocketConstructor(url, opts);
      ws.binaryType = "arraybuffer";
     } catch (e) {
-     throw new FS.ErrnoError(ERRNO_CODES.EHOSTUNREACH);
+     throw new FS.ErrnoError(23);
     }
    }
    var peer = {
@@ -7253,7 +7296,7 @@ var SOCKFS = {
    };
    SOCKFS.websocket_sock_ops.addPeer(sock, peer);
    SOCKFS.websocket_sock_ops.handlePeerEvents(sock, peer);
-   if (sock.type === 2 && typeof sock.sport !== "undefined") {
+   if (sock.type === 2 && typeof sock.sport != "undefined") {
     peer.dgram_send_queue.push(new Uint8Array([ 255, 255, 255, 255, "p".charCodeAt(0), "o".charCodeAt(0), "r".charCodeAt(0), "t".charCodeAt(0), (sock.sport & 65280) >> 8, sock.sport & 255 ]));
    }
    return peer;
@@ -7282,7 +7325,7 @@ var SOCKFS = {
     }
    };
    function handleMessage(data) {
-    if (typeof data === "string") {
+    if (typeof data == "string") {
      var encoder = new TextEncoder();
      data = encoder.encode(data);
     } else {
@@ -7321,7 +7364,7 @@ var SOCKFS = {
      Module["websocket"].emit("close", sock.stream.fd);
     });
     peer.socket.on("error", function(error) {
-     sock.error = ERRNO_CODES.ECONNREFUSED;
+     sock.error = 14;
      Module["websocket"].emit("error", [ sock.stream.fd, sock.error, "ECONNREFUSED: Connection refused" ]);
     });
    } else {
@@ -7333,7 +7376,7 @@ var SOCKFS = {
      handleMessage(event.data);
     };
     peer.socket.onerror = function(error) {
-     sock.error = ERRNO_CODES.ECONNREFUSED;
+     sock.error = 14;
      Module["websocket"].emit("error", [ sock.stream.fd, sock.error, "ECONNREFUSED: Connection refused" ]);
     };
    }
@@ -7362,11 +7405,11 @@ var SOCKFS = {
     if (sock.recv_queue.length) {
      bytes = sock.recv_queue[0].data.length;
     }
-    HEAP32[arg >> 2] = bytes;
+    HEAP32[arg >>> 2] = bytes;
     return 0;
 
    default:
-    return ERRNO_CODES.EINVAL;
+    return 28;
    }
   },
   close: function(sock) {
@@ -7387,8 +7430,8 @@ var SOCKFS = {
    return 0;
   },
   bind: function(sock, addr, port) {
-   if (typeof sock.saddr !== "undefined" || typeof sock.sport !== "undefined") {
-    throw new FS.ErrnoError(ERRNO_CODES.EINVAL);
+   if (typeof sock.saddr != "undefined" || typeof sock.sport != "undefined") {
+    throw new FS.ErrnoError(28);
    }
    sock.saddr = addr;
    sock.sport = port;
@@ -7401,35 +7444,35 @@ var SOCKFS = {
      sock.sock_ops.listen(sock, 0);
     } catch (e) {
      if (!(e instanceof FS.ErrnoError)) throw e;
-     if (e.errno !== ERRNO_CODES.EOPNOTSUPP) throw e;
+     if (e.errno !== 138) throw e;
     }
    }
   },
   connect: function(sock, addr, port) {
    if (sock.server) {
-    throw new FS.ErrnoError(ERRNO_CODES.EOPNOTSUPP);
+    throw new FS.ErrnoError(138);
    }
-   if (typeof sock.daddr !== "undefined" && typeof sock.dport !== "undefined") {
+   if (typeof sock.daddr != "undefined" && typeof sock.dport != "undefined") {
     var dest = SOCKFS.websocket_sock_ops.getPeer(sock, sock.daddr, sock.dport);
     if (dest) {
      if (dest.socket.readyState === dest.socket.CONNECTING) {
-      throw new FS.ErrnoError(ERRNO_CODES.EALREADY);
+      throw new FS.ErrnoError(7);
      } else {
-      throw new FS.ErrnoError(ERRNO_CODES.EISCONN);
+      throw new FS.ErrnoError(30);
      }
     }
    }
    var peer = SOCKFS.websocket_sock_ops.createPeer(sock, addr, port);
    sock.daddr = peer.addr;
    sock.dport = peer.port;
-   throw new FS.ErrnoError(ERRNO_CODES.EINPROGRESS);
+   throw new FS.ErrnoError(26);
   },
   listen: function(sock, backlog) {
    if (!ENVIRONMENT_IS_NODE) {
-    throw new FS.ErrnoError(ERRNO_CODES.EOPNOTSUPP);
+    throw new FS.ErrnoError(138);
    }
    if (sock.server) {
-    throw new FS.ErrnoError(ERRNO_CODES.EINVAL);
+    throw new FS.ErrnoError(28);
    }
    var WebSocketServer = require("ws").Server;
    var host = sock.saddr;
@@ -7456,13 +7499,13 @@ var SOCKFS = {
     sock.server = null;
    });
    sock.server.on("error", function(error) {
-    sock.error = ERRNO_CODES.EHOSTUNREACH;
+    sock.error = 23;
     Module["websocket"].emit("error", [ sock.stream.fd, sock.error, "EHOSTUNREACH: Host is unreachable" ]);
    });
   },
   accept: function(listensock) {
-   if (!listensock.server) {
-    throw new FS.ErrnoError(ERRNO_CODES.EINVAL);
+   if (!listensock.server || !listensock.pending.length) {
+    throw new FS.ErrnoError(28);
    }
    var newsock = listensock.pending.shift();
    newsock.stream.flags = listensock.stream.flags;
@@ -7472,7 +7515,7 @@ var SOCKFS = {
    var addr, port;
    if (peer) {
     if (sock.daddr === undefined || sock.dport === undefined) {
-     throw new FS.ErrnoError(ERRNO_CODES.ENOTCONN);
+     throw new FS.ErrnoError(53);
     }
     addr = sock.daddr;
     port = sock.dport;
@@ -7492,7 +7535,7 @@ var SOCKFS = {
      port = sock.dport;
     }
     if (addr === undefined || port === undefined) {
-     throw new FS.ErrnoError(ERRNO_CODES.EDESTADDRREQ);
+     throw new FS.ErrnoError(17);
     }
    } else {
     addr = sock.daddr;
@@ -7501,9 +7544,9 @@ var SOCKFS = {
    var dest = SOCKFS.websocket_sock_ops.getPeer(sock, addr, port);
    if (sock.type === 1) {
     if (!dest || dest.socket.readyState === dest.socket.CLOSING || dest.socket.readyState === dest.socket.CLOSED) {
-     throw new FS.ErrnoError(ERRNO_CODES.ENOTCONN);
+     throw new FS.ErrnoError(53);
     } else if (dest.socket.readyState === dest.socket.CONNECTING) {
-     throw new FS.ErrnoError(ERRNO_CODES.EAGAIN);
+     throw new FS.ErrnoError(6);
     }
    }
    if (ArrayBuffer.isView(buffer)) {
@@ -7525,26 +7568,26 @@ var SOCKFS = {
     dest.socket.send(data);
     return length;
    } catch (e) {
-    throw new FS.ErrnoError(ERRNO_CODES.EINVAL);
+    throw new FS.ErrnoError(28);
    }
   },
   recvmsg: function(sock, length) {
    if (sock.type === 1 && sock.server) {
-    throw new FS.ErrnoError(ERRNO_CODES.ENOTCONN);
+    throw new FS.ErrnoError(53);
    }
    var queued = sock.recv_queue.shift();
    if (!queued) {
     if (sock.type === 1) {
      var dest = SOCKFS.websocket_sock_ops.getPeer(sock, sock.daddr, sock.dport);
      if (!dest) {
-      throw new FS.ErrnoError(ERRNO_CODES.ENOTCONN);
+      throw new FS.ErrnoError(53);
      } else if (dest.socket.readyState === dest.socket.CLOSING || dest.socket.readyState === dest.socket.CLOSED) {
       return null;
      } else {
-      throw new FS.ErrnoError(ERRNO_CODES.EAGAIN);
+      throw new FS.ErrnoError(6);
      }
     } else {
-     throw new FS.ErrnoError(ERRNO_CODES.EAGAIN);
+     throw new FS.ErrnoError(6);
     }
    }
    var queuedLength = queued.data.byteLength || queued.data.length;
@@ -7573,9 +7616,23 @@ function getSocketFromFD(fd) {
 }
 
 function setErrNo(value) {
- HEAP32[___errno_location() >> 2] = value;
+ HEAP32[___errno_location() >>> 2] = value;
  return value;
 }
+
+var Sockets = {
+ BUFFER_SIZE: 10240,
+ MAX_BUFFER_SIZE: 10485760,
+ nextFd: 1,
+ fds: {},
+ nextport: 1,
+ maxport: 65535,
+ peer: null,
+ connections: {},
+ portmap: {},
+ localAddr: 4261412874,
+ addrPool: [ 33554442, 50331658, 67108874, 83886090, 100663306, 117440522, 134217738, 150994954, 167772170, 184549386, 201326602, 218103818, 234881034 ]
+};
 
 function inetPton4(str) {
  var b = str.split(".");
@@ -7593,7 +7650,7 @@ function jstoi_q(str) {
 
 function inetPton6(str) {
  var words;
- var w, offset, z;
+ var w, offset, z, i;
  var valid6regx = /^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})$/i;
  var parts = [];
  if (!valid6regx.test(str)) {
@@ -7619,7 +7676,7 @@ function inetPton6(str) {
  offset = 0;
  z = 0;
  for (w = 0; w < words.length; w++) {
-  if (typeof words[w] === "string") {
+  if (typeof words[w] == "string") {
    if (words[w] === "Z") {
     for (z = 0; z < 8 - words.length + 1; z++) {
      parts[w + z] = 0;
@@ -7639,29 +7696,27 @@ function writeSockaddr(sa, family, addr, port, addrlen) {
  switch (family) {
  case 2:
   addr = inetPton4(addr);
+  zeroMemory(sa, 16);
   if (addrlen) {
-   HEAP32[addrlen >> 2] = 16;
+   HEAP32[addrlen >>> 2] = 16;
   }
-  HEAP16[sa >> 1] = family;
-  HEAP32[sa + 4 >> 2] = addr;
-  HEAP16[sa + 2 >> 1] = _htons(port);
-  tempI64 = [ 0 >>> 0, (tempDouble = 0, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-  HEAP32[sa + 8 >> 2] = tempI64[0], HEAP32[sa + 12 >> 2] = tempI64[1];
+  HEAP16[sa >>> 1] = family;
+  HEAP32[sa + 4 >>> 2] = addr;
+  HEAP16[sa + 2 >>> 1] = _htons(port);
   break;
 
  case 10:
   addr = inetPton6(addr);
+  zeroMemory(sa, 28);
   if (addrlen) {
-   HEAP32[addrlen >> 2] = 28;
+   HEAP32[addrlen >>> 2] = 28;
   }
-  HEAP32[sa >> 2] = family;
-  HEAP32[sa + 8 >> 2] = addr[0];
-  HEAP32[sa + 12 >> 2] = addr[1];
-  HEAP32[sa + 16 >> 2] = addr[2];
-  HEAP32[sa + 20 >> 2] = addr[3];
-  HEAP16[sa + 2 >> 1] = _htons(port);
-  HEAP32[sa + 4 >> 2] = 0;
-  HEAP32[sa + 24 >> 2] = 0;
+  HEAP32[sa >>> 2] = family;
+  HEAP32[sa + 8 >>> 2] = addr[0];
+  HEAP32[sa + 12 >>> 2] = addr[1];
+  HEAP32[sa + 16 >>> 2] = addr[2];
+  HEAP32[sa + 20 >>> 2] = addr[3];
+  HEAP16[sa + 2 >>> 1] = _htons(port);
   break;
 
  default:
@@ -7705,7 +7760,7 @@ var DNS = {
  }
 };
 
-function ___sys_accept4(fd, addr, addrlen, flags) {
+function ___syscall_accept4(fd, addr, addrlen, flags) {
  try {
   var sock = getSocketFromFD(fd);
   var newsock = sock.sock_ops.accept(sock);
@@ -7715,17 +7770,18 @@ function ___sys_accept4(fd, addr, addrlen, flags) {
   }
   return newsock.stream.fd;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_access(path, amode) {
+function ___syscall_chmod(path, mode) {
  try {
   path = SYSCALLS.getStr(path);
-  return SYSCALLS.doAccess(path, amode);
+  FS.chmod(path, mode);
+  return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
@@ -7796,8 +7852,8 @@ function inetNtop6(ints) {
 }
 
 function readSockaddr(sa, salen) {
- var family = HEAP16[sa >> 1];
- var port = _ntohs(HEAPU16[sa + 2 >> 1]);
+ var family = HEAP16[sa >>> 1];
+ var port = _ntohs(HEAPU16[sa + 2 >>> 1]);
  var addr;
  switch (family) {
  case 2:
@@ -7806,7 +7862,7 @@ function readSockaddr(sa, salen) {
     errno: 28
    };
   }
-  addr = HEAP32[sa + 4 >> 2];
+  addr = HEAP32[sa + 4 >>> 2];
   addr = inetNtop4(addr);
   break;
 
@@ -7816,7 +7872,7 @@ function readSockaddr(sa, salen) {
     errno: 28
    };
   }
-  addr = [ HEAP32[sa + 8 >> 2], HEAP32[sa + 12 >> 2], HEAP32[sa + 16 >> 2], HEAP32[sa + 20 >> 2] ];
+  addr = [ HEAP32[sa + 8 >>> 2], HEAP32[sa + 12 >>> 2], HEAP32[sa + 16 >>> 2], HEAP32[sa + 20 >>> 2] ];
   addr = inetNtop6(addr);
   break;
 
@@ -7840,53 +7896,31 @@ function getSocketAddress(addrp, addrlen, allowNull) {
  return info;
 }
 
-function ___sys_bind(fd, addr, addrlen) {
- try {
-  var sock = getSocketFromFD(fd);
-  var info = getSocketAddress(addr, addrlen);
-  sock.sock_ops.bind(sock, info.addr, info.port);
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_chmod(path, mode) {
- try {
-  path = SYSCALLS.getStr(path);
-  FS.chmod(path, mode);
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_connect(fd, addr, addrlen) {
+function ___syscall_connect(fd, addr, addrlen) {
  try {
   var sock = getSocketFromFD(fd);
   var info = getSocketAddress(addr, addrlen);
   sock.sock_ops.connect(sock, info.addr, info.port);
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_dup2(oldfd, suggestFD) {
+function ___syscall_faccessat(dirfd, path, amode, flags) {
  try {
-  var old = SYSCALLS.getStreamFromFD(oldfd);
-  if (old.fd === suggestFD) return suggestFD;
-  return SYSCALLS.doDup(old.path, old.flags, suggestFD);
+  path = SYSCALLS.getStr(path);
+  assert(flags === 0);
+  path = SYSCALLS.calculateAt(dirfd, path);
+  return SYSCALLS.doAccess(path, amode);
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_fcntl64(fd, cmd, varargs) {
+function ___syscall_fcntl64(fd, cmd, varargs) {
  SYSCALLS.varargs = varargs;
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
@@ -7916,16 +7950,16 @@ function ___sys_fcntl64(fd, cmd, varargs) {
     return 0;
    }
 
-  case 12:
+  case 5:
    {
     var arg = SYSCALLS.get();
     var offset = 0;
-    HEAP16[arg + offset >> 1] = 2;
+    HEAP16[arg + offset >>> 1] = 2;
     return 0;
    }
 
-  case 13:
-  case 14:
+  case 6:
+  case 7:
    return 0;
 
   case 16:
@@ -7942,33 +7976,22 @@ function ___sys_fcntl64(fd, cmd, varargs) {
    }
   }
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_fstat64(fd, buf) {
+function ___syscall_fstat64(fd, buf) {
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
   return SYSCALLS.doStat(FS.stat, stream.path, buf);
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_ftruncate64(fd, zero, low, high) {
- try {
-  var length = SYSCALLS.get64(low, high);
-  FS.ftruncate(fd, length);
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_getcwd(buf, size) {
+function ___syscall_getcwd(buf, size) {
  try {
   if (size === 0) return -28;
   var cwd = FS.cwd();
@@ -7977,12 +8000,12 @@ function ___sys_getcwd(buf, size) {
   stringToUTF8(cwd, buf, size);
   return buf;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_getdents64(fd, dirp, count) {
+function ___syscall_getdents64(fd, dirp, count) {
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
   if (!stream.getdents) {
@@ -7996,21 +8019,28 @@ function ___sys_getdents64(fd, dirp, count) {
    var id;
    var type;
    var name = stream.getdents[idx];
-   if (name[0] === ".") {
-    id = 1;
+   if (name === ".") {
+    id = stream.node.id;
+    type = 4;
+   } else if (name === "..") {
+    var lookup = FS.lookupPath(stream.path, {
+     parent: true
+    });
+    id = lookup.node.id;
     type = 4;
    } else {
     var child = FS.lookupNode(stream.node, name);
     id = child.id;
     type = FS.isChrdev(child.mode) ? 2 : FS.isDir(child.mode) ? 4 : FS.isLink(child.mode) ? 10 : 8;
    }
+   assert(id);
    tempI64 = [ id >>> 0, (tempDouble = id, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-   HEAP32[dirp + pos >> 2] = tempI64[0], HEAP32[dirp + pos + 4 >> 2] = tempI64[1];
+   HEAP32[dirp + pos >>> 2] = tempI64[0], HEAP32[dirp + pos + 4 >>> 2] = tempI64[1];
    tempI64 = [ (idx + 1) * struct_size >>> 0, (tempDouble = (idx + 1) * struct_size, 
    +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-   HEAP32[dirp + pos + 8 >> 2] = tempI64[0], HEAP32[dirp + pos + 12 >> 2] = tempI64[1];
-   HEAP16[dirp + pos + 16 >> 1] = 280;
-   HEAP8[dirp + pos + 18 >> 0] = type;
+   HEAP32[dirp + pos + 8 >>> 2] = tempI64[0], HEAP32[dirp + pos + 12 >>> 2] = tempI64[1];
+   HEAP16[dirp + pos + 16 >>> 1] = 280;
+   HEAP8[dirp + pos + 18 >>> 0] = type;
    stringToUTF8(name, dirp + pos + 19, 256);
    pos += struct_size;
    idx += 1;
@@ -8018,84 +8048,30 @@ function ___sys_getdents64(fd, dirp, count) {
   FS.llseek(stream, idx * struct_size, 0);
   return pos;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_getegid32() {
- return 0;
-}
-
-function ___sys_geteuid32() {
- return ___sys_getegid32();
-}
-
-function ___sys_getpeername(fd, addr, addrlen) {
- try {
-  var sock = getSocketFromFD(fd);
-  if (!sock.daddr) {
-   return -53;
-  }
-  var errno = writeSockaddr(addr, sock.family, DNS.lookup_name(sock.daddr), sock.dport, addrlen);
-  assert(!errno);
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_getrusage(who, usage) {
- try {
-  _memset(usage, 0, 136);
-  HEAP32[usage >> 2] = 1;
-  HEAP32[usage + 4 >> 2] = 2;
-  HEAP32[usage + 8 >> 2] = 3;
-  HEAP32[usage + 12 >> 2] = 4;
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_getsockname(fd, addr, addrlen) {
- try {
-  err("__sys_getsockname " + fd);
-  var sock = getSocketFromFD(fd);
-  var errno = writeSockaddr(addr, sock.family, DNS.lookup_name(sock.saddr || "0.0.0.0"), sock.sport, addrlen);
-  assert(!errno);
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_getsockopt(fd, level, optname, optval, optlen) {
+function ___syscall_getsockopt(fd, level, optname, optval, optlen) {
  try {
   var sock = getSocketFromFD(fd);
   if (level === 1) {
    if (optname === 4) {
-    HEAP32[optval >> 2] = sock.error;
-    HEAP32[optlen >> 2] = 4;
+    HEAP32[optval >>> 2] = sock.error;
+    HEAP32[optlen >>> 2] = 4;
     sock.error = null;
     return 0;
    }
   }
   return -50;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_getuid32() {
- return ___sys_getegid32();
-}
-
-function ___sys_ioctl(fd, op, varargs) {
+function ___syscall_ioctl(fd, op, varargs) {
  SYSCALLS.varargs = varargs;
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
@@ -8122,7 +8098,7 @@ function ___sys_ioctl(fd, op, varargs) {
    {
     if (!stream.tty) return -59;
     var argp = SYSCALLS.get();
-    HEAP32[argp >> 2] = 0;
+    HEAP32[argp >>> 2] = 0;
     return 0;
    }
 
@@ -8154,355 +8130,71 @@ function ___sys_ioctl(fd, op, varargs) {
    abort("bad ioctl syscall " + op);
   }
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_listen(fd, backlog) {
- try {
-  var sock = getSocketFromFD(fd);
-  sock.sock_ops.listen(sock, backlog);
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_lstat64(path, buf) {
+function ___syscall_lstat64(path, buf) {
  try {
   path = SYSCALLS.getStr(path);
   return SYSCALLS.doStat(FS.lstat, path, buf);
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_mkdir(path, mode) {
+function ___syscall_mkdir(path, mode) {
  try {
   path = SYSCALLS.getStr(path);
   return SYSCALLS.doMkdir(path, mode);
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function syscallMmap2(addr, len, prot, flags, fd, off) {
- off <<= 12;
- var ptr;
- var allocated = false;
- if ((flags & 16) !== 0 && addr % 65536 !== 0) {
-  return -28;
- }
- if ((flags & 32) !== 0) {
-  ptr = _memalign(65536, len);
-  if (!ptr) return -48;
-  _memset(ptr, 0, len);
-  allocated = true;
- } else {
-  var info = FS.getStream(fd);
-  if (!info) return -8;
-  var res = FS.mmap(info, addr, len, off, prot, flags);
-  ptr = res.ptr;
-  allocated = res.allocated;
- }
- SYSCALLS.mappings[ptr] = {
-  malloc: ptr,
-  len: len,
-  allocated: allocated,
-  fd: fd,
-  prot: prot,
-  flags: flags,
-  offset: off
- };
- return ptr;
-}
-
-function ___sys_mmap2(addr, len, prot, flags, fd, off) {
- try {
-  return syscallMmap2(addr, len, prot, flags, fd, off);
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function syscallMunmap(addr, len) {
- if ((addr | 0) === -1 || len === 0) {
-  return -28;
- }
- var info = SYSCALLS.mappings[addr];
- if (!info) return 0;
- if (len === info.len) {
-  var stream = FS.getStream(info.fd);
-  if (stream) {
-   if (info.prot & 2) {
-    SYSCALLS.doMsync(addr, stream, len, info.flags, info.offset);
-   }
-   FS.munmap(stream);
-  }
-  SYSCALLS.mappings[addr] = null;
-  if (info.allocated) {
-   _free(info.malloc);
-  }
- }
- return 0;
-}
-
-function ___sys_munmap(addr, len) {
- try {
-  return syscallMunmap(addr, len);
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_open(path, flags, varargs) {
- SYSCALLS.varargs = varargs;
- try {
-  var pathname = SYSCALLS.getStr(path);
-  var mode = varargs ? SYSCALLS.get() : 0;
-  var stream = FS.open(pathname, flags, mode);
-  return stream.fd;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-var PIPEFS = {
- BUCKET_BUFFER_SIZE: 8192,
- mount: function(mount) {
-  return FS.createNode(null, "/", 16384 | 511, 0);
- },
- createPipe: function() {
-  var pipe = {
-   buckets: []
-  };
-  pipe.buckets.push({
-   buffer: new Uint8Array(PIPEFS.BUCKET_BUFFER_SIZE),
-   offset: 0,
-   roffset: 0
-  });
-  var rName = PIPEFS.nextname();
-  var wName = PIPEFS.nextname();
-  var rNode = FS.createNode(PIPEFS.root, rName, 4096, 0);
-  var wNode = FS.createNode(PIPEFS.root, wName, 4096, 0);
-  rNode.pipe = pipe;
-  wNode.pipe = pipe;
-  var readableStream = FS.createStream({
-   path: rName,
-   node: rNode,
-   flags: 0,
-   seekable: false,
-   stream_ops: PIPEFS.stream_ops
-  });
-  rNode.stream = readableStream;
-  var writableStream = FS.createStream({
-   path: wName,
-   node: wNode,
-   flags: 1,
-   seekable: false,
-   stream_ops: PIPEFS.stream_ops
-  });
-  wNode.stream = writableStream;
-  return {
-   readable_fd: readableStream.fd,
-   writable_fd: writableStream.fd
-  };
- },
- stream_ops: {
-  poll: function(stream) {
-   var pipe = stream.node.pipe;
-   if ((stream.flags & 2097155) === 1) {
-    return 256 | 4;
-   } else {
-    if (pipe.buckets.length > 0) {
-     for (var i = 0; i < pipe.buckets.length; i++) {
-      var bucket = pipe.buckets[i];
-      if (bucket.offset - bucket.roffset > 0) {
-       return 64 | 1;
-      }
-     }
-    }
-   }
-   return 0;
-  },
-  ioctl: function(stream, request, varargs) {
-   return ERRNO_CODES.EINVAL;
-  },
-  fsync: function(stream) {
-   return ERRNO_CODES.EINVAL;
-  },
-  read: function(stream, buffer, offset, length, position) {
-   var pipe = stream.node.pipe;
-   var currentLength = 0;
-   for (var i = 0; i < pipe.buckets.length; i++) {
-    var bucket = pipe.buckets[i];
-    currentLength += bucket.offset - bucket.roffset;
-   }
-   assert(buffer instanceof ArrayBuffer || ArrayBuffer.isView(buffer));
-   var data = buffer.subarray(offset, offset + length);
-   if (length <= 0) {
-    return 0;
-   }
-   if (currentLength == 0) {
-    throw new FS.ErrnoError(ERRNO_CODES.EAGAIN);
-   }
-   var toRead = Math.min(currentLength, length);
-   var totalRead = toRead;
-   var toRemove = 0;
-   for (var i = 0; i < pipe.buckets.length; i++) {
-    var currBucket = pipe.buckets[i];
-    var bucketSize = currBucket.offset - currBucket.roffset;
-    if (toRead <= bucketSize) {
-     var tmpSlice = currBucket.buffer.subarray(currBucket.roffset, currBucket.offset);
-     if (toRead < bucketSize) {
-      tmpSlice = tmpSlice.subarray(0, toRead);
-      currBucket.roffset += toRead;
-     } else {
-      toRemove++;
-     }
-     data.set(tmpSlice);
-     break;
-    } else {
-     var tmpSlice = currBucket.buffer.subarray(currBucket.roffset, currBucket.offset);
-     data.set(tmpSlice);
-     data = data.subarray(tmpSlice.byteLength);
-     toRead -= tmpSlice.byteLength;
-     toRemove++;
-    }
-   }
-   if (toRemove && toRemove == pipe.buckets.length) {
-    toRemove--;
-    pipe.buckets[toRemove].offset = 0;
-    pipe.buckets[toRemove].roffset = 0;
-   }
-   pipe.buckets.splice(0, toRemove);
-   return totalRead;
-  },
-  write: function(stream, buffer, offset, length, position) {
-   var pipe = stream.node.pipe;
-   assert(buffer instanceof ArrayBuffer || ArrayBuffer.isView(buffer));
-   var data = buffer.subarray(offset, offset + length);
-   var dataLen = data.byteLength;
-   if (dataLen <= 0) {
-    return 0;
-   }
-   var currBucket = null;
-   if (pipe.buckets.length == 0) {
-    currBucket = {
-     buffer: new Uint8Array(PIPEFS.BUCKET_BUFFER_SIZE),
-     offset: 0,
-     roffset: 0
-    };
-    pipe.buckets.push(currBucket);
-   } else {
-    currBucket = pipe.buckets[pipe.buckets.length - 1];
-   }
-   assert(currBucket.offset <= PIPEFS.BUCKET_BUFFER_SIZE);
-   var freeBytesInCurrBuffer = PIPEFS.BUCKET_BUFFER_SIZE - currBucket.offset;
-   if (freeBytesInCurrBuffer >= dataLen) {
-    currBucket.buffer.set(data, currBucket.offset);
-    currBucket.offset += dataLen;
-    return dataLen;
-   } else if (freeBytesInCurrBuffer > 0) {
-    currBucket.buffer.set(data.subarray(0, freeBytesInCurrBuffer), currBucket.offset);
-    currBucket.offset += freeBytesInCurrBuffer;
-    data = data.subarray(freeBytesInCurrBuffer, data.byteLength);
-   }
-   var numBuckets = data.byteLength / PIPEFS.BUCKET_BUFFER_SIZE | 0;
-   var remElements = data.byteLength % PIPEFS.BUCKET_BUFFER_SIZE;
-   for (var i = 0; i < numBuckets; i++) {
-    var newBucket = {
-     buffer: new Uint8Array(PIPEFS.BUCKET_BUFFER_SIZE),
-     offset: PIPEFS.BUCKET_BUFFER_SIZE,
-     roffset: 0
-    };
-    pipe.buckets.push(newBucket);
-    newBucket.buffer.set(data.subarray(0, PIPEFS.BUCKET_BUFFER_SIZE));
-    data = data.subarray(PIPEFS.BUCKET_BUFFER_SIZE, data.byteLength);
-   }
-   if (remElements > 0) {
-    var newBucket = {
-     buffer: new Uint8Array(PIPEFS.BUCKET_BUFFER_SIZE),
-     offset: data.byteLength,
-     roffset: 0
-    };
-    pipe.buckets.push(newBucket);
-    newBucket.buffer.set(data);
-   }
-   return dataLen;
-  },
-  close: function(stream) {
-   var pipe = stream.node.pipe;
-   pipe.buckets = null;
-  }
- },
- nextname: function() {
-  if (!PIPEFS.nextname.current) {
-   PIPEFS.nextname.current = 0;
-  }
-  return "pipe[" + PIPEFS.nextname.current++ + "]";
- }
-};
-
-function ___sys_pipe(fdPtr) {
- try {
-  if (fdPtr == 0) {
-   throw new FS.ErrnoError(21);
-  }
-  var res = PIPEFS.createPipe();
-  HEAP32[fdPtr >> 2] = res.readable_fd;
-  HEAP32[fdPtr + 4 >> 2] = res.writable_fd;
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_poll(fds, nfds, timeout) {
- try {
-  var nonzero = 0;
-  for (var i = 0; i < nfds; i++) {
-   var pollfd = fds + 8 * i;
-   var fd = HEAP32[pollfd >> 2];
-   var events = HEAP16[pollfd + 4 >> 1];
-   var mask = 32;
-   var stream = FS.getStream(fd);
-   if (stream) {
-    mask = SYSCALLS.DEFAULT_POLLMASK;
-    if (stream.stream_ops.poll) {
-     mask = stream.stream_ops.poll(stream);
-    }
-   }
-   mask &= events | 8 | 16;
-   if (mask) nonzero++;
-   HEAP16[pollfd + 6 >> 1] = mask;
-  }
-  return nonzero;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_readlink(path, buf, bufsize) {
+function ___syscall_newfstatat(dirfd, path, buf, flags) {
  try {
   path = SYSCALLS.getStr(path);
-  return SYSCALLS.doReadlink(path, buf, bufsize);
+  var nofollow = flags & 256;
+  var allowEmpty = flags & 4096;
+  flags = flags & ~4352;
+  assert(!flags, flags);
+  path = SYSCALLS.calculateAt(dirfd, path, allowEmpty);
+  return SYSCALLS.doStat(nofollow ? FS.lstat : FS.stat, path, buf);
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_recvfrom(fd, buf, len, flags, addr, addrlen) {
+function ___syscall_openat(dirfd, path, flags, varargs) {
+ SYSCALLS.varargs = varargs;
+ try {
+  path = SYSCALLS.getStr(path);
+  path = SYSCALLS.calculateAt(dirfd, path);
+  var mode = varargs ? SYSCALLS.get() : 0;
+  return FS.open(path, flags, mode).fd;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_readlinkat(dirfd, path, buf, bufsize) {
+ try {
+  path = SYSCALLS.getStr(path);
+  path = SYSCALLS.calculateAt(dirfd, path);
+  return SYSCALLS.doReadlink(path, buf, bufsize);
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+function ___syscall_recvfrom(fd, buf, len, flags, addr, addrlen) {
  try {
   var sock = getSocketFromFD(fd);
   var msg = sock.sock_ops.recvmsg(sock, len);
@@ -8511,109 +8203,40 @@ function ___sys_recvfrom(fd, buf, len, flags, addr, addrlen) {
    var errno = writeSockaddr(addr, sock.family, DNS.lookup_name(msg.addr), msg.port, addrlen);
    assert(!errno);
   }
-  HEAPU8.set(msg.buffer, buf);
+  HEAPU8.set(msg.buffer, buf >>> 0);
   return msg.buffer.byteLength;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_recvmsg(fd, message, flags) {
+function ___syscall_renameat(olddirfd, oldpath, newdirfd, newpath) {
  try {
-  var sock = getSocketFromFD(fd);
-  var iov = HEAP32[message + 8 >> 2];
-  var num = HEAP32[message + 12 >> 2];
-  var total = 0;
-  for (var i = 0; i < num; i++) {
-   total += HEAP32[iov + (8 * i + 4) >> 2];
-  }
-  var msg = sock.sock_ops.recvmsg(sock, total);
-  if (!msg) return 0;
-  var name = HEAP32[message >> 2];
-  if (name) {
-   var errno = writeSockaddr(name, sock.family, DNS.lookup_name(msg.addr), msg.port);
-   assert(!errno);
-  }
-  var bytesRead = 0;
-  var bytesRemaining = msg.buffer.byteLength;
-  for (var i = 0; bytesRemaining > 0 && i < num; i++) {
-   var iovbase = HEAP32[iov + (8 * i + 0) >> 2];
-   var iovlen = HEAP32[iov + (8 * i + 4) >> 2];
-   if (!iovlen) {
-    continue;
-   }
-   var length = Math.min(iovlen, bytesRemaining);
-   var buf = msg.buffer.subarray(bytesRead, bytesRead + length);
-   HEAPU8.set(buf, iovbase + bytesRead);
-   bytesRead += length;
-   bytesRemaining -= length;
-  }
-  return bytesRead;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_rename(old_path, new_path) {
- try {
-  old_path = SYSCALLS.getStr(old_path);
-  new_path = SYSCALLS.getStr(new_path);
-  FS.rename(old_path, new_path);
+  oldpath = SYSCALLS.getStr(oldpath);
+  newpath = SYSCALLS.getStr(newpath);
+  oldpath = SYSCALLS.calculateAt(olddirfd, oldpath);
+  newpath = SYSCALLS.calculateAt(newdirfd, newpath);
+  FS.rename(oldpath, newpath);
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_rmdir(path) {
+function ___syscall_rmdir(path) {
  try {
   path = SYSCALLS.getStr(path);
   FS.rmdir(path);
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_sendmsg(fd, message, flags) {
- try {
-  var sock = getSocketFromFD(fd);
-  var iov = HEAP32[message + 8 >> 2];
-  var num = HEAP32[message + 12 >> 2];
-  var addr, port;
-  var name = HEAP32[message >> 2];
-  var namelen = HEAP32[message + 4 >> 2];
-  if (name) {
-   var info = readSockaddr(name, namelen);
-   if (info.errno) return -info.errno;
-   port = info.port;
-   addr = DNS.lookup_addr(info.addr) || info.addr;
-  }
-  var total = 0;
-  for (var i = 0; i < num; i++) {
-   total += HEAP32[iov + (8 * i + 4) >> 2];
-  }
-  var view = new Uint8Array(total);
-  var offset = 0;
-  for (var i = 0; i < num; i++) {
-   var iovbase = HEAP32[iov + (8 * i + 0) >> 2];
-   var iovlen = HEAP32[iov + (8 * i + 4) >> 2];
-   for (var j = 0; j < iovlen; j++) {
-    view[offset++] = HEAP8[iovbase + j >> 0];
-   }
-  }
-  return sock.sock_ops.sendmsg(sock, view, 0, total, addr, port);
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_sendto(fd, message, length, flags, addr, addr_len) {
+function ___syscall_sendto(fd, message, length, flags, addr, addr_len) {
  try {
   var sock = getSocketFromFD(fd);
   var dest = getSocketAddress(addr, addr_len, true);
@@ -8623,201 +8246,259 @@ function ___sys_sendto(fd, message, length, flags, addr, addr_len) {
    return sock.sock_ops.sendmsg(sock, HEAP8, message, length, dest.addr, dest.port);
   }
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_setsockopt(fd) {
- try {
-  return -50;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_shutdown(fd, how) {
- try {
-  getSocketFromFD(fd);
-  return -52;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_socket(domain, type, protocol) {
+function ___syscall_socket(domain, type, protocol) {
  try {
   var sock = SOCKFS.createSocket(domain, type, protocol);
   assert(sock.stream.fd < 64);
   return sock.stream.fd;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_stat64(path, buf) {
+function ___syscall_stat64(path, buf) {
  try {
   path = SYSCALLS.getStr(path);
   return SYSCALLS.doStat(FS.stat, path, buf);
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_statfs64(path, size, buf) {
+function ___syscall_statfs64(path, size, buf) {
  try {
   path = SYSCALLS.getStr(path);
   assert(size === 64);
-  HEAP32[buf + 4 >> 2] = 4096;
-  HEAP32[buf + 40 >> 2] = 4096;
-  HEAP32[buf + 8 >> 2] = 1e6;
-  HEAP32[buf + 12 >> 2] = 5e5;
-  HEAP32[buf + 16 >> 2] = 5e5;
-  HEAP32[buf + 20 >> 2] = FS.nextInode;
-  HEAP32[buf + 24 >> 2] = 1e6;
-  HEAP32[buf + 28 >> 2] = 42;
-  HEAP32[buf + 44 >> 2] = 2;
-  HEAP32[buf + 36 >> 2] = 255;
+  HEAP32[buf + 4 >>> 2] = 4096;
+  HEAP32[buf + 40 >>> 2] = 4096;
+  HEAP32[buf + 8 >>> 2] = 1e6;
+  HEAP32[buf + 12 >>> 2] = 5e5;
+  HEAP32[buf + 16 >>> 2] = 5e5;
+  HEAP32[buf + 20 >>> 2] = FS.nextInode;
+  HEAP32[buf + 24 >>> 2] = 1e6;
+  HEAP32[buf + 28 >>> 2] = 42;
+  HEAP32[buf + 44 >>> 2] = 2;
+  HEAP32[buf + 36 >>> 2] = 255;
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_truncate64(path, zero, low, high) {
+function ___syscall_truncate64(path, low, high) {
  try {
   path = SYSCALLS.getStr(path);
   var length = SYSCALLS.get64(low, high);
   FS.truncate(path, length);
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
 }
 
-function ___sys_uname(buf) {
- try {
-  if (!buf) return -21;
-  var layout = {
-   "__size__": 390,
-   "domainname": 325,
-   "machine": 260,
-   "nodename": 65,
-   "release": 130,
-   "sysname": 0,
-   "version": 195
-  };
-  var copyString = function(element, value) {
-   var offset = layout[element];
-   writeAsciiToMemory(value, buf + offset);
-  };
-  copyString("sysname", "Emscripten");
-  copyString("nodename", "emscripten");
-  copyString("release", "1.0");
-  copyString("version", "#1");
-  copyString("machine", "wasm32");
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return -e.errno;
- }
-}
-
-function ___sys_unlink(path) {
+function ___syscall_unlinkat(dirfd, path, flags) {
  try {
   path = SYSCALLS.getStr(path);
-  FS.unlink(path);
+  path = SYSCALLS.calculateAt(dirfd, path);
+  if (flags === 0) {
+   FS.unlink(path);
+  } else if (flags === 512) {
+   FS.rmdir(path);
+  } else {
+   abort("Invalid flags passed to unlinkat");
+  }
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return -e.errno;
  }
+}
+
+function ___syscall_utimensat(dirfd, path, times, flags) {
+ try {
+  path = SYSCALLS.getStr(path);
+  assert(flags === 0);
+  path = SYSCALLS.calculateAt(dirfd, path, true);
+  if (!times) {
+   var atime = Date.now();
+   var mtime = atime;
+  } else {
+   var seconds = HEAP32[times >>> 2];
+   var nanoseconds = HEAP32[times + 4 >>> 2];
+   atime = seconds * 1e3 + nanoseconds / (1e3 * 1e3);
+   times += 8;
+   seconds = HEAP32[times >>> 2];
+   nanoseconds = HEAP32[times + 4 >>> 2];
+   mtime = seconds * 1e3 + nanoseconds / (1e3 * 1e3);
+  }
+  FS.utime(path, atime, mtime);
+  return 0;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+var dlopen_main_init = 0;
+
+function __dlopen_js(handle) {
+ warnOnce("Unable to open DLL! Dynamic linking is not supported in WebAssembly builds due to limitations to performance and code size. Please statically link in the needed libraries.");
+ var ret = !dlopen_main_init;
+ dlopen_main_init = 1;
+ return ret;
+}
+
+function __dlsym_js(handle, symbol) {
+ return 0;
+}
+
+function __emscripten_date_now() {
+ return Date.now();
+}
+
+var nowIsMonotonic = true;
+
+function __emscripten_get_now_is_monotonic() {
+ return nowIsMonotonic;
+}
+
+function __emscripten_throw_longjmp() {
+ throw Infinity;
+}
+
+function __gmtime_js(time, tmPtr) {
+ var date = new Date(HEAP32[time >>> 2] * 1e3);
+ HEAP32[tmPtr >>> 2] = date.getUTCSeconds();
+ HEAP32[tmPtr + 4 >>> 2] = date.getUTCMinutes();
+ HEAP32[tmPtr + 8 >>> 2] = date.getUTCHours();
+ HEAP32[tmPtr + 12 >>> 2] = date.getUTCDate();
+ HEAP32[tmPtr + 16 >>> 2] = date.getUTCMonth();
+ HEAP32[tmPtr + 20 >>> 2] = date.getUTCFullYear() - 1900;
+ HEAP32[tmPtr + 24 >>> 2] = date.getUTCDay();
+ var start = Date.UTC(date.getUTCFullYear(), 0, 1, 0, 0, 0, 0);
+ var yday = (date.getTime() - start) / (1e3 * 60 * 60 * 24) | 0;
+ HEAP32[tmPtr + 28 >>> 2] = yday;
+}
+
+function __localtime_js(time, tmPtr) {
+ var date = new Date(HEAP32[time >>> 2] * 1e3);
+ HEAP32[tmPtr >>> 2] = date.getSeconds();
+ HEAP32[tmPtr + 4 >>> 2] = date.getMinutes();
+ HEAP32[tmPtr + 8 >>> 2] = date.getHours();
+ HEAP32[tmPtr + 12 >>> 2] = date.getDate();
+ HEAP32[tmPtr + 16 >>> 2] = date.getMonth();
+ HEAP32[tmPtr + 20 >>> 2] = date.getFullYear() - 1900;
+ HEAP32[tmPtr + 24 >>> 2] = date.getDay();
+ var start = new Date(date.getFullYear(), 0, 1);
+ var yday = (date.getTime() - start.getTime()) / (1e3 * 60 * 60 * 24) | 0;
+ HEAP32[tmPtr + 28 >>> 2] = yday;
+ HEAP32[tmPtr + 36 >>> 2] = -(date.getTimezoneOffset() * 60);
+ var summerOffset = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+ var winterOffset = start.getTimezoneOffset();
+ var dst = (summerOffset != winterOffset && date.getTimezoneOffset() == Math.min(winterOffset, summerOffset)) | 0;
+ HEAP32[tmPtr + 32 >>> 2] = dst;
+}
+
+function __mktime_js(tmPtr) {
+ var date = new Date(HEAP32[tmPtr + 20 >>> 2] + 1900, HEAP32[tmPtr + 16 >>> 2], HEAP32[tmPtr + 12 >>> 2], HEAP32[tmPtr + 8 >>> 2], HEAP32[tmPtr + 4 >>> 2], HEAP32[tmPtr >>> 2], 0);
+ var dst = HEAP32[tmPtr + 32 >>> 2];
+ var guessedOffset = date.getTimezoneOffset();
+ var start = new Date(date.getFullYear(), 0, 1);
+ var summerOffset = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+ var winterOffset = start.getTimezoneOffset();
+ var dstOffset = Math.min(winterOffset, summerOffset);
+ if (dst < 0) {
+  HEAP32[tmPtr + 32 >>> 2] = Number(summerOffset != winterOffset && dstOffset == guessedOffset);
+ } else if (dst > 0 != (dstOffset == guessedOffset)) {
+  var nonDstOffset = Math.max(winterOffset, summerOffset);
+  var trueOffset = dst > 0 ? dstOffset : nonDstOffset;
+  date.setTime(date.getTime() + (trueOffset - guessedOffset) * 6e4);
+ }
+ HEAP32[tmPtr + 24 >>> 2] = date.getDay();
+ var yday = (date.getTime() - start.getTime()) / (1e3 * 60 * 60 * 24) | 0;
+ HEAP32[tmPtr + 28 >>> 2] = yday;
+ HEAP32[tmPtr >>> 2] = date.getSeconds();
+ HEAP32[tmPtr + 4 >>> 2] = date.getMinutes();
+ HEAP32[tmPtr + 8 >>> 2] = date.getHours();
+ HEAP32[tmPtr + 12 >>> 2] = date.getDate();
+ HEAP32[tmPtr + 16 >>> 2] = date.getMonth();
+ return date.getTime() / 1e3 | 0;
+}
+
+function __mmap_js(addr, len, prot, flags, fd, off, allocated, builtin) {
+ try {
+  var info = FS.getStream(fd);
+  if (!info) return -8;
+  var res = FS.mmap(info, addr, len, off, prot, flags);
+  var ptr = res.ptr;
+  HEAP32[allocated >>> 2] = res.allocated;
+  ptr >>>= 0;
+  return ptr;
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+function __munmap_js(addr, len, prot, flags, fd, offset) {
+ try {
+  addr >>>= 0;
+  var stream = FS.getStream(fd);
+  if (stream) {
+   if (prot & 2) {
+    SYSCALLS.doMsync(addr, stream, len, flags, offset);
+   }
+   FS.munmap(stream);
+  }
+ } catch (e) {
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
+  return -e.errno;
+ }
+}
+
+function _tzset_impl(timezone, daylight, tzname) {
+ var currentYear = new Date().getFullYear();
+ var winter = new Date(currentYear, 0, 1);
+ var summer = new Date(currentYear, 6, 1);
+ var winterOffset = winter.getTimezoneOffset();
+ var summerOffset = summer.getTimezoneOffset();
+ var stdTimezoneOffset = Math.max(winterOffset, summerOffset);
+ HEAP32[timezone >>> 2] = stdTimezoneOffset * 60;
+ HEAP32[daylight >>> 2] = Number(winterOffset != summerOffset);
+ function extractZone(date) {
+  var match = date.toTimeString().match(/\(([A-Za-z ]+)\)$/);
+  return match ? match[1] : "GMT";
+ }
+ var winterName = extractZone(winter);
+ var summerName = extractZone(summer);
+ var winterNamePtr = allocateUTF8(winterName);
+ var summerNamePtr = allocateUTF8(summerName);
+ if (summerOffset < winterOffset) {
+  HEAP32[tzname >>> 2] = winterNamePtr;
+  HEAP32[tzname + 4 >>> 2] = summerNamePtr;
+ } else {
+  HEAP32[tzname >>> 2] = summerNamePtr;
+  HEAP32[tzname + 4 >>> 2] = winterNamePtr;
+ }
+}
+
+function __tzset_js(timezone, daylight, tzname) {
+ if (__tzset_js.called) return;
+ __tzset_js.called = true;
+ _tzset_impl(timezone, daylight, tzname);
 }
 
 function _abort() {
- abort();
-}
-
-function _clock() {
- if (_clock.start === undefined) _clock.start = Date.now();
- return (Date.now() - _clock.start) * (1e6 / 1e3) | 0;
-}
-
-function _emscripten_get_now_res() {
- if (ENVIRONMENT_IS_NODE) {
-  return 1;
- } else if (typeof dateNow !== "undefined") {
-  return 1e3;
- } else return 1e3;
-}
-
-var _emscripten_get_now_is_monotonic = true;
-
-function _clock_getres(clk_id, res) {
- var nsec;
- if (clk_id === 0) {
-  nsec = 1e3 * 1e3;
- } else if (clk_id === 1 && _emscripten_get_now_is_monotonic) {
-  nsec = _emscripten_get_now_res();
- } else {
-  setErrNo(28);
-  return -1;
- }
- HEAP32[res >> 2] = nsec / 1e9 | 0;
- HEAP32[res + 4 >> 2] = nsec;
- return 0;
-}
-
-var _emscripten_get_now;
-
-if (ENVIRONMENT_IS_NODE) {
- _emscripten_get_now = function() {
-  var t = process["hrtime"]();
-  return t[0] * 1e3 + t[1] / 1e6;
- };
-} else if (typeof dateNow !== "undefined") {
- _emscripten_get_now = dateNow;
-} else _emscripten_get_now = function() {
- return performance.now();
-};
-
-function _clock_gettime(clk_id, tp) {
- var now;
- if (clk_id === 0) {
-  now = Date.now();
- } else if ((clk_id === 1 || clk_id === 4) && _emscripten_get_now_is_monotonic) {
-  now = _emscripten_get_now();
- } else {
-  setErrNo(28);
-  return -1;
- }
- HEAP32[tp >> 2] = now / 1e3 | 0;
- HEAP32[tp + 4 >> 2] = now % 1e3 * 1e3 * 1e3 | 0;
- return 0;
-}
-
-function _difftime(time1, time0) {
- return time1 - time0;
-}
-
-function _dlclose(handle) {}
-
-function _dlerror() {
- return 0;
-}
-
-function _dlopen(filename, flag) {
- warnOnce("Unable to open DLL " + UTF8ToString(filename) + "! Dynamic linking is not supported in WebAssembly builds due to limitations to performance and code size. Please statically link in the needed libraries.");
-}
-
-function _dlsym(handle, symbol) {
- return 0;
+ abort("native code called abort()");
 }
 
 var readAsmConstArgsArray = [];
@@ -8828,11 +8509,11 @@ function readAsmConstArgs(sigPtr, buf) {
  readAsmConstArgsArray.length = 0;
  var ch;
  buf >>= 2;
- while (ch = HEAPU8[sigPtr++]) {
-  assert(ch === 100 || ch === 102 || ch === 105);
-  var double = ch < 105;
-  if (double && buf & 1) buf++;
-  readAsmConstArgsArray.push(double ? HEAPF64[buf++ >> 1] : HEAP32[buf]);
+ while (ch = HEAPU8[sigPtr++ >>> 0]) {
+  assert(ch === 100 || ch === 102 || ch === 105, "Invalid character " + ch + '("' + String.fromCharCode(ch) + '") in readAsmConstArgs! Use only "d", "f" or "i", and do not specify "v" for void return argument.');
+  var readAsmConstArgsDouble = ch < 105;
+  if (readAsmConstArgsDouble && buf & 1) buf++;
+  readAsmConstArgsArray.push(readAsmConstArgsDouble ? HEAPF64[buf++ >>> 1] : HEAP32[buf >>> 0]);
   ++buf;
  }
  return readAsmConstArgsArray;
@@ -8858,7 +8539,7 @@ function _emscripten_set_main_loop_timing(mode, value) {
  Browser.mainLoop.timingMode = mode;
  Browser.mainLoop.timingValue = value;
  if (!Browser.mainLoop.func) {
-  console.error("emscripten_set_main_loop_timing: Cannot set timing mode for main loop since a main loop does not exist! Call emscripten_set_main_loop first to set one up.");
+  err("emscripten_set_main_loop_timing: Cannot set timing mode for main loop since a main loop does not exist! Call emscripten_set_main_loop first to set one up.");
   return 1;
  }
  if (!Browser.mainLoop.running) {
@@ -8876,7 +8557,7 @@ function _emscripten_set_main_loop_timing(mode, value) {
   };
   Browser.mainLoop.method = "rAF";
  } else if (mode == 2) {
-  if (typeof setImmediate === "undefined") {
+  if (typeof setImmediate == "undefined") {
    var setImmediates = [];
    var emscriptenMainLoopMessageId = "setimmediate";
    var Browser_setImmediate_messageHandler = function(event) {
@@ -8905,22 +8586,22 @@ function _emscripten_set_main_loop_timing(mode, value) {
  return 0;
 }
 
+var _emscripten_get_now;
+
+if (ENVIRONMENT_IS_NODE) {
+ _emscripten_get_now = (() => {
+  var t = process["hrtime"]();
+  return t[0] * 1e3 + t[1] / 1e6;
+ });
+} else _emscripten_get_now = (() => performance.now());
+
+function runtimeKeepalivePush() {}
+
 function _exit(status) {
  exit(status);
 }
 
-function maybeExit() {
- if (!keepRuntimeAlive()) {
-  try {
-   _exit(EXITSTATUS);
-  } catch (e) {
-   if (e instanceof ExitStatus) {
-    return;
-   }
-   throw e;
-  }
- }
-}
+function maybeExit() {}
 
 function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSetTiming) {
  assert(!Browser.mainLoop.func, "emscripten_set_main_loop: there can only be one main loop function at once: call emscripten_cancel_main_loop to cancel the previous one before setting a new one with different parameters.");
@@ -8951,7 +8632,7 @@ function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSet
      Browser.mainLoop.remainingBlockers = (8 * remaining + next) / 9;
     }
    }
-   console.log('main loop blocker "' + blocker.name + '" took ' + (Date.now() - start) + " ms");
+   out('main loop blocker "' + blocker.name + '" took ' + (Date.now() - start) + " ms");
    Browser.mainLoop.updateStatus();
    if (!checkIsRunning()) return;
    setTimeout(Browser.mainLoop.runner, 0);
@@ -8973,7 +8654,7 @@ function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSet
   Browser.mainLoop.runIter(browserIterationFunc);
   checkStackCookie();
   if (!checkIsRunning()) return;
-  if (typeof SDL === "object" && SDL.audio && SDL.audio.queueNewAudioData) SDL.audio.queueNewAudioData();
+  if (typeof SDL == "object" && SDL.audio && SDL.audio.queueNewAudioData) SDL.audio.queueNewAudioData();
   Browser.mainLoop.scheduler();
  };
  if (!noSetTiming) {
@@ -8987,7 +8668,7 @@ function setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg, noSet
 
 function callUserCallback(func, synchronous) {
  if (ABORT) {
-  err("user callback triggered after application aborted.  Ignoring.");
+  err("user callback triggered after runtime exited or application aborted.  Ignoring.");
   return;
  }
  if (synchronous) {
@@ -8997,13 +8678,16 @@ function callUserCallback(func, synchronous) {
  try {
   func();
  } catch (e) {
-  if (e instanceof ExitStatus) {
-   return;
-  } else if (e !== "unwind") {
-   if (e && typeof e === "object" && e.stack) err("exception thrown: " + [ e, e.stack ]);
-   throw e;
-  }
+  handleException(e);
  }
+}
+
+function runtimeKeepalivePop() {}
+
+function safeSetTimeout(func, timeout) {
+ return setTimeout(function() {
+  callUserCallback(func);
+ }, timeout);
 }
 
 var Browser = {
@@ -9073,12 +8757,12 @@ var Browser = {
    Browser.hasBlobConstructor = true;
   } catch (e) {
    Browser.hasBlobConstructor = false;
-   console.log("warning: no blob constructor, cannot create blobs with mimetypes");
+   out("warning: no blob constructor, cannot create blobs with mimetypes");
   }
-  Browser.BlobBuilder = typeof MozBlobBuilder != "undefined" ? MozBlobBuilder : typeof WebKitBlobBuilder != "undefined" ? WebKitBlobBuilder : !Browser.hasBlobConstructor ? console.log("warning: no BlobBuilder") : null;
+  Browser.BlobBuilder = typeof MozBlobBuilder != "undefined" ? MozBlobBuilder : typeof WebKitBlobBuilder != "undefined" ? WebKitBlobBuilder : !Browser.hasBlobConstructor ? out("warning: no BlobBuilder") : null;
   Browser.URLObject = typeof window != "undefined" ? window.URL ? window.URL : window.webkitURL : undefined;
-  if (!Module.noImageDecoding && typeof Browser.URLObject === "undefined") {
-   console.log("warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available.");
+  if (!Module.noImageDecoding && typeof Browser.URLObject == "undefined") {
+   out("warning: Browser does not support creating object URLs. Built-in browser image decoding will not be available.");
    Module.noImageDecoding = true;
   }
   var imagePlugin = {};
@@ -9109,7 +8793,7 @@ var Browser = {
    var url = Browser.URLObject.createObjectURL(b);
    assert(typeof url == "string", "createObjectURL must return a url as a string");
    var img = new Image();
-   img.onload = function img_onload() {
+   img.onload = (() => {
     assert(img.complete, "Image " + name + " could not be decoded");
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
@@ -9119,11 +8803,11 @@ var Browser = {
     Module["preloadedImages"][name] = canvas;
     Browser.URLObject.revokeObjectURL(url);
     if (onload) onload(byteArray);
-   };
-   img.onerror = function img_onerror(event) {
-    console.log("Image " + url + " could not be decoded");
+   });
+   img.onerror = (event => {
+    out("Image " + url + " could not be decoded");
     if (onerror) onerror();
-   };
+   });
    img.src = url;
   };
   Module["preloadPlugins"].push(imagePlugin);
@@ -9165,7 +8849,7 @@ var Browser = {
     }, false);
     audio.onerror = function audio_onerror(event) {
      if (done) return;
-     console.log("warning: browser could not fully decode audio " + name + ", trying slower base64 approach");
+     out("warning: browser could not fully decode audio " + name + ", trying slower base64 approach");
      function encode64(data) {
       var BASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
       var PAD = "=";
@@ -9194,7 +8878,7 @@ var Browser = {
      finish(audio);
     };
     audio.src = url;
-    Browser.safeSetTimeout(function() {
+    safeSetTimeout(function() {
      finish(audio);
     }, 1e4);
    } else {
@@ -9224,6 +8908,18 @@ var Browser = {
    }
   }
  },
+ handledByPreloadPlugin: function(byteArray, fullname, finish, onerror) {
+  Browser.init();
+  var handled = false;
+  Module["preloadPlugins"].forEach(function(plugin) {
+   if (handled) return;
+   if (plugin["canHandle"](fullname)) {
+    plugin["handle"](byteArray, fullname, finish, onerror);
+    handled = true;
+   }
+  });
+  return handled;
+ },
  createContext: function(canvas, useWebGL, setInModule, webGLContextAttributes) {
   if (useWebGL && Module.ctx && canvas == Module.canvas) return Module.ctx;
   var ctx;
@@ -9232,14 +8928,14 @@ var Browser = {
    var contextAttributes = {
     antialias: false,
     alpha: false,
-    majorVersion: typeof WebGL2RenderingContext !== "undefined" ? 2 : 1
+    majorVersion: typeof WebGL2RenderingContext != "undefined" ? 2 : 1
    };
    if (webGLContextAttributes) {
     for (var attribute in webGLContextAttributes) {
      contextAttributes[attribute] = webGLContextAttributes[attribute];
     }
    }
-   if (typeof GL !== "undefined") {
+   if (typeof GL != "undefined") {
     contextHandle = GL.createContext(canvas, contextAttributes);
     if (contextHandle) {
      ctx = GL.getContext(contextHandle).GLctx;
@@ -9250,7 +8946,7 @@ var Browser = {
   }
   if (!ctx) return null;
   if (setInModule) {
-   if (!useWebGL) assert(typeof GLctx === "undefined", "cannot set in module if GLctx is used, but we are a non-GL context that would replace it");
+   if (!useWebGL) assert(typeof GLctx == "undefined", "cannot set in module if GLctx is used, but we are a non-GL context that would replace it");
    Module.ctx = ctx;
    if (useWebGL) GL.makeContextCurrent(contextHandle);
    Module.useWebGL = useWebGL;
@@ -9268,8 +8964,8 @@ var Browser = {
  requestFullscreen: function(lockPointer, resizeCanvas) {
   Browser.lockPointer = lockPointer;
   Browser.resizeCanvas = resizeCanvas;
-  if (typeof Browser.lockPointer === "undefined") Browser.lockPointer = true;
-  if (typeof Browser.resizeCanvas === "undefined") Browser.resizeCanvas = false;
+  if (typeof Browser.lockPointer == "undefined") Browser.lockPointer = true;
+  if (typeof Browser.resizeCanvas == "undefined") Browser.resizeCanvas = false;
   var canvas = Module["canvas"];
   function fullscreenChange() {
    Browser.isFullscreen = false;
@@ -9337,22 +9033,20 @@ var Browser = {
   setTimeout(func, delay);
  },
  requestAnimationFrame: function(func) {
-  if (typeof requestAnimationFrame === "function") {
+  if (typeof requestAnimationFrame == "function") {
    requestAnimationFrame(func);
    return;
   }
   var RAF = Browser.fakeRequestAnimationFrame;
   RAF(func);
  },
+ safeSetTimeout: function(func) {
+  return safeSetTimeout(func);
+ },
  safeRequestAnimationFrame: function(func) {
   return Browser.requestAnimationFrame(function() {
    callUserCallback(func);
   });
- },
- safeSetTimeout: function(func, timeout) {
-  return setTimeout(function() {
-   callUserCallback(func);
-  }, timeout);
  },
  getMimetype: function(name) {
   return {
@@ -9438,9 +9132,9 @@ var Browser = {
    var rect = Module["canvas"].getBoundingClientRect();
    var cw = Module["canvas"].width;
    var ch = Module["canvas"].height;
-   var scrollX = typeof window.scrollX !== "undefined" ? window.scrollX : window.pageXOffset;
-   var scrollY = typeof window.scrollY !== "undefined" ? window.scrollY : window.pageYOffset;
-   assert(typeof scrollX !== "undefined" && typeof scrollY !== "undefined", "Unable to retrieve scroll position, mouse positions likely broken.");
+   var scrollX = typeof window.scrollX != "undefined" ? window.scrollX : window.pageXOffset;
+   var scrollY = typeof window.scrollY != "undefined" ? window.scrollY : window.pageYOffset;
+   assert(typeof scrollX != "undefined" && typeof scrollY != "undefined", "Unable to retrieve scroll position, mouse positions likely broken.");
    if (event.type === "touchstart" || event.type === "touchend" || event.type === "touchmove") {
     var touch = event.touch;
     if (touch === undefined) {
@@ -9475,21 +9169,6 @@ var Browser = {
    Browser.mouseY = y;
   }
  },
- asyncLoad: function(url, onload, onerror, noRunDep) {
-  var dep = !noRunDep ? getUniqueRunDependency("al " + url) : "";
-  readAsync(url, function(arrayBuffer) {
-   assert(arrayBuffer, 'Loading data file "' + url + '" failed (no arrayBuffer).');
-   onload(new Uint8Array(arrayBuffer));
-   if (dep) removeRunDependency(dep);
-  }, function(event) {
-   if (onerror) {
-    onerror();
-   } else {
-    throw 'Loading data file "' + url + '" failed.';
-   }
-  });
-  if (dep) addRunDependency(dep);
- },
  resizeListeners: [],
  updateResizeListeners: function() {
   var canvas = Module["canvas"];
@@ -9506,18 +9185,18 @@ var Browser = {
  windowedHeight: 0,
  setFullscreenCanvasSize: function() {
   if (typeof SDL != "undefined") {
-   var flags = HEAPU32[SDL.screen >> 2];
+   var flags = HEAPU32[SDL.screen >>> 2];
    flags = flags | 8388608;
-   HEAP32[SDL.screen >> 2] = flags;
+   HEAP32[SDL.screen >>> 2] = flags;
   }
   Browser.updateCanvasDimensions(Module["canvas"]);
   Browser.updateResizeListeners();
  },
  setWindowedCanvasSize: function() {
   if (typeof SDL != "undefined") {
-   var flags = HEAPU32[SDL.screen >> 2];
+   var flags = HEAPU32[SDL.screen >>> 2];
    flags = flags & ~8388608;
-   HEAP32[SDL.screen >> 2] = flags;
+   HEAP32[SDL.screen >>> 2] = flags;
   }
   Browser.updateCanvasDimensions(Module["canvas"]);
   Browser.updateResizeListeners();
@@ -9564,13 +9243,6 @@ var Browser = {
     }
    }
   }
- },
- wgetRequests: {},
- nextWgetRequestHandle: 0,
- getNextWgetRequestHandle: function() {
-  var handle = Browser.nextWgetRequestHandle;
-  Browser.nextWgetRequestHandle++;
-  return handle;
  }
 };
 
@@ -9581,6 +9253,11 @@ function _emscripten_cancel_main_loop() {
 
 function _emscripten_clear_interval(id) {
  clearInterval(id);
+}
+
+function _emscripten_console_error(str) {
+ assert(typeof str == "number");
+ console.error(UTF8ToString(str));
 }
 
 var JSEvents = {
@@ -9696,11 +9373,11 @@ function maybeCStringToJsString(cString) {
  return cString > 2 ? UTF8ToString(cString) : cString;
 }
 
-var specialHTMLTargets = [ 0, typeof document !== "undefined" ? document : 0, typeof window !== "undefined" ? window : 0 ];
+var specialHTMLTargets = [ 0, typeof document != "undefined" ? document : 0, typeof window != "undefined" ? window : 0 ];
 
 function findEventTarget(target) {
  target = maybeCStringToJsString(target);
- var domElement = specialHTMLTargets[target] || (typeof document !== "undefined" ? document.querySelector(target) : undefined);
+ var domElement = specialHTMLTargets[target] || (typeof document != "undefined" ? document.querySelector(target) : undefined);
  return domElement;
 }
 
@@ -9711,20 +9388,20 @@ function findCanvasEventTarget(target) {
 function _emscripten_get_canvas_element_size(target, width, height) {
  var canvas = findCanvasEventTarget(target);
  if (!canvas) return -4;
- HEAP32[width >> 2] = canvas.width;
- HEAP32[height >> 2] = canvas.height;
+ HEAP32[width >>> 2] = canvas.width;
+ HEAP32[height >>> 2] = canvas.height;
 }
 
 function getCanvasElementSize(target) {
- var stackTop = stackSave();
- var w = stackAlloc(8);
- var h = w + 4;
- var targetInt = stackAlloc(target.id.length + 1);
- stringToUTF8(target.id, targetInt, target.id.length + 1);
- var ret = _emscripten_get_canvas_element_size(targetInt, w, h);
- var size = [ HEAP32[w >> 2], HEAP32[h >> 2] ];
- stackRestore(stackTop);
- return size;
+ return withStackSave(function() {
+  var w = stackAlloc(8);
+  var h = w + 4;
+  var targetInt = stackAlloc(target.id.length + 1);
+  stringToUTF8(target.id, targetInt, target.id.length + 1);
+  var ret = _emscripten_get_canvas_element_size(targetInt, w, h);
+  var size = [ HEAP32[w >>> 2], HEAP32[h >>> 2] ];
+  return size;
+ });
 }
 
 function _emscripten_set_canvas_element_size(target, width, height) {
@@ -9740,11 +9417,11 @@ function setCanvasElementSize(target, width, height) {
   target.width = width;
   target.height = height;
  } else {
-  var stackTop = stackSave();
-  var targetInt = stackAlloc(target.id.length + 1);
-  stringToUTF8(target.id, targetInt, target.id.length + 1);
-  _emscripten_set_canvas_element_size(targetInt, width, height);
-  stackRestore(stackTop);
+  withStackSave(function() {
+   var targetInt = stackAlloc(target.id.length + 1);
+   stringToUTF8(target.id, targetInt, target.id.length + 1);
+   _emscripten_set_canvas_element_size(targetInt, width, height);
+  });
  }
 }
 
@@ -9928,17 +9605,17 @@ function _emscripten_exit_pointerlock() {
 function fillFullscreenChangeEventData(eventStruct) {
  var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
  var isFullscreen = !!fullscreenElement;
- HEAP32[eventStruct >> 2] = isFullscreen;
- HEAP32[eventStruct + 4 >> 2] = JSEvents.fullscreenEnabled();
+ HEAP32[eventStruct >>> 2] = isFullscreen;
+ HEAP32[eventStruct + 4 >>> 2] = JSEvents.fullscreenEnabled();
  var reportedElement = isFullscreen ? fullscreenElement : JSEvents.previousFullscreenElement;
  var nodeName = JSEvents.getNodeNameForTarget(reportedElement);
  var id = reportedElement && reportedElement.id ? reportedElement.id : "";
  stringToUTF8(nodeName, eventStruct + 8, 128);
  stringToUTF8(id, eventStruct + 136, 128);
- HEAP32[eventStruct + 264 >> 2] = reportedElement ? reportedElement.clientWidth : 0;
- HEAP32[eventStruct + 268 >> 2] = reportedElement ? reportedElement.clientHeight : 0;
- HEAP32[eventStruct + 272 >> 2] = screen.width;
- HEAP32[eventStruct + 276 >> 2] = screen.height;
+ HEAP32[eventStruct + 264 >>> 2] = reportedElement ? reportedElement.clientWidth : 0;
+ HEAP32[eventStruct + 268 >>> 2] = reportedElement ? reportedElement.clientHeight : 0;
+ HEAP32[eventStruct + 272 >>> 2] = screen.width;
+ HEAP32[eventStruct + 276 >>> 2] = screen.height;
  if (isFullscreen) {
   JSEvents.previousFullscreenElement = fullscreenElement;
  }
@@ -9951,28 +9628,28 @@ function _emscripten_get_fullscreen_status(fullscreenStatus) {
 }
 
 function fillGamepadEventData(eventStruct, e) {
- HEAPF64[eventStruct >> 3] = e.timestamp;
+ HEAPF64[eventStruct >>> 3] = e.timestamp;
  for (var i = 0; i < e.axes.length; ++i) {
-  HEAPF64[eventStruct + i * 8 + 16 >> 3] = e.axes[i];
+  HEAPF64[eventStruct + i * 8 + 16 >>> 3] = e.axes[i];
  }
  for (var i = 0; i < e.buttons.length; ++i) {
-  if (typeof e.buttons[i] === "object") {
-   HEAPF64[eventStruct + i * 8 + 528 >> 3] = e.buttons[i].value;
+  if (typeof e.buttons[i] == "object") {
+   HEAPF64[eventStruct + i * 8 + 528 >>> 3] = e.buttons[i].value;
   } else {
-   HEAPF64[eventStruct + i * 8 + 528 >> 3] = e.buttons[i];
+   HEAPF64[eventStruct + i * 8 + 528 >>> 3] = e.buttons[i];
   }
  }
  for (var i = 0; i < e.buttons.length; ++i) {
-  if (typeof e.buttons[i] === "object") {
-   HEAP32[eventStruct + i * 4 + 1040 >> 2] = e.buttons[i].pressed;
+  if (typeof e.buttons[i] == "object") {
+   HEAP32[eventStruct + i * 4 + 1040 >>> 2] = e.buttons[i].pressed;
   } else {
-   HEAP32[eventStruct + i * 4 + 1040 >> 2] = e.buttons[i] == 1;
+   HEAP32[eventStruct + i * 4 + 1040 >>> 2] = e.buttons[i] == 1;
   }
  }
- HEAP32[eventStruct + 1296 >> 2] = e.connected;
- HEAP32[eventStruct + 1300 >> 2] = e.index;
- HEAP32[eventStruct + 8 >> 2] = e.axes.length;
- HEAP32[eventStruct + 12 >> 2] = e.buttons.length;
+ HEAP32[eventStruct + 1296 >>> 2] = e.connected;
+ HEAP32[eventStruct + 1300 >>> 2] = e.index;
+ HEAP32[eventStruct + 8 >>> 2] = e.axes.length;
+ HEAP32[eventStruct + 12 >>> 2] = e.buttons.length;
  stringToUTF8(e.id, eventStruct + 1304, 64);
  stringToUTF8(e.mapping, eventStruct + 1368, 64);
 }
@@ -9986,7 +9663,13 @@ function _emscripten_get_gamepad_status(index, gamepadState) {
 }
 
 function _emscripten_get_heap_max() {
- return 2147483648;
+ return HEAPU8.length;
+}
+
+function _emscripten_get_now_res() {
+ if (ENVIRONMENT_IS_NODE) {
+  return 1;
+ } else return 1e3;
 }
 
 function _emscripten_get_num_gamepads() {
@@ -10052,15 +9735,15 @@ function formatString(format, varargs) {
   var ret;
   argIndex = prepVararg(argIndex, type);
   if (type === "double") {
-   ret = HEAPF64[argIndex >> 3];
+   ret = Number(HEAPF64[argIndex >>> 3]);
    argIndex += 8;
   } else if (type == "i64") {
-   ret = [ HEAP32[argIndex >> 2], HEAP32[argIndex + 4 >> 2] ];
+   ret = [ HEAP32[argIndex >>> 2], HEAP32[argIndex + 4 >>> 2] ];
    argIndex += 8;
   } else {
    assert((argIndex & 3) === 0);
    type = "i32";
-   ret = HEAP32[argIndex >> 2];
+   ret = HEAP32[argIndex >>> 2];
    argIndex += 4;
   }
   return ret;
@@ -10069,9 +9752,9 @@ function formatString(format, varargs) {
  var curr, next, currArg;
  while (1) {
   var startTextIndex = textIndex;
-  curr = HEAP8[textIndex >> 0];
+  curr = HEAP8[textIndex >>> 0];
   if (curr === 0) break;
-  next = HEAP8[textIndex + 1 >> 0];
+  next = HEAP8[textIndex + 1 >>> 0];
   if (curr == 37) {
    var flagAlwaysSigned = false;
    var flagLeftAlign = false;
@@ -10108,18 +9791,18 @@ function formatString(format, varargs) {
      break flagsLoop;
     }
     textIndex++;
-    next = HEAP8[textIndex + 1 >> 0];
+    next = HEAP8[textIndex + 1 >>> 0];
    }
    var width = 0;
    if (next == 42) {
     width = getNextArg("i32");
     textIndex++;
-    next = HEAP8[textIndex + 1 >> 0];
+    next = HEAP8[textIndex + 1 >>> 0];
    } else {
     while (next >= 48 && next <= 57) {
      width = width * 10 + (next - 48);
      textIndex++;
-     next = HEAP8[textIndex + 1 >> 0];
+     next = HEAP8[textIndex + 1 >>> 0];
     }
    }
    var precisionSet = false, precision = -1;
@@ -10127,19 +9810,19 @@ function formatString(format, varargs) {
     precision = 0;
     precisionSet = true;
     textIndex++;
-    next = HEAP8[textIndex + 1 >> 0];
+    next = HEAP8[textIndex + 1 >>> 0];
     if (next == 42) {
      precision = getNextArg("i32");
      textIndex++;
     } else {
      while (1) {
-      var precisionChr = HEAP8[textIndex + 1 >> 0];
+      var precisionChr = HEAP8[textIndex + 1 >>> 0];
       if (precisionChr < 48 || precisionChr > 57) break;
       precision = precision * 10 + (precisionChr - 48);
       textIndex++;
      }
     }
-    next = HEAP8[textIndex + 1 >> 0];
+    next = HEAP8[textIndex + 1 >>> 0];
    }
    if (precision < 0) {
     precision = 6;
@@ -10148,7 +9831,7 @@ function formatString(format, varargs) {
    var argSize;
    switch (String.fromCharCode(next)) {
    case "h":
-    var nextNext = HEAP8[textIndex + 2 >> 0];
+    var nextNext = HEAP8[textIndex + 2 >>> 0];
     if (nextNext == 104) {
      textIndex++;
      argSize = 1;
@@ -10158,7 +9841,7 @@ function formatString(format, varargs) {
     break;
 
    case "l":
-    var nextNext = HEAP8[textIndex + 2 >> 0];
+    var nextNext = HEAP8[textIndex + 2 >>> 0];
     if (nextNext == 108) {
      textIndex++;
      argSize = 8;
@@ -10183,7 +9866,7 @@ function formatString(format, varargs) {
     argSize = null;
    }
    if (argSize) textIndex++;
-   next = HEAP8[textIndex + 1 >> 0];
+   next = HEAP8[textIndex + 1 >>> 0];
    switch (String.fromCharCode(next)) {
    case "d":
    case "i":
@@ -10207,9 +9890,9 @@ function formatString(format, varargs) {
      var currAbsArg = Math.abs(currArg);
      var prefix = "";
      if (next == 100 || next == 105) {
-      argText = reSign(currArg, 8 * argSize, 1).toString(10);
+      argText = reSign(currArg, 8 * argSize).toString(10);
      } else if (next == 117) {
-      argText = unSign(currArg, 8 * argSize, 1).toString(10);
+      argText = unSign(currArg, 8 * argSize).toString(10);
       currArg = Math.abs(currArg);
      } else if (next == 111) {
       argText = (flagAlternative ? "0" : "") + currAbsArg.toString(8);
@@ -10364,7 +10047,7 @@ function formatString(format, varargs) {
      }
      if (arg) {
       for (var i = 0; i < argLength; i++) {
-       ret.push(HEAPU8[arg++ >> 0]);
+       ret.push(HEAPU8[arg++ >>> 0]);
       }
      } else {
       ret = ret.concat(intArrayFromString("(null)".substr(0, argLength), true));
@@ -10390,7 +10073,7 @@ function formatString(format, varargs) {
    case "n":
     {
      var ptr = getNextArg("i32*");
-     HEAP32[ptr >> 2] = ret.length;
+     HEAP32[ptr >>> 2] = ret.length;
      break;
     }
 
@@ -10403,7 +10086,7 @@ function formatString(format, varargs) {
    default:
     {
      for (var i = startTextIndex; i < textIndex + 2; i++) {
-      ret.push(HEAP8[i >> 0]);
+      ret.push(HEAP8[i >>> 0]);
      }
     }
    }
@@ -10430,7 +10113,7 @@ function traverseStack(args) {
    str += ", ";
   }
   first = false;
-  if (typeof a === "number" || typeof a === "string") {
+  if (typeof a == "number" || typeof a == "string") {
    str += a;
   } else {
    str += "(" + typeof a + ")";
@@ -10452,7 +10135,7 @@ function _emscripten_get_callstack_js(flags) {
  if (flags & 32) {
   warnOnce("EM_LOG_DEMANGLE is deprecated; ignoring");
  }
- if (flags & 8 && typeof emscripten_source_map === "undefined") {
+ if (flags & 8 && typeof emscripten_source_map == "undefined") {
   warnOnce('Source map information is not available, emscripten_log with EM_LOG_C_STACK will be ignored. Build with "--pre-js $EMSCRIPTEN/src/emscripten-source-map.min.js" linker flag to add source map loading to code.');
   flags ^= 8;
   flags |= 16;
@@ -10554,17 +10237,8 @@ function _emscripten_log(flags, format, varargs) {
  _emscripten_log_js(flags, str);
 }
 
-function _longjmp(env, value) {
- _setThrew(env, value || 1);
- throw "longjmp";
-}
-
-function _emscripten_longjmp(a0, a1) {
- return _longjmp(a0, a1);
-}
-
 function _emscripten_memcpy_big(dest, src, num) {
- HEAPU8.copyWithin(dest, src, src + num);
+ HEAPU8.copyWithin(dest >>> 0, src >>> 0, src + num >>> 0);
 }
 
 function doRequestFullscreen(target, strategy) {
@@ -10615,36 +10289,14 @@ function _emscripten_request_pointerlock(target, deferUntilInEventHandler) {
  return requestPointerLock(target);
 }
 
-function emscripten_realloc_buffer(size) {
- try {
-  wasmMemory.grow(size - buffer.byteLength + 65535 >>> 16);
-  updateGlobalBufferAndViews(wasmMemory.buffer);
-  return 1;
- } catch (e) {
-  console.error("emscripten_realloc_buffer: Attempted to grow heap from " + buffer.byteLength + " bytes to " + size + " bytes, but got error: " + e);
- }
+function abortOnCannotGrowMemory(requestedSize) {
+ abort("Cannot enlarge memory arrays to size " + requestedSize + " bytes (OOM). Either (1) compile with  -s INITIAL_MEMORY=X  with X higher than the current value " + HEAP8.length + ", (2) compile with  -s ALLOW_MEMORY_GROWTH=1  which allows increasing the size at runtime, or (3) if you want malloc to return NULL (0) instead of this abort, compile with  -s ABORTING_MALLOC=0 ");
 }
 
 function _emscripten_resize_heap(requestedSize) {
  var oldSize = HEAPU8.length;
  requestedSize = requestedSize >>> 0;
- assert(requestedSize > oldSize);
- var maxHeapSize = 2147483648;
- if (requestedSize > maxHeapSize) {
-  err("Cannot enlarge memory, asked to go up to " + requestedSize + " bytes, but the limit is " + maxHeapSize + " bytes!");
-  return false;
- }
- for (var cutDown = 1; cutDown <= 4; cutDown *= 2) {
-  var overGrownHeapSize = oldSize * (1 + .2 / cutDown);
-  overGrownHeapSize = Math.min(overGrownHeapSize, requestedSize + 100663296);
-  var newSize = Math.min(maxHeapSize, alignUp(Math.max(requestedSize, overGrownHeapSize), 65536));
-  var replacement = emscripten_realloc_buffer(newSize);
-  if (replacement) {
-   return true;
-  }
- }
- err("Failed to grow the heap from " + oldSize + " bytes to " + newSize + " bytes, not enough memory!");
- return false;
+ abortOnCannotGrowMemory(requestedSize);
 }
 
 function _emscripten_sample_gamepad_data() {
@@ -10748,31 +10400,34 @@ function _emscripten_set_gamepaddisconnected_callback_on_thread(userData, useCap
 
 function _emscripten_set_interval(cb, msecs, userData) {
  return setInterval(function() {
-  (function(a1) {
-   dynCall_vi.apply(null, [ cb, a1 ]);
-  })(userData);
+  callUserCallback(function() {
+   (function(a1) {
+    dynCall_vi.apply(null, [ cb, a1 ]);
+   })(userData);
+  });
  }, msecs);
 }
 
 function registerKeyEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
- if (!JSEvents.keyEvent) JSEvents.keyEvent = _malloc(164);
+ if (!JSEvents.keyEvent) JSEvents.keyEvent = _malloc(176);
  var keyEventHandlerFunc = function(e) {
   assert(e);
   var keyEventData = JSEvents.keyEvent;
+  HEAPF64[keyEventData >>> 3] = e.timeStamp;
   var idx = keyEventData >> 2;
-  HEAP32[idx + 0] = e.location;
-  HEAP32[idx + 1] = e.ctrlKey;
-  HEAP32[idx + 2] = e.shiftKey;
-  HEAP32[idx + 3] = e.altKey;
-  HEAP32[idx + 4] = e.metaKey;
-  HEAP32[idx + 5] = e.repeat;
-  HEAP32[idx + 6] = e.charCode;
-  HEAP32[idx + 7] = e.keyCode;
-  HEAP32[idx + 8] = e.which;
-  stringToUTF8(e.key || "", keyEventData + 36, 32);
-  stringToUTF8(e.code || "", keyEventData + 68, 32);
-  stringToUTF8(e.char || "", keyEventData + 100, 32);
-  stringToUTF8(e.locale || "", keyEventData + 132, 32);
+  HEAP32[idx + 2 >>> 0] = e.location;
+  HEAP32[idx + 3 >>> 0] = e.ctrlKey;
+  HEAP32[idx + 4 >>> 0] = e.shiftKey;
+  HEAP32[idx + 5 >>> 0] = e.altKey;
+  HEAP32[idx + 6 >>> 0] = e.metaKey;
+  HEAP32[idx + 7 >>> 0] = e.repeat;
+  HEAP32[idx + 8 >>> 0] = e.charCode;
+  HEAP32[idx + 9 >>> 0] = e.keyCode;
+  HEAP32[idx + 10 >>> 0] = e.which;
+  stringToUTF8(e.key || "", keyEventData + 44, 32);
+  stringToUTF8(e.code || "", keyEventData + 76, 32);
+  stringToUTF8(e.char || "", keyEventData + 108, 32);
+  stringToUTF8(e.locale || "", keyEventData + 140, 32);
   if (function(a1, a2, a3) {
    return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
   }(eventTypeId, keyEventData, userData)) e.preventDefault();
@@ -10812,26 +10467,27 @@ function _emscripten_set_main_loop(func, fps, simulateInfiniteLoop) {
 
 function fillMouseEventData(eventStruct, e, target) {
  assert(eventStruct % 4 == 0);
+ HEAPF64[eventStruct >>> 3] = e.timeStamp;
  var idx = eventStruct >> 2;
- HEAP32[idx + 0] = e.screenX;
- HEAP32[idx + 1] = e.screenY;
- HEAP32[idx + 2] = e.clientX;
- HEAP32[idx + 3] = e.clientY;
- HEAP32[idx + 4] = e.ctrlKey;
- HEAP32[idx + 5] = e.shiftKey;
- HEAP32[idx + 6] = e.altKey;
- HEAP32[idx + 7] = e.metaKey;
- HEAP16[idx * 2 + 16] = e.button;
- HEAP16[idx * 2 + 17] = e.buttons;
- HEAP32[idx + 9] = e["movementX"];
- HEAP32[idx + 10] = e["movementY"];
+ HEAP32[idx + 2 >>> 0] = e.screenX;
+ HEAP32[idx + 3 >>> 0] = e.screenY;
+ HEAP32[idx + 4 >>> 0] = e.clientX;
+ HEAP32[idx + 5 >>> 0] = e.clientY;
+ HEAP32[idx + 6 >>> 0] = e.ctrlKey;
+ HEAP32[idx + 7 >>> 0] = e.shiftKey;
+ HEAP32[idx + 8 >>> 0] = e.altKey;
+ HEAP32[idx + 9 >>> 0] = e.metaKey;
+ HEAP16[idx * 2 + 20 >>> 0] = e.button;
+ HEAP16[idx * 2 + 21 >>> 0] = e.buttons;
+ HEAP32[idx + 11 >>> 0] = e["movementX"];
+ HEAP32[idx + 12 >>> 0] = e["movementY"];
  var rect = getBoundingClientRect(target);
- HEAP32[idx + 11] = e.clientX - rect.left;
- HEAP32[idx + 12] = e.clientY - rect.top;
+ HEAP32[idx + 13 >>> 0] = e.clientX - rect.left;
+ HEAP32[idx + 14 >>> 0] = e.clientY - rect.top;
 }
 
 function registerMouseEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
- if (!JSEvents.mouseEvent) JSEvents.mouseEvent = _malloc(64);
+ if (!JSEvents.mouseEvent) JSEvents.mouseEvent = _malloc(72);
  target = findEventTarget(target);
  var mouseEventHandlerFunc = function(ev) {
   var e = ev || event;
@@ -10866,8 +10522,51 @@ function _emscripten_set_mouseup_callback_on_thread(target, userData, useCapture
  return 0;
 }
 
+function fillPointerlockChangeEventData(eventStruct) {
+ var pointerLockElement = document.pointerLockElement || document.mozPointerLockElement || document.webkitPointerLockElement || document.msPointerLockElement;
+ var isPointerlocked = !!pointerLockElement;
+ HEAP32[eventStruct >>> 2] = isPointerlocked;
+ var nodeName = JSEvents.getNodeNameForTarget(pointerLockElement);
+ var id = pointerLockElement && pointerLockElement.id ? pointerLockElement.id : "";
+ stringToUTF8(nodeName, eventStruct + 4, 128);
+ stringToUTF8(id, eventStruct + 132, 128);
+}
+
+function registerPointerlockChangeEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
+ if (!JSEvents.pointerlockChangeEvent) JSEvents.pointerlockChangeEvent = _malloc(260);
+ var pointerlockChangeEventHandlerFunc = function(ev) {
+  var e = ev || event;
+  var pointerlockChangeEvent = JSEvents.pointerlockChangeEvent;
+  fillPointerlockChangeEventData(pointerlockChangeEvent);
+  if (function(a1, a2, a3) {
+   return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
+  }(eventTypeId, pointerlockChangeEvent, userData)) e.preventDefault();
+ };
+ var eventHandler = {
+  target: target,
+  eventTypeString: eventTypeString,
+  callbackfunc: callbackfunc,
+  handlerFunc: pointerlockChangeEventHandlerFunc,
+  useCapture: useCapture
+ };
+ JSEvents.registerOrRemoveHandler(eventHandler);
+}
+
+function _emscripten_set_pointerlockchange_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
+ if (!document || !document.body || !document.body.requestPointerLock && !document.body.mozRequestPointerLock && !document.body.webkitRequestPointerLock && !document.body.msRequestPointerLock) {
+  return -1;
+ }
+ target = findEventTarget(target);
+ if (!target) return -4;
+ registerPointerlockChangeEventCallback(target, userData, useCapture, callbackfunc, 20, "pointerlockchange", targetThread);
+ registerPointerlockChangeEventCallback(target, userData, useCapture, callbackfunc, 20, "mozpointerlockchange", targetThread);
+ registerPointerlockChangeEventCallback(target, userData, useCapture, callbackfunc, 20, "webkitpointerlockchange", targetThread);
+ registerPointerlockChangeEventCallback(target, userData, useCapture, callbackfunc, 20, "mspointerlockchange", targetThread);
+ return 0;
+}
+
 function registerTouchEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
- if (!JSEvents.touchEvent) JSEvents.touchEvent = _malloc(1684);
+ if (!JSEvents.touchEvent) JSEvents.touchEvent = _malloc(1696);
  target = findEventTarget(target);
  var touchEventHandlerFunc = function(e) {
   assert(e);
@@ -10887,32 +10586,32 @@ function registerTouchEventCallback(target, userData, useCapture, callbackfunc, 
   }
   var touchEvent = JSEvents.touchEvent;
   var idx = touchEvent >> 2;
-  HEAP32[idx + 1] = e.ctrlKey;
-  HEAP32[idx + 2] = e.shiftKey;
-  HEAP32[idx + 3] = e.altKey;
-  HEAP32[idx + 4] = e.metaKey;
-  idx += 5;
+  HEAP32[idx + 3 >>> 0] = e.ctrlKey;
+  HEAP32[idx + 4 >>> 0] = e.shiftKey;
+  HEAP32[idx + 5 >>> 0] = e.altKey;
+  HEAP32[idx + 6 >>> 0] = e.metaKey;
+  idx += 7;
   var targetRect = getBoundingClientRect(target);
   var numTouches = 0;
   for (var i in touches) {
    var t = touches[i];
-   HEAP32[idx + 0] = t.identifier;
-   HEAP32[idx + 1] = t.screenX;
-   HEAP32[idx + 2] = t.screenY;
-   HEAP32[idx + 3] = t.clientX;
-   HEAP32[idx + 4] = t.clientY;
-   HEAP32[idx + 5] = t.pageX;
-   HEAP32[idx + 6] = t.pageY;
-   HEAP32[idx + 7] = t.isChanged;
-   HEAP32[idx + 8] = t.onTarget;
-   HEAP32[idx + 9] = t.clientX - targetRect.left;
-   HEAP32[idx + 10] = t.clientY - targetRect.top;
+   HEAP32[idx + 0 >>> 0] = t.identifier;
+   HEAP32[idx + 1 >>> 0] = t.screenX;
+   HEAP32[idx + 2 >>> 0] = t.screenY;
+   HEAP32[idx + 3 >>> 0] = t.clientX;
+   HEAP32[idx + 4 >>> 0] = t.clientY;
+   HEAP32[idx + 5 >>> 0] = t.pageX;
+   HEAP32[idx + 6 >>> 0] = t.pageY;
+   HEAP32[idx + 7 >>> 0] = t.isChanged;
+   HEAP32[idx + 8 >>> 0] = t.onTarget;
+   HEAP32[idx + 9 >>> 0] = t.clientX - targetRect.left;
+   HEAP32[idx + 10 >>> 0] = t.clientY - targetRect.top;
    idx += 13;
    if (++numTouches > 31) {
     break;
    }
   }
-  HEAP32[touchEvent >> 2] = numTouches;
+  HEAP32[touchEvent + 8 >>> 2] = numTouches;
   if (function(a1, a2, a3) {
    return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
   }(eventTypeId, touchEvent, userData)) e.preventDefault();
@@ -10949,15 +10648,15 @@ function _emscripten_set_touchstart_callback_on_thread(target, userData, useCapt
 }
 
 function registerWheelEventCallback(target, userData, useCapture, callbackfunc, eventTypeId, eventTypeString, targetThread) {
- if (!JSEvents.wheelEvent) JSEvents.wheelEvent = _malloc(96);
+ if (!JSEvents.wheelEvent) JSEvents.wheelEvent = _malloc(104);
  var wheelHandlerFunc = function(ev) {
   var e = ev || event;
   var wheelEvent = JSEvents.wheelEvent;
   fillMouseEventData(wheelEvent, e, target);
-  HEAPF64[wheelEvent + 64 >> 3] = e["deltaX"];
-  HEAPF64[wheelEvent + 72 >> 3] = e["deltaY"];
-  HEAPF64[wheelEvent + 80 >> 3] = e["deltaZ"];
-  HEAP32[wheelEvent + 88 >> 2] = e["deltaMode"];
+  HEAPF64[wheelEvent + 72 >>> 3] = e["deltaX"];
+  HEAPF64[wheelEvent + 80 >>> 3] = e["deltaY"];
+  HEAPF64[wheelEvent + 88 >>> 3] = e["deltaZ"];
+  HEAP32[wheelEvent + 96 >>> 2] = e["deltaMode"];
   if (function(a1, a2, a3) {
    return dynCall_iiii.apply(null, [ callbackfunc, a1, a2, a3 ]);
   }(eventTypeId, wheelEvent, userData)) e.preventDefault();
@@ -10975,17 +10674,12 @@ function registerWheelEventCallback(target, userData, useCapture, callbackfunc, 
 
 function _emscripten_set_wheel_callback_on_thread(target, userData, useCapture, callbackfunc, targetThread) {
  target = findEventTarget(target);
- if (typeof target.onwheel !== "undefined") {
+ if (typeof target.onwheel != "undefined") {
   registerWheelEventCallback(target, userData, useCapture, callbackfunc, 9, "wheel", targetThread);
   return 0;
  } else {
   return -1;
  }
-}
-
-function _emscripten_thread_sleep(msecs) {
- var start = _emscripten_get_now();
- while (_emscripten_get_now() - start < msecs) {}
 }
 
 function __webgl_enable_ANGLE_instanced_arrays(ctx) {
@@ -11178,8 +10872,8 @@ var GL = {
  getSource: function(shader, count, string, length) {
   var source = "";
   for (var i = 0; i < count; ++i) {
-   var len = length ? HEAP32[length + i * 4 >> 2] : -1;
-   source += UTF8ToString(HEAP32[string + i * 4 >> 2], len < 0 ? undefined : len);
+   var len = length ? HEAP32[length + i * 4 >>> 2] : -1;
+   source += UTF8ToString(HEAP32[string + i * 4 >>> 2], len < 0 ? undefined : len);
   }
   return source;
  },
@@ -11200,7 +10894,7 @@ var GL = {
    var size = GL.calcBufLength(cb.size, cb.type, cb.stride, count);
    var buf = GL.getTempVertexBuffer(size);
    GLctx.bindBuffer(34962, buf);
-   GLctx.bufferSubData(34962, 0, HEAPU8.subarray(cb.ptr, cb.ptr + size));
+   GLctx.bufferSubData(34962, 0, HEAPU8.subarray(cb.ptr >>> 0, cb.ptr + size >>> 0));
    cb.vertexAttribPointerAdaptor.call(GLctx, i, cb.size, cb.type, cb.normalized, cb.stride, 0);
   }
  },
@@ -11212,10 +10906,11 @@ var GL = {
  createContext: function(canvas, webGLContextAttributes) {
   if (!canvas.getContextSafariWebGL2Fixed) {
    canvas.getContextSafariWebGL2Fixed = canvas.getContext;
-   canvas.getContext = function(ver, attrs) {
+   function fixedGetContext(ver, attrs) {
     var gl = canvas.getContextSafariWebGL2Fixed(ver, attrs);
     return ver == "webgl" == gl instanceof WebGLRenderingContext ? gl : null;
-   };
+   }
+   canvas.getContext = fixedGetContext;
   }
   var ctx = webGLContextAttributes.majorVersion > 1 ? canvas.getContext("webgl2", webGLContextAttributes) : canvas.getContext("webgl", webGLContextAttributes);
   if (!ctx) return 0;
@@ -11232,7 +10927,7 @@ var GL = {
   };
   if (ctx.canvas) ctx.canvas.GLctxObject = context;
   GL.contexts[handle] = context;
-  if (typeof webGLContextAttributes.enableExtensionsByDefault === "undefined" || webGLContextAttributes.enableExtensionsByDefault) {
+  if (typeof webGLContextAttributes.enableExtensionsByDefault == "undefined" || webGLContextAttributes.enableExtensionsByDefault) {
    GL.initExtensions(context);
   }
   context.maxVertexAttribs = context.GLctx.getParameter(34921);
@@ -11262,7 +10957,7 @@ var GL = {
  },
  deleteContext: function(contextHandle) {
   if (GL.currentContext === GL.contexts[contextHandle]) GL.currentContext = null;
-  if (typeof JSEvents === "object") JSEvents.removeAllHandlersOnTarget(GL.contexts[contextHandle].GLctx.canvas);
+  if (typeof JSEvents == "object") JSEvents.removeAllHandlersOnTarget(GL.contexts[contextHandle].GLctx.canvas);
   if (GL.contexts[contextHandle] && GL.contexts[contextHandle].GLctx.canvas) GL.contexts[contextHandle].GLctx.canvas.GLctxObject = undefined;
   GL.contexts[contextHandle] = null;
  },
@@ -11297,22 +10992,22 @@ var __emscripten_webgl_power_preferences = [ "default", "low-power", "high-perfo
 function _emscripten_webgl_do_create_context(target, attributes) {
  assert(attributes);
  var a = attributes >> 2;
- var powerPreference = HEAP32[a + (24 >> 2)];
+ var powerPreference = HEAP32[a + (24 >> 2) >>> 0];
  var contextAttributes = {
-  "alpha": !!HEAP32[a + (0 >> 2)],
-  "depth": !!HEAP32[a + (4 >> 2)],
-  "stencil": !!HEAP32[a + (8 >> 2)],
-  "antialias": !!HEAP32[a + (12 >> 2)],
-  "premultipliedAlpha": !!HEAP32[a + (16 >> 2)],
-  "preserveDrawingBuffer": !!HEAP32[a + (20 >> 2)],
+  "alpha": !!HEAP32[a + (0 >> 2) >>> 0],
+  "depth": !!HEAP32[a + (4 >> 2) >>> 0],
+  "stencil": !!HEAP32[a + (8 >> 2) >>> 0],
+  "antialias": !!HEAP32[a + (12 >> 2) >>> 0],
+  "premultipliedAlpha": !!HEAP32[a + (16 >> 2) >>> 0],
+  "preserveDrawingBuffer": !!HEAP32[a + (20 >> 2) >>> 0],
   "powerPreference": __emscripten_webgl_power_preferences[powerPreference],
-  "failIfMajorPerformanceCaveat": !!HEAP32[a + (28 >> 2)],
-  majorVersion: HEAP32[a + (32 >> 2)],
-  minorVersion: HEAP32[a + (36 >> 2)],
-  enableExtensionsByDefault: HEAP32[a + (40 >> 2)],
-  explicitSwapControl: HEAP32[a + (44 >> 2)],
-  proxyContextToMainThread: HEAP32[a + (48 >> 2)],
-  renderViaOffscreenBackBuffer: HEAP32[a + (52 >> 2)]
+  "failIfMajorPerformanceCaveat": !!HEAP32[a + (28 >> 2) >>> 0],
+  majorVersion: HEAP32[a + (32 >> 2) >>> 0],
+  minorVersion: HEAP32[a + (36 >> 2) >>> 0],
+  enableExtensionsByDefault: HEAP32[a + (40 >> 2) >>> 0],
+  explicitSwapControl: HEAP32[a + (44 >> 2) >>> 0],
+  proxyContextToMainThread: HEAP32[a + (48 >> 2) >>> 0],
+  renderViaOffscreenBackBuffer: HEAP32[a + (52 >> 2) >>> 0]
  };
  var canvas = findCanvasEventTarget(target);
  if (!canvas) {
@@ -11328,23 +11023,6 @@ function _emscripten_webgl_do_create_context(target, attributes) {
 function _emscripten_webgl_create_context(a0, a1) {
  return _emscripten_webgl_do_create_context(a0, a1);
 }
-
-function _emscripten_webgl_do_get_current_context() {
- return GL.currentContext ? GL.currentContext.handle : 0;
-}
-
-function _emscripten_webgl_get_current_context() {
- return _emscripten_webgl_do_get_current_context();
-}
-
-Module["_emscripten_webgl_get_current_context"] = _emscripten_webgl_get_current_context;
-
-function _emscripten_webgl_make_context_current(contextHandle) {
- var success = GL.makeContextCurrent(contextHandle);
- return success ? 0 : -5;
-}
-
-Module["_emscripten_webgl_make_context_current"] = _emscripten_webgl_make_context_current;
 
 function _emscripten_webgl_destroy_context(contextHandle) {
  if (GL.currentContext == contextHandle) GL.currentContext = 0;
@@ -11365,13 +11043,26 @@ function _emscripten_webgl_enable_extension(contextHandle, extension) {
  return !!ext;
 }
 
+function _emscripten_webgl_do_get_current_context() {
+ return GL.currentContext ? GL.currentContext.handle : 0;
+}
+
+function _emscripten_webgl_get_current_context() {
+ return _emscripten_webgl_do_get_current_context();
+}
+
 function _emscripten_webgl_init_context_attributes(attributes) {
  assert(attributes);
  var a = attributes >> 2;
  for (var i = 0; i < 56 >> 2; ++i) {
-  HEAP32[a + i] = 0;
+  HEAP32[a + i >>> 0] = 0;
  }
- HEAP32[a + (0 >> 2)] = HEAP32[a + (4 >> 2)] = HEAP32[a + (12 >> 2)] = HEAP32[a + (16 >> 2)] = HEAP32[a + (32 >> 2)] = HEAP32[a + (40 >> 2)] = 1;
+ HEAP32[a + (0 >> 2) >>> 0] = HEAP32[a + (4 >> 2) >>> 0] = HEAP32[a + (12 >> 2) >>> 0] = HEAP32[a + (16 >> 2) >>> 0] = HEAP32[a + (32 >> 2) >>> 0] = HEAP32[a + (40 >> 2) >>> 0] = 1;
+}
+
+function _emscripten_webgl_make_context_current(contextHandle) {
+ var success = GL.makeContextCurrent(contextHandle);
+ return success ? 0 : -5;
 }
 
 var ENV = {};
@@ -11382,7 +11073,7 @@ function getExecutableName() {
 
 function getEnvStrings() {
  if (!getEnvStrings.strings) {
-  var lang = (typeof navigator === "object" && navigator.languages && navigator.languages[0] || "C").replace("-", "_") + ".UTF-8";
+  var lang = (typeof navigator == "object" && navigator.languages && navigator.languages[0] || "C").replace("-", "_") + ".UTF-8";
   var env = {
    "USER": "web_user",
    "LOGNAME": "web_user",
@@ -11393,7 +11084,7 @@ function getEnvStrings() {
    "_": getExecutableName()
   };
   for (var x in ENV) {
-   env[x] = ENV[x];
+   if (ENV[x] === undefined) delete env[x]; else env[x] = ENV[x];
   }
   var strings = [];
   for (var x in env) {
@@ -11405,35 +11096,25 @@ function getEnvStrings() {
 }
 
 function _environ_get(__environ, environ_buf) {
- try {
-  var bufSize = 0;
-  getEnvStrings().forEach(function(string, i) {
-   var ptr = environ_buf + bufSize;
-   HEAP32[__environ + i * 4 >> 2] = ptr;
-   writeAsciiToMemory(string, ptr);
-   bufSize += string.length + 1;
-  });
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return e.errno;
- }
+ var bufSize = 0;
+ getEnvStrings().forEach(function(string, i) {
+  var ptr = environ_buf + bufSize;
+  HEAP32[__environ + i * 4 >>> 2] = ptr;
+  writeAsciiToMemory(string, ptr);
+  bufSize += string.length + 1;
+ });
+ return 0;
 }
 
 function _environ_sizes_get(penviron_count, penviron_buf_size) {
- try {
-  var strings = getEnvStrings();
-  HEAP32[penviron_count >> 2] = strings.length;
-  var bufSize = 0;
-  strings.forEach(function(string) {
-   bufSize += string.length + 1;
-  });
-  HEAP32[penviron_buf_size >> 2] = bufSize;
-  return 0;
- } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
-  return e.errno;
- }
+ var strings = getEnvStrings();
+ HEAP32[penviron_count >>> 2] = strings.length;
+ var bufSize = 0;
+ strings.forEach(function(string) {
+  bufSize += string.length + 1;
+ });
+ HEAP32[penviron_buf_size >>> 2] = bufSize;
+ return 0;
 }
 
 function _fd_close(fd) {
@@ -11442,7 +11123,7 @@ function _fd_close(fd) {
   FS.close(stream);
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return e.errno;
  }
 }
@@ -11451,10 +11132,10 @@ function _fd_fdstat_get(fd, pbuf) {
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
   var type = stream.tty ? 2 : FS.isDir(stream.mode) ? 3 : FS.isLink(stream.mode) ? 7 : 4;
-  HEAP8[pbuf >> 0] = type;
+  HEAP8[pbuf >>> 0] = type;
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return e.errno;
  }
 }
@@ -11463,10 +11144,10 @@ function _fd_read(fd, iov, iovcnt, pnum) {
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
   var num = SYSCALLS.doReadv(stream, iov, iovcnt);
-  HEAP32[pnum >> 2] = num;
+  HEAP32[pnum >>> 2] = num;
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return e.errno;
  }
 }
@@ -11482,11 +11163,11 @@ function _fd_seek(fd, offset_low, offset_high, whence, newOffset) {
   }
   FS.llseek(stream, offset, whence);
   tempI64 = [ stream.position >>> 0, (tempDouble = stream.position, +Math.abs(tempDouble) >= 1 ? tempDouble > 0 ? (Math.min(+Math.floor(tempDouble / 4294967296), 4294967295) | 0) >>> 0 : ~~+Math.ceil((tempDouble - +(~~tempDouble >>> 0)) / 4294967296) >>> 0 : 0) ], 
-  HEAP32[newOffset >> 2] = tempI64[0], HEAP32[newOffset + 4 >> 2] = tempI64[1];
+  HEAP32[newOffset >>> 2] = tempI64[0], HEAP32[newOffset + 4 >>> 2] = tempI64[1];
   if (stream.getdents && offset === 0 && whence === 0) stream.getdents = null;
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return e.errno;
  }
 }
@@ -11495,170 +11176,34 @@ function _fd_write(fd, iov, iovcnt, pnum) {
  try {
   var stream = SYSCALLS.getStreamFromFD(fd);
   var num = SYSCALLS.doWritev(stream, iov, iovcnt);
-  HEAP32[pnum >> 2] = num;
+  HEAP32[pnum >>> 2] = num;
   return 0;
  } catch (e) {
-  if (typeof FS === "undefined" || !(e instanceof FS.ErrnoError)) abort(e);
+  if (typeof FS == "undefined" || !(e instanceof FS.ErrnoError)) throw e;
   return e.errno;
  }
-}
-
-function _flock(fd, operation) {
- return 0;
 }
 
 function _getTempRet0() {
  return getTempRet0();
 }
 
-function _getaddrinfo(node, service, hint, out) {
- var addr = 0;
- var port = 0;
- var flags = 0;
- var family = 0;
- var type = 0;
- var proto = 0;
- var ai;
- function allocaddrinfo(family, type, proto, canon, addr, port) {
-  var sa, salen, ai;
-  var errno;
-  salen = family === 10 ? 28 : 16;
-  addr = family === 10 ? inetNtop6(addr) : inetNtop4(addr);
-  sa = _malloc(salen);
-  errno = writeSockaddr(sa, family, addr, port);
-  assert(!errno);
-  ai = _malloc(32);
-  HEAP32[ai + 4 >> 2] = family;
-  HEAP32[ai + 8 >> 2] = type;
-  HEAP32[ai + 12 >> 2] = proto;
-  HEAP32[ai + 24 >> 2] = canon;
-  HEAP32[ai + 20 >> 2] = sa;
-  if (family === 10) {
-   HEAP32[ai + 16 >> 2] = 28;
-  } else {
-   HEAP32[ai + 16 >> 2] = 16;
-  }
-  HEAP32[ai + 28 >> 2] = 0;
-  return ai;
- }
- if (hint) {
-  flags = HEAP32[hint >> 2];
-  family = HEAP32[hint + 4 >> 2];
-  type = HEAP32[hint + 8 >> 2];
-  proto = HEAP32[hint + 12 >> 2];
- }
- if (type && !proto) {
-  proto = type === 2 ? 17 : 6;
- }
- if (!type && proto) {
-  type = proto === 17 ? 2 : 1;
- }
- if (proto === 0) {
-  proto = 6;
- }
- if (type === 0) {
-  type = 1;
- }
- if (!node && !service) {
-  return -2;
- }
- if (flags & ~(1 | 2 | 4 | 1024 | 8 | 16 | 32)) {
-  return -1;
- }
- if (hint !== 0 && HEAP32[hint >> 2] & 2 && !node) {
-  return -1;
- }
- if (flags & 32) {
-  return -2;
- }
- if (type !== 0 && type !== 1 && type !== 2) {
-  return -7;
- }
- if (family !== 0 && family !== 2 && family !== 10) {
-  return -6;
- }
- if (service) {
-  service = UTF8ToString(service);
-  port = parseInt(service, 10);
-  if (isNaN(port)) {
-   if (flags & 1024) {
-    return -2;
-   }
-   return -8;
-  }
- }
- if (!node) {
-  if (family === 0) {
-   family = 2;
-  }
-  if ((flags & 1) === 0) {
-   if (family === 2) {
-    addr = _htonl(2130706433);
-   } else {
-    addr = [ 0, 0, 0, 1 ];
-   }
-  }
-  ai = allocaddrinfo(family, type, proto, null, addr, port);
-  HEAP32[out >> 2] = ai;
-  return 0;
- }
- node = UTF8ToString(node);
- addr = inetPton4(node);
- if (addr !== null) {
-  if (family === 0 || family === 2) {
-   family = 2;
-  } else if (family === 10 && flags & 8) {
-   addr = [ 0, 0, _htonl(65535), addr ];
-   family = 10;
-  } else {
-   return -2;
-  }
- } else {
-  addr = inetPton6(node);
-  if (addr !== null) {
-   if (family === 0 || family === 10) {
-    family = 10;
-   } else {
-    return -2;
-   }
-  }
- }
- if (addr != null) {
-  ai = allocaddrinfo(family, type, proto, node, addr, port);
-  HEAP32[out >> 2] = ai;
-  return 0;
- }
- if (flags & 4) {
-  return -2;
- }
- node = DNS.lookup_name(node);
- addr = inetPton4(node);
- if (family === 0) {
-  family = 2;
- } else if (family === 10) {
-  addr = [ 0, 0, _htonl(65535), addr ];
- }
- ai = allocaddrinfo(family, type, proto, null, addr, port);
- HEAP32[out >> 2] = ai;
- return 0;
-}
-
 function getHostByName(name) {
  var ret = _malloc(20);
  var nameBuf = _malloc(name.length + 1);
  stringToUTF8(name, nameBuf, name.length + 1);
- HEAP32[ret >> 2] = nameBuf;
+ HEAP32[ret >>> 2] = nameBuf;
  var aliasesBuf = _malloc(4);
- HEAP32[aliasesBuf >> 2] = 0;
- HEAP32[ret + 4 >> 2] = aliasesBuf;
+ HEAP32[aliasesBuf >>> 2] = 0;
+ HEAP32[ret + 4 >>> 2] = aliasesBuf;
  var afinet = 2;
- HEAP32[ret + 8 >> 2] = afinet;
- HEAP32[ret + 12 >> 2] = 4;
+ HEAP32[ret + 8 >>> 2] = afinet;
+ HEAP32[ret + 12 >>> 2] = 4;
  var addrListBuf = _malloc(12);
- HEAP32[addrListBuf >> 2] = addrListBuf + 8;
- HEAP32[addrListBuf + 4 >> 2] = 0;
- HEAP32[addrListBuf + 8 >> 2] = inetPton4(DNS.lookup_name(name));
- HEAP32[ret + 16 >> 2] = addrListBuf;
+ HEAP32[addrListBuf >>> 2] = addrListBuf + 8;
+ HEAP32[addrListBuf + 4 >>> 2] = 0;
+ HEAP32[addrListBuf + 8 >>> 2] = inetPton4(DNS.lookup_name(name));
+ HEAP32[ret + 16 >>> 2] = addrListBuf;
  return ret;
 }
 
@@ -11667,7 +11212,7 @@ function _gethostbyaddr(addr, addrlen, type) {
   setErrNo(5);
   return null;
  }
- addr = HEAP32[addr >> 2];
+ addr = HEAP32[addr >>> 2];
  var host = inetNtop4(addr);
  var lookup = DNS.lookup_addr(host);
  if (lookup) {
@@ -11678,52 +11223,6 @@ function _gethostbyaddr(addr, addrlen, type) {
 
 function _gethostbyname(name) {
  return getHostByName(UTF8ToString(name));
-}
-
-function _getnameinfo(sa, salen, node, nodelen, serv, servlen, flags) {
- var info = readSockaddr(sa, salen);
- if (info.errno) {
-  return -6;
- }
- var port = info.port;
- var addr = info.addr;
- var overflowed = false;
- if (node && nodelen) {
-  var lookup;
-  if (flags & 1 || !(lookup = DNS.lookup_addr(addr))) {
-   if (flags & 8) {
-    return -2;
-   }
-  } else {
-   addr = lookup;
-  }
-  var numBytesWrittenExclNull = stringToUTF8(addr, node, nodelen);
-  if (numBytesWrittenExclNull + 1 >= nodelen) {
-   overflowed = true;
-  }
- }
- if (serv && servlen) {
-  port = "" + port;
-  var numBytesWrittenExclNull = stringToUTF8(port, serv, servlen);
-  if (numBytesWrittenExclNull + 1 >= servlen) {
-   overflowed = true;
-  }
- }
- if (overflowed) {
-  return -12;
- }
- return 0;
-}
-
-function _getpwuid() {
- throw "getpwuid: TODO";
-}
-
-function _gettimeofday(ptr) {
- var now = Date.now();
- HEAP32[ptr >> 2] = now / 1e3 | 0;
- HEAP32[ptr + 4 >> 2] = now % 1e3 * 1e3 | 0;
- return 0;
 }
 
 function _glActiveTexture(x0) {
@@ -11739,10 +11238,6 @@ function _glAttachShader(program, shader) {
 
 function _glBeginQuery(target, id) {
  GLctx["beginQuery"](target, GL.queries[id]);
-}
-
-function _glBeginTransformFeedback(x0) {
- GLctx["beginTransformFeedback"](x0);
 }
 
 function _glBindAttribLocation(program, index, name) {
@@ -11787,10 +11282,6 @@ function _glBindTexture(target, texture) {
  GLctx.bindTexture(target, GL.textures[texture]);
 }
 
-function _glBindTransformFeedback(target, id) {
- GLctx["bindTransformFeedback"](target, GL.transformFeedbacks[id]);
-}
-
 function _glBindVertexArray(vao) {
  GLctx["bindVertexArray"](GL.vaos[vao]);
  var ibo = GLctx.getParameter(34965);
@@ -11821,7 +11312,7 @@ function _glBufferData(target, size, data, usage) {
    GLctx.bufferData(target, size, usage);
   }
  } else {
-  GLctx.bufferData(target, data ? HEAPU8.subarray(data, data + size) : size, usage);
+  GLctx.bufferData(target, data ? HEAPU8.subarray(data >>> 0, data + size >>> 0) : size, usage);
  }
 }
 
@@ -11830,7 +11321,7 @@ function _glBufferSubData(target, offset, size, data) {
   GLctx.bufferSubData(target, offset, HEAPU8, data, size);
   return;
  }
- GLctx.bufferSubData(target, offset, HEAPU8.subarray(data, data + size));
+ GLctx.bufferSubData(target, offset, HEAPU8.subarray(data >>> 0, data + size >>> 0));
 }
 
 function _glCheckFramebufferStatus(x0) {
@@ -11886,7 +11377,7 @@ function _glCompressedTexImage2D(target, level, internalFormat, width, height, b
   }
   return;
  }
- GLctx["compressedTexImage2D"](target, level, internalFormat, width, height, border, data ? HEAPU8.subarray(data, data + imageSize) : null);
+ GLctx["compressedTexImage2D"](target, level, internalFormat, width, height, border, data ? HEAPU8.subarray(data >>> 0, data + imageSize >>> 0) : null);
 }
 
 function _glCompressedTexImage3D(target, level, internalFormat, width, height, depth, border, imageSize, data) {
@@ -11906,7 +11397,7 @@ function _glCompressedTexSubImage2D(target, level, xoffset, yoffset, width, heig
   }
   return;
  }
- GLctx["compressedTexSubImage2D"](target, level, xoffset, yoffset, width, height, format, data ? HEAPU8.subarray(data, data + imageSize) : null);
+ GLctx["compressedTexSubImage2D"](target, level, xoffset, yoffset, width, height, format, data ? HEAPU8.subarray(data >>> 0, data + imageSize >>> 0) : null);
 }
 
 function _glCompressedTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data) {
@@ -11952,7 +11443,7 @@ function _glCullFace(x0) {
 
 function _glDeleteBuffers(n, buffers) {
  for (var i = 0; i < n; i++) {
-  var id = HEAP32[buffers + i * 4 >> 2];
+  var id = HEAP32[buffers + i * 4 >>> 2];
   var buffer = GL.buffers[id];
   if (!buffer) continue;
   GLctx.deleteBuffer(buffer);
@@ -11967,7 +11458,7 @@ function _glDeleteBuffers(n, buffers) {
 
 function _glDeleteFramebuffers(n, framebuffers) {
  for (var i = 0; i < n; ++i) {
-  var id = HEAP32[framebuffers + i * 4 >> 2];
+  var id = HEAP32[framebuffers + i * 4 >>> 2];
   var framebuffer = GL.framebuffers[id];
   if (!framebuffer) continue;
   GLctx.deleteFramebuffer(framebuffer);
@@ -11990,7 +11481,7 @@ function _glDeleteProgram(id) {
 
 function _glDeleteQueries(n, ids) {
  for (var i = 0; i < n; i++) {
-  var id = HEAP32[ids + i * 4 >> 2];
+  var id = HEAP32[ids + i * 4 >>> 2];
   var query = GL.queries[id];
   if (!query) continue;
   GLctx["deleteQuery"](query);
@@ -12000,7 +11491,7 @@ function _glDeleteQueries(n, ids) {
 
 function _glDeleteRenderbuffers(n, renderbuffers) {
  for (var i = 0; i < n; i++) {
-  var id = HEAP32[renderbuffers + i * 4 >> 2];
+  var id = HEAP32[renderbuffers + i * 4 >>> 2];
   var renderbuffer = GL.renderbuffers[id];
   if (!renderbuffer) continue;
   GLctx.deleteRenderbuffer(renderbuffer);
@@ -12011,7 +11502,7 @@ function _glDeleteRenderbuffers(n, renderbuffers) {
 
 function _glDeleteSamplers(n, samplers) {
  for (var i = 0; i < n; i++) {
-  var id = HEAP32[samplers + i * 4 >> 2];
+  var id = HEAP32[samplers + i * 4 >>> 2];
   var sampler = GL.samplers[id];
   if (!sampler) continue;
   GLctx["deleteSampler"](sampler);
@@ -12045,7 +11536,7 @@ function _glDeleteSync(id) {
 
 function _glDeleteTextures(n, textures) {
  for (var i = 0; i < n; i++) {
-  var id = HEAP32[textures + i * 4 >> 2];
+  var id = HEAP32[textures + i * 4 >>> 2];
   var texture = GL.textures[id];
   if (!texture) continue;
   GLctx.deleteTexture(texture);
@@ -12054,20 +11545,9 @@ function _glDeleteTextures(n, textures) {
  }
 }
 
-function _glDeleteTransformFeedbacks(n, ids) {
- for (var i = 0; i < n; i++) {
-  var id = HEAP32[ids + i * 4 >> 2];
-  var transformFeedback = GL.transformFeedbacks[id];
-  if (!transformFeedback) continue;
-  GLctx["deleteTransformFeedback"](transformFeedback);
-  transformFeedback.name = 0;
-  GL.transformFeedbacks[id] = null;
- }
-}
-
 function _glDeleteVertexArrays(n, vaos) {
  for (var i = 0; i < n; i++) {
-  var id = HEAP32[vaos + i * 4 >> 2];
+  var id = HEAP32[vaos + i * 4 >>> 2];
   GLctx["deleteVertexArray"](GL.vaos[id]);
   GL.vaos[id] = null;
  }
@@ -12110,7 +11590,7 @@ var tempFixedLengthArray = [];
 function _glDrawBuffers(n, bufs) {
  var bufArray = tempFixedLengthArray[n];
  for (var i = 0; i < n; i++) {
-  bufArray[i] = HEAP32[bufs + i * 4 >> 2];
+  bufArray[i] = HEAP32[bufs + i * 4 >>> 2];
  }
  GLctx["drawBuffers"](bufArray);
 }
@@ -12121,7 +11601,7 @@ function _glDrawElements(mode, count, type, indices) {
   var size = GL.calcBufLength(1, type, 0, count);
   buf = GL.getTempIndexBuffer(size);
   GLctx.bindBuffer(34963, buf);
-  GLctx.bufferSubData(34963, 0, HEAPU8.subarray(indices, indices + size));
+  GLctx.bufferSubData(34963, 0, HEAPU8.subarray(indices >>> 0, indices + size >>> 0));
   indices = 0;
  }
  GL.preDrawHandleClientVertexAttribBindings(count);
@@ -12148,10 +11628,6 @@ function _glEnableVertexAttribArray(index) {
 
 function _glEndQuery(x0) {
  GLctx["endQuery"](x0);
-}
-
-function _glEndTransformFeedback() {
- GLctx["endTransformFeedback"]();
 }
 
 function _glFenceSync(condition, flags) {
@@ -12252,7 +11728,7 @@ function _glFlushMappedBufferRange(target, offset, length) {
   err("invalid range in glFlushMappedBufferRange");
   return;
  }
- GLctx.bufferSubData(target, mapping.offset, HEAPU8.subarray(mapping.mem + offset, mapping.mem + offset + length));
+ GLctx.bufferSubData(target, mapping.offset, HEAPU8.subarray(mapping.mem + offset >>> 0, mapping.mem + offset + length >>> 0));
 }
 
 function _glFramebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer) {
@@ -12281,7 +11757,7 @@ function __glGenObject(n, buffers, createFunction, objectTable) {
   } else {
    GL.recordError(1282);
   }
-  HEAP32[buffers + i * 4 >> 2] = id;
+  HEAP32[buffers + i * 4 >>> 2] = id;
  }
 }
 
@@ -12309,10 +11785,6 @@ function _glGenTextures(n, textures) {
  __glGenObject(n, textures, "createTexture", GL.textures);
 }
 
-function _glGenTransformFeedbacks(n, ids) {
- __glGenObject(n, ids, "createTransformFeedback", GL.transformFeedbacks);
-}
-
 function _glGenVertexArrays(n, arrays) {
  __glGenObject(n, arrays, "createVertexArray", GL.vaos);
 }
@@ -12326,9 +11798,9 @@ function __glGetActiveAttribOrUniform(funcName, program, index, bufSize, length,
  var info = GLctx[funcName](program, index);
  if (info) {
   var numBytesWrittenExclNull = name && stringToUTF8(info.name, name, bufSize);
-  if (length) HEAP32[length >> 2] = numBytesWrittenExclNull;
-  if (size) HEAP32[size >> 2] = info.size;
-  if (type) HEAP32[type >> 2] = info.type;
+  if (length) HEAP32[length >>> 2] = numBytesWrittenExclNull;
+  if (size) HEAP32[size >>> 2] = info.size;
+  if (type) HEAP32[type >>> 2] = info.type;
  }
 }
 
@@ -12346,9 +11818,9 @@ function _glGetActiveUniformBlockName(program, uniformBlockIndex, bufSize, lengt
  if (!result) return;
  if (uniformBlockName && bufSize > 0) {
   var numBytesWrittenExclNull = stringToUTF8(result, uniformBlockName, bufSize);
-  if (length) HEAP32[length >> 2] = numBytesWrittenExclNull;
+  if (length) HEAP32[length >>> 2] = numBytesWrittenExclNull;
  } else {
-  if (length) HEAP32[length >> 2] = 0;
+  if (length) HEAP32[length >>> 2] = 0;
  }
 }
 
@@ -12360,17 +11832,17 @@ function _glGetActiveUniformBlockiv(program, uniformBlockIndex, pname, params) {
  program = GL.programs[program];
  if (pname == 35393) {
   var name = GLctx["getActiveUniformBlockName"](program, uniformBlockIndex);
-  HEAP32[params >> 2] = name.length + 1;
+  HEAP32[params >>> 2] = name.length + 1;
   return;
  }
  var result = GLctx["getActiveUniformBlockParameter"](program, uniformBlockIndex, pname);
  if (result === null) return;
  if (pname == 35395) {
   for (var i = 0; i < result.length; i++) {
-   HEAP32[params + i * 4 >> 2] = result[i];
+   HEAP32[params + i * 4 >>> 2] = result[i];
   }
  } else {
-  HEAP32[params >> 2] = result;
+  HEAP32[params >>> 2] = result;
  }
 }
 
@@ -12386,18 +11858,26 @@ function _glGetActiveUniformsiv(program, uniformCount, uniformIndices, pname, pa
  program = GL.programs[program];
  var ids = [];
  for (var i = 0; i < uniformCount; i++) {
-  ids.push(HEAP32[uniformIndices + i * 4 >> 2]);
+  ids.push(HEAP32[uniformIndices + i * 4 >>> 2]);
  }
  var result = GLctx["getActiveUniforms"](program, ids, pname);
  if (!result) return;
  var len = result.length;
  for (var i = 0; i < len; i++) {
-  HEAP32[params + i * 4 >> 2] = result[i];
+  HEAP32[params + i * 4 >>> 2] = result[i];
  }
 }
 
 function _glGetAttribLocation(program, name) {
  return GLctx.getAttribLocation(GL.programs[program], UTF8ToString(name));
+}
+
+function _glGetBufferSubData(target, offset, size, data) {
+ if (!data) {
+  GL.recordError(1281);
+  return;
+ }
+ GLctx["getBufferSubData"](target, offset, HEAPU8, data, size);
 }
 
 function _glGetError() {
@@ -12411,22 +11891,22 @@ function _glGetFramebufferAttachmentParameteriv(target, attachment, pname, param
  if (result instanceof WebGLRenderbuffer || result instanceof WebGLTexture) {
   result = result.name | 0;
  }
- HEAP32[params >> 2] = result;
+ HEAP32[params >>> 2] = result;
 }
 
 function readI53FromI64(ptr) {
- return HEAPU32[ptr >> 2] + HEAP32[ptr + 4 >> 2] * 4294967296;
+ return HEAPU32[ptr >>> 2] + HEAP32[ptr + 4 >>> 2] * 4294967296;
 }
 
 function readI53FromU64(ptr) {
- return HEAPU32[ptr >> 2] + HEAPU32[ptr + 4 >> 2] * 4294967296;
+ return HEAPU32[ptr >>> 2] + HEAPU32[ptr + 4 >>> 2] * 4294967296;
 }
 
 function writeI53ToI64(ptr, num) {
- HEAPU32[ptr >> 2] = num;
- HEAPU32[ptr + 4 >> 2] = (num - HEAPU32[ptr >> 2]) / 4294967296;
+ HEAPU32[ptr >>> 2] = num;
+ HEAPU32[ptr + 4 >>> 2] = (num - HEAPU32[ptr >>> 2]) / 4294967296;
  var deserialized = num >= 0 ? readI53FromU64(ptr) : readI53FromI64(ptr);
- if (deserialized != num) warnOnce("writeI53ToI64() out of range: serialized JS Number " + num + " to Wasm heap as bytes lo=0x" + HEAPU32[ptr >> 2].toString(16) + ", hi=0x" + HEAPU32[ptr + 4 >> 2].toString(16) + ", which deserializes back to " + deserialized + " instead!");
+ if (deserialized != num) warnOnce("writeI53ToI64() out of range: serialized JS Number " + num + " to Wasm heap as bytes lo=0x" + HEAPU32[ptr >>> 2].toString(16) + ", hi=0x" + HEAPU32[ptr + 4 >>> 2].toString(16) + ", which deserializes back to " + deserialized + " instead!");
 }
 
 function emscriptenWebGLGetIndexed(target, index, data, type) {
@@ -12477,15 +11957,15 @@ function emscriptenWebGLGetIndexed(target, index, data, type) {
   break;
 
  case 0:
-  HEAP32[data >> 2] = ret;
+  HEAP32[data >>> 2] = ret;
   break;
 
  case 2:
-  HEAPF32[data >> 2] = ret;
+  HEAPF32[data >>> 2] = ret;
   break;
 
  case 4:
-  HEAP8[data >> 0] = ret ? 1 : 0;
+  HEAP8[data >>> 0] = ret ? 1 : 0;
   break;
 
  default:
@@ -12598,15 +12078,15 @@ function emscriptenWebGLGet(name_, p, type) {
     for (var i = 0; i < result.length; ++i) {
      switch (type) {
      case 0:
-      HEAP32[p + i * 4 >> 2] = result[i];
+      HEAP32[p + i * 4 >>> 2] = result[i];
       break;
 
      case 2:
-      HEAPF32[p + i * 4 >> 2] = result[i];
+      HEAPF32[p + i * 4 >>> 2] = result[i];
       break;
 
      case 4:
-      HEAP8[p + i >> 0] = result[i] ? 1 : 0;
+      HEAP8[p + i >>> 0] = result[i] ? 1 : 0;
       break;
      }
     }
@@ -12634,15 +12114,15 @@ function emscriptenWebGLGet(name_, p, type) {
   break;
 
  case 0:
-  HEAP32[p >> 2] = ret;
+  HEAP32[p >>> 2] = ret;
   break;
 
  case 2:
-  HEAPF32[p >> 2] = ret;
+  HEAPF32[p >>> 2] = ret;
   break;
 
  case 4:
-  HEAP8[p >> 0] = ret ? 1 : 0;
+  HEAP8[p >>> 0] = ret ? 1 : 0;
   break;
  }
 }
@@ -12663,7 +12143,7 @@ function _glGetInternalformativ(target, internalformat, pname, bufSize, params) 
  var ret = GLctx["getInternalformatParameter"](target, internalformat, pname);
  if (ret === null) return;
  for (var i = 0; i < ret.length && i < bufSize; ++i) {
-  HEAP32[params + i * 4 >> 2] = ret[i];
+  HEAP32[params + i * 4 >>> 2] = ret[i];
  }
 }
 
@@ -12675,7 +12155,7 @@ function _glGetProgramInfoLog(program, maxLength, length, infoLog) {
  var log = GLctx.getProgramInfoLog(GL.programs[program]);
  if (log === null) log = "(unknown error)";
  var numBytesWrittenExclNull = maxLength > 0 && infoLog ? stringToUTF8(log, infoLog, maxLength) : 0;
- if (length) HEAP32[length >> 2] = numBytesWrittenExclNull;
+ if (length) HEAP32[length >>> 2] = numBytesWrittenExclNull;
 }
 
 function _glGetProgramiv(program, pname, p) {
@@ -12691,30 +12171,30 @@ function _glGetProgramiv(program, pname, p) {
  if (pname == 35716) {
   var log = GLctx.getProgramInfoLog(program);
   if (log === null) log = "(unknown error)";
-  HEAP32[p >> 2] = log.length + 1;
+  HEAP32[p >>> 2] = log.length + 1;
  } else if (pname == 35719) {
   if (!program.maxUniformLength) {
    for (var i = 0; i < GLctx.getProgramParameter(program, 35718); ++i) {
     program.maxUniformLength = Math.max(program.maxUniformLength, GLctx.getActiveUniform(program, i).name.length + 1);
    }
   }
-  HEAP32[p >> 2] = program.maxUniformLength;
+  HEAP32[p >>> 2] = program.maxUniformLength;
  } else if (pname == 35722) {
   if (!program.maxAttributeLength) {
    for (var i = 0; i < GLctx.getProgramParameter(program, 35721); ++i) {
     program.maxAttributeLength = Math.max(program.maxAttributeLength, GLctx.getActiveAttrib(program, i).name.length + 1);
    }
   }
-  HEAP32[p >> 2] = program.maxAttributeLength;
+  HEAP32[p >>> 2] = program.maxAttributeLength;
  } else if (pname == 35381) {
   if (!program.maxUniformBlockNameLength) {
    for (var i = 0; i < GLctx.getProgramParameter(program, 35382); ++i) {
     program.maxUniformBlockNameLength = Math.max(program.maxUniformBlockNameLength, GLctx.getActiveUniformBlockName(program, i).length + 1);
    }
   }
-  HEAP32[p >> 2] = program.maxUniformBlockNameLength;
+  HEAP32[p >>> 2] = program.maxUniformBlockNameLength;
  } else {
-  HEAP32[p >> 2] = GLctx.getProgramParameter(program, pname);
+  HEAP32[p >>> 2] = GLctx.getProgramParameter(program, pname);
  }
 }
 
@@ -12731,7 +12211,7 @@ function _glGetQueryObjectuiv(id, pname, params) {
  } else {
   ret = param;
  }
- HEAP32[params >> 2] = ret;
+ HEAP32[params >>> 2] = ret;
 }
 
 function _glGetQueryiv(target, pname, params) {
@@ -12739,7 +12219,7 @@ function _glGetQueryiv(target, pname, params) {
   GL.recordError(1281);
   return;
  }
- HEAP32[params >> 2] = GLctx["getQuery"](target, pname);
+ HEAP32[params >>> 2] = GLctx["getQuery"](target, pname);
 }
 
 function _glGetRenderbufferParameteriv(target, pname, params) {
@@ -12747,28 +12227,28 @@ function _glGetRenderbufferParameteriv(target, pname, params) {
   GL.recordError(1281);
   return;
  }
- HEAP32[params >> 2] = GLctx.getRenderbufferParameter(target, pname);
+ HEAP32[params >>> 2] = GLctx.getRenderbufferParameter(target, pname);
 }
 
 function _glGetShaderInfoLog(shader, maxLength, length, infoLog) {
  var log = GLctx.getShaderInfoLog(GL.shaders[shader]);
  if (log === null) log = "(unknown error)";
  var numBytesWrittenExclNull = maxLength > 0 && infoLog ? stringToUTF8(log, infoLog, maxLength) : 0;
- if (length) HEAP32[length >> 2] = numBytesWrittenExclNull;
+ if (length) HEAP32[length >>> 2] = numBytesWrittenExclNull;
 }
 
 function _glGetShaderPrecisionFormat(shaderType, precisionType, range, precision) {
  var result = GLctx.getShaderPrecisionFormat(shaderType, precisionType);
- HEAP32[range >> 2] = result.rangeMin;
- HEAP32[range + 4 >> 2] = result.rangeMax;
- HEAP32[precision >> 2] = result.precision;
+ HEAP32[range >>> 2] = result.rangeMin;
+ HEAP32[range + 4 >>> 2] = result.rangeMax;
+ HEAP32[precision >>> 2] = result.precision;
 }
 
 function _glGetShaderSource(shader, bufSize, length, source) {
  var result = GLctx.getShaderSource(GL.shaders[shader]);
  if (!result) return;
  var numBytesWrittenExclNull = bufSize > 0 && source ? stringToUTF8(result, source, bufSize) : 0;
- if (length) HEAP32[length >> 2] = numBytesWrittenExclNull;
+ if (length) HEAP32[length >>> 2] = numBytesWrittenExclNull;
 }
 
 function _glGetShaderiv(shader, pname, p) {
@@ -12780,13 +12260,13 @@ function _glGetShaderiv(shader, pname, p) {
   var log = GLctx.getShaderInfoLog(GL.shaders[shader]);
   if (log === null) log = "(unknown error)";
   var logLength = log ? log.length + 1 : 0;
-  HEAP32[p >> 2] = logLength;
+  HEAP32[p >>> 2] = logLength;
  } else if (pname == 35720) {
   var source = GLctx.getShaderSource(GL.shaders[shader]);
   var sourceLength = source ? source.length + 1 : 0;
-  HEAP32[p >> 2] = sourceLength;
+  HEAP32[p >>> 2] = sourceLength;
  } else {
-  HEAP32[p >> 2] = GLctx.getShaderParameter(GL.shaders[shader], pname);
+  HEAP32[p >>> 2] = GLctx.getShaderParameter(GL.shaders[shader], pname);
  }
 }
 
@@ -12880,7 +12360,7 @@ function _glGetTexParameteriv(target, pname, params) {
   GL.recordError(1281);
   return;
  }
- HEAP32[params >> 2] = GLctx.getTexParameter(target, pname);
+ HEAP32[params >>> 2] = GLctx.getTexParameter(target, pname);
 }
 
 function _glGetUniformBlockIndex(program, uniformBlockName) {
@@ -12898,50 +12378,54 @@ function _glGetUniformIndices(program, uniformCount, uniformNames, uniformIndice
  }
  program = GL.programs[program];
  var names = [];
- for (var i = 0; i < uniformCount; i++) names.push(UTF8ToString(HEAP32[uniformNames + i * 4 >> 2]));
+ for (var i = 0; i < uniformCount; i++) names.push(UTF8ToString(HEAP32[uniformNames + i * 4 >>> 2]));
  var result = GLctx["getUniformIndices"](program, names);
  if (!result) return;
  var len = result.length;
  for (var i = 0; i < len; i++) {
-  HEAP32[uniformIndices + i * 4 >> 2] = result[i];
+  HEAP32[uniformIndices + i * 4 >>> 2] = result[i];
+ }
+}
+
+function webglGetLeftBracePos(name) {
+ return name.slice(-1) == "]" && name.lastIndexOf("[");
+}
+
+function webglPrepareUniformLocationsBeforeFirstUse(program) {
+ var uniformLocsById = program.uniformLocsById, uniformSizeAndIdsByName = program.uniformSizeAndIdsByName, i, j;
+ if (!uniformLocsById) {
+  program.uniformLocsById = uniformLocsById = {};
+  program.uniformArrayNamesById = {};
+  for (i = 0; i < GLctx.getProgramParameter(program, 35718); ++i) {
+   var u = GLctx.getActiveUniform(program, i);
+   var nm = u.name;
+   var sz = u.size;
+   var lb = webglGetLeftBracePos(nm);
+   var arrayName = lb > 0 ? nm.slice(0, lb) : nm;
+   var id = uniformSizeAndIdsByName[arrayName] ? uniformSizeAndIdsByName[arrayName][1] : program.uniformIdCounter;
+   program.uniformIdCounter = Math.max(id + sz, program.uniformIdCounter);
+   uniformSizeAndIdsByName[arrayName] = [ sz, id ];
+   for (j = 0; j < sz; ++j) {
+    uniformLocsById[id] = j;
+    program.uniformArrayNamesById[id++] = arrayName;
+   }
+  }
  }
 }
 
 function _glGetUniformLocation(program, name) {
- function getLeftBracePos(name) {
-  return name.slice(-1) == "]" && name.lastIndexOf("[");
- }
  name = UTF8ToString(name);
  if (program = GL.programs[program]) {
+  webglPrepareUniformLocationsBeforeFirstUse(program);
   var uniformLocsById = program.uniformLocsById;
-  var uniformSizeAndIdsByName = program.uniformSizeAndIdsByName;
-  var i, j;
   var arrayIndex = 0;
   var uniformBaseName = name;
-  var leftBrace = getLeftBracePos(name);
-  if (!uniformLocsById) {
-   program.uniformLocsById = uniformLocsById = {};
-   program.uniformArrayNamesById = {};
-   for (i = 0; i < GLctx.getProgramParameter(program, 35718); ++i) {
-    var u = GLctx.getActiveUniform(program, i);
-    var nm = u.name;
-    var sz = u.size;
-    var lb = getLeftBracePos(nm);
-    var arrayName = lb > 0 ? nm.slice(0, lb) : nm;
-    var id = uniformSizeAndIdsByName[arrayName] ? uniformSizeAndIdsByName[arrayName][1] : program.uniformIdCounter;
-    program.uniformIdCounter = Math.max(id + sz, program.uniformIdCounter);
-    uniformSizeAndIdsByName[arrayName] = [ sz, id ];
-    for (j = 0; j < sz; ++j) {
-     uniformLocsById[id] = j;
-     program.uniformArrayNamesById[id++] = arrayName;
-    }
-   }
-  }
+  var leftBrace = webglGetLeftBracePos(name);
   if (leftBrace > 0) {
    arrayIndex = jstoi_q(name.slice(leftBrace + 1)) >>> 0;
    uniformBaseName = name.slice(0, leftBrace);
   }
-  var sizeAndId = uniformSizeAndIdsByName[uniformBaseName];
+  var sizeAndId = program.uniformSizeAndIdsByName[uniformBaseName];
   if (sizeAndId && arrayIndex < sizeAndId[0]) {
    arrayIndex += sizeAndId[1];
    if (uniformLocsById[arrayIndex] = uniformLocsById[arrayIndex] || GLctx.getUniformLocation(program, name)) {
@@ -12958,7 +12442,7 @@ function webglGetUniformLocation(location) {
  var p = GLctx.currentProgram;
  if (p) {
   var webglLoc = p.uniformLocsById[location];
-  if (typeof webglLoc === "number") {
+  if (typeof webglLoc == "number") {
    p.uniformLocsById[location] = webglLoc = GLctx.getUniformLocation(p, p.uniformArrayNamesById[location] + (webglLoc > 0 ? "[" + webglLoc + "]" : ""));
   }
   return webglLoc;
@@ -12973,26 +12457,27 @@ function emscriptenWebGLGetUniform(program, location, params, type) {
   return;
  }
  program = GL.programs[program];
+ webglPrepareUniformLocationsBeforeFirstUse(program);
  var data = GLctx.getUniform(program, webglGetUniformLocation(location));
  if (typeof data == "number" || typeof data == "boolean") {
   switch (type) {
   case 0:
-   HEAP32[params >> 2] = data;
+   HEAP32[params >>> 2] = data;
    break;
 
   case 2:
-   HEAPF32[params >> 2] = data;
+   HEAPF32[params >>> 2] = data;
    break;
   }
  } else {
   for (var i = 0; i < data.length; i++) {
    switch (type) {
    case 0:
-    HEAP32[params + i * 4 >> 2] = data[i];
+    HEAP32[params + i * 4 >>> 2] = data[i];
     break;
 
    case 2:
-    HEAPF32[params + i * 4 >> 2] = data[i];
+    HEAPF32[params + i * 4 >>> 2] = data[i];
     break;
    }
   }
@@ -13013,34 +12498,34 @@ function emscriptenWebGLGetVertexAttrib(index, pname, params, type) {
  }
  var data = GLctx.getVertexAttrib(index, pname);
  if (pname == 34975) {
-  HEAP32[params >> 2] = data && data["name"];
+  HEAP32[params >>> 2] = data && data["name"];
  } else if (typeof data == "number" || typeof data == "boolean") {
   switch (type) {
   case 0:
-   HEAP32[params >> 2] = data;
+   HEAP32[params >>> 2] = data;
    break;
 
   case 2:
-   HEAPF32[params >> 2] = data;
+   HEAPF32[params >>> 2] = data;
    break;
 
   case 5:
-   HEAP32[params >> 2] = Math.fround(data);
+   HEAP32[params >>> 2] = Math.fround(data);
    break;
   }
  } else {
   for (var i = 0; i < data.length; i++) {
    switch (type) {
    case 0:
-    HEAP32[params + i * 4 >> 2] = data[i];
+    HEAP32[params + i * 4 >>> 2] = data[i];
     break;
 
    case 2:
-    HEAPF32[params + i * 4 >> 2] = data[i];
+    HEAPF32[params + i * 4 >>> 2] = data[i];
     break;
 
    case 5:
-    HEAP32[params + i * 4 >> 2] = Math.fround(data[i]);
+    HEAP32[params + i * 4 >>> 2] = Math.fround(data[i]);
     break;
    }
   }
@@ -13054,7 +12539,7 @@ function _glGetVertexAttribiv(index, pname, params) {
 function _glInvalidateFramebuffer(target, numAttachments, attachments) {
  var list = tempFixedLengthArray[numAttachments];
  for (var i = 0; i < numAttachments; i++) {
-  list[i] = HEAP32[attachments + i * 4 >> 2];
+  list[i] = HEAP32[attachments + i * 4 >>> 2];
  }
  GLctx["invalidateFramebuffer"](target, list);
 }
@@ -13184,7 +12669,7 @@ function emscriptenWebGLGetTexPixelData(type, format, width, height, pixels, int
  var byteSize = 1 << shift;
  var sizePerPixel = __colorChannelsInGlTextureFormat(format) * byteSize;
  var bytes = computeUnpackAlignedImageSize(width, height, sizePerPixel, GL.unpackAlignment);
- return heap.subarray(pixels >> shift, pixels + bytes >> shift);
+ return heap.subarray(pixels >>> shift, pixels + bytes >>> shift);
 }
 
 function _glReadPixels(x, y, width, height, format, type, pixels) {
@@ -13230,16 +12715,12 @@ function find_closing_parens_index(arr, i, opening = "(", closing = ")") {
  }
 }
 
-function preprocess_c_code(code) {
- var i = 0, len = code.length, out = "", stack = [ 1 ], defs = {
-  "defined": function(args) {
-   assert(args.length == 1);
-   return defs[args[0]] ? 1 : 0;
-  },
-  "GL_FRAGMENT_PRECISION_HIGH": function() {
-   return 1;
-  }
- };
+function preprocess_c_code(code, defs = {}) {
+ var i = 0, len = code.length, out = "", stack = [ 1 ];
+ defs["defined"] = (args => {
+  assert(args.length == 1);
+  return defs[args[0]] ? 1 : 0;
+ });
  function isWhitespace(str, i) {
   return !(str.charCodeAt(i) > 32);
  }
@@ -13469,19 +12950,17 @@ function preprocess_c_code(code) {
      var macroEnd = expression.indexOf(")", macroStart);
      let params = expression.substring(macroStart + 1, macroEnd).split(",").map(x => x.trim());
      let value = tokenize(expression.substring(macroEnd + 1).trim());
-     defs[expression.substring(0, macroStart)] = function(args) {
+     defs[expression.substring(0, macroStart)] = (args => {
       var ret = "";
       value.forEach(x => {
        var argIndex = params.indexOf(x);
        ret += argIndex >= 0 ? args[argIndex] : x;
       });
       return ret;
-     };
+     });
     } else {
      let value = expandMacros(expression.substring(firstWs + 1).trim(), 0);
-     defs[expression.substring(0, firstWs)] = function() {
-      return value;
-     };
+     defs[expression.substring(0, firstWs)] = (() => value);
     }
    }
    break;
@@ -13492,7 +12971,7 @@ function preprocess_c_code(code) {
 
   default:
    if (directive != "version" && directive != "pragma" && directive != "extension") {
-    console.error("Unrecognized preprocessor directive #" + directive + "!");
+    err("Unrecognized preprocessor directive #" + directive + "!");
    }
    out += expandMacros(code, lineStart, i) + "\n";
   }
@@ -13522,12 +13001,18 @@ function remove_cpp_comments_in_shaders(code) {
 
 function _glShaderSource(shader, count, string, length) {
  var source = GL.getSource(shader, count, string, length);
- source = preprocess_c_code(remove_cpp_comments_in_shaders(source));
+ if (source.includes("__FILE__")) warnOnce("When compiling shader: " + source + ": Preprocessor variable __FILE__ is not handled by -sGL_EXPLICIT_UNIFORM_LOCATION/-sGL_EXPLICIT_UNIFORM_BINDING options!");
+ if (source.includes("__LINE__")) warnOnce("When compiling shader: " + source + ": Preprocessor variable __LINE__ is not handled by -sGL_EXPLICIT_UNIFORM_LOCATION/-sGL_EXPLICIT_UNIFORM_BINDING options!");
+ source = preprocess_c_code(remove_cpp_comments_in_shaders(source), {
+  "GL_FRAGMENT_PRECISION_HIGH": () => 1,
+  "GL_ES": () => 1,
+  "__VERSION__": () => source.includes("#version 300") ? 300 : 100
+ });
  var regex = /layout\s*\(\s*location\s*=\s*(-?\d+)\s*\)\s*(uniform\s+((lowp|mediump|highp)\s+)?\w+\s+(\w+))/g, explicitUniformLocations = {}, match;
  while (match = regex.exec(source)) {
   explicitUniformLocations[match[5]] = jstoi_q(match[1]);
   if (!(explicitUniformLocations[match[5]] >= 0 && explicitUniformLocations[match[5]] < 1048576)) {
-   console.error('Specified an out of range layout(location=x) directive "' + explicitUniformLocations[match[5]] + '"! (' + match[0] + ")");
+   err('Specified an out of range layout(location=x) directive "' + explicitUniformLocations[match[5]] + '"! (' + match[0] + ")");
    GL.recordError(1281);
    return;
   }
@@ -13554,7 +13039,7 @@ function _glShaderSource(shader, count, string, length) {
   }
   var numBindingPoints = GLctx.getParameter(bindingsType);
   if (!(binding >= 0 && binding + arrayLength <= numBindingPoints)) {
-   console.error('Specified an out of range layout(binding=x) directive "' + binding + '"! (' + bindingMatch[0] + "). Valid range is [0, " + numBindingPoints + "-1]");
+   err('Specified an out of range layout(binding=x) directive "' + binding + '"! (' + bindingMatch[0] + "). Valid range is [0, " + numBindingPoints + "-1]");
    GL.recordError(1281);
    return;
   }
@@ -13614,7 +13099,7 @@ function _glTexParameteri(x0, x1, x2) {
 }
 
 function _glTexParameteriv(target, pname, params) {
- var param = HEAP32[params >> 2];
+ var param = HEAP32[params >>> 2];
  GLctx.texParameteri(target, pname, param);
 }
 
@@ -13654,13 +13139,6 @@ function _glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, heigh
  }
 }
 
-function _glTransformFeedbackVaryings(program, count, varyings, bufferMode) {
- program = GL.programs[program];
- var vars = [];
- for (var i = 0; i < count; i++) vars.push(UTF8ToString(HEAP32[varyings + i * 4 >> 2]));
- GLctx["transformFeedbackVaryings"](program, vars, bufferMode);
-}
-
 var miniTempWebGLFloatBuffers = [];
 
 function _glUniform1fv(location, count, value) {
@@ -13671,10 +13149,10 @@ function _glUniform1fv(location, count, value) {
  if (count <= 288) {
   var view = miniTempWebGLFloatBuffers[count - 1];
   for (var i = 0; i < count; ++i) {
-   view[i] = HEAPF32[value + 4 * i >> 2];
+   view[i] = HEAPF32[value + 4 * i >>> 2];
   }
  } else {
-  var view = HEAPF32.subarray(value >> 2, value + count * 4 >> 2);
+  var view = HEAPF32.subarray(value >>> 2, value + count * 4 >>> 2);
  }
  GLctx.uniform1fv(webglGetUniformLocation(location), view);
 }
@@ -13693,10 +13171,10 @@ function _glUniform1iv(location, count, value) {
  if (count <= 288) {
   var view = __miniTempWebGLIntBuffers[count - 1];
   for (var i = 0; i < count; ++i) {
-   view[i] = HEAP32[value + 4 * i >> 2];
+   view[i] = HEAP32[value + 4 * i >>> 2];
   }
  } else {
-  var view = HEAP32.subarray(value >> 2, value + count * 4 >> 2);
+  var view = HEAP32.subarray(value >>> 2, value + count * 4 >>> 2);
  }
  GLctx.uniform1iv(webglGetUniformLocation(location), view);
 }
@@ -13713,11 +13191,11 @@ function _glUniform2fv(location, count, value) {
  if (count <= 144) {
   var view = miniTempWebGLFloatBuffers[2 * count - 1];
   for (var i = 0; i < 2 * count; i += 2) {
-   view[i] = HEAPF32[value + 4 * i >> 2];
-   view[i + 1] = HEAPF32[value + (4 * i + 4) >> 2];
+   view[i] = HEAPF32[value + 4 * i >>> 2];
+   view[i + 1] = HEAPF32[value + (4 * i + 4) >>> 2];
   }
  } else {
-  var view = HEAPF32.subarray(value >> 2, value + count * 8 >> 2);
+  var view = HEAPF32.subarray(value >>> 2, value + count * 8 >>> 2);
  }
  GLctx.uniform2fv(webglGetUniformLocation(location), view);
 }
@@ -13730,11 +13208,11 @@ function _glUniform2iv(location, count, value) {
  if (count <= 144) {
   var view = __miniTempWebGLIntBuffers[2 * count - 1];
   for (var i = 0; i < 2 * count; i += 2) {
-   view[i] = HEAP32[value + 4 * i >> 2];
-   view[i + 1] = HEAP32[value + (4 * i + 4) >> 2];
+   view[i] = HEAP32[value + 4 * i >>> 2];
+   view[i + 1] = HEAP32[value + (4 * i + 4) >>> 2];
   }
  } else {
-  var view = HEAP32.subarray(value >> 2, value + count * 8 >> 2);
+  var view = HEAP32.subarray(value >>> 2, value + count * 8 >>> 2);
  }
  GLctx.uniform2iv(webglGetUniformLocation(location), view);
 }
@@ -13751,12 +13229,12 @@ function _glUniform3fv(location, count, value) {
  if (count <= 96) {
   var view = miniTempWebGLFloatBuffers[3 * count - 1];
   for (var i = 0; i < 3 * count; i += 3) {
-   view[i] = HEAPF32[value + 4 * i >> 2];
-   view[i + 1] = HEAPF32[value + (4 * i + 4) >> 2];
-   view[i + 2] = HEAPF32[value + (4 * i + 8) >> 2];
+   view[i] = HEAPF32[value + 4 * i >>> 2];
+   view[i + 1] = HEAPF32[value + (4 * i + 4) >>> 2];
+   view[i + 2] = HEAPF32[value + (4 * i + 8) >>> 2];
   }
  } else {
-  var view = HEAPF32.subarray(value >> 2, value + count * 12 >> 2);
+  var view = HEAPF32.subarray(value >>> 2, value + count * 12 >>> 2);
  }
  GLctx.uniform3fv(webglGetUniformLocation(location), view);
 }
@@ -13769,12 +13247,12 @@ function _glUniform3iv(location, count, value) {
  if (count <= 96) {
   var view = __miniTempWebGLIntBuffers[3 * count - 1];
   for (var i = 0; i < 3 * count; i += 3) {
-   view[i] = HEAP32[value + 4 * i >> 2];
-   view[i + 1] = HEAP32[value + (4 * i + 4) >> 2];
-   view[i + 2] = HEAP32[value + (4 * i + 8) >> 2];
+   view[i] = HEAP32[value + 4 * i >>> 2];
+   view[i + 1] = HEAP32[value + (4 * i + 4) >>> 2];
+   view[i + 2] = HEAP32[value + (4 * i + 8) >>> 2];
   }
  } else {
-  var view = HEAP32.subarray(value >> 2, value + count * 12 >> 2);
+  var view = HEAP32.subarray(value >>> 2, value + count * 12 >>> 2);
  }
  GLctx.uniform3iv(webglGetUniformLocation(location), view);
 }
@@ -13794,13 +13272,13 @@ function _glUniform4fv(location, count, value) {
   value >>= 2;
   for (var i = 0; i < 4 * count; i += 4) {
    var dst = value + i;
-   view[i] = heap[dst];
-   view[i + 1] = heap[dst + 1];
-   view[i + 2] = heap[dst + 2];
-   view[i + 3] = heap[dst + 3];
+   view[i] = heap[dst >>> 0];
+   view[i + 1] = heap[dst + 1 >>> 0];
+   view[i + 2] = heap[dst + 2 >>> 0];
+   view[i + 3] = heap[dst + 3 >>> 0];
   }
  } else {
-  var view = HEAPF32.subarray(value >> 2, value + count * 16 >> 2);
+  var view = HEAPF32.subarray(value >>> 2, value + count * 16 >>> 2);
  }
  GLctx.uniform4fv(webglGetUniformLocation(location), view);
 }
@@ -13813,13 +13291,13 @@ function _glUniform4iv(location, count, value) {
  if (count <= 72) {
   var view = __miniTempWebGLIntBuffers[4 * count - 1];
   for (var i = 0; i < 4 * count; i += 4) {
-   view[i] = HEAP32[value + 4 * i >> 2];
-   view[i + 1] = HEAP32[value + (4 * i + 4) >> 2];
-   view[i + 2] = HEAP32[value + (4 * i + 8) >> 2];
-   view[i + 3] = HEAP32[value + (4 * i + 12) >> 2];
+   view[i] = HEAP32[value + 4 * i >>> 2];
+   view[i + 1] = HEAP32[value + (4 * i + 4) >>> 2];
+   view[i + 2] = HEAP32[value + (4 * i + 8) >>> 2];
+   view[i + 3] = HEAP32[value + (4 * i + 12) >>> 2];
   }
  } else {
-  var view = HEAP32.subarray(value >> 2, value + count * 16 >> 2);
+  var view = HEAP32.subarray(value >>> 2, value + count * 16 >>> 2);
  }
  GLctx.uniform4iv(webglGetUniformLocation(location), view);
 }
@@ -13841,18 +13319,18 @@ function _glUniformMatrix3fv(location, count, transpose, value) {
  if (count <= 32) {
   var view = miniTempWebGLFloatBuffers[9 * count - 1];
   for (var i = 0; i < 9 * count; i += 9) {
-   view[i] = HEAPF32[value + 4 * i >> 2];
-   view[i + 1] = HEAPF32[value + (4 * i + 4) >> 2];
-   view[i + 2] = HEAPF32[value + (4 * i + 8) >> 2];
-   view[i + 3] = HEAPF32[value + (4 * i + 12) >> 2];
-   view[i + 4] = HEAPF32[value + (4 * i + 16) >> 2];
-   view[i + 5] = HEAPF32[value + (4 * i + 20) >> 2];
-   view[i + 6] = HEAPF32[value + (4 * i + 24) >> 2];
-   view[i + 7] = HEAPF32[value + (4 * i + 28) >> 2];
-   view[i + 8] = HEAPF32[value + (4 * i + 32) >> 2];
+   view[i] = HEAPF32[value + 4 * i >>> 2];
+   view[i + 1] = HEAPF32[value + (4 * i + 4) >>> 2];
+   view[i + 2] = HEAPF32[value + (4 * i + 8) >>> 2];
+   view[i + 3] = HEAPF32[value + (4 * i + 12) >>> 2];
+   view[i + 4] = HEAPF32[value + (4 * i + 16) >>> 2];
+   view[i + 5] = HEAPF32[value + (4 * i + 20) >>> 2];
+   view[i + 6] = HEAPF32[value + (4 * i + 24) >>> 2];
+   view[i + 7] = HEAPF32[value + (4 * i + 28) >>> 2];
+   view[i + 8] = HEAPF32[value + (4 * i + 32) >>> 2];
   }
  } else {
-  var view = HEAPF32.subarray(value >> 2, value + count * 36 >> 2);
+  var view = HEAPF32.subarray(value >>> 2, value + count * 36 >>> 2);
  }
  GLctx.uniformMatrix3fv(webglGetUniformLocation(location), !!transpose, view);
 }
@@ -13868,25 +13346,25 @@ function _glUniformMatrix4fv(location, count, transpose, value) {
   value >>= 2;
   for (var i = 0; i < 16 * count; i += 16) {
    var dst = value + i;
-   view[i] = heap[dst];
-   view[i + 1] = heap[dst + 1];
-   view[i + 2] = heap[dst + 2];
-   view[i + 3] = heap[dst + 3];
-   view[i + 4] = heap[dst + 4];
-   view[i + 5] = heap[dst + 5];
-   view[i + 6] = heap[dst + 6];
-   view[i + 7] = heap[dst + 7];
-   view[i + 8] = heap[dst + 8];
-   view[i + 9] = heap[dst + 9];
-   view[i + 10] = heap[dst + 10];
-   view[i + 11] = heap[dst + 11];
-   view[i + 12] = heap[dst + 12];
-   view[i + 13] = heap[dst + 13];
-   view[i + 14] = heap[dst + 14];
-   view[i + 15] = heap[dst + 15];
+   view[i] = heap[dst >>> 0];
+   view[i + 1] = heap[dst + 1 >>> 0];
+   view[i + 2] = heap[dst + 2 >>> 0];
+   view[i + 3] = heap[dst + 3 >>> 0];
+   view[i + 4] = heap[dst + 4 >>> 0];
+   view[i + 5] = heap[dst + 5 >>> 0];
+   view[i + 6] = heap[dst + 6 >>> 0];
+   view[i + 7] = heap[dst + 7 >>> 0];
+   view[i + 8] = heap[dst + 8 >>> 0];
+   view[i + 9] = heap[dst + 9 >>> 0];
+   view[i + 10] = heap[dst + 10 >>> 0];
+   view[i + 11] = heap[dst + 11 >>> 0];
+   view[i + 12] = heap[dst + 12 >>> 0];
+   view[i + 13] = heap[dst + 13 >>> 0];
+   view[i + 14] = heap[dst + 14 >>> 0];
+   view[i + 15] = heap[dst + 15 >>> 0];
   }
  } else {
-  var view = HEAPF32.subarray(value >> 2, value + count * 64 >> 2);
+  var view = HEAPF32.subarray(value >>> 2, value + count * 64 >>> 2);
  }
  GLctx.uniformMatrix4fv(webglGetUniformLocation(location), !!transpose, view);
 }
@@ -13908,7 +13386,7 @@ function _glUnmapBuffer(target) {
  if (!(mapping.access & 16)) if (GL.currentContext.version >= 2) {
   GLctx.bufferSubData(target, mapping.offset, HEAPU8, mapping.mem, mapping.length);
  } else {
-  GLctx.bufferSubData(target, mapping.offset, HEAPU8.subarray(mapping.mem, mapping.mem + mapping.length));
+  GLctx.bufferSubData(target, mapping.offset, HEAPU8.subarray(mapping.mem >>> 0, mapping.mem + mapping.length >>> 0));
  }
  _free(mapping.mem);
  return 1;
@@ -13953,7 +13431,7 @@ function _glVertexAttrib4f(x0, x1, x2, x3, x4) {
 }
 
 function _glVertexAttrib4fv(index, v) {
- GLctx.vertexAttrib4f(index, HEAPF32[v >> 2], HEAPF32[v + 4 >> 2], HEAPF32[v + 8 >> 2], HEAPF32[v + 12 >> 2]);
+ GLctx.vertexAttrib4f(index, HEAPF32[v >>> 2], HEAPF32[v + 4 >>> 2], HEAPF32[v + 8 >>> 2], HEAPF32[v + 12 >>> 2]);
 }
 
 function _glVertexAttribIPointer(index, size, type, stride, ptr) {
@@ -14000,45 +13478,8 @@ function _llvm_eh_typeid_for(type) {
  return type;
 }
 
-function _mktime(tmPtr) {
- _tzset();
- var date = new Date(HEAP32[tmPtr + 20 >> 2] + 1900, HEAP32[tmPtr + 16 >> 2], HEAP32[tmPtr + 12 >> 2], HEAP32[tmPtr + 8 >> 2], HEAP32[tmPtr + 4 >> 2], HEAP32[tmPtr >> 2], 0);
- var dst = HEAP32[tmPtr + 32 >> 2];
- var guessedOffset = date.getTimezoneOffset();
- var start = new Date(date.getFullYear(), 0, 1);
- var summerOffset = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
- var winterOffset = start.getTimezoneOffset();
- var dstOffset = Math.min(winterOffset, summerOffset);
- if (dst < 0) {
-  HEAP32[tmPtr + 32 >> 2] = Number(summerOffset != winterOffset && dstOffset == guessedOffset);
- } else if (dst > 0 != (dstOffset == guessedOffset)) {
-  var nonDstOffset = Math.max(winterOffset, summerOffset);
-  var trueOffset = dst > 0 ? dstOffset : nonDstOffset;
-  date.setTime(date.getTime() + (trueOffset - guessedOffset) * 6e4);
- }
- HEAP32[tmPtr + 24 >> 2] = date.getDay();
- var yday = (date.getTime() - start.getTime()) / (1e3 * 60 * 60 * 24) | 0;
- HEAP32[tmPtr + 28 >> 2] = yday;
- HEAP32[tmPtr >> 2] = date.getSeconds();
- HEAP32[tmPtr + 4 >> 2] = date.getMinutes();
- HEAP32[tmPtr + 8 >> 2] = date.getHours();
- HEAP32[tmPtr + 12 >> 2] = date.getDate();
- HEAP32[tmPtr + 16 >> 2] = date.getMonth();
- return date.getTime() / 1e3 | 0;
-}
-
 function _setTempRet0(val) {
  setTempRet0(val);
-}
-
-function _sigaction(signum, act, oldact) {
- err("Calling stub instead of sigaction()");
- return 0;
-}
-
-function _sigemptyset(set) {
- HEAP32[set >> 2] = 0;
- return 0;
 }
 
 function __isLeapYear(year) {
@@ -14079,18 +13520,18 @@ function __addDays(date, days) {
 }
 
 function _strftime(s, maxsize, format, tm) {
- var tm_zone = HEAP32[tm + 40 >> 2];
+ var tm_zone = HEAP32[tm + 40 >>> 2];
  var date = {
-  tm_sec: HEAP32[tm >> 2],
-  tm_min: HEAP32[tm + 4 >> 2],
-  tm_hour: HEAP32[tm + 8 >> 2],
-  tm_mday: HEAP32[tm + 12 >> 2],
-  tm_mon: HEAP32[tm + 16 >> 2],
-  tm_year: HEAP32[tm + 20 >> 2],
-  tm_wday: HEAP32[tm + 24 >> 2],
-  tm_yday: HEAP32[tm + 28 >> 2],
-  tm_isdst: HEAP32[tm + 32 >> 2],
-  tm_gmtoff: HEAP32[tm + 36 >> 2],
+  tm_sec: HEAP32[tm >>> 2],
+  tm_min: HEAP32[tm + 4 >>> 2],
+  tm_hour: HEAP32[tm + 8 >>> 2],
+  tm_mday: HEAP32[tm + 12 >>> 2],
+  tm_mon: HEAP32[tm + 16 >>> 2],
+  tm_year: HEAP32[tm + 20 >>> 2],
+  tm_wday: HEAP32[tm + 24 >>> 2],
+  tm_yday: HEAP32[tm + 28 >>> 2],
+  tm_isdst: HEAP32[tm + 32 >>> 2],
+  tm_gmtoff: HEAP32[tm + 36 >>> 2],
   tm_zone: tm_zone ? UTF8ToString(tm_zone) : ""
  };
  var pattern = UTF8ToString(format);
@@ -14130,7 +13571,7 @@ function _strftime(s, maxsize, format, tm) {
  var WEEKDAYS = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
  var MONTHS = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
  function leadingSomething(value, digits, character) {
-  var str = typeof value === "number" ? value.toString() : value || "";
+  var str = typeof value == "number" ? value.toString() : value || "";
   while (str.length < digits) {
    str = character[0] + str;
   }
@@ -14257,51 +13698,32 @@ function _strftime(s, maxsize, format, tm) {
    return date.tm_wday || 7;
   },
   "%U": function(date) {
-   var janFirst = new Date(date.tm_year + 1900, 0, 1);
-   var firstSunday = janFirst.getDay() === 0 ? janFirst : __addDays(janFirst, 7 - janFirst.getDay());
-   var endDate = new Date(date.tm_year + 1900, date.tm_mon, date.tm_mday);
-   if (compareByDay(firstSunday, endDate) < 0) {
-    var februaryFirstUntilEndMonth = __arraySum(__isLeapYear(endDate.getFullYear()) ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR, endDate.getMonth() - 1) - 31;
-    var firstSundayUntilEndJanuary = 31 - firstSunday.getDate();
-    var days = firstSundayUntilEndJanuary + februaryFirstUntilEndMonth + endDate.getDate();
-    return leadingNulls(Math.ceil(days / 7), 2);
-   }
-   return compareByDay(firstSunday, janFirst) === 0 ? "01" : "00";
+   var days = date.tm_yday + 7 - date.tm_wday;
+   return leadingNulls(Math.floor(days / 7), 2);
   },
   "%V": function(date) {
-   var janFourthThisYear = new Date(date.tm_year + 1900, 0, 4);
-   var janFourthNextYear = new Date(date.tm_year + 1901, 0, 4);
-   var firstWeekStartThisYear = getFirstWeekStartDate(janFourthThisYear);
-   var firstWeekStartNextYear = getFirstWeekStartDate(janFourthNextYear);
-   var endDate = __addDays(new Date(date.tm_year + 1900, 0, 1), date.tm_yday);
-   if (compareByDay(endDate, firstWeekStartThisYear) < 0) {
-    return "53";
+   var val = Math.floor((date.tm_yday + 7 - (date.tm_wday + 6) % 7) / 7);
+   if ((date.tm_wday + 371 - date.tm_yday - 2) % 7 <= 2) {
+    val++;
    }
-   if (compareByDay(firstWeekStartNextYear, endDate) <= 0) {
-    return "01";
+   if (!val) {
+    val = 52;
+    var dec31 = (date.tm_wday + 7 - date.tm_yday - 1) % 7;
+    if (dec31 == 4 || dec31 == 5 && __isLeapYear(date.tm_year % 400 - 1)) {
+     val++;
+    }
+   } else if (val == 53) {
+    var jan1 = (date.tm_wday + 371 - date.tm_yday) % 7;
+    if (jan1 != 4 && (jan1 != 3 || !__isLeapYear(date.tm_year))) val = 1;
    }
-   var daysDifference;
-   if (firstWeekStartThisYear.getFullYear() < date.tm_year + 1900) {
-    daysDifference = date.tm_yday + 32 - firstWeekStartThisYear.getDate();
-   } else {
-    daysDifference = date.tm_yday + 1 - firstWeekStartThisYear.getDate();
-   }
-   return leadingNulls(Math.ceil(daysDifference / 7), 2);
+   return leadingNulls(val, 2);
   },
   "%w": function(date) {
    return date.tm_wday;
   },
   "%W": function(date) {
-   var janFirst = new Date(date.tm_year, 0, 1);
-   var firstMonday = janFirst.getDay() === 1 ? janFirst : __addDays(janFirst, janFirst.getDay() === 0 ? 1 : 7 - janFirst.getDay() + 1);
-   var endDate = new Date(date.tm_year + 1900, date.tm_mon, date.tm_mday);
-   if (compareByDay(firstMonday, endDate) < 0) {
-    var februaryFirstUntilEndMonth = __arraySum(__isLeapYear(endDate.getFullYear()) ? __MONTH_DAYS_LEAP : __MONTH_DAYS_REGULAR, endDate.getMonth() - 1) - 31;
-    var firstMondayUntilEndJanuary = 31 - firstMonday.getDate();
-    var days = firstMondayUntilEndJanuary + februaryFirstUntilEndMonth + endDate.getDate();
-    return leadingNulls(Math.ceil(days / 7), 2);
-   }
-   return compareByDay(firstMonday, janFirst) === 0 ? "01" : "00";
+   var days = date.tm_yday + 7 - (date.tm_wday + 6) % 7;
+   return leadingNulls(Math.floor(days / 7), 2);
   },
   "%y": function(date) {
    return (date.tm_year + 1900).toString().substring(2);
@@ -14323,47 +13745,19 @@ function _strftime(s, maxsize, format, tm) {
    return "%";
   }
  };
+ pattern = pattern.replace(/%%/g, "\0\0");
  for (var rule in EXPANSION_RULES_2) {
   if (pattern.includes(rule)) {
    pattern = pattern.replace(new RegExp(rule, "g"), EXPANSION_RULES_2[rule](date));
   }
  }
+ pattern = pattern.replace(/\0\0/g, "%");
  var bytes = intArrayFromString(pattern, false);
  if (bytes.length > maxsize) {
   return 0;
  }
  writeArrayToMemory(bytes, s);
  return bytes.length - 1;
-}
-
-function _time(ptr) {
- var ret = Date.now() / 1e3 | 0;
- if (ptr) {
-  HEAP32[ptr >> 2] = ret;
- }
- return ret;
-}
-
-function setFileTime(path, time) {
- path = UTF8ToString(path);
- try {
-  FS.utime(path, time, time);
-  return 0;
- } catch (e) {
-  if (!(e instanceof FS.ErrnoError)) throw e + " : " + stackTrace();
-  setErrNo(e.errno);
-  return -1;
- }
-}
-
-function _utime(path, times) {
- var time;
- if (times) {
-  time = HEAP32[times + 4 >> 2] * 1e3;
- } else {
-  time = Date.now();
- }
- return setFileTime(path, time);
 }
 
 var FSNode = function(parent, name, mode, rdev) {
@@ -14421,6 +13815,130 @@ FS.staticInit();
 Module["FS_createPath"] = FS.createPath;
 
 Module["FS_createDataFile"] = FS.createDataFile;
+
+ERRNO_CODES = {
+ "EPERM": 63,
+ "ENOENT": 44,
+ "ESRCH": 71,
+ "EINTR": 27,
+ "EIO": 29,
+ "ENXIO": 60,
+ "E2BIG": 1,
+ "ENOEXEC": 45,
+ "EBADF": 8,
+ "ECHILD": 12,
+ "EAGAIN": 6,
+ "EWOULDBLOCK": 6,
+ "ENOMEM": 48,
+ "EACCES": 2,
+ "EFAULT": 21,
+ "ENOTBLK": 105,
+ "EBUSY": 10,
+ "EEXIST": 20,
+ "EXDEV": 75,
+ "ENODEV": 43,
+ "ENOTDIR": 54,
+ "EISDIR": 31,
+ "EINVAL": 28,
+ "ENFILE": 41,
+ "EMFILE": 33,
+ "ENOTTY": 59,
+ "ETXTBSY": 74,
+ "EFBIG": 22,
+ "ENOSPC": 51,
+ "ESPIPE": 70,
+ "EROFS": 69,
+ "EMLINK": 34,
+ "EPIPE": 64,
+ "EDOM": 18,
+ "ERANGE": 68,
+ "ENOMSG": 49,
+ "EIDRM": 24,
+ "ECHRNG": 106,
+ "EL2NSYNC": 156,
+ "EL3HLT": 107,
+ "EL3RST": 108,
+ "ELNRNG": 109,
+ "EUNATCH": 110,
+ "ENOCSI": 111,
+ "EL2HLT": 112,
+ "EDEADLK": 16,
+ "ENOLCK": 46,
+ "EBADE": 113,
+ "EBADR": 114,
+ "EXFULL": 115,
+ "ENOANO": 104,
+ "EBADRQC": 103,
+ "EBADSLT": 102,
+ "EDEADLOCK": 16,
+ "EBFONT": 101,
+ "ENOSTR": 100,
+ "ENODATA": 116,
+ "ETIME": 117,
+ "ENOSR": 118,
+ "ENONET": 119,
+ "ENOPKG": 120,
+ "EREMOTE": 121,
+ "ENOLINK": 47,
+ "EADV": 122,
+ "ESRMNT": 123,
+ "ECOMM": 124,
+ "EPROTO": 65,
+ "EMULTIHOP": 36,
+ "EDOTDOT": 125,
+ "EBADMSG": 9,
+ "ENOTUNIQ": 126,
+ "EBADFD": 127,
+ "EREMCHG": 128,
+ "ELIBACC": 129,
+ "ELIBBAD": 130,
+ "ELIBSCN": 131,
+ "ELIBMAX": 132,
+ "ELIBEXEC": 133,
+ "ENOSYS": 52,
+ "ENOTEMPTY": 55,
+ "ENAMETOOLONG": 37,
+ "ELOOP": 32,
+ "EOPNOTSUPP": 138,
+ "EPFNOSUPPORT": 139,
+ "ECONNRESET": 15,
+ "ENOBUFS": 42,
+ "EAFNOSUPPORT": 5,
+ "EPROTOTYPE": 67,
+ "ENOTSOCK": 57,
+ "ENOPROTOOPT": 50,
+ "ESHUTDOWN": 140,
+ "ECONNREFUSED": 14,
+ "EADDRINUSE": 3,
+ "ECONNABORTED": 13,
+ "ENETUNREACH": 40,
+ "ENETDOWN": 38,
+ "ETIMEDOUT": 73,
+ "EHOSTDOWN": 142,
+ "EHOSTUNREACH": 23,
+ "EINPROGRESS": 26,
+ "EALREADY": 7,
+ "EDESTADDRREQ": 17,
+ "EMSGSIZE": 35,
+ "EPROTONOSUPPORT": 66,
+ "ESOCKTNOSUPPORT": 137,
+ "EADDRNOTAVAIL": 4,
+ "ENETRESET": 39,
+ "EISCONN": 30,
+ "ENOTCONN": 53,
+ "ETOOMANYREFS": 141,
+ "EUSERS": 136,
+ "EDQUOT": 19,
+ "ESTALE": 72,
+ "ENOTSUP": 138,
+ "ENOMEDIUM": 148,
+ "EILSEQ": 25,
+ "EOVERFLOW": 61,
+ "ECANCELED": 11,
+ "ENOTRECOVERABLE": 56,
+ "EOWNERDEAD": 62,
+ "ESTRPIPE": 135
+};
 
 Module["requestFullscreen"] = function Module_requestFullscreen(lockPointer, resizeCanvas) {
  Browser.requestFullscreen(lockPointer, resizeCanvas);
@@ -14480,28 +13998,27 @@ function intArrayFromString(stringy, dontAddNull, length) {
  return u8array;
 }
 
+function intArrayToString(array) {
+ var ret = [];
+ for (var i = 0; i < array.length; i++) {
+  var chr = array[i];
+  if (chr > 255) {
+   if (ASSERTIONS) {
+    assert(false, "Character code " + chr + " (" + String.fromCharCode(chr) + ")  at offset " + i + " not in 0x00-0xFF.");
+   }
+   chr &= 255;
+  }
+  ret.push(String.fromCharCode(chr));
+ }
+ return ret.join("");
+}
+
+function checkIncomingModuleAPI() {
+ ignoredModuleProp("fetchSettings");
+}
+
 var asmLibraryArg = {
- "AttachVideo": _AttachVideo,
- "BrowserFireEvent": _BrowserFireEvent,
- "CallMethod": _CallMethod,
- "Connect": _Connect,
- "CopyData": _CopyData,
- "DestroyTexture": _DestroyTexture,
- "Disconnect": _Disconnect,
- "GetBoolean": _GetBoolean,
- "GetFunctionInstance": _GetFunctionInstance,
- "GetNumber": _GetNumber,
- "GetProperty": _GetProperty,
- "GetString": _GetString,
- "HideReadyPlayerMeFrame": _HideReadyPlayerMeFrame,
- "Home": _Home,
- "InitLiveKit": _InitLiveKit,
- "IsBoolean": _IsBoolean,
- "IsNull": _IsNull,
- "IsNumber": _IsNumber,
- "IsObject": _IsObject,
- "IsString": _IsString,
- "IsUndefined": _IsUndefined,
+ "GetJSMemoryInfo": _GetJSMemoryInfo,
  "JS_Accelerometer_IsRunning": _JS_Accelerometer_IsRunning,
  "JS_Accelerometer_Start": _JS_Accelerometer_Start,
  "JS_Accelerometer_Stop": _JS_Accelerometer_Stop,
@@ -14512,10 +14029,10 @@ var asmLibraryArg = {
  "JS_Eval_OpenURL": _JS_Eval_OpenURL,
  "JS_FileSystem_Initialize": _JS_FileSystem_Initialize,
  "JS_FileSystem_Sync": _JS_FileSystem_Sync,
- "JS_Focus_Window": _JS_Focus_Window,
  "JS_GravitySensor_IsRunning": _JS_GravitySensor_IsRunning,
  "JS_GravitySensor_Start": _JS_GravitySensor_Start,
  "JS_GravitySensor_Stop": _JS_GravitySensor_Stop,
+ "JS_GuardAgainstJsExceptions": _JS_GuardAgainstJsExceptions,
  "JS_Gyroscope_IsRunning": _JS_Gyroscope_IsRunning,
  "JS_Gyroscope_Start": _JS_Gyroscope_Start,
  "JS_Gyroscope_Stop": _JS_Gyroscope_Stop,
@@ -14524,6 +14041,15 @@ var asmLibraryArg = {
  "JS_LinearAccelerationSensor_Stop": _JS_LinearAccelerationSensor_Stop,
  "JS_Log_Dump": _JS_Log_Dump,
  "JS_Log_StackTrace": _JS_Log_StackTrace,
+ "JS_MobileKeybard_GetIgnoreBlurEvent": _JS_MobileKeybard_GetIgnoreBlurEvent,
+ "JS_MobileKeyboard_GetKeyboardStatus": _JS_MobileKeyboard_GetKeyboardStatus,
+ "JS_MobileKeyboard_GetText": _JS_MobileKeyboard_GetText,
+ "JS_MobileKeyboard_GetTextSelection": _JS_MobileKeyboard_GetTextSelection,
+ "JS_MobileKeyboard_Hide": _JS_MobileKeyboard_Hide,
+ "JS_MobileKeyboard_SetCharacterLimit": _JS_MobileKeyboard_SetCharacterLimit,
+ "JS_MobileKeyboard_SetText": _JS_MobileKeyboard_SetText,
+ "JS_MobileKeyboard_SetTextSelection": _JS_MobileKeyboard_SetTextSelection,
+ "JS_MobileKeyboard_Show": _JS_MobileKeyboard_Show,
  "JS_OrientationSensor_IsRunning": _JS_OrientationSensor_IsRunning,
  "JS_OrientationSensor_Start": _JS_OrientationSensor_Start,
  "JS_OrientationSensor_Stop": _JS_OrientationSensor_Stop,
@@ -14534,10 +14060,8 @@ var asmLibraryArg = {
  "JS_ScreenOrientation_Init": _JS_ScreenOrientation_Init,
  "JS_ScreenOrientation_Lock": _JS_ScreenOrientation_Lock,
  "JS_Sound_Create_Channel": _JS_Sound_Create_Channel,
- "JS_Sound_GetData": _JS_Sound_GetData,
  "JS_Sound_GetLength": _JS_Sound_GetLength,
  "JS_Sound_GetLoadState": _JS_Sound_GetLoadState,
- "JS_Sound_GetMetaData": _JS_Sound_GetMetaData,
  "JS_Sound_Init": _JS_Sound_Init,
  "JS_Sound_Load": _JS_Sound_Load,
  "JS_Sound_Load_PCM": _JS_Sound_Load_PCM,
@@ -14565,11 +14089,11 @@ var asmLibraryArg = {
  "JS_SystemInfo_GetOS": _JS_SystemInfo_GetOS,
  "JS_SystemInfo_GetPreferredDevicePixelRatio": _JS_SystemInfo_GetPreferredDevicePixelRatio,
  "JS_SystemInfo_GetScreenSize": _JS_SystemInfo_GetScreenSize,
- "JS_SystemInfo_GetStreamingAssetsURL": _JS_SystemInfo_GetStreamingAssetsURL,
  "JS_SystemInfo_HasAstcHdr": _JS_SystemInfo_HasAstcHdr,
  "JS_SystemInfo_HasCursorLock": _JS_SystemInfo_HasCursorLock,
  "JS_SystemInfo_HasFullscreen": _JS_SystemInfo_HasFullscreen,
  "JS_SystemInfo_HasWebGL": _JS_SystemInfo_HasWebGL,
+ "JS_SystemInfo_IsMobile": _JS_SystemInfo_IsMobile,
  "JS_UnityEngineShouldQuit": _JS_UnityEngineShouldQuit,
  "JS_Video_CanPlayFormat": _JS_Video_CanPlayFormat,
  "JS_Video_Create": _JS_Video_Create,
@@ -14578,6 +14102,7 @@ var asmLibraryArg = {
  "JS_Video_EnableAudioTrack": _JS_Video_EnableAudioTrack,
  "JS_Video_GetAudioLanguageCode": _JS_Video_GetAudioLanguageCode,
  "JS_Video_GetNumAudioTracks": _JS_Video_GetNumAudioTracks,
+ "JS_Video_GetPlaybackRate": _JS_Video_GetPlaybackRate,
  "JS_Video_Height": _JS_Video_Height,
  "JS_Video_IsPlaying": _JS_Video_IsPlaying,
  "JS_Video_IsReady": _JS_Video_IsReady,
@@ -14590,7 +14115,7 @@ var asmLibraryArg = {
  "JS_Video_SetMute": _JS_Video_SetMute,
  "JS_Video_SetPlaybackRate": _JS_Video_SetPlaybackRate,
  "JS_Video_SetReadyHandler": _JS_Video_SetReadyHandler,
- "JS_Video_SetSeekedOnceHandler": _JS_Video_SetSeekedOnceHandler,
+ "JS_Video_SetSeekedHandler": _JS_Video_SetSeekedHandler,
  "JS_Video_SetVolume": _JS_Video_SetVolume,
  "JS_Video_Time": _JS_Video_Time,
  "JS_Video_UpdateToTexture": _JS_Video_UpdateToTexture,
@@ -14600,10 +14125,10 @@ var asmLibraryArg = {
  "JS_WebCamVideo_GetNativeHeight": _JS_WebCamVideo_GetNativeHeight,
  "JS_WebCamVideo_GetNativeWidth": _JS_WebCamVideo_GetNativeWidth,
  "JS_WebCamVideo_GetNumDevices": _JS_WebCamVideo_GetNumDevices,
- "JS_WebCamVideo_GrabFrame": _JS_WebCamVideo_GrabFrame,
  "JS_WebCamVideo_IsFrontFacing": _JS_WebCamVideo_IsFrontFacing,
  "JS_WebCamVideo_Start": _JS_WebCamVideo_Start,
  "JS_WebCamVideo_Stop": _JS_WebCamVideo_Stop,
+ "JS_WebCamVideo_Update": _JS_WebCamVideo_Update,
  "JS_WebCam_IsSupported": _JS_WebCam_IsSupported,
  "JS_WebRequest_Abort": _JS_WebRequest_Abort,
  "JS_WebRequest_Create": _JS_WebRequest_Create,
@@ -14614,28 +14139,8 @@ var asmLibraryArg = {
  "JS_WebRequest_SetRedirectLimit": _JS_WebRequest_SetRedirectLimit,
  "JS_WebRequest_SetRequestHeader": _JS_WebRequest_SetRequestHeader,
  "JS_WebRequest_SetTimeout": _JS_WebRequest_SetTimeout,
- "NewInstance": _NewInstance,
- "NewRef": _NewRef,
- "NewTexture": _NewTexture,
- "PushBoolean": _PushBoolean,
- "PushFunction": _PushFunction,
- "PushNull": _PushNull,
- "PushNumber": _PushNumber,
- "PushObject": _PushObject,
- "PushString": _PushString,
- "PushStruct": _PushStruct,
- "PushUndefined": _PushUndefined,
- "RemRef": _RemRef,
- "RetrieveBridgeObject": _RetrieveBridgeObject,
- "RetrieveWindowObject": _RetrieveWindowObject,
- "Send": _Send,
- "SetProperty": _SetProperty,
- "SetRef": _SetRef,
- "SetupRpm": _SetupRpm,
- "ShiftStack": _ShiftStack,
- "ShowReadyPlayerMeFrame": _ShowReadyPlayerMeFrame,
+ "__assert_fail": ___assert_fail,
  "__cxa_allocate_exception": ___cxa_allocate_exception,
- "__cxa_atexit": ___cxa_atexit,
  "__cxa_begin_catch": ___cxa_begin_catch,
  "__cxa_end_catch": ___cxa_end_catch,
  "__cxa_find_matching_catch_2": ___cxa_find_matching_catch_2,
@@ -14644,66 +14149,50 @@ var asmLibraryArg = {
  "__cxa_free_exception": ___cxa_free_exception,
  "__cxa_rethrow": ___cxa_rethrow,
  "__cxa_throw": ___cxa_throw,
- "__gmtime_r": ___gmtime_r,
- "__localtime_r": ___localtime_r,
  "__resumeException": ___resumeException,
- "__sys__newselect": ___sys__newselect,
- "__sys_accept4": ___sys_accept4,
- "__sys_access": ___sys_access,
- "__sys_bind": ___sys_bind,
- "__sys_chmod": ___sys_chmod,
- "__sys_connect": ___sys_connect,
- "__sys_dup2": ___sys_dup2,
- "__sys_fcntl64": ___sys_fcntl64,
- "__sys_fstat64": ___sys_fstat64,
- "__sys_ftruncate64": ___sys_ftruncate64,
- "__sys_getcwd": ___sys_getcwd,
- "__sys_getdents64": ___sys_getdents64,
- "__sys_getegid32": ___sys_getegid32,
- "__sys_geteuid32": ___sys_geteuid32,
- "__sys_getpeername": ___sys_getpeername,
- "__sys_getrusage": ___sys_getrusage,
- "__sys_getsockname": ___sys_getsockname,
- "__sys_getsockopt": ___sys_getsockopt,
- "__sys_getuid32": ___sys_getuid32,
- "__sys_ioctl": ___sys_ioctl,
- "__sys_listen": ___sys_listen,
- "__sys_lstat64": ___sys_lstat64,
- "__sys_mkdir": ___sys_mkdir,
- "__sys_mmap2": ___sys_mmap2,
- "__sys_munmap": ___sys_munmap,
- "__sys_open": ___sys_open,
- "__sys_pipe": ___sys_pipe,
- "__sys_poll": ___sys_poll,
- "__sys_readlink": ___sys_readlink,
- "__sys_recvfrom": ___sys_recvfrom,
- "__sys_recvmsg": ___sys_recvmsg,
- "__sys_rename": ___sys_rename,
- "__sys_rmdir": ___sys_rmdir,
- "__sys_sendmsg": ___sys_sendmsg,
- "__sys_sendto": ___sys_sendto,
- "__sys_setsockopt": ___sys_setsockopt,
- "__sys_shutdown": ___sys_shutdown,
- "__sys_socket": ___sys_socket,
- "__sys_stat64": ___sys_stat64,
- "__sys_statfs64": ___sys_statfs64,
- "__sys_truncate64": ___sys_truncate64,
- "__sys_uname": ___sys_uname,
- "__sys_unlink": ___sys_unlink,
+ "__syscall__newselect": ___syscall__newselect,
+ "__syscall_accept4": ___syscall_accept4,
+ "__syscall_chmod": ___syscall_chmod,
+ "__syscall_connect": ___syscall_connect,
+ "__syscall_faccessat": ___syscall_faccessat,
+ "__syscall_fcntl64": ___syscall_fcntl64,
+ "__syscall_fstat64": ___syscall_fstat64,
+ "__syscall_getcwd": ___syscall_getcwd,
+ "__syscall_getdents64": ___syscall_getdents64,
+ "__syscall_getsockopt": ___syscall_getsockopt,
+ "__syscall_ioctl": ___syscall_ioctl,
+ "__syscall_lstat64": ___syscall_lstat64,
+ "__syscall_mkdir": ___syscall_mkdir,
+ "__syscall_newfstatat": ___syscall_newfstatat,
+ "__syscall_openat": ___syscall_openat,
+ "__syscall_readlinkat": ___syscall_readlinkat,
+ "__syscall_recvfrom": ___syscall_recvfrom,
+ "__syscall_renameat": ___syscall_renameat,
+ "__syscall_rmdir": ___syscall_rmdir,
+ "__syscall_sendto": ___syscall_sendto,
+ "__syscall_socket": ___syscall_socket,
+ "__syscall_stat64": ___syscall_stat64,
+ "__syscall_statfs64": ___syscall_statfs64,
+ "__syscall_truncate64": ___syscall_truncate64,
+ "__syscall_unlinkat": ___syscall_unlinkat,
+ "__syscall_utimensat": ___syscall_utimensat,
+ "_dlopen_js": __dlopen_js,
+ "_dlsym_js": __dlsym_js,
+ "_emscripten_date_now": __emscripten_date_now,
+ "_emscripten_get_now_is_monotonic": __emscripten_get_now_is_monotonic,
+ "_emscripten_throw_longjmp": __emscripten_throw_longjmp,
+ "_gmtime_js": __gmtime_js,
+ "_localtime_js": __localtime_js,
+ "_mktime_js": __mktime_js,
+ "_mmap_js": __mmap_js,
+ "_munmap_js": __munmap_js,
+ "_tzset_js": __tzset_js,
  "abort": _abort,
- "atexit": _atexit,
- "clock": _clock,
- "clock_getres": _clock_getres,
- "clock_gettime": _clock_gettime,
- "difftime": _difftime,
- "dlclose": _dlclose,
- "dlerror": _dlerror,
- "dlopen": _dlopen,
- "dlsym": _dlsym,
  "emscripten_asm_const_int": _emscripten_asm_const_int,
  "emscripten_asm_const_int_sync_on_main_thread": _emscripten_asm_const_int_sync_on_main_thread,
  "emscripten_cancel_main_loop": _emscripten_cancel_main_loop,
  "emscripten_clear_interval": _emscripten_clear_interval,
+ "emscripten_console_error": _emscripten_console_error,
  "emscripten_exit_fullscreen": _emscripten_exit_fullscreen,
  "emscripten_exit_pointerlock": _emscripten_exit_pointerlock,
  "emscripten_get_canvas_element_size": _emscripten_get_canvas_element_size,
@@ -14711,11 +14200,11 @@ var asmLibraryArg = {
  "emscripten_get_gamepad_status": _emscripten_get_gamepad_status,
  "emscripten_get_heap_max": _emscripten_get_heap_max,
  "emscripten_get_now": _emscripten_get_now,
+ "emscripten_get_now_res": _emscripten_get_now_res,
  "emscripten_get_num_gamepads": _emscripten_get_num_gamepads,
  "emscripten_html5_remove_all_event_listeners": _emscripten_html5_remove_all_event_listeners,
  "emscripten_is_webgl_context_lost": _emscripten_is_webgl_context_lost,
  "emscripten_log": _emscripten_log,
- "emscripten_longjmp": _emscripten_longjmp,
  "emscripten_memcpy_big": _emscripten_memcpy_big,
  "emscripten_request_fullscreen": _emscripten_request_fullscreen,
  "emscripten_request_pointerlock": _emscripten_request_pointerlock,
@@ -14736,12 +14225,12 @@ var asmLibraryArg = {
  "emscripten_set_mousedown_callback_on_thread": _emscripten_set_mousedown_callback_on_thread,
  "emscripten_set_mousemove_callback_on_thread": _emscripten_set_mousemove_callback_on_thread,
  "emscripten_set_mouseup_callback_on_thread": _emscripten_set_mouseup_callback_on_thread,
+ "emscripten_set_pointerlockchange_callback_on_thread": _emscripten_set_pointerlockchange_callback_on_thread,
  "emscripten_set_touchcancel_callback_on_thread": _emscripten_set_touchcancel_callback_on_thread,
  "emscripten_set_touchend_callback_on_thread": _emscripten_set_touchend_callback_on_thread,
  "emscripten_set_touchmove_callback_on_thread": _emscripten_set_touchmove_callback_on_thread,
  "emscripten_set_touchstart_callback_on_thread": _emscripten_set_touchstart_callback_on_thread,
  "emscripten_set_wheel_callback_on_thread": _emscripten_set_wheel_callback_on_thread,
- "emscripten_thread_sleep": _emscripten_thread_sleep,
  "emscripten_webgl_create_context": _emscripten_webgl_create_context,
  "emscripten_webgl_destroy_context": _emscripten_webgl_destroy_context,
  "emscripten_webgl_enable_extension": _emscripten_webgl_enable_extension,
@@ -14756,18 +14245,12 @@ var asmLibraryArg = {
  "fd_read": _fd_read,
  "fd_seek": _fd_seek,
  "fd_write": _fd_write,
- "flock": _flock,
  "getTempRet0": _getTempRet0,
- "getaddrinfo": _getaddrinfo,
  "gethostbyaddr": _gethostbyaddr,
  "gethostbyname": _gethostbyname,
- "getnameinfo": _getnameinfo,
- "getpwuid": _getpwuid,
- "gettimeofday": _gettimeofday,
  "glActiveTexture": _glActiveTexture,
  "glAttachShader": _glAttachShader,
  "glBeginQuery": _glBeginQuery,
- "glBeginTransformFeedback": _glBeginTransformFeedback,
  "glBindAttribLocation": _glBindAttribLocation,
  "glBindBuffer": _glBindBuffer,
  "glBindBufferBase": _glBindBufferBase,
@@ -14776,7 +14259,6 @@ var asmLibraryArg = {
  "glBindRenderbuffer": _glBindRenderbuffer,
  "glBindSampler": _glBindSampler,
  "glBindTexture": _glBindTexture,
- "glBindTransformFeedback": _glBindTransformFeedback,
  "glBindVertexArray": _glBindVertexArray,
  "glBlendEquation": _glBlendEquation,
  "glBlendEquationSeparate": _glBlendEquationSeparate,
@@ -14814,7 +14296,6 @@ var asmLibraryArg = {
  "glDeleteShader": _glDeleteShader,
  "glDeleteSync": _glDeleteSync,
  "glDeleteTextures": _glDeleteTextures,
- "glDeleteTransformFeedbacks": _glDeleteTransformFeedbacks,
  "glDeleteVertexArrays": _glDeleteVertexArrays,
  "glDepthFunc": _glDepthFunc,
  "glDepthMask": _glDepthMask,
@@ -14829,7 +14310,6 @@ var asmLibraryArg = {
  "glEnable": _glEnable,
  "glEnableVertexAttribArray": _glEnableVertexAttribArray,
  "glEndQuery": _glEndQuery,
- "glEndTransformFeedback": _glEndTransformFeedback,
  "glFenceSync": _glFenceSync,
  "glFinish": _glFinish,
  "glFlush": _glFlush,
@@ -14844,7 +14324,6 @@ var asmLibraryArg = {
  "glGenRenderbuffers": _glGenRenderbuffers,
  "glGenSamplers": _glGenSamplers,
  "glGenTextures": _glGenTextures,
- "glGenTransformFeedbacks": _glGenTransformFeedbacks,
  "glGenVertexArrays": _glGenVertexArrays,
  "glGenerateMipmap": _glGenerateMipmap,
  "glGetActiveAttrib": _glGetActiveAttrib,
@@ -14853,6 +14332,7 @@ var asmLibraryArg = {
  "glGetActiveUniformBlockiv": _glGetActiveUniformBlockiv,
  "glGetActiveUniformsiv": _glGetActiveUniformsiv,
  "glGetAttribLocation": _glGetAttribLocation,
+ "glGetBufferSubData": _glGetBufferSubData,
  "glGetError": _glGetError,
  "glGetFramebufferAttachmentParameteriv": _glGetFramebufferAttachmentParameteriv,
  "glGetIntegeri_v": _glGetIntegeri_v,
@@ -14904,7 +14384,6 @@ var asmLibraryArg = {
  "glTexStorage3D": _glTexStorage3D,
  "glTexSubImage2D": _glTexSubImage2D,
  "glTexSubImage3D": _glTexSubImage3D,
- "glTransformFeedbackVaryings": _glTransformFeedbackVaryings,
  "glUniform1fv": _glUniform1fv,
  "glUniform1i": _glUniform1i,
  "glUniform1iv": _glUniform1iv,
@@ -14929,416 +14408,115 @@ var asmLibraryArg = {
  "glVertexAttribIPointer": _glVertexAttribIPointer,
  "glVertexAttribPointer": _glVertexAttribPointer,
  "glViewport": _glViewport,
- "invoke_d": invoke_d,
- "invoke_ddd": invoke_ddd,
- "invoke_ddddddi": invoke_ddddddi,
- "invoke_ddddi": invoke_ddddi,
  "invoke_dddi": invoke_dddi,
- "invoke_ddi": invoke_ddi,
- "invoke_ddii": invoke_ddii,
  "invoke_ddiii": invoke_ddiii,
- "invoke_dfi": invoke_dfi,
- "invoke_di": invoke_di,
- "invoke_did": invoke_did,
- "invoke_didd": invoke_didd,
- "invoke_didi": invoke_didi,
  "invoke_dii": invoke_dii,
  "invoke_diii": invoke_diii,
  "invoke_diiii": invoke_diiii,
- "invoke_diij": invoke_diij,
- "invoke_diiji": invoke_diiji,
- "invoke_dji": invoke_dji,
- "invoke_f": invoke_f,
- "invoke_fdi": invoke_fdi,
- "invoke_ff": invoke_ff,
- "invoke_fff": invoke_fff,
- "invoke_fffffffffi": invoke_fffffffffi,
- "invoke_fffffffi": invoke_fffffffi,
- "invoke_fffffi": invoke_fffffi,
- "invoke_fffffii": invoke_fffffii,
- "invoke_fffffiii": invoke_fffffiii,
- "invoke_ffffi": invoke_ffffi,
- "invoke_ffffii": invoke_ffffii,
- "invoke_ffffiiii": invoke_ffffiiii,
  "invoke_fffi": invoke_fffi,
- "invoke_fffifffi": invoke_fffifffi,
  "invoke_ffi": invoke_ffi,
- "invoke_ffii": invoke_ffii,
  "invoke_fi": invoke_fi,
- "invoke_fif": invoke_fif,
- "invoke_fiff": invoke_fiff,
- "invoke_fiffffi": invoke_fiffffi,
- "invoke_fiffffii": invoke_fiffffii,
- "invoke_fiffffiiiiii": invoke_fiffffiiiiii,
- "invoke_fifffi": invoke_fifffi,
- "invoke_fifffiii": invoke_fifffiii,
- "invoke_fiffi": invoke_fiffi,
  "invoke_fifi": invoke_fifi,
- "invoke_fifii": invoke_fifii,
  "invoke_fii": invoke_fii,
- "invoke_fiid": invoke_fiid,
- "invoke_fiif": invoke_fiif,
- "invoke_fiiffffi": invoke_fiiffffi,
- "invoke_fiiffi": invoke_fiiffi,
- "invoke_fiifi": invoke_fiifi,
- "invoke_fiifii": invoke_fiifii,
  "invoke_fiii": invoke_fiii,
- "invoke_fiiiffi": invoke_fiiiffi,
- "invoke_fiiifi": invoke_fiiifi,
  "invoke_fiiii": invoke_fiiii,
- "invoke_fiiiif": invoke_fiiiif,
- "invoke_fiiiifi": invoke_fiiiifi,
  "invoke_fiiiii": invoke_fiiiii,
- "invoke_fiiiiiff": invoke_fiiiiiff,
- "invoke_fiiiiii": invoke_fiiiiii,
- "invoke_fjfi": invoke_fjfi,
- "invoke_fji": invoke_fji,
  "invoke_i": invoke_i,
- "invoke_iddi": invoke_iddi,
- "invoke_idi": invoke_idi,
- "invoke_idii": invoke_idii,
- "invoke_idiii": invoke_idiii,
- "invoke_idiiii": invoke_idiiii,
- "invoke_idiiiii": invoke_idiiiii,
- "invoke_iffffi": invoke_iffffi,
- "invoke_ifffi": invoke_ifffi,
- "invoke_ifffiii": invoke_ifffiii,
- "invoke_iffi": invoke_iffi,
- "invoke_iffii": invoke_iffii,
  "invoke_ifi": invoke_ifi,
- "invoke_ifiii": invoke_ifiii,
- "invoke_ifiiii": invoke_ifiiii,
- "invoke_ifiiiii": invoke_ifiiiii,
  "invoke_ii": invoke_ii,
- "invoke_iidddi": invoke_iidddi,
- "invoke_iiddiiii": invoke_iiddiiii,
- "invoke_iidi": invoke_iidi,
- "invoke_iidiii": invoke_iidiii,
- "invoke_iif": invoke_iif,
- "invoke_iifffi": invoke_iifffi,
- "invoke_iiffii": invoke_iiffii,
- "invoke_iiffiiiii": invoke_iiffiiiii,
  "invoke_iifi": invoke_iifi,
  "invoke_iifii": invoke_iifii,
- "invoke_iifiii": invoke_iifiii,
- "invoke_iifiiiii": invoke_iifiiiii,
  "invoke_iii": invoke_iii,
- "invoke_iiid": invoke_iiid,
- "invoke_iiidi": invoke_iiidi,
- "invoke_iiif": invoke_iiif,
- "invoke_iiiff": invoke_iiiff,
- "invoke_iiifff": invoke_iiifff,
  "invoke_iiifi": invoke_iiifi,
  "invoke_iiifii": invoke_iiifii,
- "invoke_iiifiii": invoke_iiifiii,
- "invoke_iiifiiii": invoke_iiifiiii,
- "invoke_iiifiiiii": invoke_iiifiiiii,
  "invoke_iiii": invoke_iiii,
- "invoke_iiiif": invoke_iiiif,
- "invoke_iiiifff": invoke_iiiifff,
- "invoke_iiiiffiiiii": invoke_iiiiffiiiii,
- "invoke_iiiifi": invoke_iiiifi,
- "invoke_iiiifii": invoke_iiiifii,
- "invoke_iiiifiii": invoke_iiiifiii,
- "invoke_iiiifiiii": invoke_iiiifiiii,
- "invoke_iiiifiiiii": invoke_iiiifiiiii,
+ "invoke_iiiidii": invoke_iiiidii,
  "invoke_iiiii": invoke_iiiii,
- "invoke_iiiiif": invoke_iiiiif,
- "invoke_iiiiiffiii": invoke_iiiiiffiii,
- "invoke_iiiiifi": invoke_iiiiifi,
- "invoke_iiiiifiii": invoke_iiiiifiii,
+ "invoke_iiiiifiiiii": invoke_iiiiifiiiii,
  "invoke_iiiiii": invoke_iiiiii,
- "invoke_iiiiiiffiii": invoke_iiiiiiffiii,
- "invoke_iiiiiiffiiiiiiiiiffffiii": invoke_iiiiiiffiiiiiiiiiffffiii,
- "invoke_iiiiiiffiiiiiiiiiffffiiii": invoke_iiiiiiffiiiiiiiiiffffiiii,
- "invoke_iiiiiiffiiiiiiiiiiiiiii": invoke_iiiiiiffiiiiiiiiiiiiiii,
+ "invoke_iiiiiifii": invoke_iiiiiifii,
  "invoke_iiiiiii": invoke_iiiiiii,
- "invoke_iiiiiiifi": invoke_iiiiiiifi,
+ "invoke_iiiiiiifii": invoke_iiiiiiifii,
  "invoke_iiiiiiii": invoke_iiiiiiii,
- "invoke_iiiiiiiifi": invoke_iiiiiiiifi,
+ "invoke_iiiiiiiifiii": invoke_iiiiiiiifiii,
  "invoke_iiiiiiiii": invoke_iiiiiiiii,
  "invoke_iiiiiiiiii": invoke_iiiiiiiiii,
  "invoke_iiiiiiiiiii": invoke_iiiiiiiiiii,
  "invoke_iiiiiiiiiiii": invoke_iiiiiiiiiiii,
- "invoke_iiiiiiiiiiiii": invoke_iiiiiiiiiiiii,
- "invoke_iiiiiiiiiiiiii": invoke_iiiiiiiiiiiiii,
- "invoke_iiiiiiiiiiij": invoke_iiiiiiiiiiij,
  "invoke_iiiiiiiiiji": invoke_iiiiiiiiiji,
- "invoke_iiiiij": invoke_iiiiij,
- "invoke_iiiiiji": invoke_iiiiiji,
- "invoke_iiiij": invoke_iiiij,
- "invoke_iiiiji": invoke_iiiiji,
  "invoke_iiiijii": invoke_iiiijii,
- "invoke_iiiijjii": invoke_iiiijjii,
- "invoke_iiij": invoke_iiij,
- "invoke_iiiji": invoke_iiiji,
  "invoke_iiijii": invoke_iiijii,
  "invoke_iiijiii": invoke_iiijiii,
- "invoke_iiijiiii": invoke_iiijiiii,
  "invoke_iij": invoke_iij,
  "invoke_iiji": invoke_iiji,
  "invoke_iijii": invoke_iijii,
  "invoke_iijiii": invoke_iijiii,
- "invoke_iijiiii": invoke_iijiiii,
- "invoke_iijiiiiii": invoke_iijiiiiii,
  "invoke_iijji": invoke_iijji,
- "invoke_iijjii": invoke_iijjii,
- "invoke_iijjiiiiii": invoke_iijjiiiiii,
- "invoke_ij": invoke_ij,
  "invoke_iji": invoke_iji,
- "invoke_ijii": invoke_ijii,
- "invoke_ijiii": invoke_ijiii,
- "invoke_ijiiii": invoke_ijiiii,
- "invoke_ijiiiii": invoke_ijiiiii,
- "invoke_ijiiiiiiiii": invoke_ijiiiiiiiii,
- "invoke_ijiiiiji": invoke_ijiiiiji,
- "invoke_ijiiji": invoke_ijiiji,
- "invoke_ijiijii": invoke_ijiijii,
- "invoke_ijijiiiii": invoke_ijijiiiii,
  "invoke_ijji": invoke_ijji,
- "invoke_ijjiii": invoke_ijjiii,
- "invoke_ijjiiii": invoke_ijjiiii,
- "invoke_ijjji": invoke_ijjji,
- "invoke_ijjjiii": invoke_ijjjiii,
- "invoke_ijjjiijii": invoke_ijjjiijii,
  "invoke_j": invoke_j,
- "invoke_jdi": invoke_jdi,
- "invoke_jdii": invoke_jdii,
- "invoke_jfi": invoke_jfi,
  "invoke_ji": invoke_ji,
- "invoke_jidi": invoke_jidi,
- "invoke_jidii": invoke_jidii,
  "invoke_jii": invoke_jii,
- "invoke_jiid": invoke_jiid,
  "invoke_jiii": invoke_jiii,
  "invoke_jiiii": invoke_jiiii,
  "invoke_jiiiii": invoke_jiiiii,
- "invoke_jiiiiii": invoke_jiiiiii,
- "invoke_jiiiiiii": invoke_jiiiiiii,
- "invoke_jiiiiiiiii": invoke_jiiiiiiiii,
  "invoke_jiiiiiiiiii": invoke_jiiiiiiiiii,
- "invoke_jiiiiji": invoke_jiiiiji,
- "invoke_jiiij": invoke_jiiij,
- "invoke_jiij": invoke_jiij,
- "invoke_jiiji": invoke_jiiji,
- "invoke_jij": invoke_jij,
  "invoke_jiji": invoke_jiji,
  "invoke_jijii": invoke_jijii,
- "invoke_jijiii": invoke_jijiii,
- "invoke_jijj": invoke_jijj,
- "invoke_jijjji": invoke_jijjji,
- "invoke_jijjjii": invoke_jijjjii,
- "invoke_jji": invoke_jji,
- "invoke_jjii": invoke_jjii,
- "invoke_jjiii": invoke_jjiii,
- "invoke_jjiiii": invoke_jjiiii,
- "invoke_jjiiiii": invoke_jjiiiii,
  "invoke_jjji": invoke_jjji,
- "invoke_jjjii": invoke_jjjii,
- "invoke_jjjji": invoke_jjjji,
  "invoke_v": invoke_v,
- "invoke_vd": invoke_vd,
- "invoke_vdi": invoke_vdi,
- "invoke_vdii": invoke_vdii,
- "invoke_vdiii": invoke_vdiii,
- "invoke_vdiiiii": invoke_vdiiiii,
- "invoke_vfff": invoke_vfff,
- "invoke_vffff": invoke_vffff,
- "invoke_vffffffi": invoke_vffffffi,
- "invoke_vffffffii": invoke_vffffffii,
- "invoke_vffffi": invoke_vffffi,
- "invoke_vfffi": invoke_vfffi,
- "invoke_vffi": invoke_vffi,
  "invoke_vfi": invoke_vfi,
- "invoke_vfii": invoke_vfii,
- "invoke_vfiii": invoke_vfiii,
  "invoke_vi": invoke_vi,
- "invoke_vidd": invoke_vidd,
- "invoke_vidddiiii": invoke_vidddiiii,
- "invoke_viddi": invoke_viddi,
- "invoke_viddii": invoke_viddii,
- "invoke_viddiiii": invoke_viddiiii,
  "invoke_vidi": invoke_vidi,
- "invoke_vididiiii": invoke_vididiiii,
- "invoke_vidii": invoke_vidii,
- "invoke_vidiii": invoke_vidiii,
- "invoke_vidiiii": invoke_vidiiii,
- "invoke_vif": invoke_vif,
- "invoke_vifdddddi": invoke_vifdddddi,
- "invoke_viffffffffi": invoke_viffffffffi,
- "invoke_viffffffi": invoke_viffffffi,
- "invoke_vifffffi": invoke_vifffffi,
  "invoke_viffffi": invoke_viffffi,
- "invoke_viffffii": invoke_viffffii,
- "invoke_viffffiii": invoke_viffffiii,
  "invoke_vifffi": invoke_vifffi,
- "invoke_vifffii": invoke_vifffii,
  "invoke_viffi": invoke_viffi,
- "invoke_viffifi": invoke_viffifi,
- "invoke_viffii": invoke_viffii,
- "invoke_viffiii": invoke_viffiii,
- "invoke_viffiiii": invoke_viffiiii,
  "invoke_vifi": invoke_vifi,
  "invoke_vifii": invoke_vifii,
- "invoke_vifiii": invoke_vifiii,
- "invoke_vifiiii": invoke_vifiiii,
  "invoke_vifiiiii": invoke_vifiiiii,
- "invoke_vifiiiiii": invoke_vifiiiiii,
- "invoke_vifijii": invoke_vifijii,
  "invoke_vii": invoke_vii,
- "invoke_viid": invoke_viid,
  "invoke_viidi": invoke_viidi,
- "invoke_viidii": invoke_viidii,
- "invoke_viidiii": invoke_viidiii,
- "invoke_viidiiii": invoke_viidiiii,
- "invoke_viidiiiii": invoke_viidiiiii,
- "invoke_viidiijjfdddddi": invoke_viidiijjfdddddi,
- "invoke_viif": invoke_viif,
- "invoke_viiff": invoke_viiff,
- "invoke_viiffff": invoke_viiffff,
- "invoke_viiffffffffi": invoke_viiffffffffi,
- "invoke_viiffffffffiii": invoke_viiffffffffiii,
- "invoke_viiffffi": invoke_viiffffi,
- "invoke_viiffffiiiiii": invoke_viiffffiiiiii,
- "invoke_viifffi": invoke_viifffi,
- "invoke_viifffiii": invoke_viifffiii,
+ "invoke_viifffffi": invoke_viifffffi,
  "invoke_viiffi": invoke_viiffi,
- "invoke_viiffifi": invoke_viiffifi,
- "invoke_viiffii": invoke_viiffii,
- "invoke_viiffiifiiiiiii": invoke_viiffiifiiiiiii,
- "invoke_viiffiii": invoke_viiffiii,
- "invoke_viiffiiiiiii": invoke_viiffiiiiiii,
- "invoke_viiffiiiiiiiii": invoke_viiffiiiiiiiii,
  "invoke_viifi": invoke_viifi,
- "invoke_viififfii": invoke_viififfii,
- "invoke_viififii": invoke_viififii,
- "invoke_viififiiiiii": invoke_viififiiiiii,
  "invoke_viifii": invoke_viifii,
- "invoke_viifiii": invoke_viifiii,
- "invoke_viifiiii": invoke_viifiiii,
  "invoke_viifiiiiii": invoke_viifiiiiii,
- "invoke_viifiiiiiii": invoke_viifiiiiiii,
  "invoke_viii": invoke_viii,
- "invoke_viiid": invoke_viiid,
- "invoke_viiidi": invoke_viiidi,
- "invoke_viiidii": invoke_viiidii,
- "invoke_viiif": invoke_viiif,
- "invoke_viiifff": invoke_viiifff,
- "invoke_viiiffffi": invoke_viiiffffi,
- "invoke_viiifffi": invoke_viiifffi,
- "invoke_viiiffi": invoke_viiiffi,
- "invoke_viiiffii": invoke_viiiffii,
- "invoke_viiiffiifiiiiiii": invoke_viiiffiifiiiiiii,
  "invoke_viiifi": invoke_viiifi,
- "invoke_viiififfiiiiiii": invoke_viiififfiiiiiii,
- "invoke_viiififi": invoke_viiififi,
- "invoke_viiififii": invoke_viiififii,
- "invoke_viiififiii": invoke_viiififiii,
  "invoke_viiifii": invoke_viiifii,
- "invoke_viiifiii": invoke_viiifiii,
- "invoke_viiifiiii": invoke_viiifiiii,
- "invoke_viiifiiiiii": invoke_viiifiiiiii,
  "invoke_viiii": invoke_viiii,
- "invoke_viiiidiii": invoke_viiiidiii,
- "invoke_viiiif": invoke_viiiif,
- "invoke_viiiiff": invoke_viiiiff,
- "invoke_viiiiffffiiii": invoke_viiiiffffiiii,
- "invoke_viiiifffi": invoke_viiiifffi,
- "invoke_viiiiffi": invoke_viiiiffi,
  "invoke_viiiifi": invoke_viiiifi,
- "invoke_viiiifii": invoke_viiiifii,
- "invoke_viiiifiii": invoke_viiiifiii,
- "invoke_viiiifiiiiii": invoke_viiiifiiiiii,
  "invoke_viiiii": invoke_viiiii,
- "invoke_viiiiif": invoke_viiiiif,
- "invoke_viiiiifdddiffii": invoke_viiiiifdddiffii,
- "invoke_viiiiiffffi": invoke_viiiiiffffi,
+ "invoke_viiiiifffiii": invoke_viiiiifffiii,
  "invoke_viiiiiffi": invoke_viiiiiffi,
- "invoke_viiiiiffiii": invoke_viiiiiffiii,
  "invoke_viiiiifi": invoke_viiiiifi,
- "invoke_viiiiifii": invoke_viiiiifii,
  "invoke_viiiiii": invoke_viiiiii,
- "invoke_viiiiiifiiiiii": invoke_viiiiiifiiiiii,
  "invoke_viiiiiii": invoke_viiiiiii,
- "invoke_viiiiiiifi": invoke_viiiiiiifi,
- "invoke_viiiiiiifiifiii": invoke_viiiiiiifiifiii,
  "invoke_viiiiiiii": invoke_viiiiiiii,
  "invoke_viiiiiiiii": invoke_viiiiiiiii,
- "invoke_viiiiiiiiifi": invoke_viiiiiiiiifi,
  "invoke_viiiiiiiiii": invoke_viiiiiiiiii,
- "invoke_viiiiiiiiiii": invoke_viiiiiiiiiii,
  "invoke_viiiiiiiiiiii": invoke_viiiiiiiiiiii,
  "invoke_viiiiiiiiiiiii": invoke_viiiiiiiiiiiii,
- "invoke_viiiiiiiiiiiiii": invoke_viiiiiiiiiiiiii,
- "invoke_viiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiii,
- "invoke_viiiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiiii,
- "invoke_viiiiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiiiii,
- "invoke_viiiiiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiiiiii,
- "invoke_viiiiiiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiiiiiii,
- "invoke_viiiiiiiijiii": invoke_viiiiiiiijiii,
- "invoke_viiiiiiiijiiii": invoke_viiiiiiiijiiii,
- "invoke_viiiiij": invoke_viiiiij,
- "invoke_viiiiiji": invoke_viiiiiji,
- "invoke_viiiij": invoke_viiiij,
  "invoke_viiiijii": invoke_viiiijii,
- "invoke_viiiijiiii": invoke_viiiijiiii,
- "invoke_viiij": invoke_viiij,
  "invoke_viiiji": invoke_viiiji,
- "invoke_viiijii": invoke_viiijii,
- "invoke_viiijiii": invoke_viiijiii,
- "invoke_viiijji": invoke_viiijji,
- "invoke_viij": invoke_viij,
  "invoke_viiji": invoke_viiji,
- "invoke_viijii": invoke_viijii,
- "invoke_viijiii": invoke_viijiii,
- "invoke_viijiiiiii": invoke_viijiiiiii,
- "invoke_viijiiijiiii": invoke_viijiiijiiii,
- "invoke_viijiijiii": invoke_viijiijiii,
- "invoke_viijij": invoke_viijij,
- "invoke_viijijii": invoke_viijijii,
- "invoke_viijijiii": invoke_viijijiii,
- "invoke_viijji": invoke_viijji,
- "invoke_viijjii": invoke_viijjii,
- "invoke_vij": invoke_vij,
  "invoke_viji": invoke_viji,
  "invoke_vijii": invoke_vijii,
  "invoke_vijiii": invoke_vijiii,
- "invoke_vijiiii": invoke_vijiiii,
  "invoke_vijiiiii": invoke_vijiiiii,
- "invoke_vijiiiiii": invoke_vijiiiiii,
- "invoke_vijiiiiiii": invoke_vijiiiiiii,
- "invoke_vijiiiiiiii": invoke_vijiiiiiiii,
- "invoke_vijiji": invoke_vijiji,
- "invoke_vijijii": invoke_vijijii,
- "invoke_vijji": invoke_vijji,
- "invoke_vijjji": invoke_vijjji,
- "invoke_vijjjiijii": invoke_vijjjiijii,
  "invoke_vji": invoke_vji,
- "invoke_vjii": invoke_vjii,
- "invoke_vjiiii": invoke_vjiiii,
  "invoke_vjiiiii": invoke_vjiiiii,
- "invoke_vjiiiiiii": invoke_vjiiiiiii,
- "invoke_vjiiiiiiii": invoke_vjiiiiiiii,
- "invoke_vjjii": invoke_vjjii,
- "invoke_vjjiiiii": invoke_vjjiiiii,
  "invoke_vjjjiiii": invoke_vjjjiiii,
  "llvm_eh_typeid_for": _llvm_eh_typeid_for,
- "mktime": _mktime,
  "setTempRet0": _setTempRet0,
- "sigaction": _sigaction,
- "sigemptyset": _sigemptyset,
- "strftime": _strftime,
- "time": _time,
- "utime": _utime
+ "strftime": _strftime
 };
 
 var asm = createWasm();
 
 var ___wasm_call_ctors = Module["___wasm_call_ctors"] = createExportWrapper("__wasm_call_ctors");
 
-var _browserinteraction_set_callbacks = Module["_browserinteraction_set_callbacks"] = createExportWrapper("browserinteraction_set_callbacks");
-
-var _call_cb_vs = Module["_call_cb_vs"] = createExportWrapper("call_cb_vs");
+var _getMemInfo = Module["_getMemInfo"] = createExportWrapper("getMemInfo");
 
 var _SendMessageFloat = Module["_SendMessageFloat"] = createExportWrapper("SendMessageFloat");
 
@@ -15354,27 +14532,27 @@ var _InjectProfilerSample = Module["_InjectProfilerSample"] = createExportWrappe
 
 var ___errno_location = Module["___errno_location"] = createExportWrapper("__errno_location");
 
+var ___stdio_exit = Module["___stdio_exit"] = createExportWrapper("__stdio_exit");
+
+var ___dl_seterr = Module["___dl_seterr"] = createExportWrapper("__dl_seterr");
+
 var _htonl = Module["_htonl"] = createExportWrapper("htonl");
 
 var _htons = Module["_htons"] = createExportWrapper("htons");
 
 var _ntohs = Module["_ntohs"] = createExportWrapper("ntohs");
 
-var _fflush = Module["_fflush"] = createExportWrapper("fflush");
+var _strlen = Module["_strlen"] = createExportWrapper("strlen");
 
-var __get_tzname = Module["__get_tzname"] = createExportWrapper("_get_tzname");
+var _malloc = Module["_malloc"] = createExportWrapper("malloc");
 
-var __get_daylight = Module["__get_daylight"] = createExportWrapper("_get_daylight");
+var _free = Module["_free"] = createExportWrapper("free");
 
-var __get_timezone = Module["__get_timezone"] = createExportWrapper("_get_timezone");
+var _emscripten_builtin_memalign = Module["_emscripten_builtin_memalign"] = createExportWrapper("emscripten_builtin_memalign");
 
-var _emscripten_main_thread_process_queued_calls = Module["_emscripten_main_thread_process_queued_calls"] = createExportWrapper("emscripten_main_thread_process_queued_calls");
+var _setThrew = Module["_setThrew"] = createExportWrapper("setThrew");
 
-var stackSave = Module["stackSave"] = createExportWrapper("stackSave");
-
-var stackRestore = Module["stackRestore"] = createExportWrapper("stackRestore");
-
-var stackAlloc = Module["stackAlloc"] = createExportWrapper("stackAlloc");
+var _saveSetjmp = Module["_saveSetjmp"] = createExportWrapper("saveSetjmp");
 
 var _emscripten_stack_init = Module["_emscripten_stack_init"] = function() {
  return (_emscripten_stack_init = Module["_emscripten_stack_init"] = Module["asm"]["emscripten_stack_init"]).apply(null, arguments);
@@ -15384,11 +14562,19 @@ var _emscripten_stack_get_free = Module["_emscripten_stack_get_free"] = function
  return (_emscripten_stack_get_free = Module["_emscripten_stack_get_free"] = Module["asm"]["emscripten_stack_get_free"]).apply(null, arguments);
 };
 
+var _emscripten_stack_get_base = Module["_emscripten_stack_get_base"] = function() {
+ return (_emscripten_stack_get_base = Module["_emscripten_stack_get_base"] = Module["asm"]["emscripten_stack_get_base"]).apply(null, arguments);
+};
+
 var _emscripten_stack_get_end = Module["_emscripten_stack_get_end"] = function() {
  return (_emscripten_stack_get_end = Module["_emscripten_stack_get_end"] = Module["asm"]["emscripten_stack_get_end"]).apply(null, arguments);
 };
 
-var _setThrew = Module["_setThrew"] = createExportWrapper("setThrew");
+var stackSave = Module["stackSave"] = createExportWrapper("stackSave");
+
+var stackRestore = Module["stackRestore"] = createExportWrapper("stackRestore");
+
+var stackAlloc = Module["stackAlloc"] = createExportWrapper("stackAlloc");
 
 var ___cxa_demangle = Module["___cxa_demangle"] = createExportWrapper("__cxa_demangle");
 
@@ -15396,47 +14582,35 @@ var ___cxa_can_catch = Module["___cxa_can_catch"] = createExportWrapper("__cxa_c
 
 var ___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = createExportWrapper("__cxa_is_pointer_type");
 
-var _malloc = Module["_malloc"] = createExportWrapper("malloc");
-
-var _free = Module["_free"] = createExportWrapper("free");
-
-var _memalign = Module["_memalign"] = createExportWrapper("memalign");
-
-var _memset = Module["_memset"] = createExportWrapper("memset");
-
-var _strlen = Module["_strlen"] = createExportWrapper("strlen");
-
-var dynCall_iii = Module["dynCall_iii"] = createExportWrapper("dynCall_iii");
-
 var dynCall_iidiiii = Module["dynCall_iidiiii"] = createExportWrapper("dynCall_iidiiii");
 
 var dynCall_vii = Module["dynCall_vii"] = createExportWrapper("dynCall_vii");
 
 var dynCall_iiii = Module["dynCall_iiii"] = createExportWrapper("dynCall_iiii");
 
-var dynCall_iiiii = Module["dynCall_iiiii"] = createExportWrapper("dynCall_iiiii");
-
-var dynCall_i = Module["dynCall_i"] = createExportWrapper("dynCall_i");
-
 var dynCall_v = Module["dynCall_v"] = createExportWrapper("dynCall_v");
 
 var dynCall_vi = Module["dynCall_vi"] = createExportWrapper("dynCall_vi");
-
-var dynCall_ii = Module["dynCall_ii"] = createExportWrapper("dynCall_ii");
-
-var dynCall_viiiiii = Module["dynCall_viiiiii"] = createExportWrapper("dynCall_viiiiii");
-
-var dynCall_viiiii = Module["dynCall_viiiii"] = createExportWrapper("dynCall_viiiii");
-
-var dynCall_viiii = Module["dynCall_viiii"] = createExportWrapper("dynCall_viiii");
-
-var dynCall_iiiiii = Module["dynCall_iiiiii"] = createExportWrapper("dynCall_iiiiii");
 
 var dynCall_viii = Module["dynCall_viii"] = createExportWrapper("dynCall_viii");
 
 var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
 
-var dynCall_iiij = Module["dynCall_iiij"] = createExportWrapper("dynCall_iiij");
+var dynCall_ii = Module["dynCall_ii"] = createExportWrapper("dynCall_ii");
+
+var dynCall_iiiii = Module["dynCall_iiiii"] = createExportWrapper("dynCall_iiiii");
+
+var dynCall_iii = Module["dynCall_iii"] = createExportWrapper("dynCall_iii");
+
+var dynCall_viiii = Module["dynCall_viiii"] = createExportWrapper("dynCall_viiii");
+
+var dynCall_viiiiii = Module["dynCall_viiiiii"] = createExportWrapper("dynCall_viiiiii");
+
+var dynCall_viiiii = Module["dynCall_viiiii"] = createExportWrapper("dynCall_viiiii");
+
+var dynCall_iiiiii = Module["dynCall_iiiiii"] = createExportWrapper("dynCall_iiiiii");
+
+var dynCall_i = Module["dynCall_i"] = createExportWrapper("dynCall_i");
 
 var dynCall_iiiiiiii = Module["dynCall_iiiiiiii"] = createExportWrapper("dynCall_iiiiiiii");
 
@@ -15448,417 +14622,169 @@ var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = createExportWrapper("dynCall_i
 
 var dynCall_jii = Module["dynCall_jii"] = createExportWrapper("dynCall_jii");
 
-var dynCall_viiiiiii = Module["dynCall_viiiiiii"] = createExportWrapper("dynCall_viiiiiii");
-
-var dynCall_viiiiiiiiii = Module["dynCall_viiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiii");
-
 var dynCall_viiiiiiii = Module["dynCall_viiiiiiii"] = createExportWrapper("dynCall_viiiiiiii");
 
-var dynCall_dddi = Module["dynCall_dddi"] = createExportWrapper("dynCall_dddi");
+var dynCall_iiiidii = Module["dynCall_iiiidii"] = createExportWrapper("dynCall_iiiidii");
 
-var dynCall_iiiiiiiii = Module["dynCall_iiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiii");
+var dynCall_iiiijii = Module["dynCall_iiiijii"] = createExportWrapper("dynCall_iiiijii");
 
-var dynCall_jiiiiiiiiii = Module["dynCall_jiiiiiiiiii"] = createExportWrapper("dynCall_jiiiiiiiiii");
+var dynCall_fiii = Module["dynCall_fiii"] = createExportWrapper("dynCall_fiii");
 
-var dynCall_jiiii = Module["dynCall_jiiii"] = createExportWrapper("dynCall_jiiii");
-
-var dynCall_viiiiiiiiiiii = Module["dynCall_viiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiii");
-
-var dynCall_iiiji = Module["dynCall_iiiji"] = createExportWrapper("dynCall_iiiji");
-
-var dynCall_viiiiiiiii = Module["dynCall_viiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiii");
-
-var dynCall_iiiiiiiiii = Module["dynCall_iiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiii");
-
-var dynCall_viji = Module["dynCall_viji"] = createExportWrapper("dynCall_viji");
-
-var dynCall_jiiiii = Module["dynCall_jiiiii"] = createExportWrapper("dynCall_jiiiii");
+var dynCall_diii = Module["dynCall_diii"] = createExportWrapper("dynCall_diii");
 
 var dynCall_jiii = Module["dynCall_jiii"] = createExportWrapper("dynCall_jiii");
 
-var dynCall_vji = Module["dynCall_vji"] = createExportWrapper("dynCall_vji");
+var dynCall_viifi = Module["dynCall_viifi"] = createExportWrapper("dynCall_viifi");
 
-var dynCall_iiji = Module["dynCall_iiji"] = createExportWrapper("dynCall_iiji");
+var dynCall_iiifii = Module["dynCall_iiifii"] = createExportWrapper("dynCall_iiifii");
 
-var dynCall_jidi = Module["dynCall_jidi"] = createExportWrapper("dynCall_jidi");
+var dynCall_viiji = Module["dynCall_viiji"] = createExportWrapper("dynCall_viiji");
 
-var dynCall_dii = Module["dynCall_dii"] = createExportWrapper("dynCall_dii");
+var dynCall_iiijii = Module["dynCall_iiijii"] = createExportWrapper("dynCall_iiijii");
 
-var dynCall_vjiiii = Module["dynCall_vjiiii"] = createExportWrapper("dynCall_vjiiii");
+var dynCall_viji = Module["dynCall_viji"] = createExportWrapper("dynCall_viji");
 
 var dynCall_vidi = Module["dynCall_vidi"] = createExportWrapper("dynCall_vidi");
 
-var dynCall_vdiiiii = Module["dynCall_vdiiiii"] = createExportWrapper("dynCall_vdiiiii");
+var dynCall_viidi = Module["dynCall_viidi"] = createExportWrapper("dynCall_viidi");
 
-var dynCall_diiji = Module["dynCall_diiji"] = createExportWrapper("dynCall_diiji");
+var dynCall_viiiiiiiii = Module["dynCall_viiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiii");
 
-var dynCall_iji = Module["dynCall_iji"] = createExportWrapper("dynCall_iji");
+var dynCall_iiiiiifii = Module["dynCall_iiiiiifii"] = createExportWrapper("dynCall_iiiiiifii");
 
-var dynCall_ijjiiii = Module["dynCall_ijjiiii"] = createExportWrapper("dynCall_ijjiiii");
+var dynCall_fii = Module["dynCall_fii"] = createExportWrapper("dynCall_fii");
 
-var dynCall_iiiiiji = Module["dynCall_iiiiiji"] = createExportWrapper("dynCall_iiiiiji");
+var dynCall_iiiiiiiifiii = Module["dynCall_iiiiiiiifiii"] = createExportWrapper("dynCall_iiiiiiiifiii");
+
+var dynCall_viiiiifi = Module["dynCall_viiiiifi"] = createExportWrapper("dynCall_viiiiifi");
+
+var dynCall_viiiiiii = Module["dynCall_viiiiiii"] = createExportWrapper("dynCall_viiiiiii");
+
+var dynCall_iiiiiiiii = Module["dynCall_iiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiii");
+
+var dynCall_iiiiifiiiii = Module["dynCall_iiiiifiiiii"] = createExportWrapper("dynCall_iiiiifiiiii");
+
+var dynCall_dddi = Module["dynCall_dddi"] = createExportWrapper("dynCall_dddi");
+
+var dynCall_viffi = Module["dynCall_viffi"] = createExportWrapper("dynCall_viffi");
+
+var dynCall_viiifi = Module["dynCall_viiifi"] = createExportWrapper("dynCall_viiifi");
+
+var dynCall_ffi = Module["dynCall_ffi"] = createExportWrapper("dynCall_ffi");
+
+var dynCall_iiiiiiifii = Module["dynCall_iiiiiiifii"] = createExportWrapper("dynCall_iiiiiiifii");
+
+var dynCall_vifi = Module["dynCall_vifi"] = createExportWrapper("dynCall_vifi");
+
+var dynCall_viifiiiiii = Module["dynCall_viifiiiiii"] = createExportWrapper("dynCall_viifiiiiii");
+
+var dynCall_iifii = Module["dynCall_iifii"] = createExportWrapper("dynCall_iifii");
+
+var dynCall_vfi = Module["dynCall_vfi"] = createExportWrapper("dynCall_vfi");
+
+var dynCall_fiiii = Module["dynCall_fiiii"] = createExportWrapper("dynCall_fiiii");
+
+var dynCall_fi = Module["dynCall_fi"] = createExportWrapper("dynCall_fi");
+
+var dynCall_vifii = Module["dynCall_vifii"] = createExportWrapper("dynCall_vifii");
+
+var dynCall_viiiji = Module["dynCall_viiiji"] = createExportWrapper("dynCall_viiiji");
+
+var dynCall_jiiii = Module["dynCall_jiiii"] = createExportWrapper("dynCall_jiiii");
+
+var dynCall_diiii = Module["dynCall_diiii"] = createExportWrapper("dynCall_diiii");
+
+var dynCall_viiiiiiiiii = Module["dynCall_viiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiii");
+
+var dynCall_viiiiiffi = Module["dynCall_viiiiiffi"] = createExportWrapper("dynCall_viiiiiffi");
+
+var dynCall_ifi = Module["dynCall_ifi"] = createExportWrapper("dynCall_ifi");
+
+var dynCall_viiifii = Module["dynCall_viiifii"] = createExportWrapper("dynCall_viiifii");
+
+var dynCall_viffffi = Module["dynCall_viffffi"] = createExportWrapper("dynCall_viffffi");
+
+var dynCall_iiji = Module["dynCall_iiji"] = createExportWrapper("dynCall_iiji");
+
+var dynCall_viiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiii");
+
+var dynCall_viiiiiiiiiiii = Module["dynCall_viiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiii");
+
+var dynCall_viifii = Module["dynCall_viifii"] = createExportWrapper("dynCall_viifii");
+
+var dynCall_fffi = Module["dynCall_fffi"] = createExportWrapper("dynCall_fffi");
+
+var dynCall_vifffi = Module["dynCall_vifffi"] = createExportWrapper("dynCall_vifffi");
+
+var dynCall_iiiiiiiiiiii = Module["dynCall_iiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiii");
+
+var dynCall_iiiiiiiiii = Module["dynCall_iiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiii");
+
+var dynCall_iifi = Module["dynCall_iifi"] = createExportWrapper("dynCall_iifi");
+
+var dynCall_iiiifii = Module["dynCall_iiiifii"] = createExportWrapper("dynCall_iiiifii");
+
+var dynCall_viiiifii = Module["dynCall_viiiifii"] = createExportWrapper("dynCall_viiiifii");
+
+var dynCall_jijii = Module["dynCall_jijii"] = createExportWrapper("dynCall_jijii");
+
+var dynCall_iiiiiiiiiji = Module["dynCall_iiiiiiiiiji"] = createExportWrapper("dynCall_iiiiiiiiiji");
+
+var dynCall_vji = Module["dynCall_vji"] = createExportWrapper("dynCall_vji");
+
+var dynCall_vijii = Module["dynCall_vijii"] = createExportWrapper("dynCall_vijii");
+
+var dynCall_iijiii = Module["dynCall_iijiii"] = createExportWrapper("dynCall_iijiii");
+
+var dynCall_iiiifi = Module["dynCall_iiiifi"] = createExportWrapper("dynCall_iiiifi");
+
+var dynCall_dii = Module["dynCall_dii"] = createExportWrapper("dynCall_dii");
+
+var dynCall_iijji = Module["dynCall_iijji"] = createExportWrapper("dynCall_iijji");
+
+var dynCall_ijji = Module["dynCall_ijji"] = createExportWrapper("dynCall_ijji");
+
+var dynCall_ji = Module["dynCall_ji"] = createExportWrapper("dynCall_ji");
+
+var dynCall_viiffi = Module["dynCall_viiffi"] = createExportWrapper("dynCall_viiffi");
+
+var dynCall_iidi = Module["dynCall_iidi"] = createExportWrapper("dynCall_iidi");
+
+var dynCall_viifffffi = Module["dynCall_viifffffi"] = createExportWrapper("dynCall_viifffffi");
+
+var dynCall_fifi = Module["dynCall_fifi"] = createExportWrapper("dynCall_fifi");
+
+var dynCall_fiiiii = Module["dynCall_fiiiii"] = createExportWrapper("dynCall_fiiiii");
+
+var dynCall_viiiiifffiii = Module["dynCall_viiiiifffiii"] = createExportWrapper("dynCall_viiiiifffiii");
+
+var dynCall_ddiii = Module["dynCall_ddiii"] = createExportWrapper("dynCall_ddiii");
+
+var dynCall_iiifi = Module["dynCall_iiifi"] = createExportWrapper("dynCall_iiifi");
+
+var dynCall_viiiifi = Module["dynCall_viiiifi"] = createExportWrapper("dynCall_viiiifi");
+
+var dynCall_diidi = Module["dynCall_diidi"] = createExportWrapper("dynCall_diidi");
+
+var dynCall_jiiji = Module["dynCall_jiiji"] = createExportWrapper("dynCall_jiiji");
+
+var dynCall_fiifi = Module["dynCall_fiifi"] = createExportWrapper("dynCall_fiifi");
+
+var dynCall_iiffi = Module["dynCall_iiffi"] = createExportWrapper("dynCall_iiffi");
+
+var dynCall_fiffi = Module["dynCall_fiffi"] = createExportWrapper("dynCall_fiffi");
+
+var dynCall_viiiiiiiiiii = Module["dynCall_viiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiii");
+
+var dynCall_vijiiiii = Module["dynCall_vijiiiii"] = createExportWrapper("dynCall_vijiiiii");
 
 var dynCall_fiiffi = Module["dynCall_fiiffi"] = createExportWrapper("dynCall_fiiffi");
 
 var dynCall_viiififii = Module["dynCall_viiififii"] = createExportWrapper("dynCall_viiififii");
 
-var dynCall_vifi = Module["dynCall_vifi"] = createExportWrapper("dynCall_vifi");
-
-var dynCall_viififii = Module["dynCall_viififii"] = createExportWrapper("dynCall_viififii");
-
-var dynCall_fiffi = Module["dynCall_fiffi"] = createExportWrapper("dynCall_fiffi");
-
-var dynCall_fii = Module["dynCall_fii"] = createExportWrapper("dynCall_fii");
-
-var dynCall_viffii = Module["dynCall_viffii"] = createExportWrapper("dynCall_viffii");
-
-var dynCall_viifi = Module["dynCall_viifi"] = createExportWrapper("dynCall_viifi");
-
-var dynCall_fiii = Module["dynCall_fiii"] = createExportWrapper("dynCall_fiii");
-
-var dynCall_ifi = Module["dynCall_ifi"] = createExportWrapper("dynCall_ifi");
-
-var dynCall_iifi = Module["dynCall_iifi"] = createExportWrapper("dynCall_iifi");
-
-var dynCall_viiiiiiiijiiii = Module["dynCall_viiiiiiiijiiii"] = createExportWrapper("dynCall_viiiiiiiijiiii");
-
-var dynCall_viiiiiiiiiii = Module["dynCall_viiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiii");
-
-var dynCall_viiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiii");
-
-var dynCall_viiifii = Module["dynCall_viiifii"] = createExportWrapper("dynCall_viiifii");
+var dynCall_viiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiiii");
 
 var dynCall_viiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiiiii");
-
-var dynCall_viiiiiiifi = Module["dynCall_viiiiiiifi"] = createExportWrapper("dynCall_viiiiiiifi");
-
-var dynCall_ffi = Module["dynCall_ffi"] = createExportWrapper("dynCall_ffi");
-
-var dynCall_viffi = Module["dynCall_viffi"] = createExportWrapper("dynCall_viffi");
-
-var dynCall_viiff = Module["dynCall_viiff"] = createExportWrapper("dynCall_viiff");
-
-var dynCall_fffi = Module["dynCall_fffi"] = createExportWrapper("dynCall_fffi");
-
-var dynCall_ji = Module["dynCall_ji"] = createExportWrapper("dynCall_ji");
-
-var dynCall_fifi = Module["dynCall_fifi"] = createExportWrapper("dynCall_fifi");
-
-var dynCall_ijji = Module["dynCall_ijji"] = createExportWrapper("dynCall_ijji");
-
-var dynCall_viffffi = Module["dynCall_viffffi"] = createExportWrapper("dynCall_viffffi");
-
-var dynCall_fiifi = Module["dynCall_fiifi"] = createExportWrapper("dynCall_fiifi");
-
-var dynCall_fi = Module["dynCall_fi"] = createExportWrapper("dynCall_fi");
-
-var dynCall_iiiiiiffiiiiiiiiiiiiiii = Module["dynCall_iiiiiiffiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiffiiiiiiiiiiiiiii");
-
-var dynCall_iiiiiiffiiiiiiiiiffffiiii = Module["dynCall_iiiiiiffiiiiiiiiiffffiiii"] = createExportWrapper("dynCall_iiiiiiffiiiiiiiiiffffiiii");
-
-var dynCall_fiffffiiiiii = Module["dynCall_fiffffiiiiii"] = createExportWrapper("dynCall_fiffffiiiiii");
-
-var dynCall_viiffffiiiiii = Module["dynCall_viiffffiiiiii"] = createExportWrapper("dynCall_viiffffiiiiii");
-
-var dynCall_fiffffii = Module["dynCall_fiffffii"] = createExportWrapper("dynCall_fiffffii");
-
-var dynCall_viffffii = Module["dynCall_viffffii"] = createExportWrapper("dynCall_viffffii");
-
-var dynCall_viffffiii = Module["dynCall_viffffiii"] = createExportWrapper("dynCall_viffffiii");
-
-var dynCall_ffffiiii = Module["dynCall_ffffiiii"] = createExportWrapper("dynCall_ffffiiii");
-
-var dynCall_fifffiii = Module["dynCall_fifffiii"] = createExportWrapper("dynCall_fifffiii");
-
-var dynCall_fffffiii = Module["dynCall_fffffiii"] = createExportWrapper("dynCall_fffffiii");
-
-var dynCall_viffiii = Module["dynCall_viffiii"] = createExportWrapper("dynCall_viffiii");
-
-var dynCall_viifii = Module["dynCall_viifii"] = createExportWrapper("dynCall_viifii");
-
-var dynCall_viiifi = Module["dynCall_viiifi"] = createExportWrapper("dynCall_viiifi");
-
-var dynCall_vffi = Module["dynCall_vffi"] = createExportWrapper("dynCall_vffi");
-
-var dynCall_vfffi = Module["dynCall_vfffi"] = createExportWrapper("dynCall_vfffi");
-
-var dynCall_viiiiiiiiifi = Module["dynCall_viiiiiiiiifi"] = createExportWrapper("dynCall_viiiiiiiiifi");
-
-var dynCall_iiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiii");
-
-var dynCall_vifiiiiii = Module["dynCall_vifiiiiii"] = createExportWrapper("dynCall_vifiiiiii");
-
-var dynCall_iiifi = Module["dynCall_iiifi"] = createExportWrapper("dynCall_iiifi");
-
-var dynCall_vifii = Module["dynCall_vifii"] = createExportWrapper("dynCall_vifii");
-
-var dynCall_vifiii = Module["dynCall_vifiii"] = createExportWrapper("dynCall_vifiii");
-
-var dynCall_viiifiii = Module["dynCall_viiifiii"] = createExportWrapper("dynCall_viiifiii");
-
-var dynCall_viif = Module["dynCall_viif"] = createExportWrapper("dynCall_viif");
-
-var dynCall_viiffiiiiiiiii = Module["dynCall_viiffiiiiiiiii"] = createExportWrapper("dynCall_viiffiiiiiiiii");
-
-var dynCall_viiffiiiiiii = Module["dynCall_viiffiiiiiii"] = createExportWrapper("dynCall_viiffiiiiiii");
-
-var dynCall_viiiiiffiii = Module["dynCall_viiiiiffiii"] = createExportWrapper("dynCall_viiiiiffiii");
-
-var dynCall_viiffiii = Module["dynCall_viiffiii"] = createExportWrapper("dynCall_viiffiii");
-
-var dynCall_viiffi = Module["dynCall_viiffi"] = createExportWrapper("dynCall_viiffi");
-
-var dynCall_viiffii = Module["dynCall_viiffii"] = createExportWrapper("dynCall_viiffii");
-
-var dynCall_fffffffffi = Module["dynCall_fffffffffi"] = createExportWrapper("dynCall_fffffffffi");
-
-var dynCall_viiiifi = Module["dynCall_viiiifi"] = createExportWrapper("dynCall_viiiifi");
-
-var dynCall_viffffffi = Module["dynCall_viffffffi"] = createExportWrapper("dynCall_viffffffi");
-
-var dynCall_viiiiiifiiiiii = Module["dynCall_viiiiiifiiiiii"] = createExportWrapper("dynCall_viiiiiifiiiiii");
-
-var dynCall_viifiiiiiii = Module["dynCall_viifiiiiiii"] = createExportWrapper("dynCall_viifiiiiiii");
-
-var dynCall_viiifiiiiii = Module["dynCall_viiifiiiiii"] = createExportWrapper("dynCall_viiifiiiiii");
-
-var dynCall_viiiffiifiiiiiii = Module["dynCall_viiiffiifiiiiiii"] = createExportWrapper("dynCall_viiiffiifiiiiiii");
-
-var dynCall_viiiifiiiiii = Module["dynCall_viiiifiiiiii"] = createExportWrapper("dynCall_viiiifiiiiii");
-
-var dynCall_viifiiiiii = Module["dynCall_viifiiiiii"] = createExportWrapper("dynCall_viifiiiiii");
-
-var dynCall_vifiiiii = Module["dynCall_vifiiiii"] = createExportWrapper("dynCall_vifiiiii");
-
-var dynCall_viiififfiiiiiii = Module["dynCall_viiififfiiiiiii"] = createExportWrapper("dynCall_viiififfiiiiiii");
-
-var dynCall_viififiiiiii = Module["dynCall_viififiiiiii"] = createExportWrapper("dynCall_viififiiiiii");
-
-var dynCall_iffi = Module["dynCall_iffi"] = createExportWrapper("dynCall_iffi");
-
-var dynCall_viiffiifiiiiiii = Module["dynCall_viiffiifiiiiiii"] = createExportWrapper("dynCall_viiffiifiiiiiii");
-
-var dynCall_vffffi = Module["dynCall_vffffi"] = createExportWrapper("dynCall_vffffi");
-
-var dynCall_iiifii = Module["dynCall_iiifii"] = createExportWrapper("dynCall_iiifii");
-
-var dynCall_viiij = Module["dynCall_viiij"] = createExportWrapper("dynCall_viiij");
-
-var dynCall_iiiij = Module["dynCall_iiiij"] = createExportWrapper("dynCall_iiiij");
-
-var dynCall_ifffi = Module["dynCall_ifffi"] = createExportWrapper("dynCall_ifffi");
-
-var dynCall_fiiii = Module["dynCall_fiiii"] = createExportWrapper("dynCall_fiiii");
-
-var dynCall_iiiifi = Module["dynCall_iiiifi"] = createExportWrapper("dynCall_iiiifi");
-
-var dynCall_fiffffi = Module["dynCall_fiffffi"] = createExportWrapper("dynCall_fiffffi");
-
-var dynCall_fifffi = Module["dynCall_fifffi"] = createExportWrapper("dynCall_fifffi");
-
-var dynCall_viiffffi = Module["dynCall_viiffffi"] = createExportWrapper("dynCall_viiffffi");
-
-var dynCall_vifffi = Module["dynCall_vifffi"] = createExportWrapper("dynCall_vifffi");
-
-var dynCall_iiiff = Module["dynCall_iiiff"] = createExportWrapper("dynCall_iiiff");
-
-var dynCall_viijji = Module["dynCall_viijji"] = createExportWrapper("dynCall_viijji");
-
-var dynCall_viffifi = Module["dynCall_viffifi"] = createExportWrapper("dynCall_viffifi");
-
-var dynCall_fffifffi = Module["dynCall_fffifffi"] = createExportWrapper("dynCall_fffifffi");
-
-var dynCall_fffffffi = Module["dynCall_fffffffi"] = createExportWrapper("dynCall_fffffffi");
-
-var dynCall_iiiiiffiii = Module["dynCall_iiiiiffiii"] = createExportWrapper("dynCall_iiiiiffiii");
-
-var dynCall_ffii = Module["dynCall_ffii"] = createExportWrapper("dynCall_ffii");
-
-var dynCall_ffffi = Module["dynCall_ffffi"] = createExportWrapper("dynCall_ffffi");
-
-var dynCall_viiffifi = Module["dynCall_viiffifi"] = createExportWrapper("dynCall_viiffifi");
-
-var dynCall_ddiii = Module["dynCall_ddiii"] = createExportWrapper("dynCall_ddiii");
-
-var dynCall_viiiiifi = Module["dynCall_viiiiifi"] = createExportWrapper("dynCall_viiiiifi");
-
-var dynCall_iijiii = Module["dynCall_iijiii"] = createExportWrapper("dynCall_iijiii");
-
-var dynCall_iiijii = Module["dynCall_iiijii"] = createExportWrapper("dynCall_iiijii");
-
-var dynCall_viiiiif = Module["dynCall_viiiiif"] = createExportWrapper("dynCall_viiiiif");
-
-var dynCall_iiiiif = Module["dynCall_iiiiif"] = createExportWrapper("dynCall_iiiiif");
-
-var dynCall_iifii = Module["dynCall_iifii"] = createExportWrapper("dynCall_iifii");
-
-var dynCall_iiiiiiiiiiii = Module["dynCall_iiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiii");
-
-var dynCall_iiiiiiiiiii = Module["dynCall_iiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiii");
-
-var dynCall_vifffffi = Module["dynCall_vifffffi"] = createExportWrapper("dynCall_vifffffi");
-
-var dynCall_viiiifii = Module["dynCall_viiiifii"] = createExportWrapper("dynCall_viiiifii");
-
-var dynCall_iijii = Module["dynCall_iijii"] = createExportWrapper("dynCall_iijii");
-
-var dynCall_vijii = Module["dynCall_vijii"] = createExportWrapper("dynCall_vijii");
-
-var dynCall_fiiiii = Module["dynCall_fiiiii"] = createExportWrapper("dynCall_fiiiii");
-
-var dynCall_viffiiii = Module["dynCall_viffiiii"] = createExportWrapper("dynCall_viffiiii");
-
-var dynCall_viiiiffffiiii = Module["dynCall_viiiiffffiiii"] = createExportWrapper("dynCall_viiiiffffiiii");
-
-var dynCall_viiifiiii = Module["dynCall_viiifiiii"] = createExportWrapper("dynCall_viiifiiii");
-
-var dynCall_ijii = Module["dynCall_ijii"] = createExportWrapper("dynCall_ijii");
-
-var dynCall_fiiiif = Module["dynCall_fiiiif"] = createExportWrapper("dynCall_fiiiif");
-
-var dynCall_fiiiifi = Module["dynCall_fiiiifi"] = createExportWrapper("dynCall_fiiiifi");
-
-var dynCall_jiiiiji = Module["dynCall_jiiiiji"] = createExportWrapper("dynCall_jiiiiji");
-
-var dynCall_iidi = Module["dynCall_iidi"] = createExportWrapper("dynCall_iidi");
-
-var dynCall_viiiiij = Module["dynCall_viiiiij"] = createExportWrapper("dynCall_viiiiij");
-
-var dynCall_iiiifii = Module["dynCall_iiiifii"] = createExportWrapper("dynCall_iiiifii");
-
-var dynCall_viiififiii = Module["dynCall_viiififiii"] = createExportWrapper("dynCall_viiififiii");
-
-var dynCall_vjii = Module["dynCall_vjii"] = createExportWrapper("dynCall_vjii");
-
-var dynCall_viij = Module["dynCall_viij"] = createExportWrapper("dynCall_viij");
-
-var dynCall_diii = Module["dynCall_diii"] = createExportWrapper("dynCall_diii");
-
-var dynCall_diiii = Module["dynCall_diiii"] = createExportWrapper("dynCall_diiii");
-
-var dynCall_iiiifiii = Module["dynCall_iiiifiii"] = createExportWrapper("dynCall_iiiifiii");
-
-var dynCall_iiifiii = Module["dynCall_iiifiii"] = createExportWrapper("dynCall_iiifiii");
-
-var dynCall_iiiiifiii = Module["dynCall_iiiiifiii"] = createExportWrapper("dynCall_iiiiifiii");
-
-var dynCall_iiifiiii = Module["dynCall_iiifiiii"] = createExportWrapper("dynCall_iiifiiii");
-
-var dynCall_iifiii = Module["dynCall_iifiii"] = createExportWrapper("dynCall_iifiii");
-
-var dynCall_viiji = Module["dynCall_viiji"] = createExportWrapper("dynCall_viiji");
-
-var dynCall_viififfii = Module["dynCall_viififfii"] = createExportWrapper("dynCall_viififfii");
-
-var dynCall_viifffiii = Module["dynCall_viifffiii"] = createExportWrapper("dynCall_viifffiii");
-
-var dynCall_iiiif = Module["dynCall_iiiif"] = createExportWrapper("dynCall_iiiif");
-
-var dynCall_viifiiii = Module["dynCall_viifiiii"] = createExportWrapper("dynCall_viifiiii");
-
-var dynCall_viiijiii = Module["dynCall_viiijiii"] = createExportWrapper("dynCall_viiijiii");
-
-var dynCall_ijiiiiiiiii = Module["dynCall_ijiiiiiiiii"] = createExportWrapper("dynCall_ijiiiiiiiii");
-
-var dynCall_viiidii = Module["dynCall_viiidii"] = createExportWrapper("dynCall_viiidii");
-
-var dynCall_viiijii = Module["dynCall_viiijii"] = createExportWrapper("dynCall_viiijii");
-
-var dynCall_ijiii = Module["dynCall_ijiii"] = createExportWrapper("dynCall_ijiii");
-
-var dynCall_vijji = Module["dynCall_vijji"] = createExportWrapper("dynCall_vijji");
-
-var dynCall_jdi = Module["dynCall_jdi"] = createExportWrapper("dynCall_jdi");
-
-var dynCall_viiiji = Module["dynCall_viiiji"] = createExportWrapper("dynCall_viiiji");
-
-var dynCall_jji = Module["dynCall_jji"] = createExportWrapper("dynCall_jji");
-
-var dynCall_fiid = Module["dynCall_fiid"] = createExportWrapper("dynCall_fiid");
-
-var dynCall_idi = Module["dynCall_idi"] = createExportWrapper("dynCall_idi");
-
-var dynCall_iiid = Module["dynCall_iiid"] = createExportWrapper("dynCall_iiid");
-
-var dynCall_iiif = Module["dynCall_iiif"] = createExportWrapper("dynCall_iiif");
-
-var dynCall_viidi = Module["dynCall_viidi"] = createExportWrapper("dynCall_viidi");
-
-var dynCall_iiidi = Module["dynCall_iiidi"] = createExportWrapper("dynCall_iiidi");
-
-var dynCall_iidiii = Module["dynCall_iidiii"] = createExportWrapper("dynCall_iidiii");
-
-var dynCall_jiij = Module["dynCall_jiij"] = createExportWrapper("dynCall_jiij");
-
-var dynCall_jiid = Module["dynCall_jiid"] = createExportWrapper("dynCall_jiid");
-
-var dynCall_diij = Module["dynCall_diij"] = createExportWrapper("dynCall_diij");
-
-var dynCall_jjji = Module["dynCall_jjji"] = createExportWrapper("dynCall_jjji");
-
-var dynCall_ijiiii = Module["dynCall_ijiiii"] = createExportWrapper("dynCall_ijiiii");
-
-var dynCall_jiiji = Module["dynCall_jiiji"] = createExportWrapper("dynCall_jiiji");
-
-var dynCall_iiiiji = Module["dynCall_iiiiji"] = createExportWrapper("dynCall_iiiiji");
-
-var dynCall_vjiiiiiiii = Module["dynCall_vjiiiiiiii"] = createExportWrapper("dynCall_vjiiiiiiii");
-
-var dynCall_vjiiiiiii = Module["dynCall_vjiiiiiii"] = createExportWrapper("dynCall_vjiiiiiii");
-
-var dynCall_vjiiiii = Module["dynCall_vjiiiii"] = createExportWrapper("dynCall_vjiiiii");
-
-var dynCall_jjii = Module["dynCall_jjii"] = createExportWrapper("dynCall_jjii");
-
-var dynCall_viid = Module["dynCall_viid"] = createExportWrapper("dynCall_viid");
-
-var dynCall_viijiii = Module["dynCall_viijiii"] = createExportWrapper("dynCall_viijiii");
-
-var dynCall_jiiiiiii = Module["dynCall_jiiiiiii"] = createExportWrapper("dynCall_jiiiiiii");
-
-var dynCall_viijii = Module["dynCall_viijii"] = createExportWrapper("dynCall_viijii");
-
-var dynCall_jiiiiii = Module["dynCall_jiiiiii"] = createExportWrapper("dynCall_jiiiiii");
-
-var dynCall_viijij = Module["dynCall_viijij"] = createExportWrapper("dynCall_viijij");
-
-var dynCall_vijiji = Module["dynCall_vijiji"] = createExportWrapper("dynCall_vijiji");
-
-var dynCall_viijijii = Module["dynCall_viijijii"] = createExportWrapper("dynCall_viijijii");
-
-var dynCall_viijijiii = Module["dynCall_viijijiii"] = createExportWrapper("dynCall_viijijiii");
-
-var dynCall_ddi = Module["dynCall_ddi"] = createExportWrapper("dynCall_ddi");
-
-var dynCall_iddi = Module["dynCall_iddi"] = createExportWrapper("dynCall_iddi");
-
-var dynCall_iiiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiii");
-
-var dynCall_vijiiii = Module["dynCall_vijiiii"] = createExportWrapper("dynCall_vijiiii");
-
-var dynCall_idii = Module["dynCall_idii"] = createExportWrapper("dynCall_idii");
-
-var dynCall_idiiiii = Module["dynCall_idiiiii"] = createExportWrapper("dynCall_idiiiii");
-
-var dynCall_dji = Module["dynCall_dji"] = createExportWrapper("dynCall_dji");
-
-var dynCall_ifiiii = Module["dynCall_ifiiii"] = createExportWrapper("dynCall_ifiiii");
-
-var dynCall_idiiii = Module["dynCall_idiiii"] = createExportWrapper("dynCall_idiiii");
-
-var dynCall_iiijiiii = Module["dynCall_iiijiiii"] = createExportWrapper("dynCall_iiijiiii");
-
-var dynCall_di = Module["dynCall_di"] = createExportWrapper("dynCall_di");
-
-var dynCall_vd = Module["dynCall_vd"] = createExportWrapper("dynCall_vd");
-
-var dynCall_vdi = Module["dynCall_vdi"] = createExportWrapper("dynCall_vdi");
-
-var dynCall_viiiif = Module["dynCall_viiiif"] = createExportWrapper("dynCall_viiiif");
-
-var dynCall_viiiiff = Module["dynCall_viiiiff"] = createExportWrapper("dynCall_viiiiff");
-
-var dynCall_viiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiiii");
 
 var dynCall_viiiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiiiiii");
 
@@ -15866,67 +14792,207 @@ var dynCall_viiiiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiiiii"] = createEx
 
 var dynCall_viiiiiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiiiiiiii");
 
-var dynCall_viiiiiiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiiiiiiiii");
+var dynCall_didi = Module["dynCall_didi"] = createExportWrapper("dynCall_didi");
+
+var dynCall_viiiijii = Module["dynCall_viiiijii"] = createExportWrapper("dynCall_viiiijii");
 
 var dynCall_j = Module["dynCall_j"] = createExportWrapper("dynCall_j");
 
-var dynCall_iijiiii = Module["dynCall_iijiiii"] = createExportWrapper("dynCall_iijiiii");
+var dynCall_iijii = Module["dynCall_iijii"] = createExportWrapper("dynCall_iijii");
 
-var dynCall_jijiii = Module["dynCall_jijiii"] = createExportWrapper("dynCall_jijiii");
-
-var dynCall_iijiiiiii = Module["dynCall_iijiiiiii"] = createExportWrapper("dynCall_iijiiiiii");
-
-var dynCall_iijjiiiiii = Module["dynCall_iijjiiiiii"] = createExportWrapper("dynCall_iijjiiiiii");
-
-var dynCall_iiiijjii = Module["dynCall_iiiijjii"] = createExportWrapper("dynCall_iiiijjii");
+var dynCall_iiddi = Module["dynCall_iiddi"] = createExportWrapper("dynCall_iiddi");
 
 var dynCall_vijiii = Module["dynCall_vijiii"] = createExportWrapper("dynCall_vijiii");
 
-var dynCall_jijj = Module["dynCall_jijj"] = createExportWrapper("dynCall_jijj");
+var dynCall_vjjjiiii = Module["dynCall_vjjjiiii"] = createExportWrapper("dynCall_vjjjiiii");
 
-var dynCall_iiiiiiiiiji = Module["dynCall_iiiiiiiiiji"] = createExportWrapper("dynCall_iiiiiiiiiji");
+var dynCall_vjiiiii = Module["dynCall_vjiiiii"] = createExportWrapper("dynCall_vjiiiii");
 
-var dynCall_viijiiijiiii = Module["dynCall_viijiiijiiii"] = createExportWrapper("dynCall_viijiiijiiii");
+var dynCall_iji = Module["dynCall_iji"] = createExportWrapper("dynCall_iji");
 
-var dynCall_vijjji = Module["dynCall_vijjji"] = createExportWrapper("dynCall_vijjji");
+var dynCall_jjji = Module["dynCall_jjji"] = createExportWrapper("dynCall_jjji");
 
-var dynCall_iiiiij = Module["dynCall_iiiiij"] = createExportWrapper("dynCall_iiiiij");
+var dynCall_jiiiii = Module["dynCall_jiiiii"] = createExportWrapper("dynCall_jiiiii");
 
-var dynCall_iiffii = Module["dynCall_iiffii"] = createExportWrapper("dynCall_iiffii");
+var dynCall_vifiiiii = Module["dynCall_vifiiiii"] = createExportWrapper("dynCall_vifiiiii");
 
-var dynCall_fiif = Module["dynCall_fiif"] = createExportWrapper("dynCall_fiif");
+var dynCall_iiiji = Module["dynCall_iiiji"] = createExportWrapper("dynCall_iiiji");
 
-var dynCall_fffffi = Module["dynCall_fffffi"] = createExportWrapper("dynCall_fffffi");
+var dynCall_iiiiiiiiiii = Module["dynCall_iiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiii");
 
-var dynCall_iifiiiii = Module["dynCall_iifiiiii"] = createExportWrapper("dynCall_iifiiiii");
+var dynCall_iiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiii");
 
-var dynCall_fiiffffi = Module["dynCall_fiiffffi"] = createExportWrapper("dynCall_fiiffffi");
+var dynCall_iiiiji = Module["dynCall_iiiiji"] = createExportWrapper("dynCall_iiiiji");
 
-var dynCall_iiffiiiii = Module["dynCall_iiffiiiii"] = createExportWrapper("dynCall_iiffiiiii");
+var dynCall_viiijii = Module["dynCall_viiijii"] = createExportWrapper("dynCall_viiijii");
+
+var dynCall_ijiiiiiii = Module["dynCall_ijiiiiiii"] = createExportWrapper("dynCall_ijiiiiiii");
+
+var dynCall_vijiiiiii = Module["dynCall_vijiiiiii"] = createExportWrapper("dynCall_vijiiiiii");
+
+var dynCall_ijiiiii = Module["dynCall_ijiiiii"] = createExportWrapper("dynCall_ijiiiii");
+
+var dynCall_viijiiii = Module["dynCall_viijiiii"] = createExportWrapper("dynCall_viijiiii");
+
+var dynCall_ijiiii = Module["dynCall_ijiiii"] = createExportWrapper("dynCall_ijiiii");
+
+var dynCall_ijjiiii = Module["dynCall_ijjiiii"] = createExportWrapper("dynCall_ijjiiii");
+
+var dynCall_vjii = Module["dynCall_vjii"] = createExportWrapper("dynCall_vjii");
+
+var dynCall_ijii = Module["dynCall_ijii"] = createExportWrapper("dynCall_ijii");
+
+var dynCall_ijjiii = Module["dynCall_ijjiii"] = createExportWrapper("dynCall_ijjiii");
+
+var dynCall_ijiii = Module["dynCall_ijiii"] = createExportWrapper("dynCall_ijiii");
+
+var dynCall_iffffi = Module["dynCall_iffffi"] = createExportWrapper("dynCall_iffffi");
+
+var dynCall_diiiii = Module["dynCall_diiiii"] = createExportWrapper("dynCall_diiiii");
+
+var dynCall_vijji = Module["dynCall_vijji"] = createExportWrapper("dynCall_vijji");
+
+var dynCall_vfffi = Module["dynCall_vfffi"] = createExportWrapper("dynCall_vfffi");
+
+var dynCall_vffi = Module["dynCall_vffi"] = createExportWrapper("dynCall_vffi");
+
+var dynCall_vffffi = Module["dynCall_vffffi"] = createExportWrapper("dynCall_vffffi");
+
+var dynCall_viiiiffi = Module["dynCall_viiiiffi"] = createExportWrapper("dynCall_viiiiffi");
+
+var dynCall_viiiffii = Module["dynCall_viiiffii"] = createExportWrapper("dynCall_viiiffii");
+
+var dynCall_viffffffi = Module["dynCall_viffffffi"] = createExportWrapper("dynCall_viffffffi");
+
+var dynCall_vffffffii = Module["dynCall_vffffffii"] = createExportWrapper("dynCall_vffffffii");
+
+var dynCall_vffffii = Module["dynCall_vffffii"] = createExportWrapper("dynCall_vffffii");
+
+var dynCall_vfiii = Module["dynCall_vfiii"] = createExportWrapper("dynCall_vfiii");
+
+var dynCall_ffffi = Module["dynCall_ffffi"] = createExportWrapper("dynCall_ffffi");
+
+var dynCall_iffi = Module["dynCall_iffi"] = createExportWrapper("dynCall_iffi");
+
+var dynCall_fffifffi = Module["dynCall_fffifffi"] = createExportWrapper("dynCall_fffifffi");
+
+var dynCall_fdi = Module["dynCall_fdi"] = createExportWrapper("dynCall_fdi");
+
+var dynCall_idi = Module["dynCall_idi"] = createExportWrapper("dynCall_idi");
+
+var dynCall_ddi = Module["dynCall_ddi"] = createExportWrapper("dynCall_ddi");
+
+var dynCall_vfii = Module["dynCall_vfii"] = createExportWrapper("dynCall_vfii");
+
+var dynCall_ddddi = Module["dynCall_ddddi"] = createExportWrapper("dynCall_ddddi");
+
+var dynCall_jji = Module["dynCall_jji"] = createExportWrapper("dynCall_jji");
+
+var dynCall_jjjji = Module["dynCall_jjjji"] = createExportWrapper("dynCall_jjjji");
+
+var dynCall_vjiiii = Module["dynCall_vjiiii"] = createExportWrapper("dynCall_vjiiii");
+
+var dynCall_vijjii = Module["dynCall_vijjii"] = createExportWrapper("dynCall_vijjii");
+
+var dynCall_viiiiiiiijijiii = Module["dynCall_viiiiiiiijijiii"] = createExportWrapper("dynCall_viiiiiiiijijiii");
+
+var dynCall_iiiifiiii = Module["dynCall_iiiifiiii"] = createExportWrapper("dynCall_iiiifiiii");
+
+var dynCall_iiiiiiifiiii = Module["dynCall_iiiiiiifiiii"] = createExportWrapper("dynCall_iiiiiiifiiii");
+
+var dynCall_vjji = Module["dynCall_vjji"] = createExportWrapper("dynCall_vjji");
+
+var dynCall_viiiiiffii = Module["dynCall_viiiiiffii"] = createExportWrapper("dynCall_viiiiiffii");
+
+var dynCall_viffffii = Module["dynCall_viffffii"] = createExportWrapper("dynCall_viffffii");
+
+var dynCall_viffffiii = Module["dynCall_viffffiii"] = createExportWrapper("dynCall_viffffiii");
+
+var dynCall_iiiifiii = Module["dynCall_iiiifiii"] = createExportWrapper("dynCall_iiiifiii");
+
+var dynCall_iiifiii = Module["dynCall_iiifiii"] = createExportWrapper("dynCall_iiifiii");
+
+var dynCall_viiifiii = Module["dynCall_viiifiii"] = createExportWrapper("dynCall_viiifiii");
+
+var dynCall_viiififi = Module["dynCall_viiififi"] = createExportWrapper("dynCall_viiififi");
+
+var dynCall_viiififfi = Module["dynCall_viiififfi"] = createExportWrapper("dynCall_viiififfi");
 
 var dynCall_iiiiifi = Module["dynCall_iiiiifi"] = createExportWrapper("dynCall_iiiiifi");
 
-var dynCall_iiifiiiii = Module["dynCall_iiifiiiii"] = createExportWrapper("dynCall_iiifiiiii");
+var dynCall_iifiii = Module["dynCall_iifiii"] = createExportWrapper("dynCall_iifiii");
 
-var dynCall_viiiifiii = Module["dynCall_viiiifiii"] = createExportWrapper("dynCall_viiiifiii");
+var dynCall_iiiiifiii = Module["dynCall_iiiiifiii"] = createExportWrapper("dynCall_iiiiifiii");
 
-var dynCall_fiiiiiff = Module["dynCall_fiiiiiff"] = createExportWrapper("dynCall_fiiiiiff");
+var dynCall_iiifiiii = Module["dynCall_iiifiiii"] = createExportWrapper("dynCall_iiifiiii");
 
-var dynCall_viiid = Module["dynCall_viiid"] = createExportWrapper("dynCall_viiid");
+var dynCall_vifffffi = Module["dynCall_vifffffi"] = createExportWrapper("dynCall_vifffffi");
 
-var dynCall_viiiiiiifiifiii = Module["dynCall_viiiiiiifiifiii"] = createExportWrapper("dynCall_viiiiiiifiifiii");
+var dynCall_viffiiii = Module["dynCall_viffiiii"] = createExportWrapper("dynCall_viffiiii");
 
-var dynCall_idiii = Module["dynCall_idiii"] = createExportWrapper("dynCall_idiii");
+var dynCall_viiiffffiiii = Module["dynCall_viiiffffiiii"] = createExportWrapper("dynCall_viiiffffiiii");
 
-var dynCall_iijji = Module["dynCall_iijji"] = createExportWrapper("dynCall_iijji");
+var dynCall_viifffffffiiiii = Module["dynCall_viifffffffiiiii"] = createExportWrapper("dynCall_viifffffffiiiii");
 
-var dynCall_iiiijii = Module["dynCall_iiiijii"] = createExportWrapper("dynCall_iiiijii");
+var dynCall_iiiiiiffiiiiiiiiiffffiiii = Module["dynCall_iiiiiiffiiiiiiiiiffffiiii"] = createExportWrapper("dynCall_iiiiiiffiiiiiiiiiffffiiii");
 
-var dynCall_viiijji = Module["dynCall_viiijji"] = createExportWrapper("dynCall_viiijji");
+var dynCall_iiiiiiffiiiiiiiiiiiiiii = Module["dynCall_iiiiiiffiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiffiiiiiiiiiiiiiii");
 
-var dynCall_jiiij = Module["dynCall_jiiij"] = createExportWrapper("dynCall_jiiij");
+var dynCall_viffii = Module["dynCall_viffii"] = createExportWrapper("dynCall_viffii");
 
-var dynCall_jjjji = Module["dynCall_jjjji"] = createExportWrapper("dynCall_jjjji");
+var dynCall_vififiii = Module["dynCall_vififiii"] = createExportWrapper("dynCall_vififiii");
+
+var dynCall_viififii = Module["dynCall_viififii"] = createExportWrapper("dynCall_viififii");
+
+var dynCall_viijji = Module["dynCall_viijji"] = createExportWrapper("dynCall_viijji");
+
+var dynCall_viiidi = Module["dynCall_viiidi"] = createExportWrapper("dynCall_viiidi");
+
+var dynCall_jijji = Module["dynCall_jijji"] = createExportWrapper("dynCall_jijji");
+
+var dynCall_viiffffi = Module["dynCall_viiffffi"] = createExportWrapper("dynCall_viiffffi");
+
+var dynCall_fifffi = Module["dynCall_fifffi"] = createExportWrapper("dynCall_fifffi");
+
+var dynCall_ifffi = Module["dynCall_ifffi"] = createExportWrapper("dynCall_ifffi");
+
+var dynCall_viffiii = Module["dynCall_viffiii"] = createExportWrapper("dynCall_viffiii");
+
+var dynCall_viffifi = Module["dynCall_viffifi"] = createExportWrapper("dynCall_viffifi");
+
+var dynCall_fiffffi = Module["dynCall_fiffffi"] = createExportWrapper("dynCall_fiffffi");
+
+var dynCall_fffffffi = Module["dynCall_fffffffi"] = createExportWrapper("dynCall_fffffffi");
+
+var dynCall_viiffifi = Module["dynCall_viiffifi"] = createExportWrapper("dynCall_viiffifi");
+
+var dynCall_viiiffiiiiiiiii = Module["dynCall_viiiffiiiiiiiii"] = createExportWrapper("dynCall_viiiffiiiiiiiii");
+
+var dynCall_viiiffiiiiii = Module["dynCall_viiiffiiiiii"] = createExportWrapper("dynCall_viiiffiiiiii");
+
+var dynCall_viiffiiiiiiiiii = Module["dynCall_viiffiiiiiiiiii"] = createExportWrapper("dynCall_viiffiiiiiiiiii");
+
+var dynCall_viiffiiiiiii = Module["dynCall_viiffiiiiiii"] = createExportWrapper("dynCall_viiffiiiiiii");
+
+var dynCall_iiiffiiii = Module["dynCall_iiiffiiii"] = createExportWrapper("dynCall_iiiffiiii");
+
+var dynCall_fffffi = Module["dynCall_fffffi"] = createExportWrapper("dynCall_fffffi");
+
+var dynCall_iiiiffiiii = Module["dynCall_iiiiffiiii"] = createExportWrapper("dynCall_iiiiffiiii");
+
+var dynCall_fiiiffi = Module["dynCall_fiiiffi"] = createExportWrapper("dynCall_fiiiffi");
+
+var dynCall_viiiiiiiijiiii = Module["dynCall_viiiiiiiijiiii"] = createExportWrapper("dynCall_viiiiiiiijiiii");
+
+var dynCall_viiiiiifiiiiii = Module["dynCall_viiiiiifiiiiii"] = createExportWrapper("dynCall_viiiiiifiiiiii");
+
+var dynCall_viifiii = Module["dynCall_viifiii"] = createExportWrapper("dynCall_viifiii");
+
+var dynCall_vifiiiiii = Module["dynCall_vifiiiiii"] = createExportWrapper("dynCall_vifiiiiii");
+
+var dynCall_ffii = Module["dynCall_ffii"] = createExportWrapper("dynCall_ffii");
+
+var dynCall_viifiiii = Module["dynCall_viifiiii"] = createExportWrapper("dynCall_viifiiii");
 
 var dynCall_fifii = Module["dynCall_fifii"] = createExportWrapper("dynCall_fifii");
 
@@ -15938,185 +15004,93 @@ var dynCall_viiifffi = Module["dynCall_viiifffi"] = createExportWrapper("dynCall
 
 var dynCall_fiifii = Module["dynCall_fiifii"] = createExportWrapper("dynCall_fiifii");
 
-var dynCall_viiiiiffi = Module["dynCall_viiiiiffi"] = createExportWrapper("dynCall_viiiiiffi");
-
-var dynCall_iiifff = Module["dynCall_iiifff"] = createExportWrapper("dynCall_iiifff");
-
-var dynCall_iiiiiiiifi = Module["dynCall_iiiiiiiifi"] = createExportWrapper("dynCall_iiiiiiiifi");
-
-var dynCall_iiiiiiifi = Module["dynCall_iiiiiiifi"] = createExportWrapper("dynCall_iiiiiiifi");
-
-var dynCall_vidii = Module["dynCall_vidii"] = createExportWrapper("dynCall_vidii");
-
-var dynCall_vfiii = Module["dynCall_vfiii"] = createExportWrapper("dynCall_vfiii");
-
-var dynCall_vfii = Module["dynCall_vfii"] = createExportWrapper("dynCall_vfii");
-
-var dynCall_viffffffffi = Module["dynCall_viffffffffi"] = createExportWrapper("dynCall_viffffffffi");
-
-var dynCall_iiiifiiiii = Module["dynCall_iiiifiiiii"] = createExportWrapper("dynCall_iiiifiiiii");
-
-var dynCall_iiiifiiii = Module["dynCall_iiiifiiii"] = createExportWrapper("dynCall_iiiifiiii");
-
-var dynCall_viddi = Module["dynCall_viddi"] = createExportWrapper("dynCall_viddi");
-
-var dynCall_didi = Module["dynCall_didi"] = createExportWrapper("dynCall_didi");
-
-var dynCall_vdii = Module["dynCall_vdii"] = createExportWrapper("dynCall_vdii");
-
-var dynCall_jfi = Module["dynCall_jfi"] = createExportWrapper("dynCall_jfi");
-
-var dynCall_iffii = Module["dynCall_iffii"] = createExportWrapper("dynCall_iffii");
-
-var dynCall_fjfi = Module["dynCall_fjfi"] = createExportWrapper("dynCall_fjfi");
-
-var dynCall_ifffiii = Module["dynCall_ifffiii"] = createExportWrapper("dynCall_ifffiii");
-
-var dynCall_fiiiffi = Module["dynCall_fiiiffi"] = createExportWrapper("dynCall_fiiiffi");
-
-var dynCall_ijjji = Module["dynCall_ijjji"] = createExportWrapper("dynCall_ijjji");
-
-var dynCall_vidiiii = Module["dynCall_vidiiii"] = createExportWrapper("dynCall_vidiiii");
-
-var dynCall_ddddi = Module["dynCall_ddddi"] = createExportWrapper("dynCall_ddddi");
-
-var dynCall_viiiiifdddiffii = Module["dynCall_viiiiifdddiffii"] = createExportWrapper("dynCall_viiiiifdddiffii");
-
-var dynCall_viifiii = Module["dynCall_viifiii"] = createExportWrapper("dynCall_viifiii");
-
-var dynCall_viiiiifii = Module["dynCall_viiiiifii"] = createExportWrapper("dynCall_viiiiifii");
-
-var dynCall_viiiffffi = Module["dynCall_viiiffffi"] = createExportWrapper("dynCall_viiiffffi");
-
-var dynCall_viiiiiji = Module["dynCall_viiiiiji"] = createExportWrapper("dynCall_viiiiiji");
-
-var dynCall_ddddddi = Module["dynCall_ddddddi"] = createExportWrapper("dynCall_ddddddi");
-
-var dynCall_viiidi = Module["dynCall_viiidi"] = createExportWrapper("dynCall_viiidi");
-
-var dynCall_viiiidiii = Module["dynCall_viiiidiii"] = createExportWrapper("dynCall_viiiidiii");
-
-var dynCall_iiiiiiiiiiij = Module["dynCall_iiiiiiiiiiij"] = createExportWrapper("dynCall_iiiiiiiiiiij");
-
-var dynCall_fiiifi = Module["dynCall_fiiifi"] = createExportWrapper("dynCall_fiiifi");
-
-var dynCall_viiiffii = Module["dynCall_viiiffii"] = createExportWrapper("dynCall_viiiffii");
-
-var dynCall_viiiiffi = Module["dynCall_viiiiffi"] = createExportWrapper("dynCall_viiiiffi");
-
-var dynCall_vffffffii = Module["dynCall_vffffffii"] = createExportWrapper("dynCall_vffffffii");
-
-var dynCall_viiiifffi = Module["dynCall_viiiifffi"] = createExportWrapper("dynCall_viiiifffi");
-
-var dynCall_iiiiiiffiii = Module["dynCall_iiiiiiffiii"] = createExportWrapper("dynCall_iiiiiiffiii");
-
-var dynCall_viiififi = Module["dynCall_viiififi"] = createExportWrapper("dynCall_viiififi");
-
-var dynCall_iiiiffiiiii = Module["dynCall_iiiiffiiiii"] = createExportWrapper("dynCall_iiiiffiiiii");
-
-var dynCall_viiifff = Module["dynCall_viiifff"] = createExportWrapper("dynCall_viiifff");
-
-var dynCall_viiffff = Module["dynCall_viiffff"] = createExportWrapper("dynCall_viiffff");
-
-var dynCall_iiiifff = Module["dynCall_iiiifff"] = createExportWrapper("dynCall_iiiifff");
-
-var dynCall_viiif = Module["dynCall_viiif"] = createExportWrapper("dynCall_viiif");
-
-var dynCall_vijiiiii = Module["dynCall_vijiiiii"] = createExportWrapper("dynCall_vijiiiii");
-
-var dynCall_ijiiiii = Module["dynCall_ijiiiii"] = createExportWrapper("dynCall_ijiiiii");
-
-var dynCall_viiiijii = Module["dynCall_viiiijii"] = createExportWrapper("dynCall_viiiijii");
-
-var dynCall_fiff = Module["dynCall_fiff"] = createExportWrapper("dynCall_fiff");
-
-var dynCall_fif = Module["dynCall_fif"] = createExportWrapper("dynCall_fif");
-
-var dynCall_didd = Module["dynCall_didd"] = createExportWrapper("dynCall_didd");
-
-var dynCall_jij = Module["dynCall_jij"] = createExportWrapper("dynCall_jij");
-
-var dynCall_did = Module["dynCall_did"] = createExportWrapper("dynCall_did");
-
-var dynCall_iijjii = Module["dynCall_iijjii"] = createExportWrapper("dynCall_iijjii");
-
-var dynCall_viijiijiii = Module["dynCall_viijiijiii"] = createExportWrapper("dynCall_viijiijiii");
-
-var dynCall_viiiijiiii = Module["dynCall_viiiijiiii"] = createExportWrapper("dynCall_viiiijiiii");
-
-var dynCall_vjjii = Module["dynCall_vjjii"] = createExportWrapper("dynCall_vjjii");
-
-var dynCall_jijii = Module["dynCall_jijii"] = createExportWrapper("dynCall_jijii");
-
-var dynCall_fji = Module["dynCall_fji"] = createExportWrapper("dynCall_fji");
-
-var dynCall_ddii = Module["dynCall_ddii"] = createExportWrapper("dynCall_ddii");
-
-var dynCall_ddd = Module["dynCall_ddd"] = createExportWrapper("dynCall_ddd");
-
-var dynCall_vdiii = Module["dynCall_vdiii"] = createExportWrapper("dynCall_vdiii");
-
-var dynCall_jjjii = Module["dynCall_jjjii"] = createExportWrapper("dynCall_jjjii");
-
-var dynCall_ifiii = Module["dynCall_ifiii"] = createExportWrapper("dynCall_ifiii");
-
-var dynCall_ifiiiii = Module["dynCall_ifiiiii"] = createExportWrapper("dynCall_ifiiiii");
-
-var dynCall_dfi = Module["dynCall_dfi"] = createExportWrapper("dynCall_dfi");
-
-var dynCall_jdii = Module["dynCall_jdii"] = createExportWrapper("dynCall_jdii");
-
-var dynCall_jiiiiiiiii = Module["dynCall_jiiiiiiiii"] = createExportWrapper("dynCall_jiiiiiiiii");
-
-var dynCall_jidii = Module["dynCall_jidii"] = createExportWrapper("dynCall_jidii");
-
-var dynCall_jjiiii = Module["dynCall_jjiiii"] = createExportWrapper("dynCall_jjiiii");
-
-var dynCall_ijiiji = Module["dynCall_ijiiji"] = createExportWrapper("dynCall_ijiiji");
-
-var dynCall_ijjiii = Module["dynCall_ijjiii"] = createExportWrapper("dynCall_ijjiii");
-
-var dynCall_ijiiiiji = Module["dynCall_ijiiiiji"] = createExportWrapper("dynCall_ijiiiiji");
-
-var dynCall_ijiijii = Module["dynCall_ijiijii"] = createExportWrapper("dynCall_ijiijii");
-
-var dynCall_fdi = Module["dynCall_fdi"] = createExportWrapper("dynCall_fdi");
-
-var dynCall_vjjiiiii = Module["dynCall_vjjiiiii"] = createExportWrapper("dynCall_vjjiiiii");
-
-var dynCall_vijiiiiiii = Module["dynCall_vijiiiiiii"] = createExportWrapper("dynCall_vijiiiiiii");
-
-var dynCall_vijiiiiiiii = Module["dynCall_vijiiiiiiii"] = createExportWrapper("dynCall_vijiiiiiiii");
-
-var dynCall_ijjjiijii = Module["dynCall_ijjjiijii"] = createExportWrapper("dynCall_ijjjiijii");
-
-var dynCall_ijjjiii = Module["dynCall_ijjjiii"] = createExportWrapper("dynCall_ijjjiii");
-
-var dynCall_viijiiiiii = Module["dynCall_viijiiiiii"] = createExportWrapper("dynCall_viijiiiiii");
-
-var dynCall_ijijiiiii = Module["dynCall_ijijiiiii"] = createExportWrapper("dynCall_ijijiiiii");
-
-var dynCall_vijjjiijii = Module["dynCall_vijjjiijii"] = createExportWrapper("dynCall_vijjjiijii");
-
-var dynCall_vijiiiiii = Module["dynCall_vijiiiiii"] = createExportWrapper("dynCall_vijiiiiii");
-
-var dynCall_vjjjiiii = Module["dynCall_vjjjiiii"] = createExportWrapper("dynCall_vjjjiiii");
-
-var dynCall_jjiii = Module["dynCall_jjiii"] = createExportWrapper("dynCall_jjiii");
-
-var dynCall_jjiiiii = Module["dynCall_jjiiiii"] = createExportWrapper("dynCall_jjiiiii");
-
-var dynCall_jijjji = Module["dynCall_jijjji"] = createExportWrapper("dynCall_jijjji");
-
-var dynCall_jijjjii = Module["dynCall_jijjjii"] = createExportWrapper("dynCall_jijjjii");
-
-var dynCall_viiiij = Module["dynCall_viiiij"] = createExportWrapper("dynCall_viiiij");
-
-var dynCall_iiiiifii = Module["dynCall_iiiiifii"] = createExportWrapper("dynCall_iiiiifii");
+var dynCall_iifffi = Module["dynCall_iifffi"] = createExportWrapper("dynCall_iifffi");
 
 var dynCall_viijjii = Module["dynCall_viijjii"] = createExportWrapper("dynCall_viijjii");
 
-var dynCall_iffffi = Module["dynCall_iffffi"] = createExportWrapper("dynCall_iffffi");
+var dynCall_viijii = Module["dynCall_viijii"] = createExportWrapper("dynCall_viijii");
+
+var dynCall_viiidii = Module["dynCall_viiidii"] = createExportWrapper("dynCall_viiidii");
+
+var dynCall_ijiiiiiiiii = Module["dynCall_ijiiiiiiiii"] = createExportWrapper("dynCall_ijiiiiiiiii");
+
+var dynCall_viiijiii = Module["dynCall_viiijiii"] = createExportWrapper("dynCall_viiijiii");
+
+var dynCall_jdi = Module["dynCall_jdi"] = createExportWrapper("dynCall_jdi");
+
+var dynCall_dji = Module["dynCall_dji"] = createExportWrapper("dynCall_dji");
+
+var dynCall_viddi = Module["dynCall_viddi"] = createExportWrapper("dynCall_viddi");
+
+var dynCall_vifffffffffi = Module["dynCall_vifffffffffi"] = createExportWrapper("dynCall_vifffffffffi");
+
+var dynCall_viffffffffffffffffi = Module["dynCall_viffffffffffffffffi"] = createExportWrapper("dynCall_viffffffffffffffffi");
+
+var dynCall_viifffi = Module["dynCall_viifffi"] = createExportWrapper("dynCall_viifffi");
+
+var dynCall_viiffiffiiiiiiiiiiiiiiiiiiii = Module["dynCall_viiffiffiiiiiiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiffiffiiiiiiiiiiiiiiiiiiii");
+
+var dynCall_viiffiffiiiiiiiiiiiiiiiiiiiiiiii = Module["dynCall_viiffiffiiiiiiiiiiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiffiffiiiiiiiiiiiiiiiiiiiiiiii");
+
+var dynCall_iiiiiiiiiiiiiifiiiiiii = Module["dynCall_iiiiiiiiiiiiiifiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiiifiiiiiii");
+
+var dynCall_iiiiiiiiiiiiifiiiiiii = Module["dynCall_iiiiiiiiiiiiifiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiifiiiiiii");
+
+var dynCall_iiiiiiiiiiiiiiifiiiiiii = Module["dynCall_iiiiiiiiiiiiiiifiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiiiifiiiiiii");
+
+var dynCall_iiiiiiiiiiiiiiiiifiiiiiii = Module["dynCall_iiiiiiiiiiiiiiiiifiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiiiiiifiiiiiii");
+
+var dynCall_vijjjji = Module["dynCall_vijjjji"] = createExportWrapper("dynCall_vijjjji");
+
+var dynCall_iijjjji = Module["dynCall_iijjjji"] = createExportWrapper("dynCall_iijjjji");
+
+var dynCall_iiidi = Module["dynCall_iiidi"] = createExportWrapper("dynCall_iiidi");
+
+var dynCall_iijjjjiii = Module["dynCall_iijjjjiii"] = createExportWrapper("dynCall_iijjjjiii");
+
+var dynCall_iiiidi = Module["dynCall_iiiidi"] = createExportWrapper("dynCall_iiiidi");
+
+var dynCall_viidii = Module["dynCall_viidii"] = createExportWrapper("dynCall_viidii");
+
+var dynCall_ifii = Module["dynCall_ifii"] = createExportWrapper("dynCall_ifii");
+
+var dynCall_viifffii = Module["dynCall_viifffii"] = createExportWrapper("dynCall_viifffii");
+
+var dynCall_iiiiiiifi = Module["dynCall_iiiiiiifi"] = createExportWrapper("dynCall_iiiiiiifi");
+
+var dynCall_iiiiiifiii = Module["dynCall_iiiiiifiii"] = createExportWrapper("dynCall_iiiiiifiii");
+
+var dynCall_iiiiiiiifii = Module["dynCall_iiiiiiiifii"] = createExportWrapper("dynCall_iiiiiiiifii");
+
+var dynCall_viiiifiiii = Module["dynCall_viiiifiiii"] = createExportWrapper("dynCall_viiiifiiii");
+
+var dynCall_iiiiiiiifiiiii = Module["dynCall_iiiiiiiifiiiii"] = createExportWrapper("dynCall_iiiiiiiifiiiii");
+
+var dynCall_vffiii = Module["dynCall_vffiii"] = createExportWrapper("dynCall_vffiii");
+
+var dynCall_iiiiifii = Module["dynCall_iiiiifii"] = createExportWrapper("dynCall_iiiiifii");
+
+var dynCall_vifffiii = Module["dynCall_vifffiii"] = createExportWrapper("dynCall_vifffiii");
+
+var dynCall_iiiffiii = Module["dynCall_iiiffiii"] = createExportWrapper("dynCall_iiiffiii");
+
+var dynCall_ifiiiifiii = Module["dynCall_ifiiiifiii"] = createExportWrapper("dynCall_ifiiiifiii");
+
+var dynCall_viiffffiiiii = Module["dynCall_viiffffiiiii"] = createExportWrapper("dynCall_viiffffiiiii");
+
+var dynCall_vifiifiifi = Module["dynCall_vifiifiifi"] = createExportWrapper("dynCall_vifiifiifi");
+
+var dynCall_vififiiii = Module["dynCall_vififiiii"] = createExportWrapper("dynCall_vififiiii");
+
+var dynCall_viiiiiiifi = Module["dynCall_viiiiiiifi"] = createExportWrapper("dynCall_viiiiiiifi");
+
+var dynCall_iiffiiiiiiiiii = Module["dynCall_iiffiiiiiiiiii"] = createExportWrapper("dynCall_iiffiiiiiiiiii");
+
+var dynCall_viiiiiiiiiiffiii = Module["dynCall_viiiiiiiiiiffiii"] = createExportWrapper("dynCall_viiiiiiiiiiffiii");
+
+var dynCall_viiffffffi = Module["dynCall_viiffffffi"] = createExportWrapper("dynCall_viiffffffi");
+
+var dynCall_viifffffffi = Module["dynCall_viifffffffi"] = createExportWrapper("dynCall_viifffffffi");
 
 var dynCall_viiffffffffi = Module["dynCall_viiffffffffi"] = createExportWrapper("dynCall_viiffffffffi");
 
@@ -16124,115 +15098,143 @@ var dynCall_vifiiii = Module["dynCall_vifiiii"] = createExportWrapper("dynCall_v
 
 var dynCall_vidiii = Module["dynCall_vidiii"] = createExportWrapper("dynCall_vidiii");
 
-var dynCall_fiiiiii = Module["dynCall_fiiiiii"] = createExportWrapper("dynCall_fiiiiii");
-
-var dynCall_viifffi = Module["dynCall_viifffi"] = createExportWrapper("dynCall_viifffi");
-
-var dynCall_iifffi = Module["dynCall_iifffi"] = createExportWrapper("dynCall_iifffi");
-
-var dynCall_vifijii = Module["dynCall_vifijii"] = createExportWrapper("dynCall_vifijii");
-
-var dynCall_iifiiiiii = Module["dynCall_iifiiiiii"] = createExportWrapper("dynCall_iifiiiiii");
-
-var dynCall_viiiiiifiifiiii = Module["dynCall_viiiiiifiifiiii"] = createExportWrapper("dynCall_viiiiiifiifiiii");
-
-var dynCall_diidi = Module["dynCall_diidi"] = createExportWrapper("dynCall_diidi");
-
-var dynCall_fiifdi = Module["dynCall_fiifdi"] = createExportWrapper("dynCall_fiifdi");
-
-var dynCall_viiiiiifddfiiii = Module["dynCall_viiiiiifddfiiii"] = createExportWrapper("dynCall_viiiiiifddfiiii");
-
-var dynCall_fiifji = Module["dynCall_fiifji"] = createExportWrapper("dynCall_fiifji");
-
-var dynCall_viiiiiifjjfiiii = Module["dynCall_viiiiiifjjfiiii"] = createExportWrapper("dynCall_viiiiiifjjfiiii");
-
-var dynCall_viiiiiiffffiiii = Module["dynCall_viiiiiiffffiiii"] = createExportWrapper("dynCall_viiiiiiffffiiii");
-
-var dynCall_vdidi = Module["dynCall_vdidi"] = createExportWrapper("dynCall_vdidi");
-
-var dynCall_iddii = Module["dynCall_iddii"] = createExportWrapper("dynCall_iddii");
-
-var dynCall_iifiiii = Module["dynCall_iifiiii"] = createExportWrapper("dynCall_iifiiii");
-
-var dynCall_vijjjfi = Module["dynCall_vijjjfi"] = createExportWrapper("dynCall_vijjjfi");
-
-var dynCall_ffffii = Module["dynCall_ffffii"] = createExportWrapper("dynCall_ffffii");
-
-var dynCall_viddiiii = Module["dynCall_viddiiii"] = createExportWrapper("dynCall_viddiiii");
-
-var dynCall_iidddi = Module["dynCall_iidddi"] = createExportWrapper("dynCall_iidddi");
-
-var dynCall_vidddiiii = Module["dynCall_vidddiiii"] = createExportWrapper("dynCall_vidddiiii");
-
-var dynCall_viidiiii = Module["dynCall_viidiiii"] = createExportWrapper("dynCall_viidiiii");
-
-var dynCall_viidiijjfdddddi = Module["dynCall_viidiijjfdddddi"] = createExportWrapper("dynCall_viidiijjfdddddi");
-
-var dynCall_fffffii = Module["dynCall_fffffii"] = createExportWrapper("dynCall_fffffii");
-
-var dynCall_viidiiiii = Module["dynCall_viidiiiii"] = createExportWrapper("dynCall_viidiiiii");
-
-var dynCall_viidiii = Module["dynCall_viidiii"] = createExportWrapper("dynCall_viidiii");
-
-var dynCall_vifdddddi = Module["dynCall_vifdddddi"] = createExportWrapper("dynCall_vifdddddi");
-
-var dynCall_vididiiii = Module["dynCall_vididiiii"] = createExportWrapper("dynCall_vididiiii");
-
-var dynCall_viddii = Module["dynCall_viddii"] = createExportWrapper("dynCall_viddii");
-
-var dynCall_iiddiiii = Module["dynCall_iiddiiii"] = createExportWrapper("dynCall_iiddiiii");
-
-var dynCall_viidii = Module["dynCall_viidii"] = createExportWrapper("dynCall_viidii");
-
-var dynCall_vijijii = Module["dynCall_vijijii"] = createExportWrapper("dynCall_vijijii");
-
-var dynCall_iidii = Module["dynCall_iidii"] = createExportWrapper("dynCall_iidii");
-
-var dynCall_diji = Module["dynCall_diji"] = createExportWrapper("dynCall_diji");
-
-var dynCall_fidi = Module["dynCall_fidi"] = createExportWrapper("dynCall_fidi");
-
-var dynCall_fffifi = Module["dynCall_fffifi"] = createExportWrapper("dynCall_fffifi");
-
-var dynCall_vijjii = Module["dynCall_vijjii"] = createExportWrapper("dynCall_vijjii");
-
-var dynCall_viiiiiffii = Module["dynCall_viiiiiffii"] = createExportWrapper("dynCall_viiiiiffii");
-
-var dynCall_viiififfi = Module["dynCall_viiififfi"] = createExportWrapper("dynCall_viiififfi");
-
-var dynCall_viifiiiii = Module["dynCall_viifiiiii"] = createExportWrapper("dynCall_viifiiiii");
-
-var dynCall_iiiffiiii = Module["dynCall_iiiffiiii"] = createExportWrapper("dynCall_iiiffiiii");
-
-var dynCall_iiiiffiiii = Module["dynCall_iiiiffiiii"] = createExportWrapper("dynCall_iiiiffiiii");
-
-var dynCall_vififiii = Module["dynCall_vififiii"] = createExportWrapper("dynCall_vififiii");
-
-var dynCall_vifffffffffi = Module["dynCall_vifffffffffi"] = createExportWrapper("dynCall_vifffffffffi");
-
-var dynCall_viffffffffffffffffi = Module["dynCall_viffffffffffffffffi"] = createExportWrapper("dynCall_viffffffffffffffffi");
-
 var dynCall_viiffffffffiii = Module["dynCall_viiffffffffiii"] = createExportWrapper("dynCall_viiffffffffiii");
-
-var dynCall_viiiiiffffi = Module["dynCall_viiiiiffffi"] = createExportWrapper("dynCall_viiiiiffffi");
-
-var dynCall_viifffffi = Module["dynCall_viifffffi"] = createExportWrapper("dynCall_viifffffi");
-
-var dynCall_viiffffffi = Module["dynCall_viiffffffi"] = createExportWrapper("dynCall_viiffffffi");
-
-var dynCall_viifffffffi = Module["dynCall_viifffffffi"] = createExportWrapper("dynCall_viifffffffi");
 
 var dynCall_viiiiffffii = Module["dynCall_viiiiffffii"] = createExportWrapper("dynCall_viiiiffffii");
 
-var dynCall_viiiiiiiji = Module["dynCall_viiiiiiiji"] = createExportWrapper("dynCall_viiiiiiiji");
+var dynCall_fiiiiii = Module["dynCall_fiiiiii"] = createExportWrapper("dynCall_fiiiiii");
 
-var dynCall_viiiiiiiiji = Module["dynCall_viiiiiiiiji"] = createExportWrapper("dynCall_viiiiiiiiji");
+var dynCall_idiiii = Module["dynCall_idiiii"] = createExportWrapper("dynCall_idiiii");
 
-var dynCall_viiiiiiiiiji = Module["dynCall_viiiiiiiiiji"] = createExportWrapper("dynCall_viiiiiiiiiji");
+var dynCall_iiiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiii");
 
-var dynCall_jijji = Module["dynCall_jijji"] = createExportWrapper("dynCall_jijji");
+var dynCall_jjii = Module["dynCall_jjii"] = createExportWrapper("dynCall_jjii");
+
+var dynCall_vijiiiiiii = Module["dynCall_vijiiiiiii"] = createExportWrapper("dynCall_vijiiiiiii");
+
+var dynCall_vijiiiiiiii = Module["dynCall_vijiiiiiiii"] = createExportWrapper("dynCall_vijiiiiiiii");
+
+var dynCall_jijiii = Module["dynCall_jijiii"] = createExportWrapper("dynCall_jijiii");
+
+var dynCall_jjiiii = Module["dynCall_jjiiii"] = createExportWrapper("dynCall_jjiiii");
+
+var dynCall_jjiiiii = Module["dynCall_jjiiiii"] = createExportWrapper("dynCall_jjiiiii");
+
+var dynCall_viijiiiiii = Module["dynCall_viijiiiiii"] = createExportWrapper("dynCall_viijiiiiii");
+
+var dynCall_iijiiiiii = Module["dynCall_iijiiiiii"] = createExportWrapper("dynCall_iijiiiiii");
+
+var dynCall_iiiijjii = Module["dynCall_iiiijjii"] = createExportWrapper("dynCall_iiiijjii");
+
+var dynCall_jijjji = Module["dynCall_jijjji"] = createExportWrapper("dynCall_jijjji");
+
+var dynCall_jijjjii = Module["dynCall_jijjjii"] = createExportWrapper("dynCall_jijjjii");
+
+var dynCall_jjiii = Module["dynCall_jjiii"] = createExportWrapper("dynCall_jjiii");
+
+var dynCall_ijijiiiii = Module["dynCall_ijijiiiii"] = createExportWrapper("dynCall_ijijiiiii");
+
+var dynCall_ijjjiii = Module["dynCall_ijjjiii"] = createExportWrapper("dynCall_ijjjiii");
+
+var dynCall_vijjjiijii = Module["dynCall_vijjjiijii"] = createExportWrapper("dynCall_vijjjiijii");
+
+var dynCall_ijjjiijii = Module["dynCall_ijjjiijii"] = createExportWrapper("dynCall_ijjjiijii");
+
+var dynCall_vijiiii = Module["dynCall_vijiiii"] = createExportWrapper("dynCall_vijiiii");
+
+var dynCall_jfi = Module["dynCall_jfi"] = createExportWrapper("dynCall_jfi");
+
+var dynCall_fji = Module["dynCall_fji"] = createExportWrapper("dynCall_fji");
+
+var dynCall_dfi = Module["dynCall_dfi"] = createExportWrapper("dynCall_dfi");
+
+var dynCall_jidii = Module["dynCall_jidii"] = createExportWrapper("dynCall_jidii");
+
+var dynCall_jidi = Module["dynCall_jidi"] = createExportWrapper("dynCall_jidi");
+
+var dynCall_ijiijii = Module["dynCall_ijiijii"] = createExportWrapper("dynCall_ijiijii");
+
+var dynCall_vjjiiiii = Module["dynCall_vjjiiiii"] = createExportWrapper("dynCall_vjjiiiii");
+
+var dynCall_vjjii = Module["dynCall_vjjii"] = createExportWrapper("dynCall_vjjii");
+
+var dynCall_ijiiji = Module["dynCall_ijiiji"] = createExportWrapper("dynCall_ijiiji");
+
+var dynCall_ijiiiiji = Module["dynCall_ijiiiiji"] = createExportWrapper("dynCall_ijiiiiji");
+
+var dynCall_ddii = Module["dynCall_ddii"] = createExportWrapper("dynCall_ddii");
+
+var dynCall_idiii = Module["dynCall_idiii"] = createExportWrapper("dynCall_idiii");
+
+var dynCall_idiiiii = Module["dynCall_idiiiii"] = createExportWrapper("dynCall_idiiiii");
+
+var dynCall_iidiii = Module["dynCall_iidiii"] = createExportWrapper("dynCall_iidiii");
+
+var dynCall_ifiii = Module["dynCall_ifiii"] = createExportWrapper("dynCall_ifiii");
+
+var dynCall_ifiiiii = Module["dynCall_ifiiiii"] = createExportWrapper("dynCall_ifiiiii");
+
+var dynCall_jjjii = Module["dynCall_jjjii"] = createExportWrapper("dynCall_jjjii");
+
+var dynCall_vdiii = Module["dynCall_vdiii"] = createExportWrapper("dynCall_vdiii");
+
+var dynCall_jdii = Module["dynCall_jdii"] = createExportWrapper("dynCall_jdii");
+
+var dynCall_vijijji = Module["dynCall_vijijji"] = createExportWrapper("dynCall_vijijji");
+
+var dynCall_iijjji = Module["dynCall_iijjji"] = createExportWrapper("dynCall_iijjji");
+
+var dynCall_viijjji = Module["dynCall_viijjji"] = createExportWrapper("dynCall_viijjji");
+
+var dynCall_vdii = Module["dynCall_vdii"] = createExportWrapper("dynCall_vdii");
 
 var dynCall_diddi = Module["dynCall_diddi"] = createExportWrapper("dynCall_diddi");
+
+var dynCall_viiijji = Module["dynCall_viiijji"] = createExportWrapper("dynCall_viiijji");
+
+var dynCall_iijjii = Module["dynCall_iijjii"] = createExportWrapper("dynCall_iijjii");
+
+var dynCall_viijijii = Module["dynCall_viijijii"] = createExportWrapper("dynCall_viijijii");
+
+var dynCall_viijijiii = Module["dynCall_viijijiii"] = createExportWrapper("dynCall_viijijiii");
+
+var dynCall_vijiji = Module["dynCall_vijiji"] = createExportWrapper("dynCall_vijiji");
+
+var dynCall_viijiijiii = Module["dynCall_viijiijiii"] = createExportWrapper("dynCall_viijiijiii");
+
+var dynCall_viiiijiiii = Module["dynCall_viiiijiiii"] = createExportWrapper("dynCall_viiiijiiii");
+
+var dynCall_jiiiiii = Module["dynCall_jiiiiii"] = createExportWrapper("dynCall_jiiiiii");
+
+var dynCall_di = Module["dynCall_di"] = createExportWrapper("dynCall_di");
+
+var dynCall_vijjji = Module["dynCall_vijjji"] = createExportWrapper("dynCall_vijjji");
+
+var dynCall_jiiiiiiiiii = Module["dynCall_jiiiiiiiiii"] = createExportWrapper("dynCall_jiiiiiiiiii");
+
+var dynCall_iiiiidii = Module["dynCall_iiiiidii"] = createExportWrapper("dynCall_iiiiidii");
+
+var dynCall_iiiiijii = Module["dynCall_iiiiijii"] = createExportWrapper("dynCall_iiiiijii");
+
+var dynCall_iddi = Module["dynCall_iddi"] = createExportWrapper("dynCall_iddi");
+
+var dynCall_iiidiii = Module["dynCall_iiidiii"] = createExportWrapper("dynCall_iiidiii");
+
+var dynCall_iidii = Module["dynCall_iidii"] = createExportWrapper("dynCall_iidii");
+
+var dynCall_viidiii = Module["dynCall_viidiii"] = createExportWrapper("dynCall_viidiii");
+
+var dynCall_viijiii = Module["dynCall_viijiii"] = createExportWrapper("dynCall_viijiii");
+
+var dynCall_viifffiii = Module["dynCall_viifffiii"] = createExportWrapper("dynCall_viifffiii");
+
+var dynCall_iiiiffiiiji = Module["dynCall_iiiiffiiiji"] = createExportWrapper("dynCall_iiiiffiiiji");
+
+var dynCall_viiiiiiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_viiiiiiiiiiiiiiiiiii");
+
+var dynCall_vjjiii = Module["dynCall_vjjiii"] = createExportWrapper("dynCall_vjjiii");
+
+var dynCall_iiiiffiiiii = Module["dynCall_iiiiffiiiii"] = createExportWrapper("dynCall_iiiiffiiiii");
 
 var dynCall_iiiiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiiii");
 
@@ -16242,51 +15244,57 @@ var dynCall_iiiiiiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiiiiiii"] = createExpo
 
 var dynCall_iiiiiiiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiiiiiii");
 
-var dynCall_iiiiiiiiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiiiiiiiii"] = createExportWrapper("dynCall_iiiiiiiiiiiiiiiiiii");
+var dynCall_diiiidi = Module["dynCall_diiiidi"] = createExportWrapper("dynCall_diiiidi");
 
-var dynCall_iiijjii = Module["dynCall_iiijjii"] = createExportWrapper("dynCall_iiijjii");
+var dynCall_jiiiiji = Module["dynCall_jiiiiji"] = createExportWrapper("dynCall_jiiiiji");
 
-var dynCall_iiffi = Module["dynCall_iiffi"] = createExportWrapper("dynCall_iiffi");
+var dynCall_fiiiifi = Module["dynCall_fiiiifi"] = createExportWrapper("dynCall_fiiiifi");
+
+var dynCall_vdi = Module["dynCall_vdi"] = createExportWrapper("dynCall_vdi");
 
 var dynCall_fff = Module["dynCall_fff"] = createExportWrapper("dynCall_fff");
 
-var dynCall_ijj = Module["dynCall_ijj"] = createExportWrapper("dynCall_ijj");
+var dynCall_vif = Module["dynCall_vif"] = createExportWrapper("dynCall_vif");
 
-var dynCall_vjji = Module["dynCall_vjji"] = createExportWrapper("dynCall_vjji");
-
-var dynCall_ij = Module["dynCall_ij"] = createExportWrapper("dynCall_ij");
+var dynCall_viif = Module["dynCall_viif"] = createExportWrapper("dynCall_viif");
 
 var dynCall_viffff = Module["dynCall_viffff"] = createExportWrapper("dynCall_viffff");
 
-var dynCall_vif = Module["dynCall_vif"] = createExportWrapper("dynCall_vif");
+var dynCall_vid = Module["dynCall_vid"] = createExportWrapper("dynCall_vid");
+
+var dynCall_viiiiif = Module["dynCall_viiiiif"] = createExportWrapper("dynCall_viiiiif");
+
+var dynCall_viiiif = Module["dynCall_viiiif"] = createExportWrapper("dynCall_viiiif");
 
 var dynCall_viiiiiif = Module["dynCall_viiiiiif"] = createExportWrapper("dynCall_viiiiiif");
 
-var dynCall_vifff = Module["dynCall_vifff"] = createExportWrapper("dynCall_vifff");
+var dynCall_iiiijiii = Module["dynCall_iiiijiii"] = createExportWrapper("dynCall_iiiijiii");
 
-var dynCall_viifff = Module["dynCall_viifff"] = createExportWrapper("dynCall_viifff");
+var dynCall_iiiij = Module["dynCall_iiiij"] = createExportWrapper("dynCall_iiiij");
+
+var dynCall_iiif = Module["dynCall_iiif"] = createExportWrapper("dynCall_iiif");
+
+var dynCall_fif = Module["dynCall_fif"] = createExportWrapper("dynCall_fif");
 
 var dynCall_viff = Module["dynCall_viff"] = createExportWrapper("dynCall_viff");
-
-var dynCall_vij = Module["dynCall_vij"] = createExportWrapper("dynCall_vij");
-
-var dynCall_vid = Module["dynCall_vid"] = createExportWrapper("dynCall_vid");
-
-var dynCall_iiiijiii = Module["dynCall_iiiijiii"] = createExportWrapper("dynCall_iiiijiii");
 
 var dynCall_iiiiiifff = Module["dynCall_iiiiiifff"] = createExportWrapper("dynCall_iiiiiifff");
 
 var dynCall_iiiiiifiif = Module["dynCall_iiiiiifiif"] = createExportWrapper("dynCall_iiiiiifiif");
 
-var dynCall_iiiiiifiii = Module["dynCall_iiiiiifiii"] = createExportWrapper("dynCall_iiiiiifiii");
-
 var dynCall_iiiiiiifiif = Module["dynCall_iiiiiiifiif"] = createExportWrapper("dynCall_iiiiiiifiif");
+
+var dynCall_fiff = Module["dynCall_fiff"] = createExportWrapper("dynCall_fiff");
 
 var dynCall_fiiiiiifiifif = Module["dynCall_fiiiiiifiifif"] = createExportWrapper("dynCall_fiiiiiifiifif");
 
 var dynCall_fiiiiiifiiiif = Module["dynCall_fiiiiiifiiiif"] = createExportWrapper("dynCall_fiiiiiifiiiif");
 
 var dynCall_iifiiiijii = Module["dynCall_iifiiiijii"] = createExportWrapper("dynCall_iifiiiijii");
+
+var dynCall_vifif = Module["dynCall_vifif"] = createExportWrapper("dynCall_vifif");
+
+var dynCall_vifijii = Module["dynCall_vifijii"] = createExportWrapper("dynCall_vifijii");
 
 var dynCall_iiiifffiii = Module["dynCall_iiiifffiii"] = createExportWrapper("dynCall_iiiifffiii");
 
@@ -16302,7 +15310,11 @@ var dynCall_iiiifffffii = Module["dynCall_iiiifffffii"] = createExportWrapper("d
 
 var dynCall_viiiiiiiiiiifii = Module["dynCall_viiiiiiiiiiifii"] = createExportWrapper("dynCall_viiiiiiiiiiifii");
 
+var dynCall_iiiifiiiii = Module["dynCall_iiiifiiiii"] = createExportWrapper("dynCall_iiiifiiiii");
+
 var dynCall_iiiiifiiiiif = Module["dynCall_iiiiifiiiiif"] = createExportWrapper("dynCall_iiiiifiiiiif");
+
+var dynCall_viiff = Module["dynCall_viiff"] = createExportWrapper("dynCall_viiff");
 
 var dynCall_viiifiiiii = Module["dynCall_viiifiiiii"] = createExportWrapper("dynCall_viiifiiiii");
 
@@ -16312,29 +15324,47 @@ var dynCall_iifff = Module["dynCall_iifff"] = createExportWrapper("dynCall_iifff
 
 var dynCall_iif = Module["dynCall_iif"] = createExportWrapper("dynCall_iif");
 
+var dynCall_viij = Module["dynCall_viij"] = createExportWrapper("dynCall_viij");
+
 var dynCall_viijijj = Module["dynCall_viijijj"] = createExportWrapper("dynCall_viijijj");
 
 var dynCall_viijj = Module["dynCall_viijj"] = createExportWrapper("dynCall_viijj");
+
+var dynCall_viiiij = Module["dynCall_viiiij"] = createExportWrapper("dynCall_viiiij");
 
 var dynCall_iiijji = Module["dynCall_iiijji"] = createExportWrapper("dynCall_iiijji");
 
 var dynCall_ijjiiiii = Module["dynCall_ijjiiiii"] = createExportWrapper("dynCall_ijjiiiii");
 
-var dynCall_viijjji = Module["dynCall_viijjji"] = createExportWrapper("dynCall_viijjji");
+var dynCall_ijj = Module["dynCall_ijj"] = createExportWrapper("dynCall_ijj");
 
-var dynCall_vidd = Module["dynCall_vidd"] = createExportWrapper("dynCall_vidd");
+var dynCall_iiij = Module["dynCall_iiij"] = createExportWrapper("dynCall_iiij");
 
 var dynCall_iiiiiifffiiifiii = Module["dynCall_iiiiiifffiiifiii"] = createExportWrapper("dynCall_iiiiiifffiiifiii");
 
-var dynCall_viiifffiiij = Module["dynCall_viiifffiiij"] = createExportWrapper("dynCall_viiifffiiij");
+var dynCall_viid = Module["dynCall_viid"] = createExportWrapper("dynCall_viid");
+
+var dynCall_viiif = Module["dynCall_viiif"] = createExportWrapper("dynCall_viiif");
+
+var dynCall_fiiiif = Module["dynCall_fiiiif"] = createExportWrapper("dynCall_fiiiif");
 
 var dynCall_viiffiiii = Module["dynCall_viiffiiii"] = createExportWrapper("dynCall_viiffiiii");
-
-var dynCall_viffffffffffffiiii = Module["dynCall_viffffffffffffiiii"] = createExportWrapper("dynCall_viffffffffffffiiii");
 
 var dynCall_ff = Module["dynCall_ff"] = createExportWrapper("dynCall_ff");
 
 var dynCall_iiiiiff = Module["dynCall_iiiiiff"] = createExportWrapper("dynCall_iiiiiff");
+
+var dynCall_viffffffffffffiiii = Module["dynCall_viffffffffffffiiii"] = createExportWrapper("dynCall_viffffffffffffiiii");
+
+var dynCall_iid = Module["dynCall_iid"] = createExportWrapper("dynCall_iid");
+
+var dynCall_vidii = Module["dynCall_vidii"] = createExportWrapper("dynCall_vidii");
+
+var dynCall_vidd = Module["dynCall_vidd"] = createExportWrapper("dynCall_vidd");
+
+var dynCall_vij = Module["dynCall_vij"] = createExportWrapper("dynCall_vij");
+
+var dynCall_vjiiiiiii = Module["dynCall_vjiiiiiii"] = createExportWrapper("dynCall_vjiiiiiii");
 
 var dynCall_vf = Module["dynCall_vf"] = createExportWrapper("dynCall_vf");
 
@@ -16342,19 +15372,33 @@ var dynCall_vffff = Module["dynCall_vffff"] = createExportWrapper("dynCall_vffff
 
 var dynCall_vff = Module["dynCall_vff"] = createExportWrapper("dynCall_vff");
 
+var dynCall_viiiiiji = Module["dynCall_viiiiiji"] = createExportWrapper("dynCall_viiiiiji");
+
+var dynCall_vifff = Module["dynCall_vifff"] = createExportWrapper("dynCall_vifff");
+
+var dynCall_viifff = Module["dynCall_viifff"] = createExportWrapper("dynCall_viifff");
+
+var dynCall_ij = Module["dynCall_ij"] = createExportWrapper("dynCall_ij");
+
 var dynCall_vfff = Module["dynCall_vfff"] = createExportWrapper("dynCall_vfff");
 
 var dynCall_f = Module["dynCall_f"] = createExportWrapper("dynCall_f");
 
 var dynCall_vffffffi = Module["dynCall_vffffffi"] = createExportWrapper("dynCall_vffffffi");
 
-var dynCall_vfi = Module["dynCall_vfi"] = createExportWrapper("dynCall_vfi");
+var dynCall_if = Module["dynCall_if"] = createExportWrapper("dynCall_if");
 
-var dynCall_d = Module["dynCall_d"] = createExportWrapper("dynCall_d");
+var dynCall_iiiiiiifiii = Module["dynCall_iiiiiiifiii"] = createExportWrapper("dynCall_iiiiiiifiii");
+
+var dynCall_fiif = Module["dynCall_fiif"] = createExportWrapper("dynCall_fiif");
 
 var dynCall_iiiiiiffiiiiiiiiiffffiii = Module["dynCall_iiiiiiffiiiiiiiiiffffiii"] = createExportWrapper("dynCall_iiiiiiffiiiiiiiiiffffiii");
 
 var dynCall_viififi = Module["dynCall_viififi"] = createExportWrapper("dynCall_viififi");
+
+var dynCall_viiffiiiiiiiii = Module["dynCall_viiffiiiiiiiii"] = createExportWrapper("dynCall_viiffiiiiiiiii");
+
+var dynCall_viiffiiiiii = Module["dynCall_viiffiiiiii"] = createExportWrapper("dynCall_viiffiiiiii");
 
 var dynCall_viiiiiiiijiii = Module["dynCall_viiiiiiiijiii"] = createExportWrapper("dynCall_viiiiiiiijiii");
 
@@ -16364,7 +15408,7 @@ function invoke_ii(index, a1) {
   return dynCall_ii(index, a1);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -16375,139 +15419,7 @@ function invoke_vii(index, a1, a2) {
   dynCall_vii(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iii(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_iii(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_viii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_iiii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_viiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_iiiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_fiii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_diii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_diii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viif(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_viif(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viid(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_viid(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vi(index, a1) {
- var sp = stackSave();
- try {
-  dynCall_vi(index, a1);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_i(index) {
- var sp = stackSave();
- try {
-  return dynCall_i(index);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -16518,29 +15430,95 @@ function invoke_v(index) {
   dynCall_v(index);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_iii(index, a1, a2) {
  var sp = stackSave();
  try {
-  return dynCall_iiiiiiii(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_iii(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiii(index, a1, a2, a3, a4, a5) {
+function invoke_vi(index, a1) {
  var sp = stackSave();
  try {
-  dynCall_viiiii(index, a1, a2, a3, a4, a5);
+  dynCall_vi(index, a1);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
+  _setThrew(1, 0);
+ }
+}
+
+function invoke_iiii(index, a1, a2, a3) {
+ var sp = stackSave();
+ try {
+  return dynCall_iiii(index, a1, a2, a3);
+ } catch (e) {
+  stackRestore(sp);
+  if (e !== e + 0) throw e;
+  _setThrew(1, 0);
+ }
+}
+
+function invoke_iiiii(index, a1, a2, a3, a4) {
+ var sp = stackSave();
+ try {
+  return dynCall_iiiii(index, a1, a2, a3, a4);
+ } catch (e) {
+  stackRestore(sp);
+  if (e !== e + 0) throw e;
+  _setThrew(1, 0);
+ }
+}
+
+function invoke_iiiiii(index, a1, a2, a3, a4, a5) {
+ var sp = stackSave();
+ try {
+  return dynCall_iiiiii(index, a1, a2, a3, a4, a5);
+ } catch (e) {
+  stackRestore(sp);
+  if (e !== e + 0) throw e;
+  _setThrew(1, 0);
+ }
+}
+
+function invoke_viii(index, a1, a2, a3) {
+ var sp = stackSave();
+ try {
+  dynCall_viii(index, a1, a2, a3);
+ } catch (e) {
+  stackRestore(sp);
+  if (e !== e + 0) throw e;
+  _setThrew(1, 0);
+ }
+}
+
+function invoke_i(index) {
+ var sp = stackSave();
+ try {
+  return dynCall_i(index);
+ } catch (e) {
+  stackRestore(sp);
+  if (e !== e + 0) throw e;
+  _setThrew(1, 0);
+ }
+}
+
+function invoke_viiii(index, a1, a2, a3, a4) {
+ var sp = stackSave();
+ try {
+  dynCall_viiii(index, a1, a2, a3, a4);
+ } catch (e) {
+  stackRestore(sp);
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -16551,227 +15529,18 @@ function invoke_iiiiiii(index, a1, a2, a3, a4, a5, a6) {
   return dynCall_iiiiiii(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_iiiiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
  var sp = stackSave();
  try {
-  dynCall_viiiiiii(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_iiiiiiii(index, a1, a2, a3, a4, a5, a6, a7);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiffi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_fiffi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viifii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viifii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viifi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_viifi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vfiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_vfiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vfii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vfii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iifi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_iifi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ff(index, a1) {
- var sp = stackSave();
- try {
-  return dynCall_ff(index, a1);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vfi(index, a1, a2) {
- var sp = stackSave();
- try {
-  dynCall_vfi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fff(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_fff(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_dddi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_dddi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fi(index, a1) {
- var sp = stackSave();
- try {
-  return dynCall_fi(index, a1);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fffifffi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_fffifffi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_f(index) {
- var sp = stackSave();
- try {
-  return dynCall_f(index);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viffffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifffii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_vifffii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -16782,1008 +15551,40 @@ function invoke_iiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
   return dynCall_iiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
+function invoke_fiii(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_iiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
+  return dynCall_fiii(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+function invoke_diii(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_iiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  return dynCall_diii(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_dii(index, a1, a2) {
+function invoke_viiiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
  var sp = stackSave();
  try {
-  return dynCall_dii(index, a1, a2);
+  dynCall_viiiiiii(index, a1, a2, a3, a4, a5, a6, a7);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vidi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vidi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vdiiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_vdiiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiiffi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_fiiffi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiififii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiififii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vifi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vif(index, a1, a2) {
- var sp = stackSave();
- try {
-  dynCall_vif(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_viffi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viififii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viififii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fii(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_fii(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viffii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ifi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_ifi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiifii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiifii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiifi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viiifi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ffi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_ffi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiff(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_viiff(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fffi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_fffi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fifi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_fifi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffffi(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viffffi(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiifi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_fiifi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiffiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiffiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiffiiiiiiiiiffffiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiffiiiiiiiiiffffiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiffiiiiiiiiiffffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiffiiiiiiiiiffffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiffffiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  return dynCall_fiffffiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffffiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
- var sp = stackSave();
- try {
-  dynCall_viiffffiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiffffii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_fiffffii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ffffiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_ffffiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fifffiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_fifffiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fffffiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_fffffiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viffiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffffiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viffffiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffffii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viffffii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiif(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_fiif(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vffi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vffi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vfffi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_vfffi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_vifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiifi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_iiifi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_vifii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifiii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_vifiii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiifiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiifiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
- var sp = stackSave();
- try {
-  dynCall_viiffiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  dynCall_viiffiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiffiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viiffi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiffii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fffffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  return dynCall_fffffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiifi(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiiifi(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viifiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viifiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viiifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  dynCall_viiiifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_vifiiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiififfiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14) {
- var sp = stackSave();
- try {
-  dynCall_viiififfiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiffiifiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15) {
- var sp = stackSave();
- try {
-  dynCall_viiiffiifiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viififiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  dynCall_viififiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iffi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_iffi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffiifiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14) {
- var sp = stackSave();
- try {
-  dynCall_viiffiifiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  dynCall_viifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vffffi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_vffffi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiifii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iiifii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ifffi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_ifffi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_fiiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiifi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iiiifi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fifffi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_fifffi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffffi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiffffi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifffi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_vifffi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiff(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_iiiff(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viffifi(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viffifi(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiffffi(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_fiffffi(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fffffffi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_fffffffi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffifi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiffifi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ddiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_ddiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiifi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiiiifi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ffii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_ffii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ffffi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_ffffi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiif(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiiiif(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiif(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiif(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iifii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_iifii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -17794,370 +15595,106 @@ function invoke_iiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11
   return dynCall_iiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vifffffi(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_viiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
  var sp = stackSave();
  try {
-  dynCall_vifffffi(index, a1, a2, a3, a4, a5, a6, a7);
+  dynCall_viiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiifii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_viiiiii(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  dynCall_viiiifii(index, a1, a2, a3, a4, a5, a6, a7);
+  dynCall_viiiiii(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fiiiii(index, a1, a2, a3, a4, a5) {
+function invoke_viiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
  var sp = stackSave();
  try {
-  return dynCall_fiiiii(index, a1, a2, a3, a4, a5);
+  dynCall_viiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viffiiii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_viiiii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  dynCall_viffiiii(index, a1, a2, a3, a4, a5, a6, a7);
+  dynCall_viiiii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiffffiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
+function invoke_ddiii(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  dynCall_viiiiffffiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
+  return dynCall_ddiii(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiifiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_iiiidii(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  dynCall_viiifiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dynCall_iiiidii(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fiiiif(index, a1, a2, a3, a4, a5) {
+function invoke_viifi(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_fiiiif(index, a1, a2, a3, a4, a5);
+  dynCall_viifi(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fiiiifi(index, a1, a2, a3, a4, a5, a6) {
+function invoke_iiifii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  return dynCall_fiiiifi(index, a1, a2, a3, a4, a5, a6);
+  return dynCall_iiifii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iidi(index, a1, a2, a3) {
+function invoke_vidi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_iidi(index, a1, a2, a3);
+  dynCall_vidi(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiifii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iiiifii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiififiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  dynCall_viiififiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiif(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_iiiif(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiif(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viiiif(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiff(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiiiff(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_idii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_idii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_idiiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_idiiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_diiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_diiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiif(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_viiif(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viififfii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viififfii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viifffiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viifffiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiifiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_iiiifiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiifiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iiifiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiifiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_iiifiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iifiii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iifiii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viifiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viifiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiidii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiidii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_idi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_idi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ddi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_ddi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iddi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_iddi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiid(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_fiid(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiid(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_iiid(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiif(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_iiif(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -18168,348 +15705,238 @@ function invoke_viidi(index, a1, a2, a3, a4) {
   dynCall_viidi(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiidi(index, a1, a2, a3, a4) {
+function invoke_dii(index, a1, a2) {
  var sp = stackSave();
  try {
-  return dynCall_iiidi(index, a1, a2, a3, a4);
+  return dynCall_dii(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iidiii(index, a1, a2, a3, a4, a5) {
+function invoke_viiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
  var sp = stackSave();
  try {
-  return dynCall_iidiii(index, a1, a2, a3, a4, a5);
+  dynCall_viiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
+function invoke_vifi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_iiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+  dynCall_vifi(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ifiiii(index, a1, a2, a3, a4, a5) {
+function invoke_iiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
  var sp = stackSave();
  try {
-  return dynCall_ifiiii(index, a1, a2, a3, a4, a5);
+  return dynCall_iiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_idiiii(index, a1, a2, a3, a4, a5) {
+function invoke_fii(index, a1, a2) {
  var sp = stackSave();
  try {
-  return dynCall_idiiii(index, a1, a2, a3, a4, a5);
+  return dynCall_fii(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_di(index, a1) {
+function invoke_iiiiifiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
  var sp = stackSave();
  try {
-  return dynCall_di(index, a1);
+  return dynCall_iiiiifiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vd(index, a1) {
+function invoke_iiiiiifii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
  var sp = stackSave();
  try {
-  dynCall_vd(index, a1);
+  return dynCall_iiiiiifii(index, a1, a2, a3, a4, a5, a6, a7, a8);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vdi(index, a1, a2) {
+function invoke_viiiiifi(index, a1, a2, a3, a4, a5, a6, a7) {
  var sp = stackSave();
  try {
-  dynCall_vdi(index, a1, a2);
+  dynCall_viiiiifi(index, a1, a2, a3, a4, a5, a6, a7);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16) {
+function invoke_dddi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  dynCall_viiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
+  return dynCall_dddi(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17) {
+function invoke_viffi(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  dynCall_viiiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
+  dynCall_viffi(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18) {
+function invoke_iiiiiiiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
  var sp = stackSave();
  try {
-  dynCall_viiiiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
+  return dynCall_iiiiiiiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19) {
+function invoke_viiifi(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  dynCall_viiiiiiiiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
+  dynCall_viiifi(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fiiiiiff(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_ffi(index, a1, a2) {
  var sp = stackSave();
  try {
-  return dynCall_fiiiiiff(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_ffi(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiid(index, a1, a2, a3, a4) {
+function invoke_iiiiiiifii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
  var sp = stackSave();
  try {
-  dynCall_viiid(index, a1, a2, a3, a4);
+  return dynCall_iiiiiiifii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiffii(index, a1, a2, a3, a4, a5) {
+function invoke_viifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
  var sp = stackSave();
  try {
-  return dynCall_iiffii(index, a1, a2, a3, a4, a5);
+  dynCall_viifiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fffffi(index, a1, a2, a3, a4, a5) {
+function invoke_fiiii(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_fffffi(index, a1, a2, a3, a4, a5);
+  return dynCall_fiiii(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iifiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_fi(index, a1) {
  var sp = stackSave();
  try {
-  return dynCall_iifiiiii(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_fi(index, a1);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fiiffffi(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_iifii(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_fiiffffi(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_iifii(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiffiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_vfi(index, a1, a2) {
  var sp = stackSave();
  try {
-  return dynCall_iiffiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  dynCall_vfi(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiiifi(index, a1, a2, a3, a4, a5, a6) {
+function invoke_vifii(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_iiiiifi(index, a1, a2, a3, a4, a5, a6);
+  dynCall_vifii(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiifiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_diiii(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_iiifiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dynCall_diiii(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiifiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiifiifiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_idiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_idiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiifi(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iif(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_iif(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiifii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_fiifii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fifii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_fifii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiffi(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiiffi(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiifffi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiifffi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -18520,810 +15947,205 @@ function invoke_viiiiiffi(index, a1, a2, a3, a4, a5, a6, a7, a8) {
   dynCall_viiiiiffi(index, a1, a2, a3, a4, a5, a6, a7, a8);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiifff(index, a1, a2, a3, a4, a5) {
+function invoke_ifi(index, a1, a2) {
  var sp = stackSave();
  try {
-  return dynCall_iiifff(index, a1, a2, a3, a4, a5);
+  return dynCall_ifi(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vidii(index, a1, a2, a3, a4) {
+function invoke_viiifii(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  dynCall_vidii(index, a1, a2, a3, a4);
+  dynCall_viiifii(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_d(index) {
+function invoke_viffffi(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  return dynCall_d(index);
+  dynCall_viffffi(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiifiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+function invoke_viiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
  var sp = stackSave();
  try {
-  return dynCall_iiiifiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  dynCall_viiiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiifiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_viiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
  var sp = stackSave();
  try {
-  return dynCall_iiiifiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  dynCall_viiiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viddi(index, a1, a2, a3, a4) {
+function invoke_viifii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  dynCall_viddi(index, a1, a2, a3, a4);
+  dynCall_viifii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_didi(index, a1, a2, a3) {
+function invoke_fffi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_didi(index, a1, a2, a3);
+  return dynCall_fffi(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vdii(index, a1, a2, a3) {
+function invoke_vifffi(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  dynCall_vdii(index, a1, a2, a3);
+  dynCall_vifffi(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iffii(index, a1, a2, a3, a4) {
+function invoke_iiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
  var sp = stackSave();
  try {
-  return dynCall_iffii(index, a1, a2, a3, a4);
+  return dynCall_iiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ifffiii(index, a1, a2, a3, a4, a5, a6) {
+function invoke_iifi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_ifffiii(index, a1, a2, a3, a4, a5, a6);
+  return dynCall_iifi(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fiiiffi(index, a1, a2, a3, a4, a5, a6) {
+function invoke_viiffi(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  return dynCall_fiiiffi(index, a1, a2, a3, a4, a5, a6);
+  dynCall_viiffi(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vidiiii(index, a1, a2, a3, a4, a5, a6) {
+function invoke_viifffffi(index, a1, a2, a3, a4, a5, a6, a7, a8) {
  var sp = stackSave();
  try {
-  dynCall_vidiiii(index, a1, a2, a3, a4, a5, a6);
+  dynCall_viifffffi(index, a1, a2, a3, a4, a5, a6, a7, a8);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ddddi(index, a1, a2, a3, a4) {
+function invoke_fifi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_ddddi(index, a1, a2, a3, a4);
+  return dynCall_fifi(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiifdddiffii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14) {
+function invoke_fiiiii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  dynCall_viiiiifdddiffii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
+  return dynCall_fiiiii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viifiii(index, a1, a2, a3, a4, a5, a6) {
+function invoke_viiiiifffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
  var sp = stackSave();
  try {
-  dynCall_viifiii(index, a1, a2, a3, a4, a5, a6);
+  dynCall_viiiiifffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiiifii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_iiifi(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  dynCall_viiiiifii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dynCall_iiifi(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiffffi(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_viiiifi(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  dynCall_viiiffffi(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  dynCall_viiiifi(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ddddddi(index, a1, a2, a3, a4, a5, a6) {
+function invoke_vifiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
  var sp = stackSave();
  try {
-  return dynCall_ddddddi(index, a1, a2, a3, a4, a5, a6);
+  dynCall_vifiiiii(index, a1, a2, a3, a4, a5, a6, a7);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiidi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viiidi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiidiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiiidiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiiifi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_fiiifi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fif(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_fif(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vfff(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vfff(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vffff(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_vffff(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiffii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiiffii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiffi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiiiffi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vffffffii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_vffffffii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vffffffi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_vffffffi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiifffi(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiiifffi(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiififi(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiififi(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiffiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiffiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiifff(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiifff(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffff(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiffff(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiifff(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iiiifff(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiff(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_fiff(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_didd(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_didd(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_did(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_did(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ddii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_ddii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ddd(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_ddd(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vdiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_vdiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ifiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_ifiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ifiiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_ifiiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_dfi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_dfi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fdi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_fdi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iifffi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iifffi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iffffi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iffffi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  dynCall_viiffffffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_vifiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vidiii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_vidiii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viifffi(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viifffi(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fiiiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_fiiiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ffffii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_ffffii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viddiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viddiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iidddi(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iidddi(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vidddiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_vidddiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viidiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viidiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fffffii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_fffffii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viidiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viidiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viidiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viidiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vifdddddi(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_vifdddddi(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vididiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_vididiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viddii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viddii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiddiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_iiddiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viidii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viidii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiffffffffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
- var sp = stackSave();
- try {
-  dynCall_viiffffffffiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiffffi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vidd(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vidd(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_jiiii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ji(index, a1) {
- var sp = stackSave();
- try {
-  return dynCall_ji(index, a1);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jii(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_jii(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiij(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_iiij(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_j(index) {
- var sp = stackSave();
- try {
-  return dynCall_j(index);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -19334,7 +16156,7 @@ function invoke_iij(index, a1, a2, a3) {
   return dynCall_iij(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -19345,920 +16167,51 @@ function invoke_iiijiii(index, a1, a2, a3, a4, a5, a6, a7) {
   return dynCall_iiijiii(index, a1, a2, a3, a4, a5, a6, a7);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iiiji(index, a1, a2, a3, a4, a5) {
+function invoke_jiiii(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_iiiji(index, a1, a2, a3, a4, a5);
+  return dynCall_jiiii(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viij(index, a1, a2, a3, a4) {
+function invoke_ji(index, a1) {
  var sp = stackSave();
  try {
-  dynCall_viij(index, a1, a2, a3, a4);
+  return dynCall_ji(index, a1);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jji(index, a1, a2, a3) {
+function invoke_jii(index, a1, a2) {
  var sp = stackSave();
  try {
-  return dynCall_jji(index, a1, a2, a3);
+  return dynCall_jii(index, a1, a2);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jjjji(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_j(index) {
  var sp = stackSave();
  try {
-  return dynCall_jjjji(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_j(index);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jjii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_jjii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiji(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viiiji(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiji(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viiji(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viji(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_viji(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiji(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_iiji(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijji(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_ijji(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  return dynCall_jiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiiii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_jiiiii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiii(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_jiii(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vji(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vji(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jidi(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_jidi(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiji(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_jiji(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vjiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_vjiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_diiji(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_diiji(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iji(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_iji(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijjiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  return dynCall_ijjiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiji(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiji(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiiiijiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiiiijiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiij(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_viiij(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiij(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iiiij(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijji(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viijji(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iijiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iijiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiijii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iiijii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_ijii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iijii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_iijii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  dynCall_vijii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiiiji(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_jiiiiji(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiij(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiiiij(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vjii(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  dynCall_vjii(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ij(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_ij(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiijiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiijiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  return dynCall_ijiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiijii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viiijii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijiii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_ijiii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijji(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_vijji(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jdi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_jdi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_viijii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jjji(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_jjji(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiij(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_jiij(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiid(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_jiid(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_diij(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_diij(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_ijiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiji(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_jiiji(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiji(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiji(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vjiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_vjiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vjiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  dynCall_vjiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vjiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_vjiiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viijiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_jiiiiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiiiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_jiiiiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijij(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_viijij(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijiji(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_vijiji(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijijii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  dynCall_viijijii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijijiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viijijiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  dynCall_vijiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_dji(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  return dynCall_dji(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  return dynCall_iiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iijiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_iijiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jijiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_jijiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iijiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  return dynCall_iijiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iijjiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  return dynCall_iijjiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiijjii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  return dynCall_iiiijjii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijiii(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  dynCall_vijiii(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jijj(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_jijj(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijiiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
- var sp = stackSave();
- try {
-  dynCall_viijiiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijjji(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_vijjji(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiij(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiij(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiijii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_iiiijii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iijji(index, a1, a2, a3, a4, a5, a6) {
- var sp = stackSave();
- try {
-  return dynCall_iijji(index, a1, a2, a3, a4, a5, a6);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiijji(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiijji(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jiiij(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_jiiij(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jfi(index, a1, a2) {
- var sp = stackSave();
- try {
-  return dynCall_jfi(index, a1, a2);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_fjfi(index, a1, a2, a3, a4) {
- var sp = stackSave();
- try {
-  return dynCall_fjfi(index, a1, a2, a3, a4);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijjji(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_ijjji(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  dynCall_viiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vij(index, a1, a2, a3) {
- var sp = stackSave();
- try {
-  dynCall_vij(index, a1, a2, a3);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_iiiiiiiiiiij(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
- var sp = stackSave();
- try {
-  return dynCall_iiiiiiiiiiij(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -20269,84 +16222,84 @@ function invoke_vijiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
   dynCall_vijiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ijiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_jiii(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  return dynCall_ijiiiii(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_jiii(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiijii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_iiiijii(index, a1, a2, a3, a4, a5, a6, a7) {
  var sp = stackSave();
  try {
-  dynCall_viiiijii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dynCall_iiiijii(index, a1, a2, a3, a4, a5, a6, a7);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jij(index, a1, a2, a3) {
+function invoke_viiji(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  return dynCall_jij(index, a1, a2, a3);
+  dynCall_viiji(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_iijjii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_iiijii(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  return dynCall_iijjii(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_iiijii(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viijiijiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
+function invoke_viji(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  dynCall_viijiijiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
+  dynCall_viji(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
+function invoke_iiiiiiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
  var sp = stackSave();
  try {
-  dynCall_viiiijiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
+  return dynCall_iiiiiiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vjjii(index, a1, a2, a3, a4, a5, a6) {
+function invoke_vji(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  dynCall_vjjii(index, a1, a2, a3, a4, a5, a6);
+  dynCall_vji(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -20357,260 +16310,117 @@ function invoke_jijii(index, a1, a2, a3, a4, a5) {
   return dynCall_jijii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_fji(index, a1, a2, a3) {
+function invoke_jiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
  var sp = stackSave();
  try {
-  return dynCall_fji(index, a1, a2, a3);
+  return dynCall_jiiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jjjii(index, a1, a2, a3, a4, a5, a6) {
+function invoke_viiiji(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  return dynCall_jjjii(index, a1, a2, a3, a4, a5, a6);
+  dynCall_viiiji(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jdii(index, a1, a2, a3) {
+function invoke_iiji(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_jdii(index, a1, a2, a3);
+  return dynCall_iiji(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+function invoke_vijii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  return dynCall_jiiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  dynCall_vijii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jidii(index, a1, a2, a3, a4) {
+function invoke_iijiii(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  return dynCall_jidii(index, a1, a2, a3, a4);
+  return dynCall_iijiii(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_jjiiii(index, a1, a2, a3, a4, a5, a6) {
+function invoke_ijji(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  return dynCall_jjiiii(index, a1, a2, a3, a4, a5, a6);
+  return dynCall_ijji(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ijiiji(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_jiji(index, a1, a2, a3, a4) {
  var sp = stackSave();
  try {
-  return dynCall_ijiiji(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_jiji(index, a1, a2, a3, a4);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ijiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+function invoke_iijji(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  return dynCall_ijiiiiji(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  return dynCall_iijji(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_ijjiii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_iijii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  return dynCall_ijjiii(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_iijii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vjjiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+function invoke_vijiii(index, a1, a2, a3, a4, a5, a6) {
  var sp = stackSave();
  try {
-  dynCall_vjjiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  dynCall_vijiii(index, a1, a2, a3, a4, a5, a6);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijiijii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  return dynCall_ijiijii(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_vijiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
- var sp = stackSave();
- try {
-  dynCall_vijiiiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijijiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  return dynCall_ijijiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijjjiijii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
- var sp = stackSave();
- try {
-  return dynCall_ijjjiijii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijjjiijii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13) {
- var sp = stackSave();
- try {
-  dynCall_vijjjiijii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_vijiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  dynCall_vijiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jjiii(index, a1, a2, a3, a4, a5) {
- var sp = stackSave();
- try {
-  return dynCall_jjiii(index, a1, a2, a3, a4, a5);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jjiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
- var sp = stackSave();
- try {
-  return dynCall_jjiiiii(index, a1, a2, a3, a4, a5, a6, a7);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jijjji(index, a1, a2, a3, a4, a5, a6, a7, a8) {
- var sp = stackSave();
- try {
-  return dynCall_jijjji(index, a1, a2, a3, a4, a5, a6, a7, a8);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_ijjjiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  return dynCall_ijjjiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_viijiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
- var sp = stackSave();
- try {
-  dynCall_viijiiiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
-  _setThrew(1, 0);
- }
-}
-
-function invoke_jijjjii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
- var sp = stackSave();
- try {
-  return dynCall_jijjjii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9);
- } catch (e) {
-  stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
@@ -20621,1239 +16431,851 @@ function invoke_vjjjiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) {
   dynCall_vjjjiiii(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viiiij(index, a1, a2, a3, a4, a5, a6) {
+function invoke_vjiiiii(index, a1, a2, a3, a4, a5, a6, a7) {
  var sp = stackSave();
  try {
-  dynCall_viiiij(index, a1, a2, a3, a4, a5, a6);
+  dynCall_vjiiiii(index, a1, a2, a3, a4, a5, a6, a7);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viijjii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_iji(index, a1, a2, a3) {
  var sp = stackSave();
  try {
-  dynCall_viijjii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dynCall_iji(index, a1, a2, a3);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vifijii(index, a1, a2, a3, a4, a5, a6, a7) {
+function invoke_jjji(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  dynCall_vifijii(index, a1, a2, a3, a4, a5, a6, a7);
+  return dynCall_jjji(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_viidiijjfdddddi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16) {
+function invoke_jiiiii(index, a1, a2, a3, a4, a5) {
  var sp = stackSave();
  try {
-  dynCall_viidiijjfdddddi(index, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
+  return dynCall_jiiiii(index, a1, a2, a3, a4, a5);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-function invoke_vijijii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
+function invoke_viiiijii(index, a1, a2, a3, a4, a5, a6, a7, a8) {
  var sp = stackSave();
  try {
-  dynCall_vijijii(index, a1, a2, a3, a4, a5, a6, a7, a8);
+  dynCall_viiiijii(index, a1, a2, a3, a4, a5, a6, a7, a8);
  } catch (e) {
   stackRestore(sp);
-  if (e !== e + 0 && e !== "longjmp") throw e;
+  if (e !== e + 0) throw e;
   _setThrew(1, 0);
  }
 }
 
-if (!Object.getOwnPropertyDescriptor(Module, "intArrayFromString")) Module["intArrayFromString"] = function() {
- abort("'intArrayFromString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("intArrayFromString", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "intArrayToString")) Module["intArrayToString"] = function() {
- abort("'intArrayToString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("intArrayToString", false);
 
 Module["ccall"] = ccall;
 
 Module["cwrap"] = cwrap;
 
-if (!Object.getOwnPropertyDescriptor(Module, "setValue")) Module["setValue"] = function() {
- abort("'setValue' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("setValue", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "getValue")) Module["getValue"] = function() {
- abort("'getValue' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("getValue", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "allocate")) Module["allocate"] = function() {
- abort("'allocate' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("allocate", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "UTF8ArrayToString")) Module["UTF8ArrayToString"] = function() {
- abort("'UTF8ArrayToString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("UTF8ArrayToString", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "UTF8ToString")) Module["UTF8ToString"] = function() {
- abort("'UTF8ToString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("UTF8ToString", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF8Array")) Module["stringToUTF8Array"] = function() {
- abort("'stringToUTF8Array' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("stringToUTF8Array", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF8")) Module["stringToUTF8"] = function() {
- abort("'stringToUTF8' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("stringToUTF8", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "lengthBytesUTF8")) Module["lengthBytesUTF8"] = function() {
- abort("'lengthBytesUTF8' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("lengthBytesUTF8", false);
 
 Module["stackTrace"] = stackTrace;
 
-if (!Object.getOwnPropertyDescriptor(Module, "addOnPreRun")) Module["addOnPreRun"] = function() {
- abort("'addOnPreRun' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("addOnPreRun", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "addOnInit")) Module["addOnInit"] = function() {
- abort("'addOnInit' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("addOnInit", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "addOnPreMain")) Module["addOnPreMain"] = function() {
- abort("'addOnPreMain' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("addOnPreMain", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "addOnExit")) Module["addOnExit"] = function() {
- abort("'addOnExit' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("addOnExit", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "addOnPostRun")) Module["addOnPostRun"] = function() {
- abort("'addOnPostRun' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("addOnPostRun", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "writeStringToMemory")) Module["writeStringToMemory"] = function() {
- abort("'writeStringToMemory' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("writeStringToMemory", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "writeArrayToMemory")) Module["writeArrayToMemory"] = function() {
- abort("'writeArrayToMemory' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("writeArrayToMemory", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "writeAsciiToMemory")) Module["writeAsciiToMemory"] = function() {
- abort("'writeAsciiToMemory' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("writeAsciiToMemory", false);
 
 Module["addRunDependency"] = addRunDependency;
 
 Module["removeRunDependency"] = removeRunDependency;
 
-if (!Object.getOwnPropertyDescriptor(Module, "FS_createFolder")) Module["FS_createFolder"] = function() {
- abort("'FS_createFolder' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("FS_createFolder", false);
 
 Module["FS_createPath"] = FS.createPath;
 
 Module["FS_createDataFile"] = FS.createDataFile;
 
-if (!Object.getOwnPropertyDescriptor(Module, "FS_createPreloadedFile")) Module["FS_createPreloadedFile"] = function() {
- abort("'FS_createPreloadedFile' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "FS_createLazyFile")) Module["FS_createLazyFile"] = function() {
- abort("'FS_createLazyFile' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "FS_createLink")) Module["FS_createLink"] = function() {
- abort("'FS_createLink' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "FS_createDevice")) Module["FS_createDevice"] = function() {
- abort("'FS_createDevice' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "FS_unlink")) Module["FS_unlink"] = function() {
- abort("'FS_unlink' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ). Alternatively, forcing filesystem support (-s FORCE_FILESYSTEM=1) can export this for you");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getLEB")) Module["getLEB"] = function() {
- abort("'getLEB' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getFunctionTables")) Module["getFunctionTables"] = function() {
- abort("'getFunctionTables' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "alignFunctionTables")) Module["alignFunctionTables"] = function() {
- abort("'alignFunctionTables' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerFunctions")) Module["registerFunctions"] = function() {
- abort("'registerFunctions' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "addFunction")) Module["addFunction"] = function() {
- abort("'addFunction' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "removeFunction")) Module["removeFunction"] = function() {
- abort("'removeFunction' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getFuncWrapper")) Module["getFuncWrapper"] = function() {
- abort("'getFuncWrapper' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "prettyPrint")) Module["prettyPrint"] = function() {
- abort("'prettyPrint' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "dynCall")) Module["dynCall"] = function() {
- abort("'dynCall' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getCompilerSetting")) Module["getCompilerSetting"] = function() {
- abort("'getCompilerSetting' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "print")) Module["print"] = function() {
- abort("'print' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "printErr")) Module["printErr"] = function() {
- abort("'printErr' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getTempRet0")) Module["getTempRet0"] = function() {
- abort("'getTempRet0' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "setTempRet0")) Module["setTempRet0"] = function() {
- abort("'setTempRet0' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "callMain")) Module["callMain"] = function() {
- abort("'callMain' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "abort")) Module["abort"] = function() {
- abort("'abort' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "stringToNewUTF8")) Module["stringToNewUTF8"] = function() {
- abort("'stringToNewUTF8' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "setFileTime")) Module["setFileTime"] = function() {
- abort("'setFileTime' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscripten_realloc_buffer")) Module["emscripten_realloc_buffer"] = function() {
- abort("'emscripten_realloc_buffer' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "ENV")) Module["ENV"] = function() {
- abort("'ENV' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "ERRNO_CODES")) Module["ERRNO_CODES"] = function() {
- abort("'ERRNO_CODES' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "ERRNO_MESSAGES")) Module["ERRNO_MESSAGES"] = function() {
- abort("'ERRNO_MESSAGES' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "setErrNo")) Module["setErrNo"] = function() {
- abort("'setErrNo' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "inetPton4")) Module["inetPton4"] = function() {
- abort("'inetPton4' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "inetNtop4")) Module["inetNtop4"] = function() {
- abort("'inetNtop4' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "inetPton6")) Module["inetPton6"] = function() {
- abort("'inetPton6' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "inetNtop6")) Module["inetNtop6"] = function() {
- abort("'inetNtop6' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "readSockaddr")) Module["readSockaddr"] = function() {
- abort("'readSockaddr' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "writeSockaddr")) Module["writeSockaddr"] = function() {
- abort("'writeSockaddr' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "DNS")) Module["DNS"] = function() {
- abort("'DNS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getHostByName")) Module["getHostByName"] = function() {
- abort("'getHostByName' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "GAI_ERRNO_MESSAGES")) Module["GAI_ERRNO_MESSAGES"] = function() {
- abort("'GAI_ERRNO_MESSAGES' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "Protocols")) Module["Protocols"] = function() {
- abort("'Protocols' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "Sockets")) Module["Sockets"] = function() {
- abort("'Sockets' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getRandomDevice")) Module["getRandomDevice"] = function() {
- abort("'getRandomDevice' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "traverseStack")) Module["traverseStack"] = function() {
- abort("'traverseStack' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "UNWIND_CACHE")) Module["UNWIND_CACHE"] = function() {
- abort("'UNWIND_CACHE' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "withBuiltinMalloc")) Module["withBuiltinMalloc"] = function() {
- abort("'withBuiltinMalloc' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "readAsmConstArgsArray")) Module["readAsmConstArgsArray"] = function() {
- abort("'readAsmConstArgsArray' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "readAsmConstArgs")) Module["readAsmConstArgs"] = function() {
- abort("'readAsmConstArgs' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "mainThreadEM_ASM")) Module["mainThreadEM_ASM"] = function() {
- abort("'mainThreadEM_ASM' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jstoi_q")) Module["jstoi_q"] = function() {
- abort("'jstoi_q' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jstoi_s")) Module["jstoi_s"] = function() {
- abort("'jstoi_s' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getExecutableName")) Module["getExecutableName"] = function() {
- abort("'getExecutableName' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "listenOnce")) Module["listenOnce"] = function() {
- abort("'listenOnce' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "autoResumeAudioContext")) Module["autoResumeAudioContext"] = function() {
- abort("'autoResumeAudioContext' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "dynCallLegacy")) Module["dynCallLegacy"] = function() {
- abort("'dynCallLegacy' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getDynCaller")) Module["getDynCaller"] = function() {
- abort("'getDynCaller' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "dynCall")) Module["dynCall"] = function() {
- abort("'dynCall' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "callRuntimeCallbacks")) Module["callRuntimeCallbacks"] = function() {
- abort("'callRuntimeCallbacks' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "runtimeKeepaliveCounter")) Module["runtimeKeepaliveCounter"] = function() {
- abort("'runtimeKeepaliveCounter' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "keepRuntimeAlive")) Module["keepRuntimeAlive"] = function() {
- abort("'keepRuntimeAlive' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "runtimeKeepalivePush")) Module["runtimeKeepalivePush"] = function() {
- abort("'runtimeKeepalivePush' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "runtimeKeepalivePop")) Module["runtimeKeepalivePop"] = function() {
- abort("'runtimeKeepalivePop' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "callUserCallback")) Module["callUserCallback"] = function() {
- abort("'callUserCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "maybeExit")) Module["maybeExit"] = function() {
- abort("'maybeExit' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "asmjsMangle")) Module["asmjsMangle"] = function() {
- abort("'asmjsMangle' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "reallyNegative")) Module["reallyNegative"] = function() {
- abort("'reallyNegative' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "unSign")) Module["unSign"] = function() {
- abort("'unSign' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "reSign")) Module["reSign"] = function() {
- abort("'reSign' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "formatString")) Module["formatString"] = function() {
- abort("'formatString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "PATH")) Module["PATH"] = function() {
- abort("'PATH' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "PATH_FS")) Module["PATH_FS"] = function() {
- abort("'PATH_FS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SYSCALLS")) Module["SYSCALLS"] = function() {
- abort("'SYSCALLS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "syscallMmap2")) Module["syscallMmap2"] = function() {
- abort("'syscallMmap2' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "syscallMunmap")) Module["syscallMunmap"] = function() {
- abort("'syscallMunmap' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getSocketFromFD")) Module["getSocketFromFD"] = function() {
- abort("'getSocketFromFD' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getSocketAddress")) Module["getSocketAddress"] = function() {
- abort("'getSocketAddress' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JSEvents")) Module["JSEvents"] = function() {
- abort("'JSEvents' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerKeyEventCallback")) Module["registerKeyEventCallback"] = function() {
- abort("'registerKeyEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "specialHTMLTargets")) Module["specialHTMLTargets"] = function() {
- abort("'specialHTMLTargets' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "maybeCStringToJsString")) Module["maybeCStringToJsString"] = function() {
- abort("'maybeCStringToJsString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "findEventTarget")) Module["findEventTarget"] = function() {
- abort("'findEventTarget' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "findCanvasEventTarget")) Module["findCanvasEventTarget"] = function() {
- abort("'findCanvasEventTarget' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getBoundingClientRect")) Module["getBoundingClientRect"] = function() {
- abort("'getBoundingClientRect' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillMouseEventData")) Module["fillMouseEventData"] = function() {
- abort("'fillMouseEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerMouseEventCallback")) Module["registerMouseEventCallback"] = function() {
- abort("'registerMouseEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerWheelEventCallback")) Module["registerWheelEventCallback"] = function() {
- abort("'registerWheelEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerUiEventCallback")) Module["registerUiEventCallback"] = function() {
- abort("'registerUiEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerFocusEventCallback")) Module["registerFocusEventCallback"] = function() {
- abort("'registerFocusEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillDeviceOrientationEventData")) Module["fillDeviceOrientationEventData"] = function() {
- abort("'fillDeviceOrientationEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerDeviceOrientationEventCallback")) Module["registerDeviceOrientationEventCallback"] = function() {
- abort("'registerDeviceOrientationEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillDeviceMotionEventData")) Module["fillDeviceMotionEventData"] = function() {
- abort("'fillDeviceMotionEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerDeviceMotionEventCallback")) Module["registerDeviceMotionEventCallback"] = function() {
- abort("'registerDeviceMotionEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "screenOrientation")) Module["screenOrientation"] = function() {
- abort("'screenOrientation' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillOrientationChangeEventData")) Module["fillOrientationChangeEventData"] = function() {
- abort("'fillOrientationChangeEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerOrientationChangeEventCallback")) Module["registerOrientationChangeEventCallback"] = function() {
- abort("'registerOrientationChangeEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillFullscreenChangeEventData")) Module["fillFullscreenChangeEventData"] = function() {
- abort("'fillFullscreenChangeEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerFullscreenChangeEventCallback")) Module["registerFullscreenChangeEventCallback"] = function() {
- abort("'registerFullscreenChangeEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerRestoreOldStyle")) Module["registerRestoreOldStyle"] = function() {
- abort("'registerRestoreOldStyle' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "hideEverythingExceptGivenElement")) Module["hideEverythingExceptGivenElement"] = function() {
- abort("'hideEverythingExceptGivenElement' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "restoreHiddenElements")) Module["restoreHiddenElements"] = function() {
- abort("'restoreHiddenElements' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "setLetterbox")) Module["setLetterbox"] = function() {
- abort("'setLetterbox' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "currentFullscreenStrategy")) Module["currentFullscreenStrategy"] = function() {
- abort("'currentFullscreenStrategy' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "restoreOldWindowedStyle")) Module["restoreOldWindowedStyle"] = function() {
- abort("'restoreOldWindowedStyle' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "softFullscreenResizeWebGLRenderTarget")) Module["softFullscreenResizeWebGLRenderTarget"] = function() {
- abort("'softFullscreenResizeWebGLRenderTarget' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "doRequestFullscreen")) Module["doRequestFullscreen"] = function() {
- abort("'doRequestFullscreen' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillPointerlockChangeEventData")) Module["fillPointerlockChangeEventData"] = function() {
- abort("'fillPointerlockChangeEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerPointerlockChangeEventCallback")) Module["registerPointerlockChangeEventCallback"] = function() {
- abort("'registerPointerlockChangeEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerPointerlockErrorEventCallback")) Module["registerPointerlockErrorEventCallback"] = function() {
- abort("'registerPointerlockErrorEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "requestPointerLock")) Module["requestPointerLock"] = function() {
- abort("'requestPointerLock' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillVisibilityChangeEventData")) Module["fillVisibilityChangeEventData"] = function() {
- abort("'fillVisibilityChangeEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerVisibilityChangeEventCallback")) Module["registerVisibilityChangeEventCallback"] = function() {
- abort("'registerVisibilityChangeEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerTouchEventCallback")) Module["registerTouchEventCallback"] = function() {
- abort("'registerTouchEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillGamepadEventData")) Module["fillGamepadEventData"] = function() {
- abort("'fillGamepadEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerGamepadEventCallback")) Module["registerGamepadEventCallback"] = function() {
- abort("'registerGamepadEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerBeforeUnloadEventCallback")) Module["registerBeforeUnloadEventCallback"] = function() {
- abort("'registerBeforeUnloadEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fillBatteryEventData")) Module["fillBatteryEventData"] = function() {
- abort("'fillBatteryEventData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "battery")) Module["battery"] = function() {
- abort("'battery' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "registerBatteryEventCallback")) Module["registerBatteryEventCallback"] = function() {
- abort("'registerBatteryEventCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "setCanvasElementSize")) Module["setCanvasElementSize"] = function() {
- abort("'setCanvasElementSize' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getCanvasElementSize")) Module["getCanvasElementSize"] = function() {
- abort("'getCanvasElementSize' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "polyfillSetImmediate")) Module["polyfillSetImmediate"] = function() {
- abort("'polyfillSetImmediate' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "demangle")) Module["demangle"] = function() {
- abort("'demangle' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "demangleAll")) Module["demangleAll"] = function() {
- abort("'demangleAll' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsStackTrace")) Module["jsStackTrace"] = function() {
- abort("'jsStackTrace' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("FS_createPreloadedFile", true);
+
+unexportedRuntimeFunction("FS_createLazyFile", true);
+
+unexportedRuntimeFunction("FS_createLink", false);
+
+unexportedRuntimeFunction("FS_createDevice", true);
+
+unexportedRuntimeFunction("FS_unlink", true);
+
+unexportedRuntimeFunction("getLEB", false);
+
+unexportedRuntimeFunction("getFunctionTables", false);
+
+unexportedRuntimeFunction("alignFunctionTables", false);
+
+unexportedRuntimeFunction("registerFunctions", false);
+
+unexportedRuntimeFunction("addFunction", false);
+
+unexportedRuntimeFunction("removeFunction", false);
+
+unexportedRuntimeFunction("getFuncWrapper", false);
+
+unexportedRuntimeFunction("prettyPrint", false);
+
+unexportedRuntimeFunction("dynCall", false);
+
+unexportedRuntimeFunction("getCompilerSetting", false);
+
+unexportedRuntimeFunction("print", false);
+
+unexportedRuntimeFunction("printErr", false);
+
+unexportedRuntimeFunction("getTempRet0", false);
+
+unexportedRuntimeFunction("setTempRet0", false);
+
+unexportedRuntimeFunction("callMain", false);
+
+unexportedRuntimeFunction("abort", false);
+
+unexportedRuntimeFunction("keepRuntimeAlive", false);
+
+unexportedRuntimeFunction("zeroMemory", false);
+
+unexportedRuntimeFunction("stringToNewUTF8", false);
+
+unexportedRuntimeFunction("abortOnCannotGrowMemory", false);
+
+unexportedRuntimeFunction("emscripten_realloc_buffer", false);
+
+unexportedRuntimeFunction("ENV", false);
+
+unexportedRuntimeFunction("ERRNO_CODES", false);
+
+unexportedRuntimeFunction("ERRNO_MESSAGES", false);
+
+unexportedRuntimeFunction("setErrNo", false);
+
+unexportedRuntimeFunction("inetPton4", false);
+
+unexportedRuntimeFunction("inetNtop4", false);
+
+unexportedRuntimeFunction("inetPton6", false);
+
+unexportedRuntimeFunction("inetNtop6", false);
+
+unexportedRuntimeFunction("readSockaddr", false);
+
+unexportedRuntimeFunction("writeSockaddr", false);
+
+unexportedRuntimeFunction("DNS", false);
+
+unexportedRuntimeFunction("getHostByName", false);
+
+unexportedRuntimeFunction("Protocols", false);
+
+unexportedRuntimeFunction("Sockets", false);
+
+unexportedRuntimeFunction("getRandomDevice", false);
+
+unexportedRuntimeFunction("traverseStack", false);
+
+unexportedRuntimeFunction("UNWIND_CACHE", false);
+
+unexportedRuntimeFunction("convertPCtoSourceLocation", false);
+
+unexportedRuntimeFunction("readAsmConstArgsArray", false);
+
+unexportedRuntimeFunction("readAsmConstArgs", false);
+
+unexportedRuntimeFunction("mainThreadEM_ASM", false);
+
+unexportedRuntimeFunction("jstoi_q", false);
+
+unexportedRuntimeFunction("jstoi_s", false);
+
+unexportedRuntimeFunction("getExecutableName", false);
+
+unexportedRuntimeFunction("listenOnce", false);
+
+unexportedRuntimeFunction("autoResumeAudioContext", false);
+
+unexportedRuntimeFunction("dynCallLegacy", false);
+
+unexportedRuntimeFunction("getDynCaller", false);
+
+unexportedRuntimeFunction("dynCall", false);
+
+unexportedRuntimeFunction("handleException", false);
+
+unexportedRuntimeFunction("runtimeKeepalivePush", false);
+
+unexportedRuntimeFunction("runtimeKeepalivePop", false);
+
+unexportedRuntimeFunction("callUserCallback", false);
+
+unexportedRuntimeFunction("maybeExit", false);
+
+unexportedRuntimeFunction("safeSetTimeout", false);
+
+unexportedRuntimeFunction("asmjsMangle", false);
+
+unexportedRuntimeFunction("asyncLoad", false);
+
+unexportedRuntimeFunction("alignMemory", false);
+
+unexportedRuntimeFunction("mmapAlloc", false);
+
+unexportedRuntimeFunction("reallyNegative", false);
+
+unexportedRuntimeFunction("unSign", false);
+
+unexportedRuntimeFunction("reSign", false);
+
+unexportedRuntimeFunction("formatString", false);
+
+unexportedRuntimeFunction("PATH", false);
+
+unexportedRuntimeFunction("PATH_FS", false);
+
+unexportedRuntimeFunction("SYSCALLS", false);
+
+unexportedRuntimeFunction("getSocketFromFD", false);
+
+unexportedRuntimeFunction("getSocketAddress", false);
+
+unexportedRuntimeFunction("JSEvents", false);
+
+unexportedRuntimeFunction("registerKeyEventCallback", false);
+
+unexportedRuntimeFunction("specialHTMLTargets", false);
+
+unexportedRuntimeFunction("maybeCStringToJsString", false);
+
+unexportedRuntimeFunction("findEventTarget", false);
+
+unexportedRuntimeFunction("findCanvasEventTarget", false);
+
+unexportedRuntimeFunction("getBoundingClientRect", false);
+
+unexportedRuntimeFunction("fillMouseEventData", false);
+
+unexportedRuntimeFunction("registerMouseEventCallback", false);
+
+unexportedRuntimeFunction("registerWheelEventCallback", false);
+
+unexportedRuntimeFunction("registerUiEventCallback", false);
+
+unexportedRuntimeFunction("registerFocusEventCallback", false);
+
+unexportedRuntimeFunction("fillDeviceOrientationEventData", false);
+
+unexportedRuntimeFunction("registerDeviceOrientationEventCallback", false);
+
+unexportedRuntimeFunction("fillDeviceMotionEventData", false);
+
+unexportedRuntimeFunction("registerDeviceMotionEventCallback", false);
+
+unexportedRuntimeFunction("screenOrientation", false);
+
+unexportedRuntimeFunction("fillOrientationChangeEventData", false);
+
+unexportedRuntimeFunction("registerOrientationChangeEventCallback", false);
+
+unexportedRuntimeFunction("fillFullscreenChangeEventData", false);
+
+unexportedRuntimeFunction("registerFullscreenChangeEventCallback", false);
+
+unexportedRuntimeFunction("registerRestoreOldStyle", false);
+
+unexportedRuntimeFunction("hideEverythingExceptGivenElement", false);
+
+unexportedRuntimeFunction("restoreHiddenElements", false);
+
+unexportedRuntimeFunction("setLetterbox", false);
+
+unexportedRuntimeFunction("currentFullscreenStrategy", false);
+
+unexportedRuntimeFunction("restoreOldWindowedStyle", false);
+
+unexportedRuntimeFunction("softFullscreenResizeWebGLRenderTarget", false);
+
+unexportedRuntimeFunction("doRequestFullscreen", false);
+
+unexportedRuntimeFunction("fillPointerlockChangeEventData", false);
+
+unexportedRuntimeFunction("registerPointerlockChangeEventCallback", false);
+
+unexportedRuntimeFunction("registerPointerlockErrorEventCallback", false);
+
+unexportedRuntimeFunction("requestPointerLock", false);
+
+unexportedRuntimeFunction("fillVisibilityChangeEventData", false);
+
+unexportedRuntimeFunction("registerVisibilityChangeEventCallback", false);
+
+unexportedRuntimeFunction("registerTouchEventCallback", false);
+
+unexportedRuntimeFunction("fillGamepadEventData", false);
+
+unexportedRuntimeFunction("registerGamepadEventCallback", false);
+
+unexportedRuntimeFunction("registerBeforeUnloadEventCallback", false);
+
+unexportedRuntimeFunction("fillBatteryEventData", false);
+
+unexportedRuntimeFunction("battery", false);
+
+unexportedRuntimeFunction("registerBatteryEventCallback", false);
+
+unexportedRuntimeFunction("setCanvasElementSize", false);
+
+unexportedRuntimeFunction("getCanvasElementSize", false);
+
+unexportedRuntimeFunction("demangle", false);
+
+unexportedRuntimeFunction("demangleAll", false);
+
+unexportedRuntimeFunction("jsStackTrace", false);
 
 Module["stackTrace"] = stackTrace;
 
-if (!Object.getOwnPropertyDescriptor(Module, "getEnvStrings")) Module["getEnvStrings"] = function() {
- abort("'getEnvStrings' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "checkWasiClock")) Module["checkWasiClock"] = function() {
- abort("'checkWasiClock' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToI64")) Module["writeI53ToI64"] = function() {
- abort("'writeI53ToI64' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToI64Clamped")) Module["writeI53ToI64Clamped"] = function() {
- abort("'writeI53ToI64Clamped' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToI64Signaling")) Module["writeI53ToI64Signaling"] = function() {
- abort("'writeI53ToI64Signaling' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToU64Clamped")) Module["writeI53ToU64Clamped"] = function() {
- abort("'writeI53ToU64Clamped' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "writeI53ToU64Signaling")) Module["writeI53ToU64Signaling"] = function() {
- abort("'writeI53ToU64Signaling' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "readI53FromI64")) Module["readI53FromI64"] = function() {
- abort("'readI53FromI64' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "readI53FromU64")) Module["readI53FromU64"] = function() {
- abort("'readI53FromU64' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "convertI32PairToI53")) Module["convertI32PairToI53"] = function() {
- abort("'convertI32PairToI53' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "convertU32PairToI53")) Module["convertU32PairToI53"] = function() {
- abort("'convertU32PairToI53' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "uncaughtExceptionCount")) Module["uncaughtExceptionCount"] = function() {
- abort("'uncaughtExceptionCount' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "exceptionLast")) Module["exceptionLast"] = function() {
- abort("'exceptionLast' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "exceptionCaught")) Module["exceptionCaught"] = function() {
- abort("'exceptionCaught' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "ExceptionInfoAttrs")) Module["ExceptionInfoAttrs"] = function() {
- abort("'ExceptionInfoAttrs' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "ExceptionInfo")) Module["ExceptionInfo"] = function() {
- abort("'ExceptionInfo' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "CatchInfo")) Module["CatchInfo"] = function() {
- abort("'CatchInfo' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "exception_addRef")) Module["exception_addRef"] = function() {
- abort("'exception_addRef' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "exception_decRef")) Module["exception_decRef"] = function() {
- abort("'exception_decRef' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "Browser")) Module["Browser"] = function() {
- abort("'Browser' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "funcWrappers")) Module["funcWrappers"] = function() {
- abort("'funcWrappers' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "getFuncWrapper")) Module["getFuncWrapper"] = function() {
- abort("'getFuncWrapper' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "setMainLoop")) Module["setMainLoop"] = function() {
- abort("'setMainLoop' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "FS")) Module["FS"] = function() {
- abort("'FS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "mmapAlloc")) Module["mmapAlloc"] = function() {
- abort("'mmapAlloc' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "MEMFS")) Module["MEMFS"] = function() {
- abort("'MEMFS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "TTY")) Module["TTY"] = function() {
- abort("'TTY' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "PIPEFS")) Module["PIPEFS"] = function() {
- abort("'PIPEFS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SOCKFS")) Module["SOCKFS"] = function() {
- abort("'SOCKFS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "_setNetworkCallback")) Module["_setNetworkCallback"] = function() {
- abort("'_setNetworkCallback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "tempFixedLengthArray")) Module["tempFixedLengthArray"] = function() {
- abort("'tempFixedLengthArray' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "miniTempWebGLFloatBuffers")) Module["miniTempWebGLFloatBuffers"] = function() {
- abort("'miniTempWebGLFloatBuffers' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "heapObjectForWebGLType")) Module["heapObjectForWebGLType"] = function() {
- abort("'heapObjectForWebGLType' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "heapAccessShiftForWebGLHeap")) Module["heapAccessShiftForWebGLHeap"] = function() {
- abort("'heapAccessShiftForWebGLHeap' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "GL")) Module["GL"] = function() {
- abort("'GL' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGet")) Module["emscriptenWebGLGet"] = function() {
- abort("'emscriptenWebGLGet' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "computeUnpackAlignedImageSize")) Module["computeUnpackAlignedImageSize"] = function() {
- abort("'computeUnpackAlignedImageSize' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetTexPixelData")) Module["emscriptenWebGLGetTexPixelData"] = function() {
- abort("'emscriptenWebGLGetTexPixelData' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetUniform")) Module["emscriptenWebGLGetUniform"] = function() {
- abort("'emscriptenWebGLGetUniform' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "webglGetUniformLocation")) Module["webglGetUniformLocation"] = function() {
- abort("'webglGetUniformLocation' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetVertexAttrib")) Module["emscriptenWebGLGetVertexAttrib"] = function() {
- abort("'emscriptenWebGLGetVertexAttrib' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "webglApplyExplicitProgramBindings")) Module["webglApplyExplicitProgramBindings"] = function() {
- abort("'webglApplyExplicitProgramBindings' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetBufferBinding")) Module["emscriptenWebGLGetBufferBinding"] = function() {
- abort("'emscriptenWebGLGetBufferBinding' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLValidateMapBufferTarget")) Module["emscriptenWebGLValidateMapBufferTarget"] = function() {
- abort("'emscriptenWebGLValidateMapBufferTarget' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "writeGLArray")) Module["writeGLArray"] = function() {
- abort("'writeGLArray' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "AL")) Module["AL"] = function() {
- abort("'AL' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SDL_unicode")) Module["SDL_unicode"] = function() {
- abort("'SDL_unicode' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SDL_ttfContext")) Module["SDL_ttfContext"] = function() {
- abort("'SDL_ttfContext' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SDL_audio")) Module["SDL_audio"] = function() {
- abort("'SDL_audio' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SDL")) Module["SDL"] = function() {
- abort("'SDL' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SDL_gfx")) Module["SDL_gfx"] = function() {
- abort("'SDL_gfx' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "GLUT")) Module["GLUT"] = function() {
- abort("'GLUT' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "EGL")) Module["EGL"] = function() {
- abort("'EGL' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "GLFW_Window")) Module["GLFW_Window"] = function() {
- abort("'GLFW_Window' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "GLFW")) Module["GLFW"] = function() {
- abort("'GLFW' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "GLEW")) Module["GLEW"] = function() {
- abort("'GLEW' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "IDBStore")) Module["IDBStore"] = function() {
- abort("'IDBStore' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "runAndAbortIfError")) Module["runAndAbortIfError"] = function() {
- abort("'runAndAbortIfError' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "WEBAudio")) Module["WEBAudio"] = function() {
- abort("'WEBAudio' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioAddPendingBlockedAudio")) Module["jsAudioAddPendingBlockedAudio"] = function() {
- abort("'jsAudioAddPendingBlockedAudio' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioPlayPendingBlockedAudio")) Module["jsAudioPlayPendingBlockedAudio"] = function() {
- abort("'jsAudioPlayPendingBlockedAudio' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioPlayBlockedAudios")) Module["jsAudioPlayBlockedAudios"] = function() {
- abort("'jsAudioPlayBlockedAudios' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioMixinSetPitch")) Module["jsAudioMixinSetPitch"] = function() {
- abort("'jsAudioMixinSetPitch' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioCreateCompressedSoundClip")) Module["jsAudioCreateCompressedSoundClip"] = function() {
- abort("'jsAudioCreateCompressedSoundClip' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioCreateUncompressedSoundClip")) Module["jsAudioCreateUncompressedSoundClip"] = function() {
- abort("'jsAudioCreateUncompressedSoundClip' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioCreateUncompressedSoundClipFromPCM")) Module["jsAudioCreateUncompressedSoundClipFromPCM"] = function() {
- abort("'jsAudioCreateUncompressedSoundClipFromPCM' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioCreateUncompressedSoundClipFromCompressedAudio")) Module["jsAudioCreateUncompressedSoundClipFromCompressedAudio"] = function() {
- abort("'jsAudioCreateUncompressedSoundClipFromCompressedAudio' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsAudioCreateChannel")) Module["jsAudioCreateChannel"] = function() {
- abort("'jsAudioCreateChannel' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsDomCssEscapeId")) Module["jsDomCssEscapeId"] = function() {
- abort("'jsDomCssEscapeId' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "fs")) Module["fs"] = function() {
- abort("'fs' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_ScreenOrientation_callback")) Module["JS_ScreenOrientation_callback"] = function() {
- abort("'JS_ScreenOrientation_callback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_ScreenOrientation_eventHandler")) Module["JS_ScreenOrientation_eventHandler"] = function() {
- abort("'JS_ScreenOrientation_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_ScreenOrientation_requestedLockType")) Module["JS_ScreenOrientation_requestedLockType"] = function() {
- abort("'JS_ScreenOrientation_requestedLockType' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_ScreenOrientation_appliedLockType")) Module["JS_ScreenOrientation_appliedLockType"] = function() {
- abort("'JS_ScreenOrientation_appliedLockType' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_ScreenOrientation_timeoutID")) Module["JS_ScreenOrientation_timeoutID"] = function() {
- abort("'JS_ScreenOrientation_timeoutID' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_OrientationSensor_frequencyRequest")) Module["JS_OrientationSensor_frequencyRequest"] = function() {
- abort("'JS_OrientationSensor_frequencyRequest' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_OrientationSensor_callback")) Module["JS_OrientationSensor_callback"] = function() {
- abort("'JS_OrientationSensor_callback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_OrientationSensor")) Module["JS_OrientationSensor"] = function() {
- abort("'JS_OrientationSensor' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Accelerometer_frequencyRequest")) Module["JS_Accelerometer_frequencyRequest"] = function() {
- abort("'JS_Accelerometer_frequencyRequest' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Accelerometer_callback")) Module["JS_Accelerometer_callback"] = function() {
- abort("'JS_Accelerometer_callback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Accelerometer")) Module["JS_Accelerometer"] = function() {
- abort("'JS_Accelerometer' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Accelerometer_multiplier")) Module["JS_Accelerometer_multiplier"] = function() {
- abort("'JS_Accelerometer_multiplier' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_LinearAccelerationSensor_frequencyRequest")) Module["JS_LinearAccelerationSensor_frequencyRequest"] = function() {
- abort("'JS_LinearAccelerationSensor_frequencyRequest' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_LinearAccelerationSensor_callback")) Module["JS_LinearAccelerationSensor_callback"] = function() {
- abort("'JS_LinearAccelerationSensor_callback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_LinearAccelerationSensor")) Module["JS_LinearAccelerationSensor"] = function() {
- abort("'JS_LinearAccelerationSensor' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_GravitySensor_frequencyRequest")) Module["JS_GravitySensor_frequencyRequest"] = function() {
- abort("'JS_GravitySensor_frequencyRequest' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_GravitySensor_callback")) Module["JS_GravitySensor_callback"] = function() {
- abort("'JS_GravitySensor_callback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_GravitySensor")) Module["JS_GravitySensor"] = function() {
- abort("'JS_GravitySensor' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Accelerometer_frequency")) Module["JS_Accelerometer_frequency"] = function() {
- abort("'JS_Accelerometer_frequency' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Accelerometer_lastValue")) Module["JS_Accelerometer_lastValue"] = function() {
- abort("'JS_Accelerometer_lastValue' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_LinearAccelerationSensor_frequency")) Module["JS_LinearAccelerationSensor_frequency"] = function() {
- abort("'JS_LinearAccelerationSensor_frequency' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Gyroscope_frequencyRequest")) Module["JS_Gyroscope_frequencyRequest"] = function() {
- abort("'JS_Gyroscope_frequencyRequest' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Gyroscope_callback")) Module["JS_Gyroscope_callback"] = function() {
- abort("'JS_Gyroscope_callback' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Gyroscope")) Module["JS_Gyroscope"] = function() {
- abort("'JS_Gyroscope' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_DeviceSensorPermissions")) Module["JS_DeviceSensorPermissions"] = function() {
- abort("'JS_DeviceSensorPermissions' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_DefineAccelerometerMultiplier")) Module["JS_DefineAccelerometerMultiplier"] = function() {
- abort("'JS_DefineAccelerometerMultiplier' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_RequestDeviceSensorPermissions")) Module["JS_RequestDeviceSensorPermissions"] = function() {
- abort("'JS_RequestDeviceSensorPermissions' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_OrientationSensor_eventHandler")) Module["JS_OrientationSensor_eventHandler"] = function() {
- abort("'JS_OrientationSensor_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Accelerometer_eventHandler")) Module["JS_Accelerometer_eventHandler"] = function() {
- abort("'JS_Accelerometer_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_ComputeGravity")) Module["JS_ComputeGravity"] = function() {
- abort("'JS_ComputeGravity' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_LinearAccelerationSensor_eventHandler")) Module["JS_LinearAccelerationSensor_eventHandler"] = function() {
- abort("'JS_LinearAccelerationSensor_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_GravitySensor_eventHandler")) Module["JS_GravitySensor_eventHandler"] = function() {
- abort("'JS_GravitySensor_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_Gyroscope_eventHandler")) Module["JS_Gyroscope_eventHandler"] = function() {
- abort("'JS_Gyroscope_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_DeviceOrientation_eventHandler")) Module["JS_DeviceOrientation_eventHandler"] = function() {
- abort("'JS_DeviceOrientation_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_DeviceMotion_eventHandler")) Module["JS_DeviceMotion_eventHandler"] = function() {
- abort("'JS_DeviceMotion_eventHandler' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_DeviceMotion_add")) Module["JS_DeviceMotion_add"] = function() {
- abort("'JS_DeviceMotion_add' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "JS_DeviceMotion_remove")) Module["JS_DeviceMotion_remove"] = function() {
- abort("'JS_DeviceMotion_remove' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "UNETWebSocketsInstances")) Module["UNETWebSocketsInstances"] = function() {
- abort("'UNETWebSocketsInstances' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "videoInstances")) Module["videoInstances"] = function() {
- abort("'videoInstances' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "videoInstanceIdCounter")) Module["videoInstanceIdCounter"] = function() {
- abort("'videoInstanceIdCounter' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "hasSRGBATextures")) Module["hasSRGBATextures"] = function() {
- abort("'hasSRGBATextures' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsVideoEnded")) Module["jsVideoEnded"] = function() {
- abort("'jsVideoEnded' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsVideoAllAudioTracksAreDisabled")) Module["jsVideoAllAudioTracksAreDisabled"] = function() {
- abort("'jsVideoAllAudioTracksAreDisabled' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsVideoPendingBlockedVideos")) Module["jsVideoPendingBlockedVideos"] = function() {
- abort("'jsVideoPendingBlockedVideos' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsVideoAddPendingBlockedVideo")) Module["jsVideoAddPendingBlockedVideo"] = function() {
- abort("'jsVideoAddPendingBlockedVideo' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsVideoPlayPendingBlockedVideo")) Module["jsVideoPlayPendingBlockedVideo"] = function() {
- abort("'jsVideoPlayPendingBlockedVideo' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsVideoRemovePendingBlockedVideo")) Module["jsVideoRemovePendingBlockedVideo"] = function() {
- abort("'jsVideoRemovePendingBlockedVideo' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsVideoAttemptToPlayBlockedVideos")) Module["jsVideoAttemptToPlayBlockedVideos"] = function() {
- abort("'jsVideoAttemptToPlayBlockedVideos' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsSupportedVideoFormats")) Module["jsSupportedVideoFormats"] = function() {
- abort("'jsSupportedVideoFormats' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsUnsupportedVideoFormats")) Module["jsUnsupportedVideoFormats"] = function() {
- abort("'jsUnsupportedVideoFormats' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "activeWebCams")) Module["activeWebCams"] = function() {
- abort("'activeWebCams' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "cameraAccess")) Module["cameraAccess"] = function() {
- abort("'cameraAccess' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "wr")) Module["wr"] = function() {
- abort("'wr' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "jsWebRequestGetResponseHeaderString")) Module["jsWebRequestGetResponseHeaderString"] = function() {
- abort("'jsWebRequestGetResponseHeaderString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "IDBFS")) Module["IDBFS"] = function() {
- abort("'IDBFS' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "LKBridge")) Module["LKBridge"] = function() {
- abort("'LKBridge' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "SimpleWeb")) Module["SimpleWeb"] = function() {
- abort("'SimpleWeb' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "emscriptenWebGLGetIndexed")) Module["emscriptenWebGLGetIndexed"] = function() {
- abort("'emscriptenWebGLGetIndexed' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "remove_cpp_comments_in_shaders")) Module["remove_cpp_comments_in_shaders"] = function() {
- abort("'remove_cpp_comments_in_shaders' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "find_closing_parens_index")) Module["find_closing_parens_index"] = function() {
- abort("'find_closing_parens_index' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "preprocess_c_code")) Module["preprocess_c_code"] = function() {
- abort("'preprocess_c_code' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "warnOnce")) Module["warnOnce"] = function() {
- abort("'warnOnce' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "stackSave")) Module["stackSave"] = function() {
- abort("'stackSave' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "stackRestore")) Module["stackRestore"] = function() {
- abort("'stackRestore' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "stackAlloc")) Module["stackAlloc"] = function() {
- abort("'stackAlloc' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "AsciiToString")) Module["AsciiToString"] = function() {
- abort("'AsciiToString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "stringToAscii")) Module["stringToAscii"] = function() {
- abort("'stringToAscii' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "UTF16ToString")) Module["UTF16ToString"] = function() {
- abort("'UTF16ToString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF16")) Module["stringToUTF16"] = function() {
- abort("'stringToUTF16' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "lengthBytesUTF16")) Module["lengthBytesUTF16"] = function() {
- abort("'lengthBytesUTF16' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "UTF32ToString")) Module["UTF32ToString"] = function() {
- abort("'UTF32ToString' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "stringToUTF32")) Module["stringToUTF32"] = function() {
- abort("'stringToUTF32' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "lengthBytesUTF32")) Module["lengthBytesUTF32"] = function() {
- abort("'lengthBytesUTF32' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "allocateUTF8")) Module["allocateUTF8"] = function() {
- abort("'allocateUTF8' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
-
-if (!Object.getOwnPropertyDescriptor(Module, "allocateUTF8OnStack")) Module["allocateUTF8OnStack"] = function() {
- abort("'allocateUTF8OnStack' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
-};
+unexportedRuntimeFunction("getEnvStrings", false);
+
+unexportedRuntimeFunction("checkWasiClock", false);
+
+unexportedRuntimeFunction("writeI53ToI64", false);
+
+unexportedRuntimeFunction("writeI53ToI64Clamped", false);
+
+unexportedRuntimeFunction("writeI53ToI64Signaling", false);
+
+unexportedRuntimeFunction("writeI53ToU64Clamped", false);
+
+unexportedRuntimeFunction("writeI53ToU64Signaling", false);
+
+unexportedRuntimeFunction("readI53FromI64", false);
+
+unexportedRuntimeFunction("readI53FromU64", false);
+
+unexportedRuntimeFunction("convertI32PairToI53", false);
+
+unexportedRuntimeFunction("convertU32PairToI53", false);
+
+unexportedRuntimeFunction("setImmediateWrapped", false);
+
+unexportedRuntimeFunction("clearImmediateWrapped", false);
+
+unexportedRuntimeFunction("polyfillSetImmediate", false);
+
+unexportedRuntimeFunction("uncaughtExceptionCount", false);
+
+unexportedRuntimeFunction("exceptionLast", false);
+
+unexportedRuntimeFunction("exceptionCaught", false);
+
+unexportedRuntimeFunction("ExceptionInfo", false);
+
+unexportedRuntimeFunction("CatchInfo", false);
+
+unexportedRuntimeFunction("exception_addRef", false);
+
+unexportedRuntimeFunction("exception_decRef", false);
+
+unexportedRuntimeFunction("formatException", false);
+
+unexportedRuntimeFunction("Browser", false);
+
+unexportedRuntimeFunction("funcWrappers", false);
+
+unexportedRuntimeFunction("getFuncWrapper", false);
+
+unexportedRuntimeFunction("setMainLoop", false);
+
+unexportedRuntimeFunction("wget", false);
+
+unexportedRuntimeFunction("FS", false);
+
+unexportedRuntimeFunction("MEMFS", false);
+
+unexportedRuntimeFunction("TTY", false);
+
+unexportedRuntimeFunction("PIPEFS", false);
+
+unexportedRuntimeFunction("SOCKFS", false);
+
+unexportedRuntimeFunction("_setNetworkCallback", false);
+
+unexportedRuntimeFunction("tempFixedLengthArray", false);
+
+unexportedRuntimeFunction("miniTempWebGLFloatBuffers", false);
+
+unexportedRuntimeFunction("heapObjectForWebGLType", false);
+
+unexportedRuntimeFunction("heapAccessShiftForWebGLHeap", false);
+
+unexportedRuntimeFunction("GL", false);
+
+unexportedRuntimeFunction("emscriptenWebGLGet", false);
+
+unexportedRuntimeFunction("computeUnpackAlignedImageSize", false);
+
+unexportedRuntimeFunction("emscriptenWebGLGetTexPixelData", false);
+
+unexportedRuntimeFunction("emscriptenWebGLGetUniform", false);
+
+unexportedRuntimeFunction("webglGetUniformLocation", false);
+
+unexportedRuntimeFunction("webglPrepareUniformLocationsBeforeFirstUse", false);
+
+unexportedRuntimeFunction("webglGetLeftBracePos", false);
+
+unexportedRuntimeFunction("emscriptenWebGLGetVertexAttrib", false);
+
+unexportedRuntimeFunction("webglApplyExplicitProgramBindings", false);
+
+unexportedRuntimeFunction("emscriptenWebGLGetBufferBinding", false);
+
+unexportedRuntimeFunction("emscriptenWebGLValidateMapBufferTarget", false);
+
+unexportedRuntimeFunction("writeGLArray", false);
+
+unexportedRuntimeFunction("AL", false);
+
+unexportedRuntimeFunction("SDL_unicode", false);
+
+unexportedRuntimeFunction("SDL_ttfContext", false);
+
+unexportedRuntimeFunction("SDL_audio", false);
+
+unexportedRuntimeFunction("SDL", false);
+
+unexportedRuntimeFunction("SDL_gfx", false);
+
+unexportedRuntimeFunction("GLUT", false);
+
+unexportedRuntimeFunction("EGL", false);
+
+unexportedRuntimeFunction("GLFW_Window", false);
+
+unexportedRuntimeFunction("GLFW", false);
+
+unexportedRuntimeFunction("GLEW", false);
+
+unexportedRuntimeFunction("IDBStore", false);
+
+unexportedRuntimeFunction("runAndAbortIfError", false);
+
+unexportedRuntimeFunction("emscriptenWebGLGetIndexed", false);
+
+unexportedRuntimeFunction("remove_cpp_comments_in_shaders", false);
+
+unexportedRuntimeFunction("find_closing_parens_index", false);
+
+unexportedRuntimeFunction("preprocess_c_code", false);
+
+unexportedRuntimeFunction("WEBAudio", false);
+
+unexportedRuntimeFunction("WEBAudio__user", false);
+
+unexportedRuntimeFunction("jsAudioAddPendingBlockedAudio", false);
+
+unexportedRuntimeFunction("jsAudioAddPendingBlockedAudio__user", false);
+
+unexportedRuntimeFunction("jsAudioPlayPendingBlockedAudio", false);
+
+unexportedRuntimeFunction("jsAudioPlayPendingBlockedAudio__user", false);
+
+unexportedRuntimeFunction("jsAudioPlayBlockedAudios", false);
+
+unexportedRuntimeFunction("jsAudioPlayBlockedAudios__user", false);
+
+unexportedRuntimeFunction("jsAudioMixinSetPitch", false);
+
+unexportedRuntimeFunction("jsAudioMixinSetPitch__user", false);
+
+unexportedRuntimeFunction("jsAudioGetMimeTypeFromType", false);
+
+unexportedRuntimeFunction("jsAudioGetMimeTypeFromType__user", false);
+
+unexportedRuntimeFunction("jsAudioCreateCompressedSoundClip", false);
+
+unexportedRuntimeFunction("jsAudioCreateCompressedSoundClip__user", false);
+
+unexportedRuntimeFunction("jsAudioCreateUncompressedSoundClip", false);
+
+unexportedRuntimeFunction("jsAudioCreateUncompressedSoundClip__user", false);
+
+unexportedRuntimeFunction("jsAudioCreateUncompressedSoundClipFromPCM", false);
+
+unexportedRuntimeFunction("jsAudioCreateUncompressedSoundClipFromPCM__user", false);
+
+unexportedRuntimeFunction("jsAudioCreateUncompressedSoundClipFromCompressedAudio", false);
+
+unexportedRuntimeFunction("jsAudioCreateUncompressedSoundClipFromCompressedAudio__user", false);
+
+unexportedRuntimeFunction("jsAudioCreateChannel", false);
+
+unexportedRuntimeFunction("jsAudioCreateChannel__user", false);
+
+unexportedRuntimeFunction("registerTouchEventCallback__user", false);
+
+unexportedRuntimeFunction("dlopen_main_init", false);
+
+unexportedRuntimeFunction("dlopen_main_init__user", false);
+
+unexportedRuntimeFunction("jsDomCssEscapeId", false);
+
+unexportedRuntimeFunction("jsDomCssEscapeId__user", false);
+
+unexportedRuntimeFunction("jsCanvasSelector", false);
+
+unexportedRuntimeFunction("jsCanvasSelector__user", false);
+
+unexportedRuntimeFunction("fs", false);
+
+unexportedRuntimeFunction("fs__user", false);
+
+unexportedRuntimeFunction("mobile_input", false);
+
+unexportedRuntimeFunction("mobile_input__user", false);
+
+unexportedRuntimeFunction("mobile_input_text", false);
+
+unexportedRuntimeFunction("mobile_input_text__user", false);
+
+unexportedRuntimeFunction("mobile_input_hide_delay", false);
+
+unexportedRuntimeFunction("mobile_input_hide_delay__user", false);
+
+unexportedRuntimeFunction("mobile_input_ignore_blur_event", false);
+
+unexportedRuntimeFunction("mobile_input_ignore_blur_event__user", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_callback", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_callback__user", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_eventHandler", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_requestedLockType", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_requestedLockType__user", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_appliedLockType", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_appliedLockType__user", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_timeoutID", false);
+
+unexportedRuntimeFunction("JS_ScreenOrientation_timeoutID__user", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor_frequencyRequest", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor_frequencyRequest__user", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor_callback", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor_callback__user", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor__user", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_frequencyRequest", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_frequencyRequest__user", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_callback", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_callback__user", false);
+
+unexportedRuntimeFunction("JS_Accelerometer", false);
+
+unexportedRuntimeFunction("JS_Accelerometer__user", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_multiplier", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_multiplier__user", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_frequencyRequest", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_frequencyRequest__user", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_callback", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_callback__user", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor__user", false);
+
+unexportedRuntimeFunction("JS_GravitySensor_frequencyRequest", false);
+
+unexportedRuntimeFunction("JS_GravitySensor_frequencyRequest__user", false);
+
+unexportedRuntimeFunction("JS_GravitySensor_callback", false);
+
+unexportedRuntimeFunction("JS_GravitySensor_callback__user", false);
+
+unexportedRuntimeFunction("JS_GravitySensor", false);
+
+unexportedRuntimeFunction("JS_GravitySensor__user", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_frequency", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_frequency__user", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_lastValue", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_lastValue__user", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_frequency", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_frequency__user", false);
+
+unexportedRuntimeFunction("JS_Gyroscope_frequencyRequest", false);
+
+unexportedRuntimeFunction("JS_Gyroscope_frequencyRequest__user", false);
+
+unexportedRuntimeFunction("JS_Gyroscope_callback", false);
+
+unexportedRuntimeFunction("JS_Gyroscope_callback__user", false);
+
+unexportedRuntimeFunction("JS_Gyroscope", false);
+
+unexportedRuntimeFunction("JS_Gyroscope__user", false);
+
+unexportedRuntimeFunction("JS_DeviceSensorPermissions", false);
+
+unexportedRuntimeFunction("JS_DeviceSensorPermissions__user", false);
+
+unexportedRuntimeFunction("JS_DefineAccelerometerMultiplier", false);
+
+unexportedRuntimeFunction("JS_DefineAccelerometerMultiplier__user", false);
+
+unexportedRuntimeFunction("JS_RequestDeviceSensorPermissions", false);
+
+unexportedRuntimeFunction("JS_RequestDeviceSensorPermissions__user", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor_eventHandler", false);
+
+unexportedRuntimeFunction("JS_OrientationSensor_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_eventHandler", false);
+
+unexportedRuntimeFunction("JS_Accelerometer_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_ComputeGravity", false);
+
+unexportedRuntimeFunction("JS_ComputeGravity__user", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_eventHandler", false);
+
+unexportedRuntimeFunction("JS_LinearAccelerationSensor_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_GravitySensor_eventHandler", false);
+
+unexportedRuntimeFunction("JS_GravitySensor_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_Gyroscope_eventHandler", false);
+
+unexportedRuntimeFunction("JS_Gyroscope_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_DeviceOrientation_eventHandler", false);
+
+unexportedRuntimeFunction("JS_DeviceOrientation_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_DeviceMotion_eventHandler", false);
+
+unexportedRuntimeFunction("JS_DeviceMotion_eventHandler__user", false);
+
+unexportedRuntimeFunction("JS_DeviceMotion_add", false);
+
+unexportedRuntimeFunction("JS_DeviceMotion_add__user", false);
+
+unexportedRuntimeFunction("JS_DeviceMotion_remove", false);
+
+unexportedRuntimeFunction("JS_DeviceMotion_remove__user", false);
+
+unexportedRuntimeFunction("IDBFS", false);
+
+unexportedRuntimeFunction("UNETWebSocketsInstances", false);
+
+unexportedRuntimeFunction("UNETWebSocketsInstances__user", false);
+
+unexportedRuntimeFunction("videoInstances", false);
+
+unexportedRuntimeFunction("videoInstances__user", false);
+
+unexportedRuntimeFunction("videoInstanceIdCounter", false);
+
+unexportedRuntimeFunction("videoInstanceIdCounter__user", false);
+
+unexportedRuntimeFunction("hasSRGBATextures", false);
+
+unexportedRuntimeFunction("hasSRGBATextures__user", false);
+
+unexportedRuntimeFunction("s2lTexture", false);
+
+unexportedRuntimeFunction("s2lTexture__user", false);
+
+unexportedRuntimeFunction("s2lFBO", false);
+
+unexportedRuntimeFunction("s2lFBO__user", false);
+
+unexportedRuntimeFunction("s2lVBO", false);
+
+unexportedRuntimeFunction("s2lVBO__user", false);
+
+unexportedRuntimeFunction("s2lProgram", false);
+
+unexportedRuntimeFunction("s2lProgram__user", false);
+
+unexportedRuntimeFunction("s2lVertexPositionNDC", false);
+
+unexportedRuntimeFunction("s2lVertexPositionNDC__user", false);
+
+unexportedRuntimeFunction("jsVideoEnded", false);
+
+unexportedRuntimeFunction("jsVideoEnded__user", false);
+
+unexportedRuntimeFunction("jsVideoAllAudioTracksAreDisabled", false);
+
+unexportedRuntimeFunction("jsVideoAllAudioTracksAreDisabled__user", false);
+
+unexportedRuntimeFunction("jsVideoPendingBlockedVideos", false);
+
+unexportedRuntimeFunction("jsVideoPendingBlockedVideos__user", false);
+
+unexportedRuntimeFunction("jsVideoAddPendingBlockedVideo", false);
+
+unexportedRuntimeFunction("jsVideoAddPendingBlockedVideo__user", false);
+
+unexportedRuntimeFunction("jsVideoPlayPendingBlockedVideo", false);
+
+unexportedRuntimeFunction("jsVideoPlayPendingBlockedVideo__user", false);
+
+unexportedRuntimeFunction("jsVideoRemovePendingBlockedVideo", false);
+
+unexportedRuntimeFunction("jsVideoRemovePendingBlockedVideo__user", false);
+
+unexportedRuntimeFunction("jsVideoAttemptToPlayBlockedVideos", false);
+
+unexportedRuntimeFunction("jsVideoAttemptToPlayBlockedVideos__user", false);
+
+unexportedRuntimeFunction("jsVideoCreateTexture2D", false);
+
+unexportedRuntimeFunction("jsVideoCreateTexture2D__user", false);
+
+unexportedRuntimeFunction("jsSupportedVideoFormats", false);
+
+unexportedRuntimeFunction("jsSupportedVideoFormats__user", false);
+
+unexportedRuntimeFunction("jsUnsupportedVideoFormats", false);
+
+unexportedRuntimeFunction("jsUnsupportedVideoFormats__user", false);
+
+unexportedRuntimeFunction("activeWebCams", false);
+
+unexportedRuntimeFunction("activeWebCams__user", false);
+
+unexportedRuntimeFunction("cameraAccess", false);
+
+unexportedRuntimeFunction("cameraAccess__user", false);
+
+unexportedRuntimeFunction("wr", false);
+
+unexportedRuntimeFunction("wr__user", false);
+
+unexportedRuntimeFunction("jsWebRequestGetResponseHeaderString", false);
+
+unexportedRuntimeFunction("jsWebRequestGetResponseHeaderString__user", false);
+
+unexportedRuntimeFunction("warnOnce", false);
+
+unexportedRuntimeFunction("stackSave", false);
+
+unexportedRuntimeFunction("stackRestore", false);
+
+unexportedRuntimeFunction("stackAlloc", false);
+
+unexportedRuntimeFunction("AsciiToString", false);
+
+unexportedRuntimeFunction("stringToAscii", false);
+
+unexportedRuntimeFunction("UTF16ToString", false);
+
+unexportedRuntimeFunction("stringToUTF16", false);
+
+unexportedRuntimeFunction("lengthBytesUTF16", false);
+
+unexportedRuntimeFunction("UTF32ToString", false);
+
+unexportedRuntimeFunction("stringToUTF32", false);
+
+unexportedRuntimeFunction("lengthBytesUTF32", false);
+
+unexportedRuntimeFunction("allocateUTF8", false);
+
+unexportedRuntimeFunction("allocateUTF8OnStack", false);
 
 Module["writeStackCookie"] = writeStackCookie;
 
 Module["checkStackCookie"] = checkStackCookie;
 
-if (!Object.getOwnPropertyDescriptor(Module, "ALLOC_NORMAL")) Object.defineProperty(Module, "ALLOC_NORMAL", {
- configurable: true,
- get: function() {
-  abort("'ALLOC_NORMAL' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
- }
-});
+unexportedRuntimeSymbol("ALLOC_NORMAL", false);
 
-if (!Object.getOwnPropertyDescriptor(Module, "ALLOC_STACK")) Object.defineProperty(Module, "ALLOC_STACK", {
- configurable: true,
- get: function() {
-  abort("'ALLOC_STACK' was not exported. add it to EXPORTED_RUNTIME_METHODS (see the FAQ)");
- }
-});
+unexportedRuntimeSymbol("ALLOC_STACK", false);
 
 var calledRun;
 
@@ -21877,27 +17299,17 @@ function callMain(args) {
  args = args || [];
  var argc = args.length + 1;
  var argv = stackAlloc((argc + 1) * 4);
- HEAP32[argv >> 2] = allocateUTF8OnStack(thisProgram);
+ HEAP32[argv >>> 2] = allocateUTF8OnStack(thisProgram);
  for (var i = 1; i < argc; i++) {
-  HEAP32[(argv >> 2) + i] = allocateUTF8OnStack(args[i - 1]);
+  HEAP32[(argv >> 2) + i >>> 0] = allocateUTF8OnStack(args[i - 1]);
  }
- HEAP32[(argv >> 2) + argc] = 0;
+ HEAP32[(argv >> 2) + argc >>> 0] = 0;
  try {
   var ret = entryFunction(argc, argv);
   exit(ret, true);
+  return ret;
  } catch (e) {
-  if (e instanceof ExitStatus) {
-   return;
-  } else if (e == "unwind") {
-   return;
-  } else {
-   var toLog = e;
-   if (e && typeof e === "object" && e.stack) {
-    toLog = [ e, e.stack ];
-   }
-   err("exception thrown: " + toLog);
-   quit_(1, e);
-  }
+  return handleException(e);
  } finally {
   calledMain = true;
  }
@@ -21925,6 +17337,7 @@ function run(args) {
   if (ABORT) return;
   initRuntime();
   preMain();
+  readyPromiseResolve(Module);
   if (Module["onRuntimeInitialized"]) Module["onRuntimeInitialized"]();
   if (shouldRunNow) callMain(args);
   postRun();
@@ -21949,12 +17362,11 @@ function checkUnflushedContent() {
  var oldOut = out;
  var oldErr = err;
  var has = false;
- out = err = function(x) {
+ out = err = (x => {
   has = true;
- };
+ });
  try {
-  var flush = Module["_fflush"];
-  if (flush) flush(0);
+  ___stdio_exit();
   [ "stdout", "stderr" ].forEach(function(name) {
    var info = FS.analyzePath("/dev/" + name);
    if (!info) return;
@@ -21976,20 +17388,21 @@ function checkUnflushedContent() {
 function exit(status, implicit) {
  EXITSTATUS = status;
  checkUnflushedContent();
- if (implicit && keepRuntimeAlive() && status === 0) {
-  return;
+ if (keepRuntimeAlive() && !implicit) {
+  var msg = "program exited (with status: " + status + "), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)";
+  readyPromiseReject(msg);
+  err(msg);
  }
- if (keepRuntimeAlive()) {
-  if (!implicit) {
-   var msg = "program exited (with status: " + status + "), but EXIT_RUNTIME is not set, so halting execution but not exiting the runtime or preventing further async execution (build with EXIT_RUNTIME=1, if you want a true shutdown)";
-   err(msg);
-  }
- } else {
-  exitRuntime();
-  if (Module["onExit"]) Module["onExit"](status);
+ procExit(status);
+}
+
+function procExit(code) {
+ EXITSTATUS = code;
+ if (!keepRuntimeAlive()) {
+  if (Module["onExit"]) Module["onExit"](code);
   ABORT = true;
  }
- quit_(status, new ExitStatus(status));
+ quit_(code, new ExitStatus(code));
 }
 
 if (Module["preInit"]) {
@@ -22005,4 +17418,14 @@ if (Module["noInitialRun"]) shouldRunNow = false;
 
 run();
 
+
+  return unityFramework.ready
 }
+);
+})();
+if (typeof exports === 'object' && typeof module === 'object')
+  module.exports = unityFramework;
+else if (typeof define === 'function' && define['amd'])
+  define([], function() { return unityFramework; });
+else if (typeof exports === 'object')
+  exports["unityFramework"] = unityFramework;
